@@ -11,7 +11,7 @@ dic = {'entailment': '0', 'neutral': '1', 'contradiction': '2'}
 def build_dictionary(filepaths, dst_path, lowercase=False):
     word_freqs = OrderedDict()
     for filepath in filepaths:
-        print 'Processing', filepath
+        print('Processing', filepath)
         with open(filepath, 'r') as f:
             for line in f:
                 if lowercase:
@@ -46,7 +46,7 @@ def build_dictionary(filepaths, dst_path, lowercase=False):
 
 def build_sequence(filepath, dst_dir):
     filename = os.path.basename(filepath)
-    print filename
+    print(filename)
     len_p = []
     len_h = []
     with open(filepath) as f, \
