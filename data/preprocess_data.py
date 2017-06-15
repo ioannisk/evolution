@@ -40,8 +40,8 @@ def build_dictionary(filepaths, dst_path, lowercase=False):
     with open(dst_path, 'wb') as f:
         pkl.dump(worddict, f)
 
-    print 'Dict size', len(worddict)
-    print 'Done'
+    print('Dict size', len(worddict))
+    print('Done')
 
 
 def build_sequence(filepath, dst_dir):
@@ -71,8 +71,8 @@ def build_sequence(filepath, dst_dir):
 
             f3.write(dic[sents[0]] + '\n')
 
-    print 'max min len premise', max(len_p), min(len_p)
-    print 'max min len hypothesis', max(len_h), min(len_h)
+    print('max min len premise', max(len_p), min(len_p))
+    print('max min len hypothesis', max(len_h), min(len_h))
 
 
 def make_dirs(dirs):
