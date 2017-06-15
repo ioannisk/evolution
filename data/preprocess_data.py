@@ -2,7 +2,7 @@
 import sys
 import os
 import numpy
-import cPickle as pkl
+import pickle as pkl
 
 from collections import OrderedDict
 
@@ -24,8 +24,9 @@ def build_dictionary(filepaths, dst_path, lowercase=False):
 
     words = word_freqs.keys()
     freqs = word_freqs.values()
-
     sorted_idx = numpy.argsort(freqs)
+    print(sorted_idx)
+    cfknfc
     sorted_words = [words[ii] for ii in sorted_idx[::-1]]
 
     worddict = OrderedDict()
