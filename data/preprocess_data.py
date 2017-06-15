@@ -29,7 +29,7 @@ def build_dictionary(filepaths, dst_path, lowercase=False):
     sorted_words = [words[ii] for ii in sorted_idx[::-1]]
 
     worddict = OrderedDict()
-    worddict['_PAD_'] = 0 # default, padding 
+    worddict['_PAD_'] = 0 # default, padding
     worddict['_UNK_'] = 1 # out-of-vocabulary
     worddict['_BOS_'] = 2 # begin of sentence token
     worddict['_EOS_'] = 3 # end of sentence token
@@ -93,7 +93,7 @@ if __name__ == '__main__':
     build_sequence(os.path.join(snli_dir, 'snli_1.0_test.txt'), dst_dir)
     build_sequence(os.path.join(snli_dir, 'snli_1.0_train.txt'), dst_dir)
 
-    build_dictionary([os.path.join(dst_dir, 'premise_snli_1.0_train.txt'), 
-                      os.path.join(dst_dir, 'hypothesis_snli_1.0_train.txt')], 
+    build_dictionary([os.path.join(dst_dir, 'premise_snli_1.0_train.txt'),
+                      os.path.join(dst_dir, 'hypothesis_snli_1.0_train.txt')],
                       os.path.join(dst_dir, 'vocab_cased.pkl'))
 
