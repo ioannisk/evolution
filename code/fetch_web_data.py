@@ -48,7 +48,7 @@ web_sites = []
 for i in range(len(df)):
     # query database and get page object
     page = storage.get_page(df['url'][i])
-    print(data_frame['url'][i])
+    print(df['url'][i])
     page_txt = page.textSummary
     page_txt = clean_up_txt(page_txt)
     web_sites.append(page_txt)
