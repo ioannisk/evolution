@@ -10,8 +10,10 @@ for ver in df["vertical"]:
 df["label_num"] = label_num
 df["label_txt"] = label_txt
 
+print(df["url"])
 
-print(df)
+
+# print(df)
 
 # df
 # print(len(df1))
@@ -20,5 +22,6 @@ print(df)
 # print(len(companies_df))
 # for i in range(companies_df):
 #     print(companies_df[i])
-# companies_df['url'] = ["".join(["http://www.", u]) if u[:4] != "www." else "".join(["http://", u]) for u in companies_df['url']]
+df['url'] = ["".join(["http://www.", u]) if u[:4] != "www." else "".join(["http://", u]) for u in df['url']]
+print(df["url"])
 

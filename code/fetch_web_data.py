@@ -15,9 +15,8 @@ for ver in df["vertical"]:
     label_txt.append(label_t)
 df["label_num"] = label_num
 df["label_txt"] = label_txt
-print(len(df))
-
-# companies_df['url'] = ["".join(["http://www.", u]) if u[:4] != "www." else "".join(["http://", u]) for u in companies_df['url']]
-
+# format the urls so the Storage Engine can be queried
+df['url'] = ["".join(["http://www.", u]) if u[:4] != "www." else "".join(["http://", u]) for u in df['url']]
+print(len(df['url']))
 # page = storage.get_page(url)
 # print(page.links)
