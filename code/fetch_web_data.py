@@ -21,5 +21,5 @@ df["label_txt"] = label_txt
 for i in range(10):
     page = storage.get_page(df['url'][i])
     print(df['url'][i])
-    page.textSummary
+    print(page.textSummary)
 # print(page.links)
