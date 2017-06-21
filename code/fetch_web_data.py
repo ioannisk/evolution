@@ -3,8 +3,8 @@ import pandas as pd
 import re
 
 def clean_up_txt(page_txt):
-    page_txt  = re.sub('xa[0-9]+', " ", page_txt)
-    # page_txt = re.sub('\s+',' ',page_txt)
+    page_txt = re.sub('\s+',' ',page_txt)
+    page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
     return page_txt
 
 
