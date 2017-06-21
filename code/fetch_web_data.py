@@ -18,8 +18,20 @@ df["label_txt"] = label_txt
 # format the urls so the Storage Engine can be queried
 # df['url'] = ["".join(["http://www.", u]) if u[:4] != "www." else "".join(["http://", u]) for u in df['url']]
 # print(len(df['url']))
-for i in range(10):
+for i in range(5):
     page = storage.get_page(df['url'][i])
-    print(df['url'][i])
+    # print(df['url'][i])
     print(page.textSummary)
+    print("##############################")
+    print("##############################")
+    print("##############################")
+    print(page.title)
+    print("##############################")
+    print("##############################")
+    print("##############################")
+    print(page.headers)
+    print("##############################")
+    print("##############################")
+    print("##############################")
+
 # print(page.links)
