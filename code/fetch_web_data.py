@@ -45,9 +45,9 @@ for ver in df["vertical"]:
 df["label_num"] = label_num
 df["label_txt"] = label_txt
 web_sites = []
-for i in range(len(df)):
+for i in df['url']:
     # query database and get page object
-    page = storage.get_page(df['url'][i])
+    page = storage.get_page(i)
     # some domains are not scrapped
     try:
         page_txt = page.textSummary
