@@ -20,6 +20,6 @@ df['url'] = ["".join(["http://www.", u]) if u[:4] != "www." else "".join(["http:
 # print(len(df['url']))
 for i in range(10):
     page = storage.get_page(df['url'][i])
-    print(page)
+    print(df['url'][i])
     page.links
 # print(page.links)
