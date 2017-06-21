@@ -1,5 +1,8 @@
 from evolutionai import StorageEngine
+import pandas as pd
+
 storage = StorageEngine("/nvme/webcache/")
+
 
 
 companies_df = pd.read_csv('../data/domains.tsv', sep='\t', names = ["company_name", "company_id", "url", "vertical"])
