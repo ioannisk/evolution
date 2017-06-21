@@ -48,10 +48,13 @@ web_sites = []
 for i in range(len(df)):
     # query database and get page object
     page = storage.get_page(df['url'][i])
-    print(df['url'][i])
-    page_txt = page.textSummary
-    page_txt = clean_up_txt(page_txt)
-    web_sites.append(page_txt)
+    # some domains are not scrapped
+    try:
+        page_txt = page.textSummary
+        page_txt = clean_up_txt(page_txt)
+        web_sites.append(page_txt)
+    except:
+        pass
 vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
 vectorizer.fit(web_sites)
 
