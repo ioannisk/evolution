@@ -1,5 +1,13 @@
 from evolutionai import StorageEngine
 import pandas as pd
+import re
+
+def clean_up_txt(page_txt):
+    page_txt = re.sub('\s+',' ',page_txt)
+    return page_txt
+
+
+
 
 # get path to the database
 storage = StorageEngine("/nvme/webcache/")
@@ -18,16 +26,13 @@ df["label_txt"] = label_txt
 # format the urls so the Storage Engine can be queried
 # df['url'] = ["".join(["http://www.", u]) if u[:4] != "www." else "".join(["http://", u]) for u in df['url']]
 # print(len(df['url']))
-for i in range(5):
+for i in range(10):
+    # query database and get page object
     page = storage.get_page(df['url'][i])
-    # print(df['url'][i])
-    print(page.textSummary)
-    print("##############################")
-    print("##############################")
-    print("##############################")
-    print(page.title)
-    print("##############################")
-    print("##############################")
-    print("##############################")
+    page_txt = page.textSummary
+    page_txt = clean_up_txt(page_txt)
+    print(page_txt)
+
+
 
 # print(page.links)
