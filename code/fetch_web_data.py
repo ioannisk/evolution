@@ -5,8 +5,9 @@ from collections import defaultdict
 from nltk.corpus import stopwords
 import pandas as pd
 import re
-
-
+import matplotlib
+import matplotlib.pyplot as plt
+matplotlib.use('GTK')
 ## META
 
 ## TITLE and DESCRIPTION
@@ -69,9 +70,9 @@ gnb = GaussianNB()
 d = defaultdict(int)
 for i in df['label_num']:
     d[i]+=1
-
+plt.bar(d.keys(), d.values(), width, color='g')
 print("Train Naive Bayes")
-y_pred = gnb.fit(data, df["label_num"]).predict(data)
+y_pred = gnb.fit(data.toarray(), df["label_num"]).predict(data)
 
 
 
