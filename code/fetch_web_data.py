@@ -78,7 +78,7 @@ for i, l in zip(df['url'], df["label_num"]):
         pass
 
 print("Vectorize documents")
-vectorizer = TfidfVectorizer(min_df=1, stop_words=stopWords)
+vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
 data = vectorizer.fit_transform(web_sites)
 train_X = data[:129637]
 train_y = labels[:129637]
