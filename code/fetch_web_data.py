@@ -7,7 +7,8 @@ import pandas as pd
 import re
 import matplotlib
 import matplotlib.pyplot as plt
-matplotlib.use('GTK')
+
+matplotlib.use('agg')
 ## META
 
 ## TITLE and DESCRIPTION
