@@ -57,10 +57,7 @@ web_sites = []
 labels = []
 print("Fetch websites from database")
 counter = 0
-print(len(df["label_num"]))
-print(len(df['url']))
 for i, l in zip(df['url'], df["label_num"]):
-    print(i, l)
     counter +=1
     if counter > 10000:
         break
@@ -71,6 +68,7 @@ for i, l in zip(df['url'], df["label_num"]):
         page_txt = page.textSummary
         page_txt = clean_up_txt(page_txt)
         web_sites.append(page_txt)
+        print(l)
         labels.apped(l)
     except:
         pass
