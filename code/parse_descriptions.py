@@ -13,7 +13,10 @@ import json
 df = pd.read_csv('../data/sic_descriptons.tsv', sep='\t', names = ["class_num", "class_txt", "json"])
 json_formatter = lambda x: json.loads(x)
 df['json'] = df['json'].apply(json_formatter)
-print(df['json'].keys())
+keys  = set()
+for i in df['json']:
+    keys.update(set(i.keys()))
+print(keys)
 
 
 
