@@ -57,7 +57,8 @@ web_sites = []
 labels = []
 print("Fetch websites from database")
 counter = 0
-print(df["label_num"])
+print(len(df["label_num"]))
+print(len(df['url']))
 for i, l in zip(df['url'], df["label_num"]):
     counter +=1
     if counter > 10000:
@@ -72,6 +73,9 @@ for i, l in zip(df['url'], df["label_num"]):
         labels.apped(l)
     except:
         pass
+print('#######')
+print(len(web_sites))
+print(len(labels))
 print("Vectorize documents")
 vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
 data = vectorizer.fit_transform(web_sites)
