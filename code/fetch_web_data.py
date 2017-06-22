@@ -10,6 +10,7 @@ from nltk.corpus import stopwords
 import pandas as pd
 import re
 from sklearn.metrics import accuracy_score
+from parse_descriptions import read_descriptions
 # import matplotlib
 # matplotlib.use('GTK')
 # import matplotlib.pyplot as plt
@@ -23,23 +24,6 @@ def clean_up_txt(page_txt):
     page_txt = re.sub('\s+',' ',page_txt)
     page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
     return page_txt
-
-
-# Check this out interesting:
-# http://scikit-learn.org/stable/modules/feature_extraction.html
-# def make_vocabulary(data_frame):
-#     web_sites = []
-#     for i in range(len(data_frame)):
-#         # query database and get page object
-#         page = storage.get_page(data_frame['url'][i])
-#         # print(data_frame['url'][i])
-#         page_txt = page.textSummary
-#         page_txt = clean_up_txt(page_txt)
-#         web_sites.append(page_txt)
-#     vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
-#     vectorizer.fit(web_sites)
-
-
 
 # English stopwords
 stopWords = stopwords.words('english')
@@ -78,16 +62,44 @@ for i, l in zip(df['url'], df["label_num"]):
         pass
 
 print("Vectorize documents")
-vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
-data = vectorizer.fit_transform(web_sites)
-train_X = data[:129637]
-train_y = labels[:129637]
-test_X = data[:129637]
-test_y =labels[:129637]
+# web_vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
+# data = web_vectorizer.fit_transform(web_sites)
+# train_X = data[:129637]
+# train_y = labels[:129637]
+# test_X = data[:129637]
+# test_y =labels[:129637]
 # d = defaultdict(int)
 # for i in df['label_num']:
 #     d[i]+=1
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
+
+
+
+des_df = read_descriptions()
+des_data = []
+for des_json in des_df['json']:
+    valid_txt = ""
+    for key in des_json:
+        if key!="excludes":
+            valid_txt += " "+des_json[key]
+    des_data.append(valid_txt)
+
+
+des_vec = CountVectorizer(min_df=1, stop_words=stopWords)
+des_data = des_vec.fit_transform(des_data)
+gnb = MultinomialNB()
+clf = gnb.fit(des_data, des_df["class_num"])
+des_pred = clf.predict(des_data)
+print("training error: {0}".format(accuracy_score(des_df["class_num"], des_pred)))
+
+data = des_vec.fit_transform(web_sites)
+train_X = data[:129637]
+train_y = labels[:129637]
+test_X = data[:129637]
+test_y =labels[:129637]
+web_pred = clf.predict(data)
+print("testing error on websites: {0}".format(accuracy_score(labels, web_pred)))
+
 
 
 print("Train Naive Bayes")
@@ -98,14 +110,3 @@ y_pred_test = clf.predict(test_X)
 print(accuracy_score(test_y, y_pred_test))
 
 
-# print("Train Logistic ")
-# sig = LogisticRegression()
-# clf = sig.fit(train_X, train_y)
-# y_pred_test = clf.predict(test_X)
-# print(accuracy_score(test_y, y_pred_test))
-
-# print("Train Forrest")
-# forr = RandomForestClassifier()
-# clf = forr.fit(train_X, train_y)
-# y_pred_test = clf.predict(test_X)
-# print(accuracy_score(test_y, y_pred_test))
