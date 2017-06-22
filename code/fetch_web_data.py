@@ -36,6 +36,7 @@ stopWords = stopwords.words('english')
 # get path to the database
 storage = StorageEngine("/nvme/webcache/")
 # read the domains.tsv file in pandas
+print("Read domains")
 df = pd.read_csv('../data/domains.tsv', sep='\t', names = ["company_name", "company_id", "url", "vertical"])
 # remover unlabelled domains
 df = df[df.vertical != "None Supplied"]
@@ -48,6 +49,7 @@ for ver in df["vertical"]:
 df["label_num"] = label_num
 df["label_txt"] = label_txt
 web_sites = []
+print("Fetch websited from database")
 for i in df['url']:
     # query database and get page object
     page = storage.get_page(i)
@@ -58,8 +60,9 @@ for i in df['url']:
         web_sites.append(page_txt)
     except:
         pass
+print("Vectorize documents")
 vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
-print(web_sites)
+print(len(web_sites))
 data = fit_transform.fit(web_sites)
 print(data.shape)
 
