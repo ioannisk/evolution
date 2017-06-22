@@ -6,9 +6,10 @@ from nltk.corpus import stopwords
 import pandas as pd
 import re
 import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-matplotlib.use('agg')
+
 ## META
 
 ## TITLE and DESCRIPTION
