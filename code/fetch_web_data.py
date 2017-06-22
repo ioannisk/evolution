@@ -94,10 +94,6 @@ print("training acc: {0}".format(accuracy_score(des_df["class_num"], des_pred)))
 
 data = des_vec.transform(web_sites)
 web_pred = clf.predict(data)
-# train_X = data[:129637]
-# train_y = labels[:129637]
-# test_X = data[:129637]
-# test_y =labels[:129637]
 
 print("testing acc on websites: {0}".format(accuracy_score(labels, web_pred)))
 
@@ -105,10 +101,15 @@ print("testing acc on websites: {0}".format(accuracy_score(labels, web_pred)))
 
 # Full Naive Bayes
 print("Train Naive Bayes")
+data = des_vec.fit_transform(web_sites)
+train_X = data[:129637]
+train_y = labels[:129637]
+test_X = data[:129637]
+test_y =labels[:129637]
 gnb = MultinomialNB()
 # data = data.toarray()
 clf = gnb.fit(train_X, train_y)
 y_pred_test = clf.predict(test_X)
-print(accuracy_score(test_y, y_pred_test))
+print("Testing accuracy web-web: {0}".format(accuracy_score(test_y, y_pred_test)))
 
 
