@@ -60,6 +60,7 @@ counter = 0
 print(len(df["label_num"]))
 print(len(df['url']))
 for i, l in zip(df['url'], df["label_num"]):
+    print(i, l)
     counter +=1
     if counter > 10000:
         break
