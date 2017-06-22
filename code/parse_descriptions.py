@@ -13,4 +13,4 @@ print("###########")
 print("###########")
 df.join(df['json'].apply(json.loads).apply(pd.Series))
 for i in df['json']:
-    print(i)
+    print(i['title'])
