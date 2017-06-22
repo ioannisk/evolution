@@ -24,9 +24,11 @@ df['json'] = df['json'].apply(json_formatter)
 count = 0
 for txt, js in  zip(df["class_txt"], df["json"]):
     print(txt)
+    checked = False
     for key in js:
-        if key in ['includes', 'excludes', 'detail']:
+        if key in ['includes', 'excludes', 'detail'] and not checked:
             count +=1
+            checked = True
         print(key + "::::",js[key])
     print("\n\n\n")
 print(count)
