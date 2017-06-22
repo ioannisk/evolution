@@ -9,14 +9,16 @@ import json
 #
 ################################
 
-
 df = pd.read_csv('../data/sic_descriptons.tsv', sep='\t', names = ["class_num", "class_txt", "json"])
 json_formatter = lambda x: json.loads(x)
 df['json'] = df['json'].apply(json_formatter)
-keys  = set()
-for i in df['json']:
-    keys.update(set(i.keys()))
-print(keys)
+
+
+for txt, js in  zip(class_txt, json):
+    print(txt)
+    for key in js:
+        print(js[key])
+    print("\n\n\n")
 
 
 
