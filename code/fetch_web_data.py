@@ -47,9 +47,9 @@ labels = []
 print("Fetch websites from database")
 counter = 0
 for i, l in zip(df['url'], df["label_num"]):
-    # counter +=1
-    # if counter > 10000:
-    #     break
+    counter +=1
+    if counter > 10000:
+        break
     # query database and get page object
     page = storage.get_page(i)
     # some domains are not scrapped
@@ -81,6 +81,7 @@ for des_json in des_df['json']:
     valid_txt = ""
     for key in des_json:
         if key!="excludes":
+            print(des_json[key])
             valid_txt += " "+des_json[key]
     des_data.append(valid_txt)
 
