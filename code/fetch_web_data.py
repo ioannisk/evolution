@@ -57,6 +57,7 @@ web_sites = []
 labels = []
 print("Fetch websites from database")
 counter = 0
+print(df["label_num"])
 for i, l in zip(df['url'], df["label_num"]):
     counter +=1
     if counter > 10000:
