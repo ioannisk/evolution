@@ -54,9 +54,10 @@ for ver in df["vertical"]:
 df["label_num"] = label_num
 df["label_txt"] = label_txt
 web_sites = []
+lables = []
 print("Fetch websites from database")
 counter = 0
-for i in df['url']:
+for i, l in zip(df['url'], df["label_num"]):
     counter +=1
     if counter > 10000:
         break
@@ -67,6 +68,7 @@ for i in df['url']:
         page_txt = page.textSummary
         page_txt = clean_up_txt(page_txt)
         web_sites.append(page_txt)
+        labels.apped(l)
     except:
         pass
 print("Vectorize documents")
@@ -78,7 +80,7 @@ for i in df['label_num']:
     d[i]+=1
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 print("Train Naive Bayes")
-y_pred = gnb.fit(data.toarray(), df["label_num"]).predict(data)
+y_pred = gnb.fit(data.toarray(), labels).predict(data)
 
 
 
