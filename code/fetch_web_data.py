@@ -83,7 +83,7 @@ for i in df['label_num']:
     d[i]+=1
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 print("Train Naive Bayes")
-data = data.toarray()
+# data = data.toarray()
 y_pred = gnb.fit(data, labels).predict(data)
 print(accuracy_score(labels, y_pred))
 # for i in y_pred:
