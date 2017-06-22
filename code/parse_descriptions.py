@@ -14,7 +14,7 @@ json_formatter = lambda x: json.loads(x)
 df['json'] = df['json'].apply(json_formatter)
 
 
-for txt, js in  zip(class_txt, json):
+for txt, js in  zip(df["class_txt"], df["json"]):
     print(txt)
     for key in js:
         print(js[key])
