@@ -60,9 +60,9 @@ labels = []
 print("Fetch websites from database")
 counter = 0
 for i, l in zip(df['url'], df["label_num"]):
-    # counter +=1
-    # if counter > 10000:
-    #     break
+    counter +=1
+    if counter > 10000:
+        break
     # query database and get page object
     page = storage.get_page(i)
     # some domains are not scrapped
