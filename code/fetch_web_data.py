@@ -7,7 +7,7 @@ from nltk.corpus import stopwords
 import pandas as pd
 import re
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('GTK')
 import matplotlib.pyplot as plt
 
 
