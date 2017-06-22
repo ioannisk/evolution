@@ -49,7 +49,7 @@ for ver in df["vertical"]:
 df["label_num"] = label_num
 df["label_txt"] = label_txt
 web_sites = []
-print("Fetch websited from database")
+print("Fetch websites from database")
 for i in df['url']:
     # query database and get page object
     page = storage.get_page(i)
@@ -63,7 +63,7 @@ for i in df['url']:
 print("Vectorize documents")
 vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
 print(len(web_sites))
-data = fit_transform.fit(web_sites)
+data = vectorizer.fit_transform(web_sites)
 print(data.shape)
 
 
