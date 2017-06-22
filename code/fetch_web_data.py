@@ -84,8 +84,9 @@ for i in df['label_num']:
 print("Train Naive Bayes")
 data = data.toarray()
 y_pred = gnb.fit(data, labels).predict(data)
-for i in y_pred:
-    print(i)
+print(y_pred)
+# for i in y_pred:
+#     print(i)
 
 
 
