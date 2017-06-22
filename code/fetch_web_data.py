@@ -47,9 +47,9 @@ labels = []
 print("Fetch websites from database")
 counter = 0
 for i, l in zip(df['url'], df["label_num"]):
-    counter +=1
-    if counter > 10000:
-        break
+    # counter +=1
+    # if counter > 10000:
+    #     break
     # query database and get page object
     page = storage.get_page(i)
     # some domains are not scrapped
@@ -90,18 +90,16 @@ des_data = des_vec.fit_transform(des_data)
 gnb = MultinomialNB()
 clf = gnb.fit(des_data, des_df["class_num"])
 des_pred = clf.predict(des_data)
-print("training error: {0}".format(accuracy_score(des_df["class_num"], des_pred)))
+print("training acc: {0}".format(accuracy_score(des_df["class_num"], des_pred)))
 
 data = des_vec.transform(web_sites)
-print(data.shape)
-print(len(labels))
 web_pred = clf.predict(data)
 # train_X = data[:129637]
 # train_y = labels[:129637]
 # test_X = data[:129637]
 # test_y =labels[:129637]
 
-print("testing error on websites: {0}".format(accuracy_score(labels, web_pred)))
+print("testing acc on websites: {0}".format(accuracy_score(labels, web_pred)))
 
 
 
