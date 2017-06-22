@@ -81,8 +81,7 @@ for des_json in des_df['json']:
     valid_txt = ""
     for key in des_json:
         if key!="excludes":
-            print(des_json[key])
-            valid_txt += " "+des_json[key]
+            valid_txt += " "+des_json[key][0]
     des_data.append(valid_txt)
 
 
