@@ -5,6 +5,9 @@ import pandas as pd
 import re
 
 
+## META
+
+## TITLE and DESCRIPTION
 
 def clean_up_txt(page_txt):
     page_txt = re.sub('\s+',' ',page_txt)
@@ -19,7 +22,7 @@ def clean_up_txt(page_txt):
 #     for i in range(len(data_frame)):
 #         # query database and get page object
 #         page = storage.get_page(data_frame['url'][i])
-#         print(data_frame['url'][i])
+#         # print(data_frame['url'][i])
 #         page_txt = page.textSummary
 #         page_txt = clean_up_txt(page_txt)
 #         web_sites.append(page_txt)
@@ -56,7 +59,9 @@ for i in df['url']:
     except:
         pass
 vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
-vectorizer.fit(web_sites)
+print(web_sites)
+data = fit_transform.fit(web_sites)
+print(data.shape)
 
 
 
