@@ -11,7 +11,7 @@ import json
 
 def check_json_keys(df):
     keys = set()
-    for entry in df['json']
+    for entry in df['json']:
         keys.update(set(entry.keys()))
     print(keys)
 
