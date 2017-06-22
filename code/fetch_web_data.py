@@ -92,7 +92,7 @@ clf = gnb.fit(des_data, des_df["class_num"])
 des_pred = clf.predict(des_data)
 print("training error: {0}".format(accuracy_score(des_df["class_num"], des_pred)))
 
-data = des_vec.fit_transform(web_sites)
+data = des_vec.transform(web_sites)
 print(data.shape)
 print(len(labels))
 web_pred = clf.predict(data)
