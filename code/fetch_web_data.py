@@ -1,6 +1,7 @@
 from evolutionai import StorageEngine
 from  sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import MultinomialNB
 from collections import defaultdict
 from nltk.corpus import stopwords
 import pandas as pd
@@ -71,16 +72,18 @@ for i, l in zip(df['url'], df["label_num"]):
         labels.append(l)
     except:
         pass
+
 print("Vectorize documents")
 vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
 data = vectorizer.fit_transform(web_sites)
-gnb = GaussianNB()
+gnb = MultinomialNB()
 d = defaultdict(int)
 for i in df['label_num']:
     d[i]+=1
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 print("Train Naive Bayes")
-y_pred = gnb.fit(data.toarray(), labels).predict(data)
+data = data.toarray()
+y_pred = gnb.fit(data, labels).predict(data)
 
 
 
