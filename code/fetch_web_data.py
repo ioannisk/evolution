@@ -86,9 +86,13 @@ gnb = MultinomialNB()
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 print("Train Naive Bayes")
 # data = data.toarray()
-clf = gnb.fit(data, labels)
-clf.predict(data)
-print(accuracy_score(labels, y_pred))
+train_X = data[:129637]
+train_y = labels[:129637]
+test_X = data[:129637]
+test_y =labels[:129637]
+clf = gnb.fit(train_X, train_y)
+y_pred_test = clf.predict(test_X)
+print(accuracy_score(test_y, y_pred_test))
 
 # for i in y_pred:
 #     print(i)
