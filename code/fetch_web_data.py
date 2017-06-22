@@ -77,15 +77,19 @@ for i, l in zip(df['url'], df["label_num"]):
 print("Vectorize documents")
 vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
 data = vectorizer.fit_transform(web_sites)
+print(data.shape)
+print(len(labels))
 gnb = MultinomialNB()
-d = defaultdict(int)
-for i in df['label_num']:
-    d[i]+=1
+# d = defaultdict(int)
+# for i in df['label_num']:
+#     d[i]+=1
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 print("Train Naive Bayes")
 # data = data.toarray()
-y_pred = gnb.fit(data, labels).predict(data)
+clf = gnb.fit(data, labels)
+clf.predict(data)
 print(accuracy_score(labels, y_pred))
+
 # for i in y_pred:
 #     print(i)
 # for i in y_pred:
