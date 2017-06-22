@@ -1,5 +1,6 @@
 from evolutionai import StorageEngine
 from  sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import GaussianNB
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.ensemble import RandomForestClassifier
@@ -77,7 +78,7 @@ for i, l in zip(df['url'], df["label_num"]):
         pass
 
 print("Vectorize documents")
-vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
+vectorizer = TfidfVectorizer(min_df=1, stop_words=stopWords)
 data = vectorizer.fit_transform(web_sites)
 train_X = data[:129637]
 train_y = labels[:129637]
@@ -97,24 +98,14 @@ y_pred_test = clf.predict(test_X)
 print(accuracy_score(test_y, y_pred_test))
 
 
-print("Train Logistic ")
-sig = LogisticRegression()
-clf = sig.fit(train_X, train_y)
-y_pred_test = clf.predict(test_X)
-print(accuracy_score(test_y, y_pred_test))
+# print("Train Logistic ")
+# sig = LogisticRegression()
+# clf = sig.fit(train_X, train_y)
+# y_pred_test = clf.predict(test_X)
+# print(accuracy_score(test_y, y_pred_test))
 
-print("Train Forrest")
-forr = RandomForestClassifier()
-clf = forr.fit(train_X, train_y)
-y_pred_test = clf.predict(test_X)
-print(accuracy_score(test_y, y_pred_test))
-
-# for i in y_pred:
-#     print(i)
-# for i in y_pred:
-#     print(i)
-
-
-
-
-# print(page.links)
+# print("Train Forrest")
+# forr = RandomForestClassifier()
+# clf = forr.fit(train_X, train_y)
+# y_pred_test = clf.predict(test_X)
+# print(accuracy_score(test_y, y_pred_test))
