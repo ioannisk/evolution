@@ -25,7 +25,7 @@ count = 0
 for txt, js in  zip(df["class_txt"], df["json"]):
     print(txt)
     for key in js:
-        if key=="":
+        if key in ['includes', 'excludes', 'detail']:
             count +=1
         print(key + "::::",js[key])
     print("\n\n\n")
