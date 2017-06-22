@@ -2,6 +2,8 @@ from evolutionai import StorageEngine
 from  sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import GaussianNB
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 from collections import defaultdict
 from nltk.corpus import stopwords
 import pandas as pd
@@ -77,20 +79,33 @@ for i, l in zip(df['url'], df["label_num"]):
 print("Vectorize documents")
 vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
 data = vectorizer.fit_transform(web_sites)
-print(data.shape)
-print(len(labels))
-gnb = MultinomialNB()
-# d = defaultdict(int)
-# for i in df['label_num']:
-#     d[i]+=1
-# plt.bar(d.keys(), d.values(), width=1.0, color='g')
-print("Train Naive Bayes")
-# data = data.toarray()
 train_X = data[:129637]
 train_y = labels[:129637]
 test_X = data[:129637]
 test_y =labels[:129637]
+# d = defaultdict(int)
+# for i in df['label_num']:
+#     d[i]+=1
+# plt.bar(d.keys(), d.values(), width=1.0, color='g')
+
+
+print("Train Naive Bayes")
+gnb = MultinomialNB()
+# data = data.toarray()
 clf = gnb.fit(train_X, train_y)
+y_pred_test = clf.predict(test_X)
+print(accuracy_score(test_y, y_pred_test))
+
+
+print("Train Logistic ")
+sig = LogisticRegression()
+clf = sig.fit(train_X, train_y)
+y_pred_test = clf.predict(test_X)
+print(accuracy_score(test_y, y_pred_test))
+
+print("Train Forrest")
+forr = RandomForestClassifier()
+clf = forr.fit(train_X, train_y)
 y_pred_test = clf.predict(test_X)
 print(accuracy_score(test_y, y_pred_test))
 
