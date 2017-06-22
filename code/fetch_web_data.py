@@ -6,9 +6,9 @@ from collections import defaultdict
 from nltk.corpus import stopwords
 import pandas as pd
 import re
-import matplotlib
-matplotlib.use('GTK')
-import matplotlib.pyplot as plt
+# import matplotlib
+# matplotlib.use('GTK')
+# import matplotlib.pyplot as plt
 
 
 ## META
@@ -80,10 +80,10 @@ gnb = MultinomialNB()
 d = defaultdict(int)
 for i in df['label_num']:
     d[i]+=1
-plt.bar(d.keys(), d.values(), width=1.0, color='g')
-# print("Train Naive Bayes")
-# data = data.toarray()
-# y_pred = gnb.fit(data, labels).predict(data)
+# plt.bar(d.keys(), d.values(), width=1.0, color='g')
+print("Train Naive Bayes")
+data = data.toarray()
+y_pred = gnb.fit(data, labels).predict(data)
 
 
 
