@@ -68,10 +68,7 @@ for i, l in zip(df['url'], df["label_num"]):
         page_txt = page.textSummary
         page_txt = clean_up_txt(page_txt)
         web_sites.append(page_txt)
-        print("#######")
-        print(l)
-        labels.apped(l)
-        print(len(labels))
+        labels.apped(int(l))
     except:
         pass
 print('#######')
