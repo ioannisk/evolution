@@ -70,6 +70,7 @@ for i, l in zip(df['url'], df["label_num"]):
         web_sites.append(page_txt)
         print(l)
         labels.apped(l)
+        print(len(labels))
     except:
         pass
 print('#######')
