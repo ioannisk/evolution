@@ -1,5 +1,7 @@
 from evolutionai import StorageEngine
 from  sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import GaussianNB
+from collections import Counter
 from nltk.corpus import stopwords
 import pandas as pd
 import re
@@ -62,9 +64,12 @@ for i in df['url']:
         pass
 print("Vectorize documents")
 vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
-print(len(web_sites))
 data = vectorizer.fit_transform(web_sites)
-print(data.shape)
+gnb = GaussianNB()
+Counter([df["label_num"]])
+print("Train Naive Bayes")
+y_pred = gnb.fit(data, df["label_num"]).predict(data)
+
 
 
 
