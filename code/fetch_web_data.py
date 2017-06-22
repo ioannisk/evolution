@@ -68,12 +68,9 @@ for i, l in zip(df['url'], df["label_num"]):
         page_txt = page.textSummary
         page_txt = clean_up_txt(page_txt)
         web_sites.append(page_txt)
-        labels.apped(int(l))
+        labels.append(l)
     except:
         pass
-print('#######')
-print(len(web_sites))
-print(len(labels))
 print("Vectorize documents")
 vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
 data = vectorizer.fit_transform(web_sites)
