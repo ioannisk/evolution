@@ -6,5 +6,5 @@ json_formatter = lambda x: json.loads(x)
 df['json'] = df['json'].apply(json_formatter)
 
 # df.join(df['json'].apply(json.loads).apply(pd.Series))
-# for i in df['json']:
-#     print(i['title'])
+for i in df['json']:
+    print(i['title'])
