@@ -43,11 +43,7 @@ df["label_num"] = label_num
 df["label_txt"] = label_txt
 
 ## make dictionairy that given the class number it return the class name
-class_hash = {}
-print(list(zip(df["label_num"], df["label_txt"])))
-rjvnrv
-
-
+class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 
 web_sites = []
 labels = []
@@ -75,15 +71,18 @@ print("Vectorize documents")
 #
 #################################
 d = defaultdict(int)
+norm = 0
 for i in df['label_num']:
+    norm += 1
     d[i]+=1
 classes = [(key, d[key])for key in d]
 # sort classes according to popularity
 classes.sort(key=lambda tup: tup[1], reverse=True)
+for i in range(500):
+    print(class_hash[classes[i][0]], class_hash[classes[i][1]]*100/norm)
 
 
-
-# stop
+stop
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 
 
