@@ -24,6 +24,38 @@ def clean_up_txt(page_txt):
     page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
     return page_txt
 
+
+
+#################################
+#
+# Statistics about popularity of classes
+#
+#################################
+def n_most_popular_classes(N):
+    d = defaultdict(int)
+    norm = 0
+    for i in df['label_num']:
+        norm += 1
+        d[i]+=1
+    # number of class at pos 0 name in txt at position 1
+    classes = [(key, d[key])for key in d]
+    # sort classes according to popularity
+    classes.sort(key=lambda tup: tup[1], reverse=True)
+    total_percentage = 0
+    list_of_n_classes = []
+    list_of_n_classes_txt = []
+    ## make dictionairy that given the class number it return the class name
+    class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
+    for i in range(N):
+        total_percentage += classes[i][1]*100/norm
+        # print(class_hash[classes[i][0]], classes[i][1]*100/norm)
+        list_of_n_classes.append(classes[i][0])
+        list_of_n_classes_txt.append(class_hash[classes[i][0]])
+    return (list_of_n_classes, total_percentage)
+# print(cksum)
+
+
+
 # English stopwords
 stopWords = stopwords.words('english')
 # get path to the database
@@ -42,8 +74,6 @@ for ver in df["vertical"]:
 df["label_num"] = label_num
 df["label_txt"] = label_txt
 
-## make dictionairy that given the class number it return the class name
-class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 
 web_sites = []
 labels = []
@@ -65,25 +95,11 @@ for i, l in zip(df['url'], df["label_num"]):
         pass
 print("Vectorize documents")
 
-#################################
-#
-# Statistics about popularity of classes
-#
-#################################
-d = defaultdict(int)
-norm = 0
-for i in df['label_num']:
-    norm += 1
-    d[i]+=1
-classes = [(key, d[key])for key in d]
-# sort classes according to popularity
-classes.sort(key=lambda tup: tup[1], reverse=True)
-cksum = 0
-for i in range(len(classes)):
-    cksum += classes[i][1]*100/norm
-    print(class_hash[classes[i][0]], classes[i][1]*100/norm)
 
-print(cksum)
+for i in range(20,100,10):
+    classes, prcntg = n_most_popular_classes(i)
+    print(i, prcntg)
+
 stop
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 
