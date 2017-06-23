@@ -100,7 +100,7 @@ for i in range(20,200,20):
     classes, prcntg = n_most_popular_classes(i)
     print(i, prcntg)
 
-stop
+# stop
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 
 
