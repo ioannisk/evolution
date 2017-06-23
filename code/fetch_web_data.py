@@ -145,8 +145,8 @@ des_web_sites_labels =  des_labels + labels
 data_len = len(des_web_sites)
 partition = int(data_len*0.9)
 vec = CountVectorizer( min_df=1,ngram_range=(1,2), stop_words=stopWords)
-print("vectorization is over !!!!")
 des_web_sites = vec.fit_transform(des_web_sites)
+print("vectorization is over !!!!")
 train_X = des_web_sites[:partition]
 train_y = des_web_sites_labels[:partition]
 test_X = des_web_sites[partition:]
