@@ -85,6 +85,7 @@ for des_json in des_df['json']:
     for key in des_json:
         if key!="excludes":
             valid_txt += " "+des_json[key][0]
+    valid_txt = clean_up_txt(valid_txt)
     des_data.append(valid_txt)
 
 
@@ -107,8 +108,9 @@ for des_json in des_df['json']:
 # Train Web + Description --- Test Web
 #
 #################################
+des_labels = [i for i in des_df["class_num"]]
 des_web_sites = des_data + web_sites
-des_web_sites_labels = des_df["class_num"] + labels
+des_web_sites_labels =  des_labels + labels
 
 des_web_sites = des_vec.fit_transform(des_web_sites)
 train_X = des_web_sites[:129637]
