@@ -114,7 +114,7 @@ des_web_sites_labels =  des_labels + labels
 
 data_len = len(des_web_sites)
 partition = int(data_len*0.9)
-vec = CountVectorizer(min_df=3,ngram_range=(1,2), stop_words=stopWords)
+vec = CountVectorizer(min_df=10,ngram_range=(1,2), stop_words=stopWords)
 des_web_sites = vec.fit_transform(des_web_sites)
 train_X = des_web_sites[:partition]
 train_y = des_web_sites_labels[:partition]
@@ -138,7 +138,7 @@ print("Testing accuracy (web + des)trainging (web) testing: {0}".format(accuracy
 print("Train Naive Bayes")
 data_len = len(web_sites)
 partition = int(data_len*0.9)
-vec = CountVectorizer(min_df=3, ngram_range=(1,2),stop_words=stopWords)
+vec = CountVectorizer(min_df=10, ngram_range=(1,2),stop_words=stopWords)
 data = vec.fit_transform(web_sites)
 train_X = data[:partition]
 train_y = labels[:partition]
