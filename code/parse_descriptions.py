@@ -24,7 +24,7 @@ def make_class_dic():
 
 
 
-print(check_json_keys)
+print(check_json_keys())
 
 # count = 0
 # for txt, js in  zip(df["class_txt"], df["json"]):
