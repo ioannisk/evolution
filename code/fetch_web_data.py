@@ -142,7 +142,4 @@ clf = gnb.fit(train_X, train_y)
 y_pred_test = clf.predict(test_X)
 print("Testing accuracy web-web: {0}".format(accuracy_score(test_y, y_pred_test)))
 
-if __name__=="__main__":
-
-
-
+# if __name__=="__main__":
