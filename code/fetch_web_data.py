@@ -17,7 +17,6 @@ from parse_descriptions import read_descriptions
 
 
 ## META
-
 ## TITLE and DESCRIPTION
 
 def clean_up_txt(page_txt):
@@ -62,19 +61,23 @@ for i, l in zip(df['url'], df["label_num"]):
         pass
 
 print("Vectorize documents")
-# web_vectorizer = CountVectorizer(min_df=1, stop_words=stopWords)
-# data = web_vectorizer.fit_transform(web_sites)
-# train_X = data[:129637]
-# train_y = labels[:129637]
-# test_X = data[:129637]
-# test_y =labels[:129637]
+
+#################################
+#
+# Statistics about popularity of classes
+#
+#################################
 # d = defaultdict(int)
 # for i in df['label_num']:
 #     d[i]+=1
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 
 
-
+#################################
+#
+# Remove exclusions from descriptions so text can be used as training data
+#
+#################################
 des_df = read_descriptions()
 des_data = []
 for des_json in des_df['json']:
@@ -85,21 +88,48 @@ for des_json in des_df['json']:
     des_data.append(valid_txt)
 
 
-des_vec = CountVectorizer(min_df=1, stop_words=stopWords)
-des_data = des_vec.fit_transform(des_data)
+# des_vec = CountVectorizer(min_df=1, stop_words=stopWords)
+# des_data = des_vec.fit_transform(des_data)
+# gnb = MultinomialNB()
+# clf = gnb.fit(des_data, des_df["class_num"])
+# des_pred = clf.predict(des_data)
+# print("training acc: {0}".format(accuracy_score(des_df["class_num"], des_pred)))
+
+# data = des_vec.transform(web_sites)
+# web_pred = clf.predict(data)
+# print("testing acc on websites: {0}".format(accuracy_score(labels, web_pred)))
+
+
+
+
+#################################
+#
+# Train Web + Description --- Test Web
+#
+#################################
+des_web_sites = des_data + web_sites
+des_web_sites_labels = des_df["class_num"] + labels
+
+des_web_sites = des_vec.fit_transform(des_web_sites)
+train_X = des_web_sites[:129637]
+train_y = des_web_sites_labels[:129637]
+test_X = des_web_sites[:129637]
+test_y =des_web_sites_labels[:129637]
 gnb = MultinomialNB()
-clf = gnb.fit(des_data, des_df["class_num"])
-des_pred = clf.predict(des_data)
-print("training acc: {0}".format(accuracy_score(des_df["class_num"], des_pred)))
-
-data = des_vec.transform(web_sites)
-web_pred = clf.predict(data)
-
-print("testing acc on websites: {0}".format(accuracy_score(labels, web_pred)))
+# data = data.toarray()
+clf = gnb.fit(train_X, train_y)
+y_pred_test = clf.predict(test_X)
+print("Testing accuracy (web + des)trainging (web) testing: {0}".format(accuracy_score(test_y, y_pred_test)))
 
 
 
-# Full Naive Bayes
+
+
+#################################
+#
+# Train Web --- Test Web
+#
+#################################
 print("Train Naive Bayes")
 data = des_vec.fit_transform(web_sites)
 train_X = data[:129637]
@@ -111,5 +141,8 @@ gnb = MultinomialNB()
 clf = gnb.fit(train_X, train_y)
 y_pred_test = clf.predict(test_X)
 print("Testing accuracy web-web: {0}".format(accuracy_score(test_y, y_pred_test)))
+
+if __name__=="__main__":
+
 
 
