@@ -54,6 +54,22 @@ def n_most_popular_classes(N):
     return (list_of_n_classes, total_percentage)
 # print(cksum)
 
+#################################
+#
+# Remove exclusions from descriptions so text can be used as training data
+#
+#################################
+def get_descriptions_data():
+    des_df = read_descriptions()
+    des_data = []
+    for des_json in des_df['json']:
+        valid_txt = ""
+        for key in des_json:
+            if key!="excludes":
+                valid_txt += " "+des_json[key][0]
+        valid_txt = clean_up_txt(valid_txt)
+        des_data.append(valid_txt)
+    return des_data
 
 
 # English stopwords
@@ -104,20 +120,6 @@ for i in range(20,200,20):
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 
 
-#################################
-#
-# Remove exclusions from descriptions so text can be used as training data
-#
-#################################
-des_df = read_descriptions()
-des_data = []
-for des_json in des_df['json']:
-    valid_txt = ""
-    for key in des_json:
-        if key!="excludes":
-            valid_txt += " "+des_json[key][0]
-    valid_txt = clean_up_txt(valid_txt)
-    des_data.append(valid_txt)
 
 
 # des_vec = CountVectorizer(min_df=1, stop_words=stopWords)
@@ -130,6 +132,25 @@ for des_json in des_df['json']:
 # data = des_vec.transform(web_sites)
 # web_pred = clf.predict(data)
 # print("testing acc on websites: {0}".format(accuracy_score(labels, web_pred)))
+
+
+
+
+
+des_data = get_descriptions_data()
+
+
+
+#################################
+#
+# Baseline Train on Descriptions, test on websites
+#
+#################################
+des_labels = [i for i in des_df["class_num"]]
+vec = CountVectorizer( min_df=1,ngram_range=(1,2), stop_words=stopWords)
+
+
+
 
 
 
