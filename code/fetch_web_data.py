@@ -41,6 +41,14 @@ for ver in df["vertical"]:
     label_txt.append(label_t)
 df["label_num"] = label_num
 df["label_txt"] = label_txt
+
+## make dictionairy that given the class number it return the class name
+class_hash = {}
+print(zip(df["label_num"], df["label_txt"]))
+rjvnrv
+
+
+
 web_sites = []
 labels = []
 print("Fetch websites from database")
@@ -59,7 +67,6 @@ for i, l in zip(df['url'], df["label_num"]):
         labels.append(l)
     except:
         pass
-
 print("Vectorize documents")
 
 #################################
@@ -71,7 +78,10 @@ d = defaultdict(int)
 for i in df['label_num']:
     d[i]+=1
 classes = [(key, d[key])for key in d]
-print(classes)
+# sort classes according to popularity
+classes.sort(key=lambda tup: tup[1], reverse=True)
+
+
 
 # stop
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
@@ -117,13 +127,14 @@ des_web_sites = des_data + web_sites
 des_web_sites_labels =  des_labels + labels
 data_len = len(des_web_sites)
 partition = int(data_len*0.9)
-vec = CountVectorizer(alpha=0.1, min_df=20,ngram_range=(1,2), stop_words=stopWords)
+vec = CountVectorizer( min_df=1,ngram_range=(1,2), stop_words=stopWords)
+print("vectorization is over !!!!")
 des_web_sites = vec.fit_transform(des_web_sites)
 train_X = des_web_sites[:partition]
 train_y = des_web_sites_labels[:partition]
 test_X = des_web_sites[partition:]
 test_y =des_web_sites_labels[partition:]
-gnb = MultinomialNB()
+gnb = MultinomialNB(alpha=0.1)
 # data = data.toarray()
 clf = gnb.fit(train_X, train_y)
 y_pred_test = clf.predict(test_X)
@@ -139,13 +150,13 @@ print("Testing accuracy (web + des)trainging (web) testing: {0}".format(accuracy
 print("Train Naive Bayes")
 data_len = len(web_sites)
 partition = int(data_len*0.9)
-vec = CountVectorizer(alpha = 0.1, min_df=20, ngram_range=(1,2),stop_words=stopWords)
+vec = CountVectorizer(min_df=1, ngram_range=(1,2),stop_words=stopWords)
 data = vec.fit_transform(web_sites)
 train_X = data[:partition]
 train_y = labels[:partition]
 test_X = data[partition:]
 test_y =labels[partition:]
-gnb = MultinomialNB()
+gnb = MultinomialNB(alpha=0.1)
 # data = data.toarray()
 clf = gnb.fit(train_X, train_y)
 y_pred_test = clf.predict(test_X)
