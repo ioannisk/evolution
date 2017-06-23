@@ -1,7 +1,7 @@
 import pandas as pd
 import json
 
-def read_description():
+def read_descriptions():
     df = pd.read_csv('../data/sic_descriptons.tsv', sep='\t', names = ["class_num", "class_txt", "json"])
     json_formatter = lambda x: json.loads(x)
     df['json'] = df['json'].apply(json_formatter)
@@ -11,14 +11,14 @@ def read_description():
 # {'detail', 'excludes', 'title', 'includes'}
 def check_json_keys():
     keys = set()
-    df = read_description()
+    df = read_descriptions()
     for entry in df['json']:
         keys.update(set(entry.keys()))
     return (keys)
 
 def make_class_dic():
     class_dic = {}
-    df = read_description()
+    df = read_descriptions()
     for label in df['class_txt']:
         num, txt = label.split('-',1)
         class_dic[num] = txt
