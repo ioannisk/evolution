@@ -112,7 +112,8 @@ des_labels = [i for i in des_df["class_num"]]
 des_web_sites = des_data + web_sites
 des_web_sites_labels =  des_labels + labels
 
-des_web_sites = des_vec.fit_transform(des_web_sites)
+vec = CountVectorizer(min_df=1, stop_words=stopWords)
+des_web_sites = vec.fit_transform(des_web_sites)
 train_X = des_web_sites[:129637]
 train_y = des_web_sites_labels[:129637]
 test_X = des_web_sites[:129637]
@@ -133,6 +134,7 @@ print("Testing accuracy (web + des)trainging (web) testing: {0}".format(accuracy
 #
 #################################
 print("Train Naive Bayes")
+vec = CountVectorizer(min_df=1, stop_words=stopWords)
 data = des_vec.fit_transform(web_sites)
 train_X = data[:129637]
 train_y = labels[:129637]
