@@ -50,9 +50,9 @@ labels = []
 print("Fetch websites from database")
 counter = 0
 for i, l in zip(df['url'], df["label_num"]):
-    # counter +=1
-    # if counter > 10000:
-    #     break
+    counter +=1
+    if counter > 10000:
+        break
     # query database and get page object
     page = storage.get_page(i)
     # some domains are not scrapped
@@ -78,10 +78,12 @@ for i in df['label_num']:
 classes = [(key, d[key])for key in d]
 # sort classes according to popularity
 classes.sort(key=lambda tup: tup[1], reverse=True)
-for i in range(500):
+cksum = 0
+for i in range(len(classes)):
+    cksum += classes[i][1]*100/norm
     print(class_hash[classes[i][0]], classes[i][1]*100/norm)
 
-
+print(cksum)
 stop
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 
