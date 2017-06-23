@@ -135,7 +135,7 @@ print("Testing accuracy (web + des)trainging (web) testing: {0}".format(accuracy
 #################################
 print("Train Naive Bayes")
 vec = CountVectorizer(min_df=1, stop_words=stopWords)
-data = des_vec.fit_transform(web_sites)
+data = vec.fit_transform(web_sites)
 train_X = data[:129637]
 train_y = labels[:129637]
 test_X = data[:129637]
