@@ -1,7 +1,7 @@
 import pandas as pd
 import json
 
-def read_descriptions():
+def read_description():
     df = pd.read_csv('../data/sic_descriptons.tsv', sep='\t', names = ["class_num", "class_txt", "json"])
     json_formatter = lambda x: json.loads(x)
     df['json'] = df['json'].apply(json_formatter)
