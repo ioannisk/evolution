@@ -7,6 +7,8 @@ def read_description():
     df['json'] = df['json'].apply(json_formatter)
     return df
 
+
+# {'detail', 'excludes', 'title', 'includes'}
 def check_json_keys():
     keys = set()
     df = read_description()

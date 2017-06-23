@@ -67,9 +67,14 @@ print("Vectorize documents")
 # Statistics about popularity of classes
 #
 #################################
-# d = defaultdict(int)
-# for i in df['label_num']:
-#     d[i]+=1
+d = defaultdict(int)
+for i in df['label_num']:
+    d[i]+=1
+classes = [(key, d[key])for key in d]
+print(classes)
+
+
+stop
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 
 
@@ -82,7 +87,7 @@ des_df = read_descriptions()
 des_data = []
 for des_json in des_df['json']:
     valid_txt = ""
-    for key in des_json:
+    for key in des_json and :
         if key!="excludes":
             valid_txt += " "+des_json[key][0]
     valid_txt = clean_up_txt(valid_txt)
@@ -111,10 +116,9 @@ for des_json in des_df['json']:
 des_labels = [i for i in des_df["class_num"]]
 des_web_sites = des_data + web_sites
 des_web_sites_labels =  des_labels + labels
-
 data_len = len(des_web_sites)
 partition = int(data_len*0.9)
-vec = CountVectorizer(min_df=10,ngram_range=(1,2), stop_words=stopWords)
+vec = CountVectorizer(min_df=20,ngram_range=(1,2), stop_words=stopWords)
 des_web_sites = vec.fit_transform(des_web_sites)
 train_X = des_web_sites[:partition]
 train_y = des_web_sites_labels[:partition]
@@ -128,8 +132,6 @@ print("Testing accuracy (web + des)trainging (web) testing: {0}".format(accuracy
 
 
 
-
-
 #################################
 #
 # Train Web --- Test Web
@@ -138,7 +140,7 @@ print("Testing accuracy (web + des)trainging (web) testing: {0}".format(accuracy
 print("Train Naive Bayes")
 data_len = len(web_sites)
 partition = int(data_len*0.9)
-vec = CountVectorizer(min_df=10, ngram_range=(1,2),stop_words=stopWords)
+vec = CountVectorizer(min_df=20, ngram_range=(1,2),stop_words=stopWords)
 data = vec.fit_transform(web_sites)
 train_X = data[:partition]
 train_y = labels[:partition]
