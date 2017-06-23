@@ -73,7 +73,6 @@ for i in df['label_num']:
 classes = [(key, d[key])for key in d]
 print(classes)
 
-
 stop
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 
@@ -87,7 +86,7 @@ des_df = read_descriptions()
 des_data = []
 for des_json in des_df['json']:
     valid_txt = ""
-    for key in des_json and :
+    for key in des_json:
         if key!="excludes":
             valid_txt += " "+des_json[key][0]
     valid_txt = clean_up_txt(valid_txt)
