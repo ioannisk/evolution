@@ -44,7 +44,7 @@ df["label_txt"] = label_txt
 
 ## make dictionairy that given the class number it return the class name
 class_hash = {}
-print(zip(df["label_num"], df["label_txt"]))
+print(list(zip(df["label_num"], df["label_txt"])))
 rjvnrv
 
 
