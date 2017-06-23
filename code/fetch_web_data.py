@@ -59,8 +59,7 @@ def n_most_popular_classes(N):
 # Remove exclusions from descriptions so text can be used as training data
 #
 #################################
-def get_descriptions_data():
-    des_df = read_descriptions()
+def get_descriptions_data(des_df):
     des_data = []
     for des_json in des_df['json']:
         valid_txt = ""
@@ -136,8 +135,8 @@ for i in range(20,200,20):
 
 
 
-
-des_data = get_descriptions_data()
+des_df = read_descriptions()
+des_data = get_descriptions_data(des_df)
 
 
 
