@@ -143,7 +143,7 @@ for des_json, cl_txt in zip(des_df['json'], des_df["class_txt"]):
     print(cl_txt)
     valid_txt = ""
     for key in des_json:
-        print("Key: {0} ---- DES {1} ".format(key, clean_up_txt(des_json[key])))
+        print("Key: {0} ---- DES {1} ".format(key, des_json[key]))
         if key!="excludes":
             valid_txt += " "+des_json[key][0]
     valid_txt = clean_up_txt(valid_txt)
@@ -172,6 +172,7 @@ des_labels = [i for i in des_df["class_num"]]
 vec = CountVectorizer( min_df=1, stop_words=stopWords)
 vec.fit(des_data)
 des_data = vec.transform(des_data)
+print(vec.vocabulary_)
 print(des_data.shape)
 for a in np.arange(0.001,1,0.1):
     gnb = MultinomialNB(alpha=0.1)
