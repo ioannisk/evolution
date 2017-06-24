@@ -125,7 +125,7 @@ labels = []
 print("Fetch websites from database")
 counter = 0
 for i, l in zip(df['url'], df["label_num"]):
-    if l in used_classes:
+    if str(l) in used_classes:
         counter +=1
         if counter > 1000:
             break
