@@ -137,8 +137,31 @@ for i in range(20,200,20):
 
 
 des_df = read_descriptions()
-des_data = get_descriptions_data(des_df)
-print(des_data)
+# des_data = get_descriptions_data(des_df)
+des_data = []
+for des_json, cl_txt in zip(des_df['json'], des_df["class_txt"]):
+    print(cl_txt)
+    valid_txt = ""
+    for key in des_json:
+        print("Key: {0} ---- DES {1} ".format(key, des_json[key]))
+        if key!="excludes":
+            valid_txt += " "+des_json[key][0]
+    valid_txt = clean_up_txt(valid_txt)
+    des_data.append(valid_txt)
+# return des_data
+
+
+# def get_descriptions_data(des_df):
+#     des_data = []
+#     for des_json in des_df['json']:
+#         valid_txt = ""
+#         for key in des_json:
+#             if key!="excludes":
+#                 valid_txt += " "+des_json[key][0]
+#         valid_txt = clean_up_txt(valid_txt)
+#         des_data.append(valid_txt)
+#     return des_data
+
 #################################
 #
 # Baseline Train on Descriptions, test on websites
@@ -149,10 +172,12 @@ des_labels = [i for i in des_df["class_num"]]
 vec = CountVectorizer( min_df=1, stop_words=stopWords)
 vec.fit(des_data)
 des_data = vec.transform(des_data)
+print(des_data.shape)
 for a in np.arange(0.001,1,0.1):
     gnb = MultinomialNB(alpha=0.1)
     clf = gnb.fit(des_data, des_labels)
     vec_web_sites = vec.transform(web_sites)
+    print(vec_web_sites.shape)
     y_pred_test = clf.predict(vec_web_sites)
     print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
 
