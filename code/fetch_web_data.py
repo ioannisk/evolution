@@ -99,10 +99,15 @@ df["label_txt"] = label_txt
 des_df = read_descriptions()
 des_data = []
 used_classes = set()
+class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
     # print(cl_txt)
+    print(class_hash[cl_num])
     valid_txt = ""
     # print(des_json.keys())
+    ###
+    ### BUG WITH OR CONDINTION
+    ##
     if ("detail" in des_json.keys()) or ("includes" in des_json.keys()) :
         used_classes.update(str(cl_num))
         for key in des_json:
@@ -111,7 +116,7 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
                 valid_txt += " "+des_json[key][0]
         valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
-print(used_classes)
+# print(used_classes)
 #########################
 #########################
 #########################
@@ -125,7 +130,7 @@ print("Fetch websites from database")
 counter = 0
 for i, l in zip(df['url'], df["label_num"]):
     if str(l) in used_classes:
-        print(l)
+        # print(l)
         counter +=1
         if counter > 1000:
             break
