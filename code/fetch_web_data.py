@@ -137,53 +137,55 @@ for i in range(20,200,20):
 
 des_df = read_descriptions()
 des_data = get_descriptions_data(des_df)
-
-
-
 #################################
 #
 # Baseline Train on Descriptions, test on websites
 #
 #################################
 des_labels = [i for i in des_df["class_num"]]
-vec = CountVectorizer( min_df=1,ngram_range=(1,2), stop_words=stopWords)
+vec = CountVectorizer( min_df=1, ngram_range=1, stop_words=stopWords)
+vec.fit(des_web_sites)
+des_web_sites = vec.transform(des_web_sites)
+for a in range(0.1,1,0.1):
+    gnb = MultinomialNB(alpha=0.1)
+    clf = gnb.fit(des_data, des_labels)
+    vec_web_sites = vec.transform(web_sites)
+    y_pred_test = clf.predict(vec_web_sites)
+    print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test )),a)
 
 
 
 
+# #################################
+# #
+# # Train Web + Description --- Test Web
+# #
+# #################################
+# des_labels = [i for i in des_df["class_num"]]
+# des_web_sites = des_data + web_sites
+# des_web_sites_labels =  des_labels + labels
+# data_len = len(des_web_sites)
+# partition = int(data_len*0.9)
+# vec = CountVectorizer( min_df=1,ngram_range=(1,2), stop_words=stopWords)
+# des_web_sites = vec.fit_transform(des_web_sites)
+# print("vectorization is over !!!!")
+# train_X = des_web_sites[:partition]
+# train_y = des_web_sites_labels[:partition]
+# test_X = des_web_sites[partition:]
+# test_y =des_web_sites_labels[partition:]
+# gnb = MultinomialNB(alpha=0.1)
+# # data = data.toarray()
+# clf = gnb.fit(train_X, train_y)
+# y_pred_test = clf.predict(test_X)
+# print("Testing accuracy (web + des)trainging (web) testing: {0}".format(accuracy_score(test_y, y_pred_test)))
 
 
 
-#################################
-#
-# Train Web + Description --- Test Web
-#
-#################################
-des_labels = [i for i in des_df["class_num"]]
-des_web_sites = des_data + web_sites
-des_web_sites_labels =  des_labels + labels
-data_len = len(des_web_sites)
-partition = int(data_len*0.9)
-vec = CountVectorizer( min_df=1,ngram_range=(1,2), stop_words=stopWords)
-des_web_sites = vec.fit_transform(des_web_sites)
-print("vectorization is over !!!!")
-train_X = des_web_sites[:partition]
-train_y = des_web_sites_labels[:partition]
-test_X = des_web_sites[partition:]
-test_y =des_web_sites_labels[partition:]
-gnb = MultinomialNB(alpha=0.1)
-# data = data.toarray()
-clf = gnb.fit(train_X, train_y)
-y_pred_test = clf.predict(test_X)
-print("Testing accuracy (web + des)trainging (web) testing: {0}".format(accuracy_score(test_y, y_pred_test)))
-
-
-
-#################################
-#
-# Train Web --- Test Web
-#
-#################################
+# #################################
+# #
+# # Train Web --- Test Web
+# #
+# #################################
 print("Train Naive Bayes")
 data_len = len(web_sites)
 partition = int(data_len*0.9)
@@ -199,4 +201,4 @@ clf = gnb.fit(train_X, train_y)
 y_pred_test = clf.predict(test_X)
 print("Testing accuracy web-web: {0}".format(accuracy_score(test_y, y_pred_test)))
 
-# if __name__=="__main__":
+
