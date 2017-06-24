@@ -105,9 +105,9 @@ des_df = read_descriptions()
 classes_desc = set()
 classes_web = set()
 for i, j, k in zip(des_df['json'], des_df["class_num"], des_df["class_txt"]):
-    classes_desc.update(j)
+    classes_desc.add(j)
 for i in df["label_num"]:
-    classes_web.update(i)
+    classes_web.add(i)
 count =0
 for i in classes_desc:
     if i in classes_web:
