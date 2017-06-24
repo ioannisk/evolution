@@ -102,7 +102,7 @@ df["label_txt"] = label_txt
 ########################
 des_df = read_descriptions()
 # ["class_num", "class_txt", "json"]
-for i, j, k in zip((des_df['json'], des_df["class_num"], des_df["class_txt"])):
+for i, j, k in zip(des_df['json'], des_df["class_num"], des_df["class_txt"]):
     print (j, k )
 
 
