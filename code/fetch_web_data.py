@@ -169,16 +169,15 @@ for des_json, cl_txt in zip(des_df['json'], des_df["class_txt"]):
 #################################
 des_labels = [i for i in des_df["class_num"]]
 # ngram_range=1
-vec = CountVectorizer( min_df=1, stop_words=stopWords)
+vec = CountVectorizer( min_df=1,ngram_range=(1,2) , stop_words=stopWords)
 vec.fit(des_data)
 des_data = vec.transform(des_data)
-print(vec.vocabulary_)
+# print(vec.vocabulary_)
 print(des_data.shape)
 for a in np.arange(0.001,1,0.1):
     gnb = MultinomialNB(alpha=0.1)
     clf = gnb.fit(des_data, des_labels)
     vec_web_sites = vec.transform(web_sites)
-    print(vec_web_sites.shape)
     y_pred_test = clf.predict(vec_web_sites)
     print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
 
