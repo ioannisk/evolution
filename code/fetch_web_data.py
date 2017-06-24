@@ -144,8 +144,8 @@ des_data = get_descriptions_data(des_df)
 #################################
 des_labels = [i for i in des_df["class_num"]]
 vec = CountVectorizer( min_df=1, ngram_range=1, stop_words=stopWords)
-vec.fit(des_web_sites)
-des_web_sites = vec.transform(des_web_sites)
+vec.fit(des_data)
+des_data = vec.transform(des_data)
 for a in range(0.1,1,0.1):
     gnb = MultinomialNB(alpha=0.1)
     clf = gnb.fit(des_data, des_labels)
