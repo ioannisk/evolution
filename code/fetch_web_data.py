@@ -91,24 +91,52 @@ df["label_num"] = label_num
 df["label_txt"] = label_txt
 
 
+#########################
+#
+# Find the classes that have detail or inclusion
+#
+########################
+des_data = []
+used_classes = set()
+for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
+    # print(cl_txt)
+    valid_txt = ""
+    # print(des_json.keys())
+    if ("detail" or "includes") in des_json.keys():
+        used_classes.update(cl_num)
+        for key in des_json:
+            # print("Key: {0} ---- DES {1} ".format(key, des_json[key]))
+            if key!="excludes":
+                valid_txt += " "+des_json[key][0]
+        valid_txt = clean_up_txt(valid_txt)
+        des_data.append(valid_txt)
+
+#########################
+#########################
+#########################
+
+
+
+
 web_sites = []
 labels = []
 print("Fetch websites from database")
 counter = 0
 for i, l in zip(df['url'], df["label_num"]):
-    counter +=1
-    if counter > 1000:
-        break
-    # query database and get page object
-    page = storage.get_page(i)
-    # some domains are not scrapped
-    try:
-        page_txt = page.textSummary
-        page_txt = clean_up_txt(page_txt)
-        web_sites.append(page_txt)
-        labels.append(l)
-    except:
-        pass
+    if l in used_classes:
+        counter +=1
+        if counter > 1000:
+            break
+        # query database and get page object
+        page = storage.get_page(i)
+        # some domains are not scrapped
+        try:
+            page_txt = page.textSummary
+            page_txt = clean_up_txt(page_txt)
+            web_sites.append(page_txt)
+            labels.append(l)
+        except:
+            pass
 print("Vectorize documents")
 
 
@@ -152,23 +180,6 @@ des_df = read_descriptions()
 
 
 # return des_data
-des_data = []
-for des_json, cl_txt in zip(des_df['json'], des_df["class_txt"]):
-    print(cl_txt)
-    valid_txt = ""
-    print(des_json.keys())
-    for key in des_json:
-        # print("Key: {0} ---- DES {1} ".format(key, des_json[key]))
-        if key!="excludes":
-            valid_txt += " "+des_json[key][0]
-    valid_txt = clean_up_txt(valid_txt)
-    des_data.append(valid_txt)
-
-
-
-
-
-
 
 
 # def get_descriptions_data(des_df):
