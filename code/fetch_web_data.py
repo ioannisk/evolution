@@ -168,9 +168,9 @@ for des_json, cl_txt in zip(des_df['json'], des_df["class_txt"]):
 #
 #################################
 des_labels = [i for i in des_df["class_num"]]
-# ngram_range=1
-vec = CountVectorizer( min_df=1,ngram_range=(1,2) , stop_words=stopWords)
-vec.fit(des_data)
+# ngram_range=(1,2)
+vec = CountVectorizer( min_df=1 , stop_words=stopWords)
+vec.fit(web_sites)
 des_data = vec.transform(des_data)
 # print(vec.vocabulary_)
 print(des_data.shape)
