@@ -104,7 +104,6 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
     valid_txt = ""
     # print(des_json.keys())
     if ("detail" or "includes") in des_json.keys():
-        print(cl_num)
         used_classes.update(str(cl_num))
         for key in des_json:
             # print("Key: {0} ---- DES {1} ".format(key, des_json[key]))
@@ -112,7 +111,7 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
                 valid_txt += " "+des_json[key][0]
         valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
-
+print(used_classes)
 #########################
 #########################
 #########################
