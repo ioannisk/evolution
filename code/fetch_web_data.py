@@ -154,7 +154,7 @@ for a in np.arange(0.001,1,0.1):
     clf = gnb.fit(des_data, des_labels)
     vec_web_sites = vec.transform(web_sites)
     y_pred_test = clf.predict(vec_web_sites)
-    print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test )),a)
+    print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
 
 
 
