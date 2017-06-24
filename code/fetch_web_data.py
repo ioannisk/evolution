@@ -11,6 +11,7 @@ import pandas as pd
 import re
 from sklearn.metrics import accuracy_score
 from parse_descriptions import read_descriptions
+import numpy as np
 # import matplotlib
 # matplotlib.use('GTK')
 # import matplotlib.pyplot as plt
@@ -148,7 +149,7 @@ des_labels = [i for i in des_df["class_num"]]
 vec = CountVectorizer( min_df=1, stop_words=stopWords)
 vec.fit(des_data)
 des_data = vec.transform(des_data)
-for a in range(0.1,1,0.1):
+for a in np.arange(0.001,1,0.1):
     gnb = MultinomialNB(alpha=0.1)
     clf = gnb.fit(des_data, des_labels)
     vec_web_sites = vec.transform(web_sites)
