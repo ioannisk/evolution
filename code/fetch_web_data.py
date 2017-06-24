@@ -91,21 +91,32 @@ df["label_num"] = label_num
 df["label_txt"] = label_txt
 
 
+
+
+
+
 #########################
 #
 # Find the classes that have detail or inclusion
 #
 ########################
 des_df = read_descriptions()
+# ["class_num", "class_txt", "json"]
+for i, j, k in zip((des_df['json'], des_df["class_num"], des_df["class_txt"])):
+    print (j, k )
+
+
 des_data = []
 used_classes = set()
+
+
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
     # print(cl_txt)
-    try:
-        print(class_hash[cl_num])
-    except:
-        pass
+    # try:
+    #     print(class_hash[cl_num])
+    # except:
+    #     pass
     valid_txt = ""
     # print(des_json.keys())
     ###
