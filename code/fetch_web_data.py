@@ -158,7 +158,7 @@ for des_json, cl_txt in zip(des_df['json'], des_df["class_txt"]):
     valid_txt = ""
     print(des_json.keys())
     for key in des_json:
-        print("Key: {0} ---- DES {1} ".format(key, des_json[key]))
+        # print("Key: {0} ---- DES {1} ".format(key, des_json[key]))
         if key!="excludes":
             valid_txt += " "+des_json[key][0]
     valid_txt = clean_up_txt(valid_txt)
