@@ -96,6 +96,7 @@ df["label_txt"] = label_txt
 # Find the classes that have detail or inclusion
 #
 ########################
+des_df = read_descriptions()
 des_data = []
 used_classes = set()
 for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
@@ -164,7 +165,7 @@ for i in range(20,200,20):
 
 
 
-des_df = read_descriptions()
+
 # des_data = get_descriptions_data(des_df)
 # des_data = []
 # for des_json, cl_txt in zip(des_df['json'], des_df["class_txt"]):
