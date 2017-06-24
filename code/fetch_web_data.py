@@ -137,6 +137,8 @@ for i in range(20,200,20):
 
 des_df = read_descriptions()
 des_data = get_descriptions_data(des_df)
+for i in des_data:
+    print(i)
 #################################
 #
 # Baseline Train on Descriptions, test on websites
