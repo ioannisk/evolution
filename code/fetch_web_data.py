@@ -102,8 +102,18 @@ df["label_txt"] = label_txt
 ########################
 des_df = read_descriptions()
 # ["class_num", "class_txt", "json"]
+classes_desc = set()
+classes_web = set()
 for i, j, k in zip(des_df['json'], des_df["class_num"], des_df["class_txt"]):
-    print (j, k )
+    classes_desc.update(j)
+for i in df["label_num"]:
+    classes_web.update(i)
+count =0
+for i in classes_desc:
+    if i in classes_web:
+        count +=1
+print(count/float((len(classes_desc))))
+arvin
 
 
 des_data = []
