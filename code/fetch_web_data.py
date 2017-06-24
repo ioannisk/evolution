@@ -137,15 +137,15 @@ for i in range(20,200,20):
 
 des_df = read_descriptions()
 des_data = get_descriptions_data(des_df)
-for i in des_data:
-    print(i)
+print(des_data)
 #################################
 #
 # Baseline Train on Descriptions, test on websites
 #
 #################################
 des_labels = [i for i in des_df["class_num"]]
-vec = CountVectorizer( min_df=1, ngram_range=1, stop_words=stopWords)
+# ngram_range=1
+vec = CountVectorizer( min_df=1, stop_words=stopWords)
 vec.fit(des_data)
 des_data = vec.transform(des_data)
 for a in range(0.1,1,0.1):
