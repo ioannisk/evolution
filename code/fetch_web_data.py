@@ -102,7 +102,10 @@ used_classes = set()
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
     # print(cl_txt)
-    print(class_hash[cl_num])
+    try:
+        print(class_hash[cl_num])
+    except:
+        pass
     valid_txt = ""
     # print(des_json.keys())
     ###
