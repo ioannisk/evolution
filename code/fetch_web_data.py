@@ -138,21 +138,20 @@ labels = []
 print("Fetch websites from database")
 counter = 0
 for i, l in zip(df['url'], df["label_num"]):
-    if str(l) in used_classes:
-        # print(l)
-        counter +=1
-        if counter > 1000:
-            break
-        # query database and get page object
-        page = storage.get_page(i)
-        # some domains are not scrapped
-        try:
-            page_txt = page.textSummary
-            page_txt = clean_up_txt(page_txt)
-            web_sites.append(page_txt)
-            labels.append(l)
-        except:
-            pass
+    # print(l)
+    counter +=1
+    if counter > 10000:
+        break
+    # query database and get page object
+    page = storage.get_page(i)
+    # some domains are not scrapped
+    try:
+        page_txt = page.textSummary
+        page_txt = clean_up_txt(page_txt)
+        web_sites.append(page_txt)
+        labels.append(l)
+    except:
+        pass
 print("Vectorize documents")
 
 
