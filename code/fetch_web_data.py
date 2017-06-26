@@ -201,6 +201,9 @@ top_n_classes = set(top_n_classes)
 prc_top_n_classes = list(prc_top_n_classes)
 
 
+
+print(df_web["class_num"])
+
 print("Len of descriptions {0}".format(len(des_df)))
 des_df_top_n = des_df[des_df["class_num"].isin(top_n_classes)]
 print("Len of top N descriptions {0}".format(len(des_df_top_n)))
