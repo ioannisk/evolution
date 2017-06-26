@@ -87,7 +87,7 @@ for ver in df["vertical"]:
     label_n, label_t = ver.split("-",1)
     label_num.append(label_n)
     label_txt.append(label_t)
-df["label_num"] = label_num
+df["label_num"] = int(label_num)
 df["label_txt"] = label_txt
 
 
@@ -105,14 +105,15 @@ des_df = read_descriptions()
 classes_desc = set()
 classes_web = set()
 for i, j, k in zip(des_df['json'], des_df["class_num"], des_df["class_txt"]):
-    classes_desc.add(j)
+    classes_desc.add(int(j))
 for i in df["label_num"]:
     classes_web.add(i)
 count =0
 for i in classes_desc:
     if i in classes_web:
         count +=1
-print(count/float((len(classes_desc))))
+print(count)
+print(count/float(len(classes_desc)))
 arvin
 
 
