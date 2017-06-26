@@ -80,12 +80,12 @@ def get_descriptions_data(des_df):
 
 def find_intersection_of_classes():
     # ["class_num", "class_txt", "json"]
-    classes_desc = set()
-    classes_web = set()
-    for j in des_df["class_num"]:
-        classes_desc.add(int(j))
-    for i in df["label_num"]:
-        classes_web.add(int(i))
+    classes_desc = set(des_df["class_num"])
+    classes_web = set(df["label_num"])
+    # for j in des_df["class_num"]:
+    #     classes_desc.add(int(j))
+    # for i in df["label_num"]:
+    #     classes_web.add(int(i))
     intersection = classes_desc.intersection(classes_web)
     return intersection
 
@@ -110,6 +110,8 @@ df["label_num"] = label_num
 df["label_txt"] = label_txt
 # Keep only the descriptions that exist in the dataset
 intersection =find_intersection_of_classes()
+des_df = des_df[des_df["class_num"].isin(intersection)]
+
 des_df = des_df[des_df["class_num"].isin(intersection)]
 
 print(len(intersection))
