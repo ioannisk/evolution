@@ -139,9 +139,9 @@ print("Fetch websites from database")
 counter = 0
 for i, l in zip(df['url'], df["label_num"]):
     # print(l)
-    counter +=1
-    if counter > 10000:
-        break
+    # counter +=1
+    # if counter > 10000:
+    #     break
     # query database and get page object
     page = storage.get_page(i)
     # some domains are not scrapped
@@ -222,7 +222,7 @@ des_data = vec.transform(des_data)
 print(len(web_sites))
 # print(vec.vocabulary_)
 print(des_data.shape)
-for a in np.arange(0.0001,0.2,0.005):
+for a in np.arange(0.008,0.15,0.005):
     gnb = MultinomialNB(alpha=a)
     clf = gnb.fit(des_data, des_labels)
     vec_web_sites = vec.transform(web_sites)
