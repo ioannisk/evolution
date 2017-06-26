@@ -212,14 +212,18 @@ prc_top_n_classes = list(prc_top_n_classes)
 des_df_top_n = des_df[des_df["class_num"].isin(top_n_classes)]
 df_top_n = df_web[df_web["class_num"].isin(top_n_classes)]
 
-print(len(des_df_top_n))
-print(len(df_top_n))
-
-
 des_data = list(des_df_top_n["class_txt"])
 des_labels = list(des_df_top_n["class_num"])
 web_data = list(df_top_n["class_txt"])
 web_labels = list(df_top_n["class_num"])
+
+
+
+print(len(des_data ))
+print(len(des_labels ))
+print(len(web_data))
+print(len(web_labels))
+
 
 rvkrvk
 
