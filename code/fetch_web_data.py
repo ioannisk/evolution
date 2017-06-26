@@ -274,7 +274,8 @@ test_y =des_web_sites_labels[partition:]
 print("Web shape {0}".format(train_X.shape))
 # best acc is 0.207 with alpha 0.021
 # for a in np.arange(0.00001,0.1,0.001):
-gnb = MultinomialNB(alpha=0.0207)
+a = 0.02201
+gnb = MultinomialNB(alpha=a )
 # data = data.toarray()
 clf = gnb.fit(train_X, train_y)
 y_pred_test = clf.predict(test_X)
@@ -297,11 +298,12 @@ train_y = labels[:partition]
 test_X = data[partition:]
 test_y =labels[partition:]
 print("Web shape {0}".format(train_X.shape))
-for a in np.arange(0.00001,0.1,0.005):
-    gnb = MultinomialNB(alpha=a)
-    # data = data.toarray()
-    clf = gnb.fit(train_X, train_y)
-    y_pred_test = clf.predict(test_X)
-    print("Testing accuracy web-web: {0} with alpha {1}".format(accuracy_score(test_y, y_pred_test), a))
+# for a in np.arange(0.00001,0.1,0.005):
+a = 02001
+gnb = MultinomialNB(alpha=a)
+# data = data.toarray()
+clf = gnb.fit(train_X, train_y)
+y_pred_test = clf.predict(test_X)
+print("Testing accuracy web-web: {0} with alpha {1}".format(accuracy_score(test_y, y_pred_test), a))
 
 
