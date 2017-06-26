@@ -148,9 +148,9 @@ labels = []
 print("Fetch websites from database")
 counter = 0
 for i, l in zip(df['url'], df["label_num"]):
-    counter +=1
-    if counter > 10000:
-        break
+    # counter +=1
+    # if counter > 10000:
+    #     break
     # query database and get page object
     page = storage.get_page(i)
     # some domains are not scrapped
@@ -179,6 +179,7 @@ for i in range(20,200,20):
 # Baseline Train on Descriptions, test on websites
 #
 #################################
+print("TRAIN ON ALL DESCRIPTIONS, TEST ON ALL WEB")
 des_labels = [i for i in des_df["class_num"]]
 # , ngram_range=(1,2)
 vec = CountVectorizer( min_df=1 , stop_words=stopWords)
@@ -190,7 +191,7 @@ print(len(web_sites))
 print(vec_des_data.shape)
 # best alpha is 0.12 for 1 grams with acc 0.0575
 # best alpha is 0.078 for 2 grams with acc 0.053
-for a in np.arange(0.008,0.15,0.005):
+for a in np.arange(0.001,0.3,0.01):
 # a = 0.12
     gnb = MultinomialNB(alpha=a)
     clf = gnb.fit(vec_des_data, des_labels)
@@ -198,20 +199,23 @@ for a in np.arange(0.008,0.15,0.005):
     print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
 
 
+
+print("TRAIN ON TOP 150 DESCRIPTIONS, TEST ON ALL WEB")
+## Gather websites and descriptions that are in the top 150 classes
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 N_CLASSES = 150
 top_n_prc_classes, total_percentage = n_most_popular_classes(N_CLASSES)
 top_n_classes, prc_top_n_classes  = zip(*top_n_prc_classes)
 top_n_classes = set(top_n_classes)
 prc_top_n_classes = list(prc_top_n_classes)
-
+# Filter dataframes to inlcude only top N classes
 des_df_top_n = des_df[des_df["class_num"].isin(top_n_classes)]
 df_top_n = df_web[df_web["class_num"].isin(top_n_classes)]
+
 des_data = list(des_df_top_n["class_txt"])
 des_labels = list(des_df_top_n["class_num"])
 web_data = list(df_top_n["class_txt"])
 web_labels = list(df_top_n["class_num"])
-
 
 vec = CountVectorizer( min_df=1 , stop_words=stopWords)
 vec.fit(des_data)
@@ -222,7 +226,7 @@ print(len(web_data))
 print(vec_des_data.shape)
 # best alpha is 0.12 for 1 grams with acc 0.0575
 # best alpha is 0.078 for 2 grams with acc 0.053
-for a in np.arange(0.05,0.2,0.05):
+for a in np.arange(0.001,0.3,0.01):
     # a = 0.12
     gnb = MultinomialNB(alpha=a)
     clf = gnb.fit(vec_des_data, des_labels)
@@ -279,7 +283,7 @@ for a in np.arange(0.05,0.2,0.05):
 # # Train Web --- Test Web
 # #
 # #################################
-print("Train Naive Bayes")
+print("TRAIN ON TOP WEB, TEST ON ALL WEB")
 data_len = len(web_sites)
 partition = int(data_len*0.9)
 vec = CountVectorizer(min_df=1,stop_words=stopWords)
@@ -288,10 +292,11 @@ train_X = data[:partition]
 train_y = labels[:partition]
 test_X = data[partition:]
 test_y =labels[partition:]
-gnb = MultinomialNB(alpha=0.1)
-# data = data.toarray()
-clf = gnb.fit(train_X, train_y)
-y_pred_test = clf.predict(test_X)
-print("Testing accuracy web-web: {0}".format(accuracy_score(test_y, y_pred_test)))
+for a in np.arange(0.001,1,0.1):
+    gnb = MultinomialNB(alpha=a)
+    # data = data.toarray()
+    clf = gnb.fit(train_X, train_y)
+    y_pred_test = clf.predict(test_X)
+    print("Testing accuracy web-web: {0}".format(accuracy_score(test_y, y_pred_test)))
 
 
