@@ -108,7 +108,7 @@ df["label_txt"] = label_txt
 intersection =find_intersection_of_classes()
 des_df = des_df[des_df["class_num"].isin(intersection)]
 
-for i in df["label_num"]:
+for i in set(df["label_num"]):
     if i not in intersection:
         print(i)
 
