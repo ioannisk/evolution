@@ -112,7 +112,7 @@ count =0
 for i in classes_desc:
     if i in classes_web:
         count +=1
-a = classes_desc.intersection(classes_desc)
+a = classes_desc.intersection(classes_web)
 print(len(a))
 print(len(classes_desc))
 print(len(classes_web))
