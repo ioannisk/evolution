@@ -220,7 +220,7 @@ des_labels = list(des_df_top_n["class_num"])
 web_data = list(df_top_n["class_txt"])
 web_labels = list(df_top_n["class_num"])
 
-
+rvkrvk
 
 vec = CountVectorizer( min_df=1 , stop_words=stopWords)
 vec.fit(des_data)
