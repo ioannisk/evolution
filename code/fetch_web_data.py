@@ -160,10 +160,7 @@ print("Vectorize documents")
 df_web = pd.DataFrame()
 df_web["class_num"] = labels
 df_web["class_txt"] = web_sites
-
-print(len(df_web))
-for i, j in zip(df_web["class_num"], df_web["class_txt"]):
-    print (i, j)
+print("Labeled websites are {0}".format(len(df_web)))
 
 for i in range(20,200,20):
     classes, prcntg = n_most_popular_classes(i)
