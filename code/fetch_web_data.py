@@ -204,7 +204,7 @@ print(len(top_n_classes))
 
 des_df_top_n = des_df[des_df["class_num"].isin(top_n_classes)]
 df_top_n = df_web[df_web["class_num"].isin(top_n_prc_classes)]
-
+print(len(df_top_n))
 print(len(des_df_top_n))
 
 
