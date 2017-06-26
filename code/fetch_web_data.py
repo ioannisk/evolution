@@ -224,13 +224,14 @@ vec_web_sites = vec.transform(web_sites)
 print(len(web_sites))
 # print(vec.vocabulary_)
 print(vec_des_data.shape)
-# best alpha is 0.12 for 1 grams with acc 0.05
+# best alpha is 0.12 for 1 grams with acc 0.0575
 # best alpha is 0.078 for 2 grams with acc 0.053
-for a in np.arange(0.008,0.15,0.005):
-    gnb = MultinomialNB(alpha=a)
-    clf = gnb.fit(vec_des_data, des_labels)
-    y_pred_test = clf.predict(vec_web_sites)
-    print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
+# for a in np.arange(0.008,0.15,0.005):
+a = 0.12
+gnb = MultinomialNB(alpha=a)
+clf = gnb.fit(vec_des_data, des_labels)
+y_pred_test = clf.predict(vec_web_sites)
+print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
     # matrix = confusion_matrix(labels, y_pred_test)
     # matrix = normalize(matrix, axis=1, norm='l1')
     # print(matrix)
@@ -238,18 +239,18 @@ for a in np.arange(0.008,0.15,0.005):
 
 
 
-vec = CountVectorizer( min_df=1 , stop_words=stopWords)
-vec.fit(web_sites)
-vec_des_data = vec.transform(des_data)
-vec_web_sites = vec.transform(web_sites)[10000:]
-print(len(web_sites))
-# print(vec.vocabulary_)
-print(vec_des_data.shape)
-for a in np.arange(0.00001,0.3,0.0005):
-    gnb = MultinomialNB(alpha=a)
-    clf = gnb.fit(vec_des_data, des_labels)
-    y_pred_test = clf.predict(vec_web_sites)
-    print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
+# vec = CountVectorizer( min_df=1 , stop_words=stopWords)
+# vec.fit(web_sites)
+# vec_des_data = vec.transform(des_data)
+# vec_web_sites = vec.transform(web_sites)[10000:]
+# print(len(web_sites))
+# # print(vec.vocabulary_)
+# print(vec_des_data.shape)
+# for a in np.arange(0.00001,0.3,0.0005):
+#     gnb = MultinomialNB(alpha=a)
+#     clf = gnb.fit(vec_des_data, des_labels)
+#     y_pred_test = clf.predict(vec_web_sites)
+#     print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
 
 
 
