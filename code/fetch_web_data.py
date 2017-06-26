@@ -109,7 +109,7 @@ df["label_txt"] = label_txt
 
 intersection =find_intersection_of_classes()
 print(len(des_df))
-des_df = des_df[~des_df.isin(intersection)]
+des_df = des_df[~des_df.isin(list(intersection))]
 
 print(len(des_df))
 
