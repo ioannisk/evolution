@@ -108,17 +108,15 @@ df["label_txt"] = label_txt
 intersection =find_intersection_of_classes()
 des_df = des_df[des_df["class_num"].isin(intersection)]
 
+#
+# Companies that are not in the descriptions
+#
+# class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
+# for i in set(df["label_num"]):
+#     if i not in intersection:
+#         print(i, class_hash[i])
+df = df[df["label_num"].isin(intersection)]
 
-
-
-
-ttt = set(des_df["class_num"])
-class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
-for i in set(df["label_num"]):
-    if i not in intersection:
-        print(i, class_hash[i])
-rvrv
-# des_df = des_df[des_df["class_num"].isin(intersection)]
 
 print(len(intersection))
 print(len(set(des_df["class_num"])))
