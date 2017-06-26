@@ -86,7 +86,7 @@ def find_intersection_of_classes():
         classes_desc.add(int(j))
     for i in df["label_num"]:
         classes_web.add(int(i))
-    intersection = classes_desc.intersection(classes_web)
+    intersection = classes_web.intersection(classes_desc)
     return intersection
 
 
