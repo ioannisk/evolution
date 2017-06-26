@@ -117,12 +117,6 @@ des_df = des_df[des_df["class_num"].isin(intersection)]
 #         print(i, class_hash[i])
 df = df[df["label_num"].isin(intersection)]
 
-
-print(len(intersection))
-print(len(set(des_df["class_num"])))
-print(len(set(df["label_num"])))
-print(set(des_df["class_num"]) == set(df["label_num"]))
-invoifn
 #########################
 #
 # Find the classes that have detail or inclusion
@@ -144,6 +138,8 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
         valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
 des_df = des_df[des_df["class_num"].isin(used_classes)]
+df = df[df["label_num"].isin(used_classes)]
+
 #########################
 #########################
 #########################
@@ -176,6 +172,7 @@ for i in range(20,200,20):
     classes, prcntg = n_most_popular_classes(i)
     print(i, prcntg)
 
+intibnt
 # stop
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 
