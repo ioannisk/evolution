@@ -28,7 +28,6 @@ def clean_up_txt(page_txt):
     return page_txt
 
 
-
 #################################
 #
 # Statistics about popularity of classes
@@ -186,9 +185,9 @@ vec = CountVectorizer( min_df=1 , stop_words=stopWords)
 vec.fit(des_data)
 vec_des_data = vec.transform(des_data)
 vec_web_sites = vec.transform(web_sites)
-print(len(web_sites))
 # print(vec.vocabulary_)
-print(vec_des_data.shape)
+print("Desc shape {0}".format(vec_des_data.shape))
+print("Web shape {0}".format(vec_web_sites.shape))
 # best alpha is 0.11 for 1 grams with acc 0.06
 # best alpha is 0.078 for 2 grams with acc 0.053
 # for a in np.arange(0.001,0.3,0.01):
@@ -221,9 +220,8 @@ vec = CountVectorizer( min_df=1 , stop_words=stopWords)
 vec.fit(des_data_top_n)
 vec_des_data = vec.transform(des_data_top_n)
 vec_web_sites = vec.transform(web_data)
-print(len(web_data))
-# print(vec.vocabulary_)
-print(vec_des_data.shape)
+print("Desc shape {0}".format(vec_des_data.shape))
+print("Web shape {0}".format(vec_web_sites.shape))
 # best alpha is 0.12 for 1 grams with acc 0.0575
 # best alpha is 0.078 for 2 grams with acc 0.053
 for a in np.arange(0.001,0.3,0.01):
@@ -266,17 +264,17 @@ data_len = len(des_web_sites)
 partition = int(data_len*0.9)
 vec = CountVectorizer( min_df=1, stop_words=stopWords)
 des_web_sites = vec.fit_transform(des_web_sites)
-print("vectorization is over !!!!")
 train_X = des_web_sites[:partition]
 train_y = des_web_sites_labels[:partition]
 test_X = des_web_sites[partition:]
 test_y =des_web_sites_labels[partition:]
+print("Web shape {0}".format(train_X.shape))
 for a in np.arange(0.00001,0.1,0.001):
     gnb = MultinomialNB(alpha=a)
     # data = data.toarray()
     clf = gnb.fit(train_X, train_y)
     y_pred_test = clf.predict(test_X)
-    print("Testing accuracy (web + des)trainging (web) testing: {0}".format(accuracy_score(test_y, y_pred_test)))
+    print("Testing accuracy (web + des)trainging (web) testing: {0} with alpha".format(accuracy_score(test_y, y_pred_test),a ))
 
 
 
@@ -294,11 +292,12 @@ train_X = data[:partition]
 train_y = labels[:partition]
 test_X = data[partition:]
 test_y =labels[partition:]
+print("Web shape {0}".format(train_X.shape))
 for a in np.arange(0.00001,0.1,0.001):
     gnb = MultinomialNB(alpha=a)
     # data = data.toarray()
     clf = gnb.fit(train_X, train_y)
     y_pred_test = clf.predict(test_X)
-    print("Testing accuracy web-web: {0}".format(accuracy_score(test_y, y_pred_test)))
+    print("Testing accuracy web-web: {0} with alpha".format(accuracy_score(test_y, y_pred_test), a))
 
 
