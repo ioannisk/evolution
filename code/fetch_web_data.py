@@ -85,7 +85,7 @@ def find_intersection_of_classes():
     for j in des_df["class_num"]:
         classes_desc.add(int(j))
     for i in df["label_num"]:
-        classes_web.add(i)
+        classes_web.add(int(i))
     intersection = classes_desc.intersection(classes_web)
     return intersection
 
@@ -113,6 +113,8 @@ intersection =find_intersection_of_classes()
 des_df = des_df[des_df["class_num"].isin(intersection)]
 
 
+print(set(des_df["class_num"]) == set(df["label_num"]))
+invoifn
 #########################
 #
 # Find the classes that have detail or inclusion
@@ -153,7 +155,7 @@ for i, l in zip(df['url'], df["label_num"]):
         page_txt = page.textSummary
         page_txt = clean_up_txt(page_txt)
         web_sites.append(page_txt)
-        labels.append(int(l))
+        labels.append(l)
     except:
         pass
 print("Vectorize documents")
@@ -202,17 +204,11 @@ prc_top_n_classes = list(prc_top_n_classes)
 
 
 
-print(df_web["class_num"])
 
 
-
-
-print("Len of descriptions {0}".format(len(des_df)))
 des_df_top_n = des_df[des_df["class_num"].isin(top_n_classes)]
-print("Len of top N descriptions {0}".format(len(des_df_top_n)))
-print("Len of web {0}".format(len(df_web)))
-df_top_n = df_web[df_web["class_num"].isin(top_n_prc_classes)]
-print("Len of top N web {0}".format(len(df_top_n)))
+df_top_n = df_web[df_web["class_num"].isin(top_n_classes)]
+
 
 
 
