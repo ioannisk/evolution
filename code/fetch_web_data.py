@@ -161,6 +161,10 @@ df_web = pd.DataFrame()
 df_web["class_num"] = labels
 df_web["class_txt"] = web_sites
 
+print(len(df_web))
+for i, j in zip(df_web["class_num"], df_web["class_txt"]):
+    print (i, j)
+
 for i in range(20,200,20):
     classes, prcntg = n_most_popular_classes(i)
     print(i, prcntg)
@@ -198,11 +202,13 @@ top_n_prc_classes, total_percentage = n_most_popular_classes(N_CLASSES)
 top_n_classes, prc_top_n_classes  = zip(*top_n_prc_classes)
 top_n_classes = list(top_n_classes)
 prc_top_n_classes = list(prc_top_n_classes)
-print(top_n_classes)
+print(len(top_n_classes))
 
-ecec
+
 des_df_top_n = des_df[des_df["class_num"].isin(top_n_classes)]
 df_top_n = df_web[df_web["class_num"].isin(top_n_prc_classes)]
+
+print(len(des_df_top_n))
 
 
 
