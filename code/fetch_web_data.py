@@ -13,6 +13,7 @@ from sklearn.metrics import accuracy_score
 from parse_descriptions import read_descriptions
 import numpy as np
 from sklearn.metrics import confusion_matrix
+from sklearn.preprocessing import normalize
 # import matplotlib
 # matplotlib.use('GTK')
 # import matplotlib.pyplot as plt
