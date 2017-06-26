@@ -292,7 +292,7 @@ train_X = data[:partition]
 train_y = labels[:partition]
 test_X = data[partition:]
 test_y =labels[partition:]
-for a in np.arange(0.001,1,0.1):
+for a in np.arange(0.00001,0.1,0.001):
     gnb = MultinomialNB(alpha=a)
     # data = data.toarray()
     clf = gnb.fit(train_X, train_y)
