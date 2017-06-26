@@ -108,7 +108,6 @@ df["label_txt"] = label_txt
 intersection =find_intersection_of_classes()
 des_df = des_df[des_df["class_num"].isin(intersection)]
 
-#
 # Companies that are not in the descriptions
 #
 # class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
@@ -196,7 +195,7 @@ a = 0.12
 gnb = MultinomialNB(alpha=a)
 clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
-print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
+print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ,normalize=False),a))
 
 rvrv
 
