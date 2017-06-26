@@ -222,7 +222,7 @@ des_data = vec.transform(des_data)
 print(len(web_sites))
 # print(vec.vocabulary_)
 print(des_data.shape)
-for a in np.arange(0.0001,1.4,0.05):
+for a in np.arange(0.0001,0.2,0.005):
     gnb = MultinomialNB(alpha=a)
     clf = gnb.fit(des_data, des_labels)
     vec_web_sites = vec.transform(web_sites)
