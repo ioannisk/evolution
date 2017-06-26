@@ -220,7 +220,7 @@ vec = CountVectorizer( min_df=1 , stop_words=stopWords)
 #
 # Try different vocabulary for vectorization
 #
-vec.fit(des_data)
+vec.fit(des_data_top_n)
 vec_des_data = vec.transform(des_data_top_n)
 vec_web_sites = vec.transform(web_data)
 print("Desc shape {0}".format(vec_des_data.shape))
@@ -271,13 +271,15 @@ train_X = des_web_sites[:partition]
 train_y = des_web_sites_labels[:partition]
 test_X = des_web_sites[partition:]
 test_y =des_web_sites_labels[partition:]
+
 print("Web shape {0}".format(train_X.shape))
-for a in np.arange(0.00001,0.1,0.001):
-    gnb = MultinomialNB(alpha=a)
-    # data = data.toarray()
-    clf = gnb.fit(train_X, train_y)
-    y_pred_test = clf.predict(test_X)
-    print("Testing accuracy (web + des)trainging (web) testing: {0} with alpha {1}".format(accuracy_score(test_y, y_pred_test),a ))
+# best acc is 0.207 with alpha 0.021
+# for a in np.arange(0.00001,0.1,0.001):
+gnb = MultinomialNB(alpha=0.207)
+# data = data.toarray()
+clf = gnb.fit(train_X, train_y)
+y_pred_test = clf.predict(test_X)
+print("Testing accuracy (web + des)trainging (web) testing: {0} with alpha {1}".format(accuracy_score(test_y, y_pred_test),a ))
 
 
 
@@ -296,7 +298,7 @@ train_y = labels[:partition]
 test_X = data[partition:]
 test_y =labels[partition:]
 print("Web shape {0}".format(train_X.shape))
-for a in np.arange(0.00001,0.1,0.001):
+for a in np.arange(0.00001,0.1,0.05):
     gnb = MultinomialNB(alpha=a)
     # data = data.toarray()
     clf = gnb.fit(train_X, train_y)
