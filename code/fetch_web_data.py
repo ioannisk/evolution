@@ -144,7 +144,7 @@ df = df[df["label_num"].isin(used_classes)]
 #
 ###############
 # 26200  Manufacture of computers and peripheral equipment
-focus_classes = open("focus_classes.txt", 'w' )
+focus_classes_file = open("focus_classes.txt", 'w' )
 info = ['detail', 'excludes', 'title', 'includes']
 focus_classes = set()
 for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
@@ -159,7 +159,7 @@ print(len)
 print(focus_classes)
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 for i in focus_classes:
-    focus_classes.write("{0} \t {1}".format(i, class_hash[i]))
+    focus_classes_file.write("{0} \t {1}\n".format(i, class_hash[i]))
 
 inrcicn
 
