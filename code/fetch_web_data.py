@@ -191,7 +191,7 @@ clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
 print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
 
-
+rlcr
 
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 N_CLASSES = 150
