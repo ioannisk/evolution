@@ -128,7 +128,6 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
                 valid_txt += " "+des_json[key][0]
         valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
-        print(valid_txt)
 des_df = des_df[des_df["class_num"].isin(used_classes)]
 #########################
 #########################
@@ -219,7 +218,7 @@ for i in range(20,200,20):
 des_labels = [i for i in des_df["class_num"]]
 # ngram_range=(1,2)
 vec = CountVectorizer( min_df=1 , stop_words=stopWords)
-vec.fit(web_sites)
+vec.fit(des_data)
 des_data = vec.transform(des_data)
 # print(vec.vocabulary_)
 print(des_data.shape)
