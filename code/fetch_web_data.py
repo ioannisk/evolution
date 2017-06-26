@@ -109,10 +109,6 @@ df["label_txt"] = label_txt
 
 intersection =find_intersection_of_classes()
 print(len(des_df))
-print(type(des_df["class_num"][0]))
-for i in intersection:
-    print(type(i))
-    fovjnfo
 des_df = des_df[~des_df["class_num"].isin(intersection)]
 
 print(len(des_df))
