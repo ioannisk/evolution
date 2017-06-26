@@ -1,0 +1,1188 @@
+click here to open the components of this sicSection A: AGRICULTURE, FORESTRY AND FISHING
+click here to open the components of this sicDivision 01: Crop and animal production, hunting and related service activities
+click here to open the components of this sicGroup 01.1: Growing of non-perennial crops
+Class 01.11: Growing of cereals (except rice), leguminous crops and oil seeds
+Class 01.12: Growing of rice
+Class 01.13: Growing of vegetables and melons, roots and tubers
+Class 01.14: Growing of sugar cane
+Class 01.15: Growing of tobacco
+Class 01.16: Growing of fibre crops
+Class 01.19: Growing of other non-perennial crops
+click here to open the components of this sicGroup 01.2: Growing of perennial crops
+Class 01.21: Growing of grapes
+Class 01.22: Growing of tropical and subtropical fruits
+Class 01.23: Growing of citrus fruits
+Class 01.24: Growing of pome fruits and stone fruits
+Class 01.25: Growing of other tree and bush fruits and nuts
+Class 01.26: Growing of oleaginous fruits
+Class 01.27: Growing of beverage crops
+Class 01.28: Growing of spices, aromatic, drug and pharmaceutical crops
+Class 01.29: Growing of other perennial crops
+click here to open the components of this sicGroup 01.3: Plant propagation
+Class 01.30: Plant propagation
+click here to open the components of this sicGroup 01.4: Animal production
+Class 01.41: Raising of dairy cattle
+Class 01.42: Raising of other cattle and buffaloes
+Class 01.43: Raising of horses and other equines
+Class 01.44: Raising of camels and camelids
+Class 01.45: Raising of sheep and goats
+Class 01.46: Raising of swine/pigs
+Class 01.47: Raising of poultry
+Class 01.49: Raising of other animals
+click here to open the components of this sicGroup 01.5: Mixed farming
+Class 01.50: Mixed farming
+click here to open the components of this sicGroup 01.6: Support activities to agriculture and post-harvest crop activities
+Class 01.61: Support activities for crop production
+click here to open the components of this sicClass 01.62: Support activities for animal production
+ Sub-class 01.62/1: Farm animal boarding and care
+ Sub-class 01.62/9: Support activities for animal production (other than farm animal boarding and care) n.e.c.
+Class 01.63: Post-harvest crop activities
+Class 01.64: Seed processing for propagation
+click here to open the components of this sicGroup 01.7: Hunting, trapping and related service activities
+Class 01.70: Hunting, trapping and related service activities
+click here to open the components of this sicDivision 02: Forestry and logging
+click here to open the components of this sicGroup 02.1: Silviculture and other forestry activities
+Class 02.10: Silviculture and other forestry activities
+click here to open the components of this sicGroup 02.2: Logging
+Class 02.20: Logging
+click here to open the components of this sicGroup 02.3: Gathering of wild growing non-wood products
+Class 02.30: Gathering of wild growing non-wood products
+click here to open the components of this sicGroup 02.4: Support services to forestry
+Class 02.40: Support services to forestry
+click here to open the components of this sicDivision 03: Fishing and aquaculture
+click here to open the components of this sicGroup 03.1: Fishing
+Class 03.11: Marine fishing
+Class 03.12: Freshwater fishing
+click here to open the components of this sicGroup 03.2: Aquaculture
+Class 03.21: Marine aquaculture
+Class 03.22: Freshwater aquaculture
+click here to open the components of this sicSection B: MINING AND QUARRYING
+click here to open the components of this sicDivision 05: Mining of coal and lignite
+click here to open the components of this sicGroup 05.1: Mining of hard coal
+click here to open the components of this sicClass 05.10: Mining of hard coal
+ Sub-class 05.10/1: Mining of hard coal from deep coal mines (underground mining)
+ Sub-class 05.10/2: Mining of hard coal from open cast coal working (surface mining)
+click here to open the components of this sicGroup 05.2: Mining of lignite
+Class 05.20: Mining of lignite
+click here to open the components of this sicDivision 06: Extraction of crude petroleum and natural gas
+click here to open the components of this sicGroup 06.1: Extraction of crude petroleum
+Class 06.10: Extraction of crude petroleum
+click here to open the components of this sicGroup 06.2: Extraction of natural gas
+Class 06.20: Extraction of natural gas
+click here to open the components of this sicDivision 07: Mining of metal ores
+click here to open the components of this sicGroup 07.1: Mining of iron ores
+Class 07.10: Mining of iron ores
+click here to open the components of this sicGroup 07.2: Mining of non-ferrous metal ores
+Class 07.21: Mining of uranium and thorium ores
+Class 07.29: Mining of other non-ferrous metal ores
+click here to open the components of this sicDivision 08: Other mining and quarrying
+click here to open the components of this sicGroup 08.1: Quarrying of stone, sand and clay
+Class 08.11: Quarrying of ornamental and building stone, limestone, gypsum, chalk and slate
+Class 08.12: Operation of gravel and sand pits; mining of clays and kaolin
+click here to open the components of this sicGroup 08.9: Mining and quarrying n.e.c.
+Class 08.91: Mining of chemical and fertiliser minerals
+Class 08.92: Extraction of peat
+Class 08.93: Extraction of salt
+Class 08.99: Other mining and quarrying n.e.c.
+click here to open the components of this sicDivision 09: Mining support service activities
+click here to open the components of this sicGroup 09.1: Support activities for petroleum and natural gas extraction
+Class 09.10: Support activities for petroleum and natural gas extraction
+click here to open the components of this sicGroup 09.9: Support activities for other mining and quarrying
+Class 09.90: Support activities for other mining and quarrying
+
+click here to open the components of this sicSection C: MANUFACTURING
+click here to open the components of this sicDivision 10: Manufacture of food products
+click here to open the components of this sicGroup 10.1: Processing and preserving of meat and production of meat products
+Class 10.11: Processing and preserving of meat
+Class 10.12: Processing and preserving of poultry meat
+Class 10.13: Production of meat and poultry meat products
+click here to open the components of this sicGroup 10.2: Processing and preserving of fish, crustaceans and molluscs
+Class 10.20: Processing and preserving of fish, crustaceans and molluscs
+click here to open the components of this sicGroup 10.3: Processing and preserving of fruit and vegetables
+Class 10.31: Processing and preserving of potatoes
+Class 10.32: Manufacture of fruit and vegetable juice
+Class 10.39: Other processing and preserving of fruit and vegetables
+click here to open the components of this sicGroup 10.4: Manufacture of vegetable and animal oils and fats
+Class 10.41: Manufacture of oils and fats
+Class 10.42: Manufacture of margarine and similar edible fats
+click here to open the components of this sicGroup 10.5: Manufacture of dairy products
+click here to open the components of this sicClass 10.51: Operation of dairies and cheese making
+ Sub-class 10.51/1: Liquid milk and cream production
+ Sub-class 10.51/2: Butter and cheese production
+ Sub-class 10.51/9: Manufacture of milk products (other than liquid milk and cream, butter, cheese) n.e.c.
+Class 10.52: Manufacture of ice cream
+click here to open the components of this sicGroup 10.6: Manufacture of grain mill products, starches and starch products
+click here to open the components of this sicClass 10.61: Manufacture of grain mill products
+ Sub-class 10.61/1: Grain milling
+ Sub-class 10.61/2: Manufacture of breakfast cereals and cereals-based foods
+Class 10.62: Manufacture of starches and starch products
+click here to open the components of this sicGroup 10.7: Manufacture of bakery and farinaceous products
+Class 10.71: Manufacture of bread; manufacture of fresh pastry goods and cakes
+Class 10.72: Manufacture of rusks and biscuits; manufacture of preserved pastry goods and cakes
+Class 10.73: Manufacture of macaroni, noodles, couscous and similar farinaceous products
+click here to open the components of this sicGroup 10.8: Manufacture of other food products
+Class 10.81: Manufacture of sugar
+click here to open the components of this sicClass 10.82: Manufacture of cocoa, chocolate and sugar confectionery
+ Sub-class 10.82/1: Manufacture of cocoa, and chocolate confectionery
+ Sub-class 10.82/2: Manufacture of sugar confectionery
+click here to open the components of this sicClass 10.83: Processing of tea and coffee
+ Sub-class 10.83/1: Tea processing
+ Sub-class 10.83/2: Production of coffee and coffee substitutes
+Class 10.84: Manufacture of condiments and seasonings
+Class 10.85: Manufacture of prepared meals and dishes
+Class 10.86: Manufacture of homogenised food preparations and dietetic food
+Class 10.89: Manufacture of other food products n.e.c.
+click here to open the components of this sicGroup 10.9: Manufacture of prepared animal feeds
+Class 10.91: Manufacture of prepared animal feeds for farm animals
+Class 10.92: Manufacture of prepared pet foods
+click here to open the components of this sicDivision 11: Manufacture of beverages
+click here to open the components of this sicGroup 11.0: Manufacture of beverages
+Class 11.01: Distilling, rectifying and blending of spirits
+Class 11.02: Manufacture of wine from grape
+Class 11.03: Manufacture of cider and other fruit wines
+Class 11.04: Manufacture of other non-distilled fermented beverages
+Class 11.05: Manufacture of beer
+Class 11.06: Manufacture of malt
+Class 11.07: Manufacture of soft drinks; production of mineral waters and other bottled waters
+click here to open the components of this sicDivision 12: Manufacture of tobacco products
+click here to open the components of this sicGroup 12.0: Manufacture of tobacco products
+Class 12.00: Manufacture of tobacco products
+click here to open the components of this sicDivision 13: Manufacture of textiles
+click here to open the components of this sicGroup 13.1: Preparation and spinning of textile fibres
+Class 13.10: Preparation and spinning of textile fibres
+click here to open the components of this sicGroup 13.2: Weaving of textiles
+Class 13.20: Weaving of textiles
+click here to open the components of this sicGroup 13.3: Finishing of textiles
+Class 13.30: Finishing of textiles
+click here to open the components of this sicGroup 13.9: Manufacture of other textiles
+Class 13.91: Manufacture of knitted and crocheted fabrics
+click here to open the components of this sicClass 13.92: Manufacture of made-up textile articles, except apparel
+ Sub-class 13.92/1: Manufacture of soft furnishings
+ Sub-class 13.92/2: Manufacture of canvas goods, sacks etc.
+ Sub-class 13.92/3: Manufacture of household textiles (other than soft furnishings of 13.92/1)
+click here to open the components of this sicClass 13.93: Manufacture of carpets and rugs
+ Sub-class 13.93/1: Manufacture of woven or tufted carpets and rugs
+ Sub-class 13.93/9: Manufacture of carpets and rugs (other than woven or tufted) n.e.c.
+Class 13.94: Manufacture of cordage, rope, twine and netting
+Class 13.95: Manufacture of non-wovens and articles made from non-wovens, except apparel
+Class 13.96: Manufacture of other technical and industrial textiles
+Class 13.99: Manufacture of other textiles n.e.c.
+click here to open the components of this sicDivision 14: Manufacture of wearing apparel
+click here to open the components of this sicGroup 14.1: Manufacture of wearing apparel, except fur apparel
+Class 14.11: Manufacture of leather clothes
+Class 14.12: Manufacture of workwear
+click here to open the components of this sicClass 14.13: Manufacture of other outerwear
+ Sub-class 14.13/1: Manufacture of men's outerwear, other than leather clothes and workwear
+ Sub-class 14.13/2: Manufacture of women's outerwear, other than leather clothes and workwear
+click here to open the components of this sicClass 14.14: Manufacture of underwear
+ Sub-class 14.14/1: Manufacture of men's underwear
+ Sub-class 14.14/2: Manufacture of women's underwear
+Class 14.19: Manufacture of other wearing apparel and accessories n.e.c.
+click here to open the components of this sicGroup 14.2: Manufacture of articles of fur
+Class 14.20: Manufacture of articles of fur
+click here to open the components of this sicGroup 14.3: Manufacture of knitted and crocheted apparel
+Class 14.31: Manufacture of knitted and crocheted hosiery
+Class 14.39: Manufacture of other knitted and crocheted apparel
+click here to open the components of this sicDivision 15: Manufacture of leather and related products
+click here to open the components of this sicGroup 15.1: Tanning and dressing of leather; manufacture of luggage, handbags, saddlery and harness; dressing and dyeing of fur
+Class 15.11: Tanning and dressing of leather; dressing and dyeing of fur
+Class 15.12: Manufacture of luggage, handbags and the like, saddlery and harness
+click here to open the components of this sicGroup 15.2: Manufacture of footwear
+Class 15.20: Manufacture of footwear
+click here to open the components of this sicDivision 16: Manufacture of wood and of products of wood and cork, except furniture; manufacture of articles of straw and plaiting materials
+click here to open the components of this sicGroup 16.1: Sawmilling and planing of wood
+Class 16.10: Sawmilling and planing of wood
+click here to open the components of this sicGroup 16.2: Manufacture of products of wood, cork, straw and plaiting materials
+Class 16.21: Manufacture of veneer sheets and wood-based panels
+Class 16.22: Manufacture of assembled parquet floors
+Class 16.23: Manufacture of other builders' carpentry and joinery
+Class 16.24: Manufacture of wooden containers
+Class 16.29: Manufacture of other products of wood; manufacture of articles of cork, straw and plaiting materials
+click here to open the components of this sicDivision 17: Manufacture of paper and paper products
+click here to open the components of this sicGroup 17.1: Manufacture of pulp, paper and paperboard
+Class 17.11: Manufacture of pulp
+Class 17.12: Manufacture of paper and paperboard
+click here to open the components of this sicGroup 17.2: Manufacture of articles of paper and paperboard
+click here to open the components of this sicClass 17.21: Manufacture of corrugated paper and paperboard and of containers of paper and paperboard
+ Sub-class 17.21/1: Manufacture of corrugated paper and paperboard; manufacture of sacks and bags of paper
+ Sub-class 17.21/9: Manufacture of paper and paperboard containers other than sacks and bags
+Class 17.22: Manufacture of household and sanitary goods and of toilet requisites
+Class 17.23: Manufacture of paper stationery
+Class 17.24: Manufacture of wallpaper
+Class 17.29: Manufacture of other articles of paper and paperboard
+click here to open the components of this sicDivision 18: Printing and reproduction of recorded media
+click here to open the components of this sicGroup 18.1: Printing and service activities related to printing
+Class 18.11: Printing of newspapers
+click here to open the components of this sicClass 18.12: Other printing
+ Sub-class 18.12/1: Manufacture of printed labels
+ Sub-class 18.12/9: Printing (other than printing of newspapers and printing on labels and tags) n.e.c.
+Class 18.13: Pre-press and pre-media services
+Class 18.14: Binding and related services
+click here to open the components of this sicGroup 18.2: Reproduction of recorded media
+click here to open the components of this sicClass 18.20: Reproduction of recorded media
+ Sub-class 18.20/1: Reproduction of sound recording
+ Sub-class 18.20/2: Reproduction of video recording
+ Sub-class 18.20/3: Reproduction of computer media
+click here to open the components of this sicDivision 19: Manufacture of coke and refined petroleum products
+click here to open the components of this sicGroup 19.1: Manufacture of coke oven products
+Class 19.10: Manufacture of coke oven products
+click here to open the components of this sicGroup 19.2: Manufacture of refined petroleum products
+click here to open the components of this sicClass 19.20: Manufacture of refined petroleum products
+ Sub-class 19.20/1: Mineral oil refining
+ Sub-class 19.20/9: Other treatment of petroleum products (excluding mineral oil refining/petrochemicals manufacture)
+click here to open the components of this sicDivision 20: Manufacture of chemicals and chemical products
+click here to open the components of this sicGroup 20.1: Manufacture of basic chemicals, fertilisers and nitrogen compounds, plastics and synthetic rubber in primary forms
+Class 20.11: Manufacture of industrial gases
+Class 20.12: Manufacture of dyes and pigments
+Class 20.13: Manufacture of other inorganic basic chemicals
+Class 20.14: Manufacture of other organic basic chemicals
+Class 20.15: Manufacture of fertilisers and nitrogen compounds
+Class 20.16: Manufacture of plastics in primary forms
+Class 20.17: Manufacture of synthetic rubber in primary forms
+click here to open the components of this sicGroup 20.2: Manufacture of pesticides and other agrochemical products
+Class 20.20: Manufacture of pesticides and other agrochemical products
+click here to open the components of this sicGroup 20.3: Manufacture of paints, varnishes and similar coatings, printing ink and mastics
+click here to open the components of this sicClass 20.30: Manufacture of paints, varnishes and similar coatings, printing ink and mastics
+ Sub-class 20.30/1: Manufacture of paints, varnishes and similar coatings, mastics and sealants
+ Sub-class 20.30/2: Manufacture of printing ink
+click here to open the components of this sicGroup 20.4: Manufacture of soap and detergents, cleaning and polishing preparations, perfumes and toilet preparations
+click here to open the components of this sicClass 20.41: Manufacture of soap and detergents, cleaning and polishing preparations
+ Sub-class 20.41/1: Manufacture of soap and detergents
+ Sub-class 20.41/2: Manufacture of cleaning and polishing preparations
+Class 20.42: Manufacture of perfumes and toilet preparations
+click here to open the components of this sicGroup 20.5: Manufacture of other chemical products
+Class 20.51: Manufacture of explosives
+Class 20.52: Manufacture of glues
+Class 20.53: Manufacture of essential oils
+Class 20.59: Manufacture of other chemical products n.e.c.
+click here to open the components of this sicGroup 20.6: Manufacture of man-made fibres
+Class 20.60: Manufacture of man-made fibres
+click here to open the components of this sicDivision 21: Manufacture of basic pharmaceutical products and pharmaceutical preparations
+click here to open the components of this sicGroup 21.1: Manufacture of basic pharmaceutical products
+Class 21.10: Manufacture of basic pharmaceutical products
+click here to open the components of this sicGroup 21.2: Manufacture of pharmaceutical preparations
+Class 21.20: Manufacture of pharmaceutical preparations
+click here to open the components of this sicDivision 22: Manufacture of rubber and plastic products
+click here to open the components of this sicGroup 22.1: Manufacture of rubber products
+Class 22.11: Manufacture of rubber tyres and tubes; retreading and rebuilding of rubber tyres
+Class 22.19: Manufacture of other rubber products
+click here to open the components of this sicGroup 22.2: Manufacture of plastics products
+Class 22.21: Manufacture of plastic plates, sheets, tubes and profiles
+Class 22.22: Manufacture of plastic packing goods
+Class 22.23: Manufacture of builders� ware of plastic
+Class 22.29: Manufacture of other plastic products
+click here to open the components of this sicDivision 23: Manufacture of other non-metallic mineral products
+click here to open the components of this sicGroup 23.1: Manufacture of glass and glass products
+Class 23.11: Manufacture of flat glass
+Class 23.12: Shaping and processing of flat glass
+Class 23.13: Manufacture of hollow glass
+Class 23.14: Manufacture of glass fibres
+Class 23.19: Manufacture and processing of other glass, including technical glassware
+click here to open the components of this sicGroup 23.2: Manufacture of refractory products
+Class 23.20: Manufacture of refractory products
+click here to open the components of this sicGroup 23.3: Manufacture of clay building materials
+Class 23.31: Manufacture of ceramic tiles and flags
+Class 23.32: Manufacture of bricks, tiles and construction products, in baked clay
+click here to open the components of this sicGroup 23.4: Manufacture of other porcelain and ceramic products
+Class 23.41: Manufacture of ceramic household and ornamental articles
+Class 23.42: Manufacture of ceramic sanitary fixtures
+Class 23.43: Manufacture of ceramic insulators and insulating fittings
+Class 23.44: Manufacture of other technical ceramic products
+Class 23.49: Manufacture of other ceramic products
+click here to open the components of this sicGroup 23.5: Manufacture of cement, lime and plaster
+Class 23.51: Manufacture of cement
+Class 23.52: Manufacture of lime and plaster
+click here to open the components of this sicGroup 23.6: Manufacture of articles of concrete, cement and plaster
+Class 23.61: Manufacture of concrete products for construction purposes
+Class 23.62: Manufacture of plaster products for construction purposes
+Class 23.63: Manufacture of ready-mixed concrete
+Class 23.64: Manufacture of mortars
+Class 23.65: Manufacture of fibre cement
+Class 23.69: Manufacture of other articles of concrete, plaster and cement
+click here to open the components of this sicGroup 23.7: Cutting, shaping and finishing of stone
+Class 23.70: Cutting, shaping and finishing of stone
+click here to open the components of this sicGroup 23.9: Manufacture of abrasive products and non-metallic mineral products n.e.c.
+Class 23.91: Production of abrasive products
+Class 23.99: Manufacture of other non-metallic mineral products n.e.c.
+click here to open the components of this sicDivision 24: Manufacture of basic metals
+click here to open the components of this sicGroup 24.1: Manufacture of basic iron and steel and of ferro-alloys
+Class 24.10: Manufacture of basic iron and steel and of ferro-alloys
+click here to open the components of this sicGroup 24.2: Manufacture of tubes, pipes, hollow profiles and related fittings, of steel
+Class 24.20: Manufacture of tubes, pipes, hollow profiles and related fittings, of steel
+click here to open the components of this sicGroup 24.3: Manufacture of other products of first processing of steel
+Class 24.31: Cold drawing of bars
+Class 24.32: Cold rolling of narrow strip
+Class 24.33: Cold forming or folding
+Class 24.34: Cold drawing of wire
+click here to open the components of this sicGroup 24.4: Manufacture of basic precious and other non-ferrous metals
+Class 24.41: Precious metals production
+Class 24.42: Aluminium production
+Class 24.43: Lead, zinc and tin production
+Class 24.44: Copper production
+Class 24.45: Other non-ferrous metal production
+Class 24.46: Processing of nuclear fuel
+click here to open the components of this sicGroup 24.5: Casting of metals
+Class 24.51: Casting of iron
+Class 24.52: Casting of steel
+Class 24.53: Casting of light metals
+Class 24.54: Casting of other non-ferrous metals
+click here to open the components of this sicDivision 25: Manufacture of fabricated metal products, except machinery and equipment
+click here to open the components of this sicGroup 25.1: Manufacture of structural metal products
+Class 25.11: Manufacture of metal structures and parts of structures
+Class 25.12: Manufacture of doors and windows of metal
+click here to open the components of this sicGroup 25.2: Manufacture of tanks, reservoirs and containers of metal
+Class 25.21: Manufacture of central heating radiators and boilers
+Class 25.29: Manufacture of other tanks, reservoirs and containers of metal
+click here to open the components of this sicGroup 25.3: Manufacture of steam generators, except central heating hot water boilers
+Class 25.30: Manufacture of steam generators, except central heating hot water boilers
+click here to open the components of this sicGroup 25.4: Manufacture of weapons and ammunition
+Class 25.40: Manufacture of weapons and ammunition
+click here to open the components of this sicGroup 25.5: Forging, pressing, stamping and roll-forming of metal; powder metallurgy
+Class 25.50: Forging, pressing, stamping and roll-forming of metal; powder metallurgy
+click here to open the components of this sicGroup 25.6: Treatment and coating of metals; machining
+Class 25.61: Treatment and coating of metals
+Class 25.62: Machining
+click here to open the components of this sicGroup 25.7: Manufacture of cutlery, tools and general hardware
+Class 25.71: Manufacture of cutlery
+Class 25.72: Manufacture of locks and hinges
+Class 25.73: Manufacture of tools
+click here to open the components of this sicGroup 25.9: Manufacture of other fabricated metal products
+Class 25.91: Manufacture of steel drums and similar containers
+Class 25.92: Manufacture of light metal packaging
+Class 25.93: Manufacture of wire products, chain and springs
+Class 25.94: Manufacture of fasteners and screw machine products
+Class 25.99: Manufacture of other fabricated metal products n.e.c.
+click here to open the components of this sicDivision 26: Manufacture of computer, electronic and optical products
+click here to open the components of this sicGroup 26.1: Manufacture of electronic components and boards
+Class 26.11: Manufacture of electronic components
+Class 26.12: Manufacture of loaded electronic boards
+click here to open the components of this sicGroup 26.2: Manufacture of computers and peripheral equipment
+Class 26.20: Manufacture of computers and peripheral equipment
+click here to open the components of this sicGroup 26.3: Manufacture of communication equipment
+click here to open the components of this sicClass 26.30: Manufacture of communication equipment
+ Sub-class 26.30/1: Manufacture of telegraph and telephone apparatus and equipment
+ Sub-class 26.30/9: Manufacture of communication equipment (other than telegraph and telephone apparatus and equipment)
+click here to open the components of this sicGroup 26.4: Manufacture of consumer electronics
+Class 26.40: Manufacture of consumer electronics
+click here to open the components of this sicGroup 26.5: Manufacture of instruments and appliances for measuring, testing and navigation; watches and clocks
+click here to open the components of this sicClass 26.51: Manufacture of instruments and appliances for measuring, testing and navigation
+ Sub-class 26.51/1: Manufacture of electronic instruments and appliances for measuring, testing, and navigation, except industrial process control equipment
+ Sub-class 26.51/2: Manufacture of electronic industrial process control equipment
+ Sub-class 26.51/3: Manufacture of non-electronic instruments and appliances for measuring, testing and navigation, except industrial process control equipment
+ Sub-class 26.51/4: Manufacture of non-electronic industrial process control equipment
+Class 26.52: Manufacture of watches and clocks
+click here to open the components of this sicGroup 26.6: Manufacture of irradiation, electromedical and electrotherapeutic equipment
+Class 26.60: Manufacture of irradiation, electromedical and electrotherapeutic equipment
+click here to open the components of this sicGroup 26.7: Manufacture of optical instruments and photographic equipment
+click here to open the components of this sicClass 26.70: Manufacture of optical instruments and photographic equipment
+ Sub-class 26.70/1: Manufacture of optical precision instruments
+ Sub-class 26.70/2: Manufacture of photographic and cinematographic equipment
+click here to open the components of this sicGroup 26.8: Manufacture of magnetic and optical media
+Class 26.80: Manufacture of magnetic and optical media
+click here to open the components of this sicDivision 27: Manufacture of electrical equipment
+click here to open the components of this sicGroup 27.1: Manufacture of electric motors, generators, transformers and electricity distribution and control apparatus
+Class 27.11: Manufacture of electric motors, generators and transformers
+Class 27.12: Manufacture of electricity distribution and control apparatus
+click here to open the components of this sicGroup 27.2: Manufacture of batteries and accumulators
+Class 27.20: Manufacture of batteries and accumulators
+click here to open the components of this sicGroup 27.3: Manufacture of wiring and wiring devices
+Class 27.31: Manufacture of fibre optic cables
+Class 27.32: Manufacture of other electronic and electric wires and cables
+Class 27.33: Manufacture of wiring devices
+click here to open the components of this sicGroup 27.4: Manufacture of electric lighting equipment
+Class 27.40: Manufacture of electric lighting equipment
+click here to open the components of this sicGroup 27.5: Manufacture of domestic appliances
+Class 27.51: Manufacture of electric domestic appliances
+Class 27.52: Manufacture of non-electric domestic appliances
+click here to open the components of this sicGroup 27.9: Manufacture of other electrical equipment
+Class 27.90: Manufacture of other electrical equipment
+click here to open the components of this sicDivision 28: Manufacture of machinery and equipment n.e.c.
+click here to open the components of this sicGroup 28.1: Manufacture of general purpose machinery
+Class 28.11: Manufacture of engines and turbines, except aircraft, vehicle and cycle engines
+Class 28.12: Manufacture of fluid power equipment
+click here to open the components of this sicClass 28.13: Manufacture of other pumps and compressors
+ Sub-class 28.13/1: Manufacture of pumps
+ Sub-class 28.13/2: Manufacture of compressors
+Class 28.14: Manufacture of other taps and valves
+Class 28.15: Manufacture of bearings, gears, gearing and driving elements
+click here to open the components of this sicGroup 28.2: Manufacture of other general-purpose machinery
+Class 28.21: Manufacture of ovens, furnaces and furnace burners
+Class 28.22: Manufacture of lifting and handling equipment
+Class 28.23: Manufacture of office machinery and equipment (except computers and peripheral equipment)
+Class 28.24: Manufacture of power-driven hand tools
+Class 28.25: Manufacture of non-domestic cooling and ventilation equipment
+Class 28.29: Manufacture of other general-purpose machinery n.e.c.
+click here to open the components of this sicGroup 28.3: Manufacture of agricultural and forestry machinery
+click here to open the components of this sicClass 28.30: Manufacture of agricultural and forestry machinery
+ Sub-class 28.30/1: Manufacture of agricultural tractors
+ Sub-class 28.30/2: Manufacture of agricultural and forestry machinery (other than agricultural tractors)
+click here to open the components of this sicGroup 28.4: Manufacture of metal forming machinery and machine tools
+Class 28.41: Manufacture of metal forming machinery
+Class 28.49: Manufacture of other machine tools
+click here to open the components of this sicGroup 28.9: Manufacture of other special-purpose machinery
+Class 28.91: Manufacture of machinery for metallurgy
+click here to open the components of this sicClass 28.92: Manufacture of machinery for mining, quarrying and construction
+ Sub-class 28.92/1: Manufacture of machinery for mining
+ Sub-class 28.92/2: Manufacture of earthmoving equipment
+ Sub-class 28.92/3: Manufacture of equipment for concrete crushing and screening roadworks
+Class 28.93: Manufacture of machinery for food, beverage and tobacco processing
+Class 28.94: Manufacture of machinery for textile, apparel and leather production
+Class 28.95: Manufacture of machinery for paper and paperboard production
+Class 28.96: Manufacture of plastics and rubber machinery
+Class 28.99: Manufacture of other special-purpose machinery n.e.c.
+click here to open the components of this sicDivision 29: Manufacture of motor vehicles, trailers and semi-trailers
+click here to open the components of this sicGroup 29.1: Manufacture of motor vehicles
+Class 29.10: Manufacture of motor vehicles
+click here to open the components of this sicGroup 29.2: Manufacture of bodies (coachwork) for motor vehicles; manufacture of trailers and semi-trailers
+click here to open the components of this sicClass 29.20: Manufacture of bodies (coachwork) for motor vehicles; manufacture of trailers and semi-trailers
+ Sub-class 29.20/1: Manufacture of bodies (coachwork) for motor vehicles (except caravans)
+ Sub-class 29.20/2: Manufacture of trailers and semi-trailers
+ Sub-class 29.20/3: Manufacture of caravans
+click here to open the components of this sicGroup 29.3: Manufacture of parts and accessories for motor vehicles
+Class 29.31: Manufacture of electrical and electronic equipment for motor vehicles
+Class 29.32: Manufacture of other parts and accessories for motor vehicles
+click here to open the components of this sicDivision 30: Manufacture of other transport equipment
+click here to open the components of this sicGroup 30.1: Building of ships and boats
+Class 30.11: Building of ships and floating structures
+Class 30.12: Building of pleasure and sporting boats
+click here to open the components of this sicGroup 30.2: Manufacture of railway locomotives and rolling stock
+Class 30.20: Manufacture of railway locomotives and rolling stock
+click here to open the components of this sicGroup 30.3: Manufacture of air and spacecraft and related machinery
+Class 30.30: Manufacture of air and spacecraft and related machinery
+click here to open the components of this sicGroup 30.4: Manufacture of military fighting vehicles
+Class 30.40: Manufacture of military fighting vehicles
+click here to open the components of this sicGroup 30.9: Manufacture of transport equipment n.e.c.
+Class 30.91: Manufacture of motorcycles
+Class 30.92: Manufacture of bicycles and invalid carriages
+Class 30.99: Manufacture of other transport equipment n.e.c.
+
+click here to open the components of this sicDivision 31: Manufacture of furniture
+click here to open the components of this sicGroup 31.0: Manufacture of furniture
+Class 31.01: Manufacture of office and shop furniture
+Class 31.02: Manufacture of kitchen furniture
+Class 31.03: Manufacture of mattresses
+Class 31.09: Manufacture of other furniture
+click here to open the components of this sicDivision 32: Other manufacturing
+click here to open the components of this sicGroup 32.1: Manufacture of jewellery, bijouterie and related articles
+Class 32.11: Striking of coins
+Class 32.12: Manufacture of jewellery and related articles
+Class 32.13: Manufacture of imitation jewellery and related articles
+click here to open the components of this sicGroup 32.2: Manufacture of musical instruments
+Class 32.20: Manufacture of musical instruments
+click here to open the components of this sicGroup 32.3: Manufacture of sports goods
+Class 32.30: Manufacture of sports goods
+click here to open the components of this sicGroup 32.4: Manufacture of games and toys
+click here to open the components of this sicClass 32.40: Manufacture of games and toys
+ Sub-class 32.40/1: Manufacture of professional and arcade games and toys
+ Sub-class 32.40/9: Manufacture of games and toys (other than professional and arcade games and toys) n.e.c.
+click here to open the components of this sicGroup 32.5: Manufacture of medical and dental instruments and supplies
+Class 32.50: Manufacture of medical and dental instruments and supplies
+click here to open the components of this sicGroup 32.9: Manufacturing n.e.c
+Class 32.91: Manufacture of brooms and brushes
+Class 32.99: Other manufacturing n.e.c.
+click here to open the components of this sicDivision 33: Repair and installation of machinery and equipment
+click here to open the components of this sicGroup 33.1: Repair of fabricated metal products, machinery and equipment
+Class 33.11: Repair of fabricated metal products
+Class 33.12: Repair of machinery
+Class 33.13: Repair of electronic and optical equipment
+Class 33.14: Repair of electrical equipment
+Class 33.15: Repair and maintenance of ships and boats
+Class 33.16: Repair and maintenance of aircraft and spacecraft
+Class 33.17: Repair and maintenance of other transport equipment
+Class 33.19: Repair of other equipment
+click here to open the components of this sicGroup 33.2: Installation of industrial machinery and equipment
+Class 33.20: Installation of industrial machinery and equipment
+click here to open the components of this sicSection D: ELECTRICITY, GAS, STEAM AND AIR CONDITIONING SUPPLY
+click here to open the components of this sicDivision 35: Electricity, gas, steam and air conditioning supply
+click here to open the components of this sicGroup 35.1: Electric power generation, transmission and distribution
+Class 35.11: Production of electricity
+Class 35.12: Transmission of electricity
+Class 35.13: Distribution of electricity
+Class 35.14: Trade of electricity
+click here to open the components of this sicGroup 35.2: Manufacture of gas; distribution of gaseous fuels through mains
+Class 35.21: Manufacture of gas
+Class 35.22: Distribution of gaseous fuels through mains
+Class 35.23: Trade of gas through mains
+click here to open the components of this sicGroup 35.3: Steam and air conditioning supply
+Class 35.30: Steam and air conditioning supply
+click here to open the components of this sicSection E: WATER SUPPLY; SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES
+click here to open the components of this sicDivision 36: Water collection, treatment and supply
+click here to open the components of this sicGroup 36.0: Water collection, treatment and supply
+Class 36.00: Water collection, treatment and supply
+click here to open the components of this sicDivision 37: Sewerage
+click here to open the components of this sicGroup 37.0: Sewerage
+Class 37.00: Sewerage
+click here to open the components of this sicDivision 38: Waste collection, treatment and disposal activities; materials recovery
+click here to open the components of this sicGroup 38.1: Waste collection
+Class 38.11: Collection of non-hazardous waste
+Class 38.12: Collection of hazardous waste
+click here to open the components of this sicGroup 38.2: Waste treatment and disposal
+Class 38.21: Treatment and disposal of non-hazardous waste
+Class 38.22: Treatment and disposal of hazardous waste
+click here to open the components of this sicGroup 38.3: Materials recovery
+Class 38.31: Dismantling of wrecks
+Class 38.32: Recovery of sorted materials
+click here to open the components of this sicDivision 39: Remediation activities and other waste management services
+click here to open the components of this sicGroup 39.0: Remediation activities and other waste management services
+Class 39.00: Remediation activities and other waste management services
+click here to open the components of this sicSection F: CONSTRUCTION
+click here to open the components of this sicDivision 41: Construction of buildings
+click here to open the components of this sicGroup 41.1: Development of building projects
+Class 41.10: Development of building projects
+click here to open the components of this sicGroup 41.2: Construction of residential and non-residential buildings
+click here to open the components of this sicClass 41.20: Construction of buildings
+ Sub-class 41.20/1: Construction of commercial buildings
+ Sub-class 41.20/2: Construction of domestic buildings
+click here to open the components of this sicDivision 42: Civil engineering
+click here to open the components of this sicGroup 42.1: Construction of roads and railways
+Class 42.11: Construction of roads and motorways
+Class 42.12: Construction of railways and underground railways
+Class 42.13: Construction of bridges and tunnels
+click here to open the components of this sicGroup 42.2: Construction of utility projects
+Class 42.21: Construction of utility projects for fluids
+Class 42.22: Construction of utility projects for electricity and telecommunications
+click here to open the components of this sicGroup 42.9: Construction of other civil engineering projects
+Class 42.91: Construction of water projects
+Class 42.99: Construction of other civil engineering projects n.e.c.
+click here to open the components of this sicDivision 43: Specialised construction activities
+click here to open the components of this sicGroup 43.1: Demolition and site preparation
+Class 43.11: Demolition
+Class 43.12: Site preparation
+Class 43.13: Test drilling and boring
+click here to open the components of this sicGroup 43.2: Electrical, plumbing and other construction installation activities
+Class 43.21: Electrical installation
+Class 43.22: Plumbing, heat and air-conditioning installation
+Class 43.29: Other construction installation
+click here to open the components of this sicGroup 43.3: Building completion and finishing
+Class 43.31: Plastering
+Class 43.32: Joinery installation
+Class 43.33: Floor and wall covering
+click here to open the components of this sicClass 43.34: Painting and glazing
+ Sub-class 43.34/1: Painting
+ Sub-class 43.34/2: Glazing
+Class 43.39: Other building completion and finishing
+click here to open the components of this sicGroup 43.9: Other specialised construction activities
+Class 43.91: Roofing activities
+click here to open the components of this sicClass 43.99: Other specialised construction activities n.e.c.
+ Sub-class 43.99/1: Scaffold erection
+ Sub-class 43.99/9: Specialised construction activities (other than scaffold erection) n.e.c.
+ click here to open the components of this sicSection G: WHOLESALE AND RETAIL TRADE; REPAIR OF MOTOR VEHICLES AND MOTORCYCLES
+click here to open the components of this sicDivision 45: Wholesale and retail trade and repair of motor vehicles and motorcycles
+click here to open the components of this sicGroup 45.1: Sale of motor vehicles
+click here to open the components of this sicClass 45.11: Sale of cars and light motor vehicles
+ Sub-class 45.11/1: Sale of new cars and light motor vehicles
+ Sub-class 45.11/2: Sale of used cars and light motor vehicles
+Class 45.19: Sale of other motor vehicles
+click here to open the components of this sicGroup 45.2: Maintenance and repair of motor vehicles
+Class 45.20: Maintenance and repair of motor vehicles
+click here to open the components of this sicGroup 45.3: Sale of motor vehicle parts and accessories
+Class 45.31: Wholesale trade of motor vehicle parts and accessories
+Class 45.32: Retail trade of motor vehicle parts and accessories
+click here to open the components of this sicGroup 45.4: Sale, maintenance and repair of motorcycles and related parts and accessories
+Class 45.40: Sale, maintenance and repair of motorcycles and related parts and accessories
+
+click here to open the components of this sicDivision 46: Wholesale trade, except of motor vehicles and motorcycles
+click here to open the components of this sicGroup 46.1: Wholesale on a fee or contract basis
+Class 46.11: Agents involved in the sale of agricultural raw materials, live animals, textile raw materials and semi-finished goods
+Class 46.12: Agents involved in the sale of fuels, ores, metals and industrial chemicals
+Class 46.13: Agents involved in the sale of timber and building materials
+Class 46.14: Agents involved in the sale of machinery, industrial equipment, ships and aircraft
+Class 46.15: Agents involved in the sale of furniture, household goods, hardware and ironmongery
+Class 46.16: Agents involved in the sale of textiles, clothing, fur, footwear and leather goods
+Class 46.17: Agents involved in the sale of food, beverages and tobacco
+Class 46.18: Agents specialised in the sale of other particular products
+Class 46.19: Agents involved in the sale of a variety of goods
+click here to open the components of this sicGroup 46.2: Wholesale of agricultural raw materials and live animals
+Class 46.21: Wholesale of grain, unmanufactured tobacco, seeds and animal feeds
+Class 46.22: Wholesale of flowers and plants
+Class 46.23: Wholesale of live animals
+Class 46.24: Wholesale of hides, skins and leather
+click here to open the components of this sicGroup 46.3: Wholesale of food, beverages and tobacco
+Class 46.31: Wholesale of fruit and vegetables
+Class 46.32: Wholesale of meat and meat products
+Class 46.33: Wholesale of dairy products, eggs and edible oils and fats
+click here to open the components of this sicClass 46.34: Wholesale of alcoholic and other beverages
+ Sub-class 46.34/1: Wholesale of fruit and vegetable juices, mineral waters and soft drinks
+ Sub-class 46.34/2: Wholesale of wine, beer, spirits and other alcoholic beverages
+Class 46.35: Wholesale of tobacco products
+Class 46.36: Wholesale of sugar and chocolate and sugar confectionery
+Class 46.37: Wholesale of coffee, tea, cocoa and spices
+Class 46.38: Wholesale of other food, including fish, crustaceans and molluscs
+Class 46.39: Non-specialised wholesale of food, beverages and tobacco
+click here to open the components of this sicGroup 46.4: Wholesale of household goods
+Class 46.41: Wholesale of textiles
+Class 46.42: Wholesale of clothing and footwear
+click here to open the components of this sicClass 46.43: Wholesale of electrical household appliances
+ Sub-class 46.43/1: Wholesale of gramophone records, audio tapes, compact discs and video tapes and of the equipment on which these are played
+ Sub-class 46.43/9: Wholesale of radio and television goods and of electrical household appliances (other than of gramophone records, audio tapes, compact discs and video tapes and the equipment on which these are played) n.e.c.
+Class 46.44: Wholesale of china and glassware and cleaning materials
+Class 46.45: Wholesale of perfume and cosmetics
+Class 46.46: Wholesale of pharmaceutical goods
+Class 46.47: Wholesale of furniture, carpets and lighting equipment
+Class 46.48: Wholesale of watches and jewellery
+click here to open the components of this sicClass 46.49: Wholesale of other household goods
+ Sub-class 46.49/1: Wholesale of musical instruments
+ Sub-class 46.49/9: Wholesale of household goods (other than musical instruments) n.e.c.
+click here to open the components of this sicGroup 46.5: Wholesale of information and communication equipment
+Class 46.51: Wholesale of computers, computer peripheral equipment and software
+Class 46.52: Wholesale of electronic and telecommunications equipment and parts
+click here to open the components of this sicGroup 46.6: Wholesale of other machinery, equipment and supplies
+Class 46.61: Wholesale of agricultural machinery, equipment and supplies
+Class 46.62: Wholesale of machine tools
+Class 46.63: Wholesale of mining, construction and civil engineering machinery
+Class 46.64: Wholesale of machinery for the textile industry and of sewing and knitting machines
+Class 46.65: Wholesale of office furniture
+Class 46.66: Wholesale of other office machinery and equipment
+Class 46.69: Wholesale of other machinery and equipment
+click here to open the components of this sicGroup 46.7: Other specialised wholesale
+click here to open the components of this sicClass 46.71: Wholesale of solid, liquid and gaseous fuels and related products
+ Sub-class 46.71/1: Wholesale of petroleum and petroleum products
+ Sub-class 46.71/9: Wholesale of fuels and related products (other than petroleum and petroleum products)
+Class 46.72: Wholesale of metals and metal ores
+Class 46.73: Wholesale of wood, construction materials and sanitary equipment
+Class 46.74: Wholesale of hardware, plumbing and heating equipment and supplies
+Class 46.75: Wholesale of chemical products
+Class 46.76: Wholesale of other intermediate products
+Class 46.77: Wholesale of waste and scrap
+click here to open the components of this sicGroup 46.9: Non-specialised wholesale trade
+Class 46.90: Non-specialised wholesale trade
+
+click here to open the components of this sicDivision 47: Retail trade, except of motor vehicles and motorcycles
+click here to open the components of this sicGroup 47.1: Retail sale in non-specialised stores
+Class 47.11: Retail sale in non-specialised stores with food, beverages or tobacco predominating
+Class 47.19: Other retail sale in non-specialised stores
+click here to open the components of this sicGroup 47.2: Retail sale of food, beverages and tobacco in specialised stores
+Class 47.21: Retail sale of fruit and vegetables in specialised stores
+Class 47.22: Retail sale of meat and meat products in specialised stores
+Class 47.23: Retail sale of fish, crustaceans and molluscs in specialised stores
+Class 47.24: Retail sale of bread, cakes, flour confectionery and sugar confectionery in specialised stores
+Class 47.25: Retail sale of beverages in specialised stores
+Class 47.26: Retail sale of tobacco products in specialised stores
+Class 47.29: Other retail sale of food in specialised stores
+click here to open the components of this sicGroup 47.3: Retail sale of automotive fuel in specialised stores
+Class 47.30: Retail sale of automotive fuel in specialised stores
+click here to open the components of this sicGroup 47.4: Retail sale of information and communication equipment in specialised stores
+Class 47.41: Retail sale of computers, peripheral units and software in specialised stores
+click here to open the components of this sicClass 47.42: Retail sale of telecommunications equipment in specialised stores
+ Sub-class 47.42/1: Retail sale of mobile telephones in specialised stores
+ Sub-class 47.42/9: Retail sale of telecommunications equipment (other than mobile telephones) n.e.c., in specialised stores
+Class 47.43: Retail sale of audio and video equipment in specialised stores
+click here to open the components of this sicGroup 47.5: Retail sale of other household equipment in specialised stores
+Class 47.51: Retail sale of textiles in specialised stores
+Class 47.52: Retail sale of hardware, paints and glass in specialised stores
+Class 47.53: Retail sale of carpets, rugs, wall and floor coverings in specialised stores
+Class 47.54: Retail sale of electrical household appliances in specialised stores
+click here to open the components of this sicClass 47.59: Retail sale of furniture, lighting equipment and other household articles in specialised stores
+ Sub-class 47.59/1: Retail sale of musical instruments and scores in specialised stores
+ Sub-class 47.59/9: Retail sale of furniture, lighting equipment and other household articles (other than musical instruments) n.e.c., in specialised stores
+click here to open the components of this sicGroup 47.6: Retail sale of cultural and recreation goods in specialised stores
+Class 47.61: Retail sale of books in specialised stores
+Class 47.62: Retail sale of newspapers and stationery in specialised stores
+Class 47.63: Retail sale of music and video recordings in specialised stores
+Class 47.64: Retail sale of sporting equipment in specialised stores
+Class 47.65: Retail sale of games and toys in specialised stores
+click here to open the components of this sicGroup 47.7: Retail sale of other goods in specialised stores
+Class 47.71: Retail sale of clothing in specialised stores
+click here to open the components of this sicClass 47.72: Retail sale of footwear and leather goods in specialised stores
+ Sub-class 47.72/1: Retail sale of footwear in specialised stores
+ Sub-class 47.72/2: Retail sale of leather goods in specialised stores
+Class 47.73: Dispensing chemist in specialised stores
+click here to open the components of this sicClass 47.74: Retail sale of medical and orthopaedic goods in specialised stores
+ Sub-class 47.74/1: Retail sale of hearing aids in specialised stores
+ Sub-class 47.74/9: Retail sale of medical and orthopaedic goods (other than hearing aids) n.e.c., in specialised stores
+Class 47.75: Retail sale of cosmetic and toilet articles in specialised stores
+Class 47.76: Retail sale of flowers, plants, seeds, fertilisers, pet animals and pet food in specialised stores
+Class 47.77: Retail sale of watches and jewellery in specialised stores
+click here to open the components of this sicClass 47.78: Other retail sale of new goods in specialised stores
+ Sub-class 47.78/1: Retail sale in commercial art galleries
+ Sub-class 47.78/2: Retail sale by opticians
+ Sub-class 47.78/9: Other retail sale of new goods in specialised stores (other than by opticians or commercial art galleries), n.e.c.
+click here to open the components of this sicClass 47.79: Retail sale of second-hand goods in stores
+ Sub-class 47.79/1: Retail sale of antiques including antique books, in stores
+ Sub-class 47.79/9: Retail sale of second-hand goods (other than antiques and antique books) in stores
+click here to open the components of this sicGroup 47.8: Retail sale via stalls and markets
+Class 47.81: Retail sale via stalls and markets of food, beverages and tobacco products
+Class 47.82: Retail sale via stalls and markets of textiles, clothing and footwear
+Class 47.89: Retail sale via stalls and markets of other goods
+click here to open the components of this sicGroup 47.9: Retail trade not in stores, stalls or markets
+Class 47.91: Retail sale via mail order houses or via Internet
+Class 47.99: Other retail sale not in stores, stalls or markets
+click here to open the components of this sicSection H: TRANSPORTATION AND STORAGE
+click here to open the components of this sicDivision 49: Land transport and transport via pipelines
+click here to open the components of this sicGroup 49.1: Passenger rail transport, interurban
+Class 49.10: Passenger rail transport, interurban
+click here to open the components of this sicGroup 49.2: Freight rail transport
+Class 49.20: Freight rail transport
+click here to open the components of this sicGroup 49.3: Other passenger land transport
+click here to open the components of this sicClass 49.31: Urban and suburban passenger land transport
+ Sub-class 49.31/1: Urban, suburban or metropolitan area passenger railway transportation by underground, metro and similar systems
+ Sub-class 49.31/9: Urban, suburban or metropolitan area passenger land transport other than railway transportation by underground, metro and similar systems
+Class 49.32: Taxi operation
+Class 49.39: Other passenger land transport n.e.c.
+click here to open the components of this sicGroup 49.4: Freight transport by road and removal services
+Class 49.41: Freight transport by road
+Class 49.42: Removal services
+click here to open the components of this sicGroup 49.5: Transport via pipeline
+Class 49.50: Transport via pipeline
+click here to open the components of this sicDivision 50: Water transport
+click here to open the components of this sicGroup 50.1: Sea and coastal passenger water transport
+Class 50.10: Sea and coastal passenger water transport
+click here to open the components of this sicGroup 50.2: Sea and coastal freight water transport
+Class 50.20: Sea and coastal freight water transport
+click here to open the components of this sicGroup 50.3: Inland passenger water transport
+Class 50.30: Inland passenger water transport
+click here to open the components of this sicGroup 50.4: Inland freight water transport
+Class 50.40: Inland freight water transport
+click here to open the components of this sicDivision 51: Air transport
+click here to open the components of this sicGroup 51.1: Passenger air transport
+click here to open the components of this sicClass 51.10: Passenger air transport
+ Sub-class 51.10/1: Scheduled passenger air transport
+ Sub-class 51.10/2: Non-scheduled passenger air transport
+click here to open the components of this sicGroup 51.2: Freight air transport and space transport
+Class 51.21: Freight air transport
+Class 51.22: Space transport
+click here to open the components of this sicDivision 52: Warehousing and support activities for transportation
+click here to open the components of this sicGroup 52.1: Warehousing and storage
+click here to open the components of this sicClass 52.10: Warehousing and storage
+ Sub-class 52.10/1: Operation of warehousing and storage facilities for water transport activities of division ##50
+ Sub-class 52.10/2: Operation of warehousing and storage facilities for air transport activities of division ##51
+ Sub-class 52.10/3: Operation of warehousing and storage facilities for land transport activities of division ##49
+click here to open the components of this sicGroup 52.2: Support activities for transportation
+click here to open the components of this sicClass 52.21: Service activities incidental to land transportation
+ Sub-class 52.21/1: Operation of rail freight terminals
+ Sub-class 52.21/2: Operation of rail passenger facilities at railway stations
+ Sub-class 52.21/3: Operation of bus and coach passenger facilities at bus and coach stations
+ Sub-class 52.21/9: Other service activities incidental to land transportation, n.e.c. (not including operation of rail freight terminals, passenger facilities at railway stations or passenger facilities at bus and coach stations)
+Class 52.22: Service activities incidental to water transportation
+Class 52.23: Service activities incidental to air transportation
+click here to open the components of this sicClass 52.24: Cargo handling
+ Sub-class 52.24/1: Cargo handling for water transport activities of division ##50
+ Sub-class 52.24/2: Cargo handling for air transport activities of division ##51
+ Sub-class 52.24/3: Cargo handling for land transport activities of division ##49
+Class 52.29: Other transportation support activities
+click here to open the components of this sicDivision 53: Postal and courier activities
+click here to open the components of this sicGroup 53.1: Postal activities under universal service obligation
+Class 53.10: Postal activities under universal service obligation
+click here to open the components of this sicGroup 53.2: Other postal and courier activities
+click here to open the components of this sicClass 53.20: Other postal and courier activities
+ Sub-class 53.20/1: Licensed carriers
+ Sub-class 53.20/2: Unlicensed Carriers
+click here to open the components of this sicSection I: ACCOMMODATION AND FOOD SERVICE ACTIVITIES
+click here to open the components of this sicDivision 55: Accommodation
+click here to open the components of this sicGroup 55.1: Hotels and similar accommodation
+Class 55.10: Hotels and similar accommodation
+click here to open the components of this sicGroup 55.2: Holiday and other short-stay accommodation
+click here to open the components of this sicClass 55.20: Holiday and other short-stay accommodation
+ Sub-class 55.20/1: Holiday centres and villages
+ Sub-class 55.20/2: Youth hostels
+ Sub-class 55.20/9: Other holiday and other short stay accommodation (not including holiday centres and villages or youth hostels) n.e.c.
+click here to open the components of this sicGroup 55.3: Camping grounds, recreational vehicle parks and trailer parks
+Class 55.30: Camping grounds, recreational vehicle parks and trailer parks
+click here to open the components of this sicGroup 55.9: Other accommodation
+Class 55.90: Other accommodation
+click here to open the components of this sicDivision 56: Food and beverage service activities
+click here to open the components of this sicGroup 56.1: Restaurants and mobile food service activities
+click here to open the components of this sicClass 56.10: Restaurants and mobile food service activities
+ Sub-class 56.10/1: Licensed restaurants
+ Sub-class 56.10/2: Unlicensed restaurants and cafes
+ Sub-class 56.10/3: Take away food shops and mobile food stands
+click here to open the components of this sicGroup 56.2: Event catering and other food service activities
+Class 56.21: Event catering activities
+Class 56.29: Other food service activities
+click here to open the components of this sicGroup 56.3: Beverage serving activities
+click here to open the components of this sicClass 56.30: Beverage serving activities
+ Sub-class 56.30/1: Licensed clubs
+ Sub-class 56.30/2: Public houses and bars
+click here to open the components of this sicSection J: INFORMATION AND COMMUNICATION
+click here to open the components of this sicDivision 58: Publishing activities
+click here to open the components of this sicGroup 58.1: Publishing of books, periodicals and other publishing activities
+Class 58.11: Book publishing
+Class 58.12: Publishing of directories and mailing lists
+Class 58.13: Publishing of newspapers
+click here to open the components of this sicClass 58.14: Publishing of journals and periodicals
+ Sub-class 58.14/1: Publishing of learned journals
+ Sub-class 58.14/2: Publishing of consumer, business and professional journals and periodicals
+Class 58.19: Other publishing activities
+click here to open the components of this sicGroup 58.2: Software publishing
+Class 58.21: Publishing of computer games
+Class 58.29: Other software publishing
+click here to open the components of this sicDivision 59: Motion picture, video and television programme production, sound recording and music publishing activities
+click here to open the components of this sicGroup 59.1: Motion picture, video and television programme activities
+click here to open the components of this sicClass 59.11: Motion picture, video and television programme production activities
+ Sub-class 59.11/1: Motion picture production activities
+ Sub-class 59.11/2: Video production activities
+ Sub-class 59.11/3: Television programme production activities
+Class 59.12: Motion picture, video and television programme post-production activities
+click here to open the components of this sicClass 59.13: Motion picture, video and television programme distribution activities
+ Sub-class 59.13/1: Motion picture distribution activities
+ Sub-class 59.13/2: Video distribution activities
+ Sub-class 59.13/3: Television programme distribution activities
+Class 59.14: Motion picture projection activities
+click here to open the components of this sicGroup 59.2: Sound recording and music publishing activities
+Class 59.20: Sound recording and music publishing activities
+click here to open the components of this sicDivision 60: Programming and broadcasting activities
+click here to open the components of this sicGroup 60.1: Radio broadcasting
+Class 60.10: Radio broadcasting
+click here to open the components of this sicGroup 60.2: Television programming and broadcasting activities
+Class 60.20: Television programming and broadcasting activities
+click here to open the components of this sicDivision 61: Telecommunications
+click here to open the components of this sicGroup 61.1: Wired telecommunications activities
+Class 61.10: Wired telecommunications activities
+click here to open the components of this sicGroup 61.2: Wireless telecommunications activities
+Class 61.20: Wireless telecommunications activities
+click here to open the components of this sicGroup 61.3: Satellite telecommunications activities
+Class 61.30: Satellite telecommunications activities
+click here to open the components of this sicGroup 61.9: Other telecommunications activities
+Class 61.90: Other telecommunications activities
+click here to open the components of this sicDivision 62: Computer programming, consultancy and related activities
+click here to open the components of this sicGroup 62.0: Computer programming, consultancy and related activities
+click here to open the components of this sicClass 62.01: Computer programming activities
+ Sub-class 62.01/1: Ready-made interactive leisure and entertainment software development
+ Sub-class 62.01/2: Business and domestic software development
+Class 62.02: Computer consultancy activities
+Class 62.03: Computer facilities management activities
+Class 62.09: Other information technology and computed service activities
+click here to open the components of this sicDivision 63: Information service activities
+click here to open the components of this sicGroup 63.1: Data processing, hosting and related activities; web portals
+Class 63.11: Data processing, hosting and related activities
+Class 63.12: Web portals
+click here to open the components of this sicGroup 63.9: Other information service activities
+Class 63.91: News agency activities
+Class 63.99: Other information service activities n.e.c.
+click here to open the components of this sicSection K: FINANCIAL AND INSURANCE ACTIVITIES
+click here to open the components of this sicDivision 64: Financial service activities, except insurance and pension funding
+click here to open the components of this sicGroup 64.1: Monetary intermediation
+Class 64.11: Central banking
+click here to open the components of this sicClass 64.19: Other monetary intermediation
+ Sub-class 64.19/1: Banks
+ Sub-class 64.19/2: Building societies
+click here to open the components of this sicGroup 64.2: Activities of holding companies
+click here to open the components of this sicClass 64.20: Activities of holding companies
+ Sub-class 64.20/1: Activities of agricultural holding companies
+ Sub-class 64.20/2: Activities of production holding companies
+ Sub-class 64.20/3: Activities of construction holding companies
+ Sub-class 64.20/4: Activities of distribution holding companies
+ Sub-class 64.20/5: Activities of financial services holding companies
+ Sub-class 64.20/9: Activities of other holding companies (not including agricultural, production, construction, distribution and financial services holding companies) n.e.c.
+click here to open the components of this sicGroup 64.3: Trusts, funds and similar financial entities
+click here to open the components of this sicClass 64.30: Trusts, funds and similar financial entities
+ Sub-class 64.30/1: Activities of investment trusts
+ Sub-class 64.30/2: Activities of unit trusts
+ Sub-class 64.30/3: Activities of venture and development capital companies
+ Sub-class 64.30/4: Activities of open-ended investment companies
+ Sub-class 64.30/5: Activities of property unit trusts
+ Sub-class 64.30/6: Activities of real estate investment trusts
+click here to open the components of this sicGroup 64.9: Other financial service activities, except insurance and pension funding
+Class 64.91: Financial leasing
+click here to open the components of this sicClass 64.92: Other credit granting
+ Sub-class 64.92/1: Credit granting by non-deposit taking finance houses and other specialist consumer credit grantors
+ Sub-class 64.92/2: Activities of mortgage finance companies
+ Sub-class 64.92/9: Other credit granting (not including credit granting by non-deposit taking finance houses and other specialist consumer credit grantors and activities of mortgage finance companies) n.e.c.
+click here to open the components of this sicClass 64.99: Other financial service activities, except insurance and pension funding, n.e.c.
+ Sub-class 64.99/1: Security dealing on own account
+ Sub-class 64.99/2: Factoring
+ Sub-class 64.99/9: Other financial service activities, except insurance and pension funding, (not including security dealing on own account and factoring) n.e.c.
+click here to open the components of this sicDivision 65: Insurance, reinsurance and pension funding, except compulsory social security
+click here to open the components of this sicGroup 65.1: Insurance
+Class 65.11: Life insurance
+Class 65.12: Non-life insurance
+click here to open the components of this sicGroup 65.2: Reinsurance
+click here to open the components of this sicClass 65.20: Reinsurance
+ Sub-class 65.20/1: Life reinsurance
+ Sub-class 65.20/2: Non-life reinsurance
+click here to open the components of this sicGroup 65.3: Pension funding
+Class 65.30: Pension funding
+click here to open the components of this sicDivision 66: Activities auxiliary to financial services and insurance activities
+click here to open the components of this sicGroup 66.1: Activities auxiliary to financial services, except insurance and pension funding
+Class 66.11: Administration of financial markets
+Class 66.12: Security and commodity contracts brokerage
+Class 66.19: Other activities auxiliary to financial services, except insurance and pension funding
+click here to open the components of this sicGroup 66.2: Activities auxiliary to insurance and pension funding
+Class 66.21: Risk and damage evaluation
+Class 66.22: Activities of insurance agents and brokers
+Class 66.29: Other activities auxiliary to insurance and pension funding
+click here to open the components of this sicGroup 66.3: Fund management activities
+Class 66.30: Fund management activities
+click here to open the components of this sicSection L: REAL ESTATE ACTIVITIES
+click here to open the components of this sicDivision 68: Real estate activities
+click here to open the components of this sicGroup 68.1: Buying and selling of own real estate
+Class 68.10: Buying and selling of own real estate
+click here to open the components of this sicGroup 68.2: Renting and operating of own or leased real estate
+click here to open the components of this sicClass 68.20: Renting and operating of own or leased real estate
+ Sub-class 68.20/1: Renting and operating of Housing Association real estate
+ Sub-class 68.20/2: Letting and operating of conference and exhibition centres
+ Sub-class 68.20/9: Letting and operating of own or leased real estate (other than Housing Association real estate and conference and exhibition services) n.e.c.
+click here to open the components of this sicGroup 68.3: Real estate activities on a fee or contract basis
+Class 68.31: Real estate agencies
+Class 68.32: Management of real estate on a fee or contract basis
+click here to open the components of this sicSection M: PROFESSIONAL, SCIENTIFIC AND TECHNICAL ACTIVITIES
+click here to open the components of this sicDivision 69: Legal and accounting activities
+click here to open the components of this sicGroup 69.1: Legal activities
+click here to open the components of this sicClass 69.10: Legal activities
+ Sub-class 69.10/1: Barristers at law
+ Sub-class 69.10/2: Solicitors
+ Sub-class 69.10/9: Activities of patent and copyright agents; other legal activities (other than those of barristers and solicitors) n.e.c.
+click here to open the components of this sicGroup 69.2: Accounting, bookkeeping and auditing activities; tax consultancy
+click here to open the components of this sicClass 69.20: Accounting, bookkeeping and auditing activities; tax consultancy
+ Sub-class 69.20/1: Accounting, and auditing activities
+ Sub-class 69.20/2: Bookkeeping activities
+ Sub-class 69.20/3: Tax consultancy
+ click here to open the components of this sicDivision 70: Activities of head offices; management consultancy activities
+click here to open the components of this sicGroup 70.1: Activities of head offices
+Class 70.10: Activities of head offices
+click here to open the components of this sicGroup 70.2: Management consultancy activities
+Class 70.21: Public relations and communication activities
+click here to open the components of this sicClass 70.22: Business and other management consultancy activities
+ Sub-class 70.22/1: Financial management
+ Sub-class 70.22/9: Management consultancy activities (other than financial management)
+click here to open the components of this sicDivision 71: Architectural and engineering activities; technical testing and analysis
+click here to open the components of this sicGroup 71.1: Architectural and engineering activities and related technical consultancy
+click here to open the components of this sicClass 71.11: Architectural activities
+ Sub-class 71.11/1: Architectural activities
+ Sub-class 71.11/2: Urban planning and landscape architectural activities
+click here to open the components of this sicClass 71.12: Engineering activities and related technical consultancy
+ Sub-class 71.12/1: Engineering design activities for industrial process and production
+ Sub-class 71.12/2: Engineering related scientific and technical consulting activities
+ Sub-class 71.12/9: Other engineering activities (not including engineering design for industrial process and production or engineering related scientific and technical consulting activities)
+click here to open the components of this sicGroup 71.2: Technical testing and analysis
+Class 71.20: Technical testing and analysis
+click here to open the components of this sicDivision 72: Scientific research and development
+click here to open the components of this sicGroup 72.1: Research and experimental development on natural sciences and engineering
+Class 72.11: Research and experimental development on biotechnology
+Class 72.19: Other research and experimental development on natural sciences and engineering
+click here to open the components of this sicGroup 72.2: Research and experimental development on social sciences and humanities
+Class 72.20: Research and experimental development on social sciences and humanities
+click here to open the components of this sicDivision 73: Advertising and market research
+click here to open the components of this sicGroup 73.1: Advertising
+Class 73.11: Advertising agencies
+Class 73.12: Media representation
+click here to open the components of this sicGroup 73.2: Market research and public opinion polling
+Class 73.20: Market research and public opinion polling
+click here to open the components of this sicDivision 74: Other professional, scientific and technical activities
+click here to open the components of this sicGroup 74.1: Specialised design activities
+Class 74.10: Specialised design activities
+click here to open the components of this sicGroup 74.2: Photographic activities
+click here to open the components of this sicClass 74.20: Photographic activities
+ Sub-class 74.20/1: Portrait photographic activities
+ Sub-class 74.20/2: Other specialist photography (not including portrait photography)
+ Sub-class 74.20/3: Film processing
+ Sub-class 74.20/9: Other photographic activities (not including portrait and other specialist photography and film processing) n.e.c.
+click here to open the components of this sicGroup 74.3: Translation and interpretation activities
+Class 74.30: Translation and interpretation activities
+click here to open the components of this sicGroup 74.9: Other professional, scientific and technical activities n.e.c.
+click here to open the components of this sicClass 74.90: Other professional, scientific and technical activities n.e.c.
+ Sub-class 74.90/1: Environmental consulting activities
+ Sub-class 74.90/2: Quantity surveying activities
+ Sub-class 74.90/9: Other professional, scientific and technical activities (not including environmental consultancy or quantity surveying) n.e.c.
+click here to open the components of this sicDivision 75: Veterinary activities
+click here to open the components of this sicGroup 75.0: Veterinary activities
+Class 75.00: Veterinary activities
+click here to open the components of this sicSection N: ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES
+click here to open the components of this sicDivision 77: Rental and leasing activities
+click here to open the components of this sicGroup 77.1: Renting and leasing of motor vehicles
+Class 77.11: Renting and leasing of cars and light motor vehicles
+Class 77.12: Renting and leasing of trucks
+click here to open the components of this sicGroup 77.2: Renting and leasing of personal and household goods
+Class 77.21: Renting and leasing of recreational and sports goods
+Class 77.22: Renting of video tapes and disks
+click here to open the components of this sicClass 77.29: Renting and leasing of other personal and household goods
+ Sub-class 77.29/1: Renting and leasing of media entertainment equipment
+ Sub-class 77.29/9: Renting and leasing of other personal and household goods (other than media entertainment equipment)
+click here to open the components of this sicGroup 77.3: Renting and leasing of other machinery, equipment and tangible goods
+Class 77.31: Renting and leasing of agricultural machinery and equipment
+Class 77.32: Renting and leasing of construction and civil engineering machinery and equipment
+Class 77.33: Renting and leasing of office machinery and equipment (including computers)
+click here to open the components of this sicClass 77.34: Renting and leasing of water transport equipment
+ Sub-class 77.34/1: Renting and leasing of passenger water transport equipment
+ Sub-class 77.34/2: Renting and leasing of freight water transport equipment
+click here to open the components of this sicClass 77.35: Renting and leasing of air transport equipment
+ Sub-class 77.35/1: Renting and leasing of passenger air transport equipment
+ Sub-class 77.35/2: Renting and leasing of freight air transport equipment
+Class 77.39: Renting and leasing of other machinery, equipment and tangible goods n.e.c.
+click here to open the components of this sicGroup 77.4: Leasing of intellectual property and similar products, except copyrighted works
+Class 77.40: Leasing of intellectual property and similar products, except copyrighted works
+click here to open the components of this sicDivision 78: Employment activities
+click here to open the components of this sicGroup 78.1: Activities of employment placement agencies
+click here to open the components of this sicClass 78.10: Activities of employment placement agencies
+ Sub-class 78.10/1: Motion picture, television and other theatrical casting
+ Sub-class 78.10/9: Activities of employment placement agencies (other than motion picture, television and other theatrical casting) n.e.c.
+click here to open the components of this sicGroup 78.2: Temporary employment agency activities
+Class 78.20: Temporary employment agency activities
+click here to open the components of this sicGroup 78.3: Other human resources provision
+Class 78.30: Human resources provision
+click here to open the components of this sicDivision 79: Travel agency, tour operator and other reservation service and related activities
+click here to open the components of this sicGroup 79.1: Travel agency and tour operator activities
+Class 79.11: Travel agency activities
+Class 79.12: Tour operator activities
+click here to open the components of this sicGroup 79.9: Other reservation service and related activities
+click here to open the components of this sicClass 79.90: Other reservation service and related activities
+ Sub-class 79.90/1: Activities of tourist guides
+ Sub-class 79.90/9: Other reservation service and related activities (not including activities of tourist guides)
+click here to open the components of this sicDivision 80: Security and investigation activities
+click here to open the components of this sicGroup 80.1: Private security activities
+Class 80.10: Private security activities
+click here to open the components of this sicGroup 80.2: Security systems service activities
+Class 80.20: Security systems service activities
+click here to open the components of this sicGroup 80.3: Investigation activities
+Class 80.30: Investigation activities
+click here to open the components of this sicDivision 81: Services to buildings and landscape activities
+click here to open the components of this sicGroup 81.1: Combined facilities support activities
+Class 81.10: Combined facilities support activities
+click here to open the components of this sicGroup 81.2: Cleaning activities
+Class 81.21: General cleaning of buildings
+click here to open the components of this sicClass 81.22: Other building and industrial cleaning activities
+ Sub-class 81.22/1: Window cleaning services
+ Sub-class 81.22/2: Specialised cleaning services
+ Sub-class 81.22/3: Furnace and chimney cleaning services
+ Sub-class 81.22/9: Building and industrial cleaning activities (other than window cleaning, specialised cleaning and furnace and chimney cleaning services) n.e.c.
+click here to open the components of this sicClass 81.29: Other cleaning services
+ Sub-class 81.29/1: Disinfecting and extermination services
+ Sub-class 81.29/9: Cleaning services (other than disinfecting and extermination services) n.e.c.
+click here to open the components of this sicGroup 81.3: Landscape service activities
+Class 81.30: Landscape service activities
+click here to open the components of this sicDivision 82: Office administrative, office support and other business support activities
+click here to open the components of this sicGroup 82.1: Office administrative and support activities
+Class 82.11: Combined office administrative service activities
+Class 82.19: Photocopying, document preparation and other specialised office support activities
+click here to open the components of this sicGroup 82.2: Activities of call centres
+Class 82.20: Activities of call centres
+click here to open the components of this sicGroup 82.3: Organisation of conventions and trade shows
+click here to open the components of this sicClass 82.30: Organisation of conventions and trade shows
+click here to open the components of this sicGroup 82.9: Business support service activities n.e.c.
+click here to open the components of this sicClass 82.91: Activities of collection agencies and credit bureaus
+Class 82.92: Packaging activities
+Class 82.99: Other business support service activities n.e.c.
+click here to open the components of this sicSection O: PUBLIC ADMINISTRATION AND DEFENCE; COMPULSORY SOCIAL SECURITY
+click here to open the components of this sicDivision 84: Public administration and defence; compulsory social security
+click here to open the components of this sicGroup 84.1: Administration of the State and the economic and social policy of the community
+Class 84.11: General public administration activities
+Class 84.12: Regulation of the activities of providing health care, education, cultural services and other social services, excluding social security
+Class 84.13: Regulation of and contribution to more efficient operation of businesses
+click here to open the components of this sicGroup 84.2: Provision of services to the community as a whole
+Class 84.21: Foreign affairs
+Class 84.22: Defence activities
+Class 84.23: Justice and judicial activities
+Class 84.24: Public order and safety activities
+Class 84.25: Fire service activities
+click here to open the components of this sicGroup 84.3: Compulsory social security activities
+Class 84.30: Compulsory social security activities
+click here to open the components of this sicSection P: EDUCATION
+click here to open the components of this sicDivision 85: Education
+click here to open the components of this sicGroup 85.1: Pre-primary education
+Class 85.10: Pre-primary education
+click here to open the components of this sicGroup 85.2: Primary education
+Class 85.20: Primary education
+click here to open the components of this sicGroup 85.3: Secondary education
+Class 85.31: General secondary education
+Class 85.32: Technical and vocational secondary education
+click here to open the components of this sicGroup 85.4: Higher education
+Class 85.41: Post-secondary non-tertiary education
+click here to open the components of this sicClass 85.42: Tertiary education
+ Sub-class 85.42/1: First-degree level higher education
+ Sub-class 85.42/2: Post-graduate level higher education
+click here to open the components of this sicGroup 85.5: Other education
+Class 85.51: Sports and recreation education
+Class 85.52: Cultural education
+Class 85.53: Driving school activities
+Class 85.59: Other education n.e.c.
+click here to open the components of this sicGroup 85.6: Educational support activities
+Class 85.60: Educational support activities
+click here to open the components of this sicSection Q: HUMAN HEALTH AND SOCIAL WORK ACTIVITIES
+click here to open the components of this sicDivision 86: Human health activities
+click here to open the components of this sicGroup 86.1: Hospital activities
+click here to open the components of this sicClass 86.10: Hospital activities
+ Sub-class 86.10/1: Hospital activities
+ Sub-class 86.10/2: Medical nursing home activities
+click here to open the components of this sicGroup 86.2: Medical and dental practice activities
+Class 86.21: General medical practice activities
+Class 86.22: Specialist medical practice activities
+Class 86.23: Dental practice activities
+click here to open the components of this sicGroup 86.9: Other human health activities
+Class 86.90: Other human health activities
+click here to open the components of this sicDivision 87: Residential care activities
+click here to open the components of this sicGroup 87.1: Residential nursing care activities
+Class 87.10: Residential nursing care activities
+click here to open the components of this sicGroup 87.2: Residential care activities for learning disabilities, mental health and substance abuse
+Class 87.20: Residential care activities for learning disabilities, mental health and substance abuse
+click here to open the components of this sicGroup 87.3: Residential care activities for the elderly and disabled
+Class 87.30: Residential care activities for the elderly and disabled
+click here to open the components of this sicGroup 87.9: Other residential care activities
+Class 87.90: Other residential care activities
+click here to open the components of this sicDivision 88: Social work activities without accommodation
+click here to open the components of this sicGroup 88.1: Social work activities without accommodation for the elderly and disabled
+Class 88.10: Social work activities without accommodation for the elderly and disabled
+click here to open the components of this sicGroup 88.9: Other social work activities without accommodation
+Class 88.91: Child day-care activities
+Class 88.99: Other social work activities without accommodation n.e.c.
+click here to open the components of this sicSection R: ARTS, ENTERTAINMENT AND RECREATION
+click here to open the components of this sicDivision 90: Creative, arts and entertainment activities
+click here to open the components of this sicGroup 90.0: Creative, arts and entertainment activities
+Class 90.01: Performing arts
+Class 90.02: Support activities to performing arts
+Class 90.03: Artistic creation
+Class 90.04: Operation of arts facilities
+click here to open the components of this sicDivision 91: Libraries, archives, museums and other cultural activities
+click here to open the components of this sicGroup 91.0: Libraries, archives, museums and other cultural activities
+click here to open the components of this sicClass 91.01: Library and archive activities
+ Sub-class 91.01/1: Library activities
+ Sub-class 91.01/2: Archive activities
+Class 91.02: Museum activities
+Class 91.03: Operation of historical sites and buildings and similar visitor attractions
+Class 91.04: Botanical and zoological gardens and nature reserve activities
+click here to open the components of this sicDivision 92: Gambling and betting activities
+click here to open the components of this sicGroup 92.0: Gambling and betting activities
+Class 92.00: Gambling and betting activities
+click here to open the components of this sicDivision 93: Sports activities and amusement and recreation activities
+click here to open the components of this sicGroup 93.1: Sports activities
+Class 93.11: Operation of sports facilities
+Class 93.12: Activities of sport clubs
+Class 93.13: Fitness facilities
+click here to open the components of this sicClass 93.19: Other sports activities
+ Sub-class 93.19/1: Activities of racehorse owners
+ Sub-class 93.19/9: Other sports activities (not including activities of racehorse owners) n.e.c.
+click here to open the components of this sicGroup 93.2: Amusement and recreation activities
+Class 93.21: Activities of amusement parks and theme parks
+Class 93.29: Other amusement and recreation activities
+click here to open the components of this sicSection S: OTHER SERVICE ACTIVITIES
+click here to open the components of this sicDivision 94: Activities of membership organisations
+click here to open the components of this sicGroup 94.1: Activities of business, employers and professional membership organisations
+Class 94.11: Activities of business and employers membership organisations
+Class 94.12: Activities of professional membership organisations
+click here to open the components of this sicGroup 94.2: Activities of trade unions
+Class 94.20: Activities of trade unions
+click here to open the components of this sicGroup 94.9: Activities of other membership organisations
+Class 94.91: Activities of religious organisations
+Class 94.92: Activities of political organisations
+Class 94.99: Activities of other membership organisations n.e.c.
+click here to open the components of this sicDivision 95: Repair of computers and personal and household goods
+click here to open the components of this sicGroup 95.1: Repair of computers and communication equipment
+Class 95.11: Repair of computers and peripheral equipment
+Class 95.12: Repair of communication equipment
+click here to open the components of this sicGroup 95.2: Repair of personal and household goods
+Class 95.21: Repair of consumer electronics
+Class 95.22: Repair of household appliances and home and garden equipment
+Class 95.23: Repair of footwear and leather goods
+Class 95.24: Repair of furniture and home furnishings
+Class 95.25: Repair of watches, clocks and jewellery
+Class 95.29: Repair of other personal and household goods
+click here to open the components of this sicDivision 96: Other personal service activities
+click here to open the components of this sicGroup 96.0: Other personal service activities
+Class 96.01: Washing and (dry-)cleaning of textile and fur products
+Class 96.02: Hairdressing and other beauty treatment
+Class 96.03: Funeral and related activities
+Class 96.04: Physical well-being activities
+Class 96.09: Other personal service activities n.e.c.
+click here to open the components of this sicSection T: ACTIVITIES OF HOUSEHOLDS AS EMPLOYERS; UNDIFFERENTIATED GOODS- AND SERVICES-PRODUCING ACTIVITIES OF HOUSEHOLDS FOR OWN USE
+click here to open the components of this sicDivision 97: Activities of households as employers of domestic personnel
+click here to open the components of this sicGroup 97.0: Activities of households as employers of domestic personnel
+Class 97.00: Activities of households as employers of domestic personnel
+click here to open the components of this sicDivision 98: Undifferentiated goods- and services-producing activities of private households for own use
+click here to open the components of this sicGroup 98.1: Undifferentiated goods-producing activities of private households for own use
+Class 98.10: Undifferentiated goods-producing activities of private households for own use
+click here to open the components of this sicGroup 98.2: Undifferentiated service-producing activities of private households for own use
+Class 98.20: Undifferentiated service-producing activities of private households for own use
+click here to open the components of this sicSection U: ACTIVITIES OF EXTRATERRITORIAL ORGANISATIONS AND BODIES
+click here to open the components of this sicDivision 99: Activities of extraterritorial organisations and bodies
+click here to open the components of this sicGroup 99.0: Activities of extraterritorial organisations and bodies
+Class 99.00: Activities of extraterritorial organisations and bodies
+

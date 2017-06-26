@@ -144,24 +144,28 @@ df = df[df["label_num"].isin(used_classes)]
 #
 ###############
 # 26200  Manufacture of computers and peripheral equipment
-focus_classes_file = open("focus_classes.txt", 'w' )
-info = ['detail', 'excludes', 'title', 'includes']
-focus_classes = set()
-for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
-    # use flag to determine if a key in json is not in the class
-    flag = True
-    for i in info:
-        if i not in  des_json.keys():
-            flag = False
-    if flag:
-        focus_classes.add(cl_num)
-print(len)
-print(focus_classes)
-class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
-for i in focus_classes:
-    focus_classes_file.write("{0} \t {1}\n".format(i, class_hash[i]))
+# Other manufacturing n.e.c.
+#
 
-inrcicn
+# print(len(des_df))
+#
+# focus_classes_file = open("focus_classes.txt", 'w' )
+# info = ['detail', 'excludes', 'title', 'includes']
+# focus_classes = set()
+# for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
+#     # use flag to determine if a key in json is not in the class
+#     flag = True
+#     for i in info:
+#         if i not in  des_json.keys():
+#             flag = False
+#     if flag:
+#         focus_classes.add(cl_num)
+# print(len)
+# print(focus_classes)
+# class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
+# for i in focus_classes:
+#     focus_classes_file.write("{0} \t {1}\n".format(i, class_hash[i]))
+# inrcicn
 
 
 
