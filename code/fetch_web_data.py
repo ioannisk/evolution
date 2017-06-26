@@ -153,7 +153,11 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
             flag = False
     if flag:
         focus_classes.add(cl_num)
+print(len)
 print(focus_classes)
+class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
+for i in focus_classes:
+    print i, class_hash[i]
 
 inrcicn
 
