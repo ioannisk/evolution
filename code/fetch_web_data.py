@@ -112,12 +112,6 @@ des_df = des_df[des_df["class_num"].isin(intersection)]
 # Find the classes that have detail or inclusion
 #
 ########################
-    # print(len(a))
-    # print(len(classes_desc))
-    # print(len(classes_web))
-    # print(count)
-    # print(count/float(len(classes_desc)))
-
 des_data = []
 used_classes = set()
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
@@ -134,10 +128,9 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
                 valid_txt += " "+des_json[key][0]
         valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
-print(len(des_data))
-print(len(used_classes))
-fvknfv
-# print(used_classes)
+des_df = des_df[des_df["class_num"].isin(used_classes)]
+print(len(des_df))
+rvomr
 #########################
 #########################
 #########################
