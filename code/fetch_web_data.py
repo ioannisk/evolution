@@ -233,7 +233,7 @@ for a in np.arange(0.008,0.15,0.005):
     print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
     matrix = confusion_matrix(y_true, y_pred)
     matrix = normalize(matrix, axis=1, norm='l1')
-    print()matrix
+    print(matrix)
 
 
 
