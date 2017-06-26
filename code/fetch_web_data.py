@@ -225,14 +225,13 @@ vec_des_data = vec.transform(des_data_top_n)
 vec_web_sites = vec.transform(web_data)
 print("Desc shape {0}".format(vec_des_data.shape))
 print("Web shape {0}".format(vec_web_sites.shape))
-# best alpha is 0.12 for 1 grams with acc 0.0575
-# best alpha is 0.078 for 2 grams with acc 0.053
-for a in np.arange(0.001,0.3,0.01):
-    # a = 0.12
-    gnb = MultinomialNB(alpha=a)
-    clf = gnb.fit(vec_des_data, des_labels_top_n)
-    y_pred_test = clf.predict(vec_web_sites)
-    print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( web_labels,y_pred_test ),a))
+# best alpha is 0.12 for 1 grams with acc 0.1
+# for a in np.arange(0.001,0.3,0.01):
+a = 0.12
+gnb = MultinomialNB(alpha=a)
+clf = gnb.fit(vec_des_data, des_labels_top_n)
+y_pred_test = clf.predict(vec_web_sites)
+print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( web_labels,y_pred_test ),a))
 
 
 
@@ -275,7 +274,7 @@ test_y =des_web_sites_labels[partition:]
 print("Web shape {0}".format(train_X.shape))
 # best acc is 0.207 with alpha 0.021
 # for a in np.arange(0.00001,0.1,0.001):
-gnb = MultinomialNB(alpha=0.207)
+gnb = MultinomialNB(alpha=0.0207)
 # data = data.toarray()
 clf = gnb.fit(train_X, train_y)
 y_pred_test = clf.predict(test_X)
@@ -298,7 +297,7 @@ train_y = labels[:partition]
 test_X = data[partition:]
 test_y =labels[partition:]
 print("Web shape {0}".format(train_X.shape))
-for a in np.arange(0.00001,0.1,0.05):
+for a in np.arange(0.00001,0.1,0.005):
     gnb = MultinomialNB(alpha=a)
     # data = data.toarray()
     clf = gnb.fit(train_X, train_y)
