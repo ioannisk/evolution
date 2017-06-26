@@ -116,7 +116,6 @@ ttt = set(des_df["class_num"])
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 for i in set(df["label_num"]):
     if i not in intersection:
-        print("##########")
         print(i, class_hash[i])
 rvrv
 # des_df = des_df[des_df["class_num"].isin(intersection)]
