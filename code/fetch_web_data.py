@@ -217,7 +217,10 @@ web_data = list(df_top_n["class_txt"])
 web_labels = list(df_top_n["class_num"])
 
 vec = CountVectorizer( min_df=1 , stop_words=stopWords)
-vec.fit(des_data_top_n)
+#
+# Try different vocabulary for vectorization
+#
+vec.fit(des_data)
 vec_des_data = vec.transform(des_data_top_n)
 vec_web_sites = vec.transform(web_data)
 print("Desc shape {0}".format(vec_des_data.shape))
@@ -274,7 +277,7 @@ for a in np.arange(0.00001,0.1,0.001):
     # data = data.toarray()
     clf = gnb.fit(train_X, train_y)
     y_pred_test = clf.predict(test_X)
-    print("Testing accuracy (web + des)trainging (web) testing: {0} with alpha".format(accuracy_score(test_y, y_pred_test),a ))
+    print("Testing accuracy (web + des)trainging (web) testing: {0} with alpha {1}".format(accuracy_score(test_y, y_pred_test),a ))
 
 
 
@@ -298,6 +301,6 @@ for a in np.arange(0.00001,0.1,0.001):
     # data = data.toarray()
     clf = gnb.fit(train_X, train_y)
     y_pred_test = clf.predict(test_X)
-    print("Testing accuracy web-web: {0} with alpha".format(accuracy_score(test_y, y_pred_test), a))
+    print("Testing accuracy web-web: {0} with alpha {1}".format(accuracy_score(test_y, y_pred_test), a))
 
 
