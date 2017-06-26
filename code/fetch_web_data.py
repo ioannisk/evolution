@@ -172,7 +172,6 @@ for i in range(20,200,20):
     classes, prcntg = n_most_popular_classes(i)
     print(i, prcntg)
 
-intibnt
 # stop
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
 
@@ -199,6 +198,7 @@ clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
 print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
 
+rvrv
 
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 N_CLASSES = 150
