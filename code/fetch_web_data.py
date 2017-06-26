@@ -129,14 +129,9 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
         valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
 des_df = des_df[des_df["class_num"].isin(used_classes)]
-print(len(des_df))
-rvomr
 #########################
 #########################
 #########################
-
-
-
 
 web_sites = []
 labels = []
