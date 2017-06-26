@@ -221,7 +221,7 @@ vec_des_data = vec.transform(des_data)
 vec_web_sites = vec.transform(web_sites)
 print(len(web_sites))
 # print(vec.vocabulary_)
-print(des_data.shape)
+print(vec_des_data.shape)
 # best alpha is 0.12 for 1 grams
 for a in np.arange(0.008,0.15,0.005):
     gnb = MultinomialNB(alpha=a)
@@ -236,7 +236,7 @@ vec_des_data = vec.transform(des_data)
 vec_web_sites = vec.transform(web_sites)
 print(len(web_sites))
 # print(vec.vocabulary_)
-print(des_data.shape)
+print(vec_des_data.shape)
 for a in np.arange(0.0001,0.3,0.005):
     gnb = MultinomialNB(alpha=a)
     clf = gnb.fit(vec_des_data, des_labels)
