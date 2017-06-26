@@ -219,16 +219,29 @@ des_labels = [i for i in des_df["class_num"]]
 vec = CountVectorizer( min_df=1 , stop_words=stopWords)
 vec.fit(des_data)
 des_data = vec.transform(des_data)
+vec_web_sites = vec.transform(web_sites)
 print(len(web_sites))
 # print(vec.vocabulary_)
 print(des_data.shape)
 for a in np.arange(0.008,0.15,0.005):
     gnb = MultinomialNB(alpha=a)
     clf = gnb.fit(des_data, des_labels)
-    vec_web_sites = vec.transform(web_sites)
     y_pred_test = clf.predict(vec_web_sites)
     print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
 
+
+vec = CountVectorizer( min_df=1 , stop_words=stopWords)
+vec.fit(web_sites)
+des_data = vec.transform(des_data)
+vec_web_sites = vec.transform(web_sites)
+print(len(web_sites))
+# print(vec.vocabulary_)
+print(des_data.shape)
+for a in np.arange(0.0001,0.3,0.005):
+    gnb = MultinomialNB(alpha=a)
+    clf = gnb.fit(des_data, des_labels)
+    y_pred_test = clf.predict(vec_web_sites)
+    print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
 
 
 
