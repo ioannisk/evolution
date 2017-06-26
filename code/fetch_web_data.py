@@ -107,9 +107,11 @@ for ver in df["vertical"]:
 df["label_num"] = label_num
 df["label_txt"] = label_txt
 
+intersection =find_intersection_of_classes()
+print(len(des_df))
+des_df = des_df[~des_df.isin(intersection)]
 
-
-
+print(len(des_df))
 
 
 #########################
@@ -122,7 +124,7 @@ df["label_txt"] = label_txt
     # print(len(classes_web))
     # print(count)
     # print(count/float(len(classes_desc)))
-sets_ =find_intersection_of_classes()
+
 print(len(sets_))
 arvin
 
