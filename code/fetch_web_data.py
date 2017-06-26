@@ -72,6 +72,22 @@ def get_descriptions_data(des_df):
     return des_data
 
 
+def find_intersection_of_classes():
+    # ["class_num", "class_txt", "json"]
+    classes_desc = set()
+    classes_web = set()
+    for j in des_df["class_num"]:
+        classes_desc.add(int(j))
+    for i in df["label_num"]:
+        classes_web.add(i)
+    # count =0
+    # for i in classes_desc:
+    #     if i in classes_web:
+    #         count +=1
+    intersection = classes_desc.intersection(classes_web)
+    return intersection
+
+
 # English stopwords
 stopWords = stopwords.words('english')
 # get path to the database
@@ -79,6 +95,7 @@ storage = StorageEngine("/nvme/webcache/")
 # read the domains.tsv file in pandas
 print("Read domains")
 df = pd.read_csv('../data/domains.tsv', sep='\t', names = ["company_name", "company_id", "url", "vertical"])
+des_df = read_descriptions()
 # remover unlabelled domains
 df = df[df.vertical != "None Supplied"]
 label_num, label_txt = [], []
@@ -100,24 +117,13 @@ df["label_txt"] = label_txt
 # Find the classes that have detail or inclusion
 #
 ########################
-des_df = read_descriptions()
-# ["class_num", "class_txt", "json"]
-classes_desc = set()
-classes_web = set()
-for i, j, k in zip(des_df['json'], des_df["class_num"], des_df["class_txt"]):
-    classes_desc.add(int(j))
-for i in df["label_num"]:
-    classes_web.add(i)
-count =0
-for i in classes_desc:
-    if i in classes_web:
-        count +=1
-a = classes_desc.intersection(classes_web)
-print(len(a))
-print(len(classes_desc))
-print(len(classes_web))
-print(count)
-print(count/float(len(classes_desc)))
+    # print(len(a))
+    # print(len(classes_desc))
+    # print(len(classes_web))
+    # print(count)
+    # print(count/float(len(classes_desc)))
+sets_ =find_intersection_of_classes()
+print(len(sets_))
 arvin
 
 
