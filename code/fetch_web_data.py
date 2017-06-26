@@ -110,7 +110,7 @@ des_df = des_df[des_df["class_num"].isin(intersection)]
 
 for i in df["label_num"]:
     if i not in intersection:
-        print i
+        print(i)
 
 # des_df = des_df[des_df["class_num"].isin(intersection)]
 
