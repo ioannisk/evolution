@@ -80,10 +80,6 @@ def find_intersection_of_classes():
         classes_desc.add(int(j))
     for i in df["label_num"]:
         classes_web.add(i)
-    # count =0
-    # for i in classes_desc:
-    #     if i in classes_web:
-    #         count +=1
     intersection = classes_desc.intersection(classes_web)
     return intersection
 
@@ -106,12 +102,9 @@ for ver in df["vertical"]:
     label_txt.append(label_t)
 df["label_num"] = label_num
 df["label_txt"] = label_txt
-
+# Keep only the descriptions that exist in the dataset
 intersection =find_intersection_of_classes()
-print(len(des_df))
 des_df = des_df[des_df["class_num"].isin(intersection)]
-
-print(len(des_df))
 
 
 #########################
@@ -125,34 +118,25 @@ print(len(des_df))
     # print(count)
     # print(count/float(len(classes_desc)))
 
-print(len(sets_))
-arvin
-
-
 des_data = []
 used_classes = set()
-
-
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
-    # print(cl_txt)
-    # try:
-    #     print(class_hash[cl_num])
-    # except:
-    #     pass
     valid_txt = ""
-    # print(des_json.keys())
     ###
     ### BUG WITH OR CONDINTION
     ##
     if ("detail" in des_json.keys()) or ("includes" in des_json.keys()) :
-        used_classes.update(str(cl_num))
+        used_classes.add(cl_num)
         for key in des_json:
             # print("Key: {0} ---- DES {1} ".format(key, des_json[key]))
             if key!="excludes":
                 valid_txt += " "+des_json[key][0]
         valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
+print(len(des_data))
+print(len(used_classes))
+fvknfv
 # print(used_classes)
 #########################
 #########################
@@ -236,6 +220,7 @@ for i in range(20,200,20):
 #         valid_txt = clean_up_txt(valid_txt)
 #         des_data.append(valid_txt)
 #     return des_data
+
 
 #################################
 #
