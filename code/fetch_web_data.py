@@ -229,7 +229,7 @@ print(vec_des_data.shape)
 for a in np.arange(0.001,0.3,0.01):
     # a = 0.12
     gnb = MultinomialNB(alpha=a)
-    clf = gnb.fit(vec_des_data, des_labels)
+    clf = gnb.fit(vec_des_data, des_labels_top_n)
     y_pred_test = clf.predict(vec_web_sites)
     print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( web_labels,y_pred_test ),a))
 
