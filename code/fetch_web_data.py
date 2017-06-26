@@ -220,6 +220,7 @@ des_labels = [i for i in des_df["class_num"]]
 vec = CountVectorizer( min_df=1 , stop_words=stopWords)
 vec.fit(des_data)
 des_data = vec.transform(des_data)
+print(len(web_sites))
 # print(vec.vocabulary_)
 print(des_data.shape)
 for a in np.arange(0.001,1,0.1):
