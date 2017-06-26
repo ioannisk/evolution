@@ -85,9 +85,9 @@ label_num, label_txt = [], []
 # parse the label number and label txt seperatly
 for ver in df["vertical"]:
     label_n, label_t = ver.split("-",1)
-    label_num.append(label_n)
+    label_num.append(int(label_n))
     label_txt.append(label_t)
-df["label_num"] = int(label_num)
+df["label_num"] = label_num
 df["label_txt"] = label_txt
 
 
