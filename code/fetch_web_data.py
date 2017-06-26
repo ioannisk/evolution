@@ -159,7 +159,7 @@ for i, l in zip(df['url'], df["label_num"]):
 print("Vectorize documents")
 df_web = pd.DataFrame()
 df_web["class_num"] = labels
-df_web["txt"] = web_sites
+df_web["class_txt"] = web_sites
 
 for i in range(20,200,20):
     classes, prcntg = n_most_popular_classes(i)
