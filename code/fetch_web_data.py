@@ -157,7 +157,7 @@ print(len)
 print(focus_classes)
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 for i in focus_classes:
-    print i, class_hash[i]
+    print(i, class_hash[i])
 
 inrcicn
 
