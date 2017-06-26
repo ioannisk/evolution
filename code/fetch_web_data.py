@@ -37,24 +37,28 @@ def clean_up_txt(page_txt):
 def n_most_popular_classes(N):
     d = defaultdict(int)
     norm = 0
+    # count how many times each class appears
     for i in df['label_num']:
         norm += 1
         d[i]+=1
-    # number of class at pos 0 name in txt at position 1
+    # number of class at pos 0 name in counts at position 1
     classes = [(key, d[key])for key in d]
     # sort classes according to popularity
     classes.sort(key=lambda tup: tup[1], reverse=True)
     total_percentage = 0
     list_of_n_classes = []
     list_of_n_classes_txt = []
+    independent_percentages = []
     ## make dictionairy that given the class number it return the class name
     class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
     for i in range(N):
         total_percentage += classes[i][1]*100/norm
+        independent_percentages.append(classes[i][1]*100/norm)
         # print(class_hash[classes[i][0]], classes[i][1]*100/norm)
         list_of_n_classes.append(classes[i][0])
         list_of_n_classes_txt.append(class_hash[classes[i][0]])
-    return (list_of_n_classes, total_percentage)
+    top_n_classes = zip(list_of_n_classes, independent_percentages)
+    return (top_n_classes, total_percentage)
 # print(cksum)
 
 #################################
@@ -116,7 +120,6 @@ des_df = des_df[des_df["class_num"].isin(intersection)]
 ########################
 des_data = []
 used_classes = set()
-class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
     valid_txt = ""
     ###
@@ -154,7 +157,6 @@ for i, l in zip(df['url'], df["label_num"]):
     except:
         pass
 print("Vectorize documents")
-
 
 for i in range(20,200,20):
     classes, prcntg = n_most_popular_classes(i)
@@ -232,13 +234,18 @@ gnb = MultinomialNB(alpha=a)
 clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
 print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
+
+
+
+class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
+N_CLASSES = 150
+top_n_classes, total_percentage = n_most_popular_classes(N_CLASSES)
+print(total_percentage)
+for cl, prc in top_n_classes:
+    print (cl, class_hash[cl],  prc)
     # matrix = confusion_matrix(labels, y_pred_test)
     # matrix = normalize(matrix, axis=1, norm='l1')
     # print(matrix)
-
-
-
-
 # vec = CountVectorizer( min_df=1 , stop_words=stopWords)
 # vec.fit(web_sites)
 # vec_des_data = vec.transform(des_data)
