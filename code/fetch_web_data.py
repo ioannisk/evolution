@@ -86,7 +86,7 @@ def find_intersection_of_classes():
         classes_desc.add(int(j))
     for i in df["label_num"]:
         classes_web.add(int(i))
-    intersection = classes_web.intersection(classes_desc)
+    intersection = classes_desc.intersection(classes_web)
     return intersection
 
 
@@ -112,7 +112,8 @@ df["label_txt"] = label_txt
 intersection =find_intersection_of_classes()
 des_df = des_df[des_df["class_num"].isin(intersection)]
 
-
+print(len(set(des_df["class_num"])))
+print(len(set(df["label_num"])))
 print(set(des_df["class_num"]) == set(df["label_num"]))
 invoifn
 #########################
