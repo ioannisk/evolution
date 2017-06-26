@@ -230,7 +230,7 @@ for a in np.arange(0.008,0.15,0.005):
     clf = gnb.fit(vec_des_data, des_labels)
     y_pred_test = clf.predict(vec_web_sites)
     print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
-    matrix = confusion_matrix(y_true, y_pred)
+    matrix = confusion_matrix(labels, y_pred_test)
     matrix = normalize(matrix, axis=1, norm='l1')
     print(matrix)
 
