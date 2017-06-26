@@ -153,7 +153,7 @@ for i, l in zip(df['url'], df["label_num"]):
         page_txt = page.textSummary
         page_txt = clean_up_txt(page_txt)
         web_sites.append(page_txt)
-        labels.append(l)
+        labels.append(int(l))
     except:
         pass
 print("Vectorize documents")
@@ -203,6 +203,9 @@ prc_top_n_classes = list(prc_top_n_classes)
 
 
 print(df_web["class_num"])
+
+
+
 
 print("Len of descriptions {0}".format(len(des_df)))
 des_df_top_n = des_df[des_df["class_num"].isin(top_n_classes)]
