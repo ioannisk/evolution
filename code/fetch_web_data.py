@@ -299,7 +299,7 @@ test_X = data[partition:]
 test_y =labels[partition:]
 print("Web shape {0}".format(train_X.shape))
 # for a in np.arange(0.00001,0.1,0.005):
-a = 02001
+a = 0.02001
 gnb = MultinomialNB(alpha=a)
 # data = data.toarray()
 clf = gnb.fit(train_X, train_y)
