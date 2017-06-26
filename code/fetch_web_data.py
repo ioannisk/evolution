@@ -138,12 +138,37 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
 des_df = des_df[des_df["class_num"].isin(used_classes)]
 df = df[df["label_num"].isin(used_classes)]
 
+###############
+#
+# GOOD CANDIDATE CLASSES
+#
+###############
+info = ['detail', 'excludes', 'title', 'includes']
+focus_classes = set()
+for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
+    # use flag to determine if a key in json is not in the class
+    flag = True
+    for i in info:
+        if i not in  des_json.keys():
+            flag = False
+    if flag:
+        focus_classes.add(cl_num)
+print(focus_classes)
+
+inrcicn
+
+
+
+
+
+
 #########################
 #########################
 #########################
 
 web_sites = []
 labels = []
+summaries = []
 print("Fetch websites from database")
 counter = 0
 for i, l in zip(df['url'], df["label_num"]):
@@ -155,6 +180,7 @@ for i, l in zip(df['url'], df["label_num"]):
     # some domains are not scrapped
     try:
         page_txt = page.textSummary
+        summaries.append(re.sub('\s+',' ',page_txt))
         page_txt = clean_up_txt(page_txt)
         web_sites.append(page_txt)
         labels.append(l)
@@ -164,6 +190,7 @@ print("Vectorize documents")
 df_web = pd.DataFrame()
 df_web["class_num"] = labels
 df_web["class_txt"] = web_sites
+df_web["summaries"] = summaries
 print("Labeled websites are {0}".format(len(df_web)))
 
 for i in range(20,200,20):
