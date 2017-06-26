@@ -226,7 +226,8 @@ print(vec_des_data.shape)
 # best alpha is 0.12 for 1 grams with acc 0.05
 # best alpha is 0.078 for 2 grams with acc 0.053
 # for a in np.arange(0.008,0.15,0.005):
-gnb = MultinomialNB(alpha=0.12)
+a = 0.12
+gnb = MultinomialNB(alpha=a)
 clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
 print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
