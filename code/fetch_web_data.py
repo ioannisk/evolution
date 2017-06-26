@@ -157,6 +157,9 @@ for i, l in zip(df['url'], df["label_num"]):
     except:
         pass
 print("Vectorize documents")
+df_web = pd.DataFrame()
+df_web["class_num"] = labels
+def_web["txt"] = websites
 
 for i in range(20,200,20):
     classes, prcntg = n_most_popular_classes(i)
@@ -164,53 +167,6 @@ for i in range(20,200,20):
 
 # stop
 # plt.bar(d.keys(), d.values(), width=1.0, color='g')
-
-
-
-
-# des_vec = CountVectorizer(min_df=1, stop_words=stopWords)
-# des_data = des_vec.fit_transform(des_data)
-# gnb = MultinomialNB()
-# clf = gnb.fit(des_data, des_df["class_num"])
-# des_pred = clf.predict(des_data)
-# print("training acc: {0}".format(accuracy_score(des_df["class_num"], des_pred)))
-
-# data = des_vec.transform(web_sites)
-# web_pred = clf.predict(data)
-# print("testing acc on websites: {0}".format(accuracy_score(labels, web_pred)))
-
-
-
-
-
-# des_data = get_descriptions_data(des_df)
-# des_data = []
-# for des_json, cl_txt in zip(des_df['json'], des_df["class_txt"]):
-#     print(cl_txt)
-#     valid_txt = ""
-#     for key in des_json:
-#         print("Key: {0} ---- DES {1} ".format(key, des_json[key]))
-#         if key!="excludes":
-#             valid_txt += " "+des_json[key][0]
-#     valid_txt = clean_up_txt(valid_txt)
-#     des_data.append(valid_txt)
-
-
-
-# return des_data
-
-
-# def get_descriptions_data(des_df):
-#     des_data = []
-#     for des_json in des_df['json']:
-#         valid_txt = ""
-#         for key in des_json:
-#             if key!="excludes":
-#                 valid_txt += " "+des_json[key][0]
-#         valid_txt = clean_up_txt(valid_txt)
-#         des_data.append(valid_txt)
-#     return des_data
-
 
 #################################
 #
@@ -239,10 +195,39 @@ print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( la
 
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 N_CLASSES = 150
-top_n_classes, total_percentage = n_most_popular_classes(N_CLASSES)
-print(total_percentage)
-for cl, prc in top_n_classes:
-    print (cl, class_hash[cl],  prc)
+top_n_prc_classes, total_percentage = n_most_popular_classes(N_CLASSES)
+top_n_classes, prc_top_n_classes  = zip(*top_n_prc_classes)
+top_n_classes = list(top_n_classes)
+prc_top_n_classes = list(prc_top_n_classes)
+des_df_top_n = des_df[des_df["class_num"].isin(top_n_classes)]
+df_top_n = df_web[df_web["class_num"].isin(top_n_prc_classes)]
+
+
+des_data = list(des_df_top_n["class_txt"])
+des_labels = list(des_df_top_n["class_num"])
+web_data = list(df_top_n["class_txt"])
+web_labels = list(df_top_n["class_num"])
+
+
+
+vec = CountVectorizer( min_df=1 , stop_words=stopWords)
+vec.fit(des_data)
+vec_des_data = vec.transform(des_data)
+vec_web_sites = vec.transform(web_data)
+print(len(web_data))
+# print(vec.vocabulary_)
+print(vec_des_data.shape)
+# best alpha is 0.12 for 1 grams with acc 0.0575
+# best alpha is 0.078 for 2 grams with acc 0.053
+for a in np.arange(0.05,0.2,0.05):
+    # a = 0.12
+    gnb = MultinomialNB(alpha=a)
+    clf = gnb.fit(vec_des_data, des_labels)
+    y_pred_test = clf.predict(vec_web_sites)
+    print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( web_labels,y_pred_test ),a))
+
+
+
     # matrix = confusion_matrix(labels, y_pred_test)
     # matrix = normalize(matrix, axis=1, norm='l1')
     # print(matrix)
@@ -294,7 +279,7 @@ for cl, prc in top_n_classes:
 print("Train Naive Bayes")
 data_len = len(web_sites)
 partition = int(data_len*0.9)
-vec = CountVectorizer(min_df=1, ngram_range=(1,2),stop_words=stopWords)
+vec = CountVectorizer(min_df=1,stop_words=stopWords)
 data = vec.fit_transform(web_sites)
 train_X = data[:partition]
 train_y = labels[:partition]
