@@ -189,14 +189,14 @@ vec_web_sites = vec.transform(web_sites)
 print(len(web_sites))
 # print(vec.vocabulary_)
 print(vec_des_data.shape)
-# best alpha is 0.12 for 1 grams with acc 0.0575
+# best alpha is 0.11 for 1 grams with acc 0.06
 # best alpha is 0.078 for 2 grams with acc 0.053
-for a in np.arange(0.001,0.3,0.01):
-# a = 0.12
-    gnb = MultinomialNB(alpha=a)
-    clf = gnb.fit(vec_des_data, des_labels)
-    y_pred_test = clf.predict(vec_web_sites)
-    print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
+# for a in np.arange(0.001,0.3,0.01):
+a = 0.11
+gnb = MultinomialNB(alpha=a)
+clf = gnb.fit(vec_des_data, des_labels)
+y_pred_test = clf.predict(vec_web_sites)
+print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
 
 
 
@@ -212,14 +212,14 @@ prc_top_n_classes = list(prc_top_n_classes)
 des_df_top_n = des_df[des_df["class_num"].isin(top_n_classes)]
 df_top_n = df_web[df_web["class_num"].isin(top_n_classes)]
 
-des_data = list(des_df_top_n["class_txt"])
-des_labels = list(des_df_top_n["class_num"])
+des_data_top_n = list(des_df_top_n["class_txt"])
+des_labels_top_n = list(des_df_top_n["class_num"])
 web_data = list(df_top_n["class_txt"])
 web_labels = list(df_top_n["class_num"])
 
 vec = CountVectorizer( min_df=1 , stop_words=stopWords)
-vec.fit(des_data)
-vec_des_data = vec.transform(des_data)
+vec.fit(des_data_top_n)
+vec_des_data = vec.transform(des_data_top_n)
 vec_web_sites = vec.transform(web_data)
 print(len(web_data))
 # print(vec.vocabulary_)
@@ -258,23 +258,25 @@ for a in np.arange(0.001,0.3,0.01):
 # # Train Web + Description --- Test Web
 # #
 # #################################
-# des_labels = [i for i in des_df["class_num"]]
-# des_web_sites = des_data + web_sites
-# des_web_sites_labels =  des_labels + labels
-# data_len = len(des_web_sites)
-# partition = int(data_len*0.9)
-# vec = CountVectorizer( min_df=1,ngram_range=(1,2), stop_words=stopWords)
-# des_web_sites = vec.fit_transform(des_web_sites)
-# print("vectorization is over !!!!")
-# train_X = des_web_sites[:partition]
-# train_y = des_web_sites_labels[:partition]
-# test_X = des_web_sites[partition:]
-# test_y =des_web_sites_labels[partition:]
-# gnb = MultinomialNB(alpha=0.1)
-# # data = data.toarray()
-# clf = gnb.fit(train_X, train_y)
-# y_pred_test = clf.predict(test_X)
-# print("Testing accuracy (web + des)trainging (web) testing: {0}".format(accuracy_score(test_y, y_pred_test)))
+print("TRAIN ON WEB + DES, TEST ON ALL WEB")
+des_labels = [i for i in des_df["class_num"]]
+des_web_sites = des_data + web_sites
+des_web_sites_labels =  des_labels + labels
+data_len = len(des_web_sites)
+partition = int(data_len*0.9)
+vec = CountVectorizer( min_df=1, stop_words=stopWords)
+des_web_sites = vec.fit_transform(des_web_sites)
+print("vectorization is over !!!!")
+train_X = des_web_sites[:partition]
+train_y = des_web_sites_labels[:partition]
+test_X = des_web_sites[partition:]
+test_y =des_web_sites_labels[partition:]
+for a in np.arange(0.00001,0.1,0.001):
+    gnb = MultinomialNB(alpha=a)
+    # data = data.toarray()
+    clf = gnb.fit(train_X, train_y)
+    y_pred_test = clf.predict(test_X)
+    print("Testing accuracy (web + des)trainging (web) testing: {0}".format(accuracy_score(test_y, y_pred_test)))
 
 
 
@@ -283,7 +285,7 @@ for a in np.arange(0.001,0.3,0.01):
 # # Train Web --- Test Web
 # #
 # #################################
-print("TRAIN ON TOP WEB, TEST ON ALL WEB")
+print("TRAIN ON WEB, TEST ON ALL WEB")
 data_len = len(web_sites)
 partition = int(data_len*0.9)
 vec = CountVectorizer(min_df=1,stop_words=stopWords)
