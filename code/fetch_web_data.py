@@ -199,13 +199,14 @@ top_n_prc_classes, total_percentage = n_most_popular_classes(N_CLASSES)
 top_n_classes, prc_top_n_classes  = zip(*top_n_prc_classes)
 top_n_classes = list(top_n_classes)
 prc_top_n_classes = list(prc_top_n_classes)
-print(len(top_n_classes))
 
 
+print("Len of descriptions {0}".format(len(des_df)))
 des_df_top_n = des_df[des_df["class_num"].isin(top_n_classes)]
+print("Len of top N descriptions {0}".format(len(des_df_top_n)))
+print("Len of web {0}".format(len(df_web)))
 df_top_n = df_web[df_web["class_num"].isin(top_n_prc_classes)]
-print(len(df_top_n))
-print(len(des_df_top_n))
+print("Len of top N web {0}".format(len(df_web)))
 
 
 
