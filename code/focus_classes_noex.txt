@@ -1,0 +1,99 @@
+33200 	  Installation of industrial machinery and equipment	785
+80100 	  Private security activities	437
+86900 	  Other human health activities	1207
+1110 	  Growing of cereals (except rice), leguminous crops and oil seeds	764
+26110 	  Manufacture of electronic components	1005
+26520 	  Manufacture of watches and clocks	916
+26701 	  Manufacture of optical precision instruments	856
+26702 	  Manufacture of photographic and cinematographic equipment	308
+27110 	  Manufacture of electric motors, generators and transformers	761
+2400 	  Support services to forestry	393
+23200 	  Manufacture of refractory products	529
+26200 	  Manufacture of computers and peripheral equipment	2000
+27200 	  Manufacture of batteries and accumulators	566
+26400 	  Manufacture of consumer electronics	879
+55100 	  Hotels and similar accommodation	578
+1190 	  Growing of other non-perennial crops	439
+2100 	  Silviculture and other forestry activities	316
+10850 	  Manufacture of prepared meals and dishes	729
+87200 	  Residential care activities for learning difficulties, mental health and substance abuse	706
+11070 	  Manufacture of soft drinks; production of mineral waters and other bottled waters	387
+13100 	  Preparation and spinning of textile fibres	761
+18129 	  Printing n.e.c.	900
+19201 	  Mineral oil refining	963
+20130 	  Manufacture of other inorganic basic chemicals	584
+20140 	  Manufacture of other organic basic chemicals	945
+20160 	  Manufacture of plastics in primary forms	646
+24510 	  Casting of iron	326
+24520 	  Casting of steel	270
+27330 	  Manufacture of wiring devices	891
+27900 	  Manufacture of other electrical equipment	1588
+28990 	  Manufacture of other special-purpose machinery n.e.c.	1396
+30110 	  Building of ships and floating structures	747
+31010 	  Manufacture of office and shop furniture	762
+32409 	  Manufacture of other games and toys, n.e.c.	888
+32500 	  Manufacture of medical and dental instruments and supplies	1641
+33110 	  Repair of fabricated metal products	848
+33120 	  Repair of machinery	2168
+33130 	  Repair of electronic and optical equipment	1169
+33140 	  Repair of electrical equipment	698
+33150 	  Repair and maintenance of ships and boats	282
+33160 	  Repair and maintenance of aircraft and spacecraft	276
+33170 	  Repair and maintenance of other transport equipment n.e.c.	333
+33190 	  Repair of other equipment	496
+36000 	  Water collection, treatment and supply	810
+38120 	  Collection of hazardous waste	599
+38210 	  Treatment and disposal of non-hazardous waste	496
+38220 	  Treatment and disposal of hazardous waste	878
+38320 	  Recovery of sorted materials	1649
+42210 	  Construction of utility projects for fluids	530
+42220 	  Construction of utility projects for electricity and telecommunications	376
+43210 	  Electrical installation	604
+43220 	  Plumbing, heat and air-conditioning installation	581
+43290 	  Other construction installation	482
+46120 	  Agents involved in the sale of fuels, ores, metals and industrial chemicals	200
+46140 	  Agents involved in the sale of machinery, industrial equipment, ships and aircraft	233
+47910 	  Retail sale via mail order houses or via Internet	729
+56101 	  Licensed restaurants	447
+56102 	  Unlicensed restaurants and cafes	443
+56103 	  Take-away food shops and mobile food stands	383
+56290 	  Other food services	581
+58110 	  Book publishing	405
+58120 	  Publishing of directories and mailing lists	407
+59120 	  Motion picture, video and television programme post-production activities	488
+61200 	  Wireless telecommunications activities	745
+63990 	  Other information service activities n.e.c.	272
+64110 	  Central banking	385
+65201 	  Life reinsurance	555
+65202 	  Non-life reinsurance	576
+65300 	  Pension funding	415
+66190 	  Activities auxiliary to financial intermediation n.e.c.	418
+66210 	  Risk and damage evaluation	269
+68310 	  Real estate agencies	374
+70100 	  Activities of head offices	464
+70221 	  Financial management	440
+70229 	  Management consultancy activities other than financial management	582
+71121 	  Engineering design activities for industrial process and production	511
+77210 	  Renting and leasing of recreational and sports goods	233
+71122 	  Engineering related scientific and technical consulting activities	626
+71129 	  Other engineering activities	1153
+72110 	  Research and experimental development on biotechnology	1352
+73110 	  Advertising agencies	934
+81210 	  General cleaning of buildings	463
+77400 	  Leasing of intellectual property and similar products, except copyright works	833
+78109 	  Other activities of employment placement agencies	484
+80200 	  Security systems service activities	525
+82190 	  Photocopying, document preparation and other specialised office support activities	816
+85310 	  General secondary education	937
+85320 	  Technical and vocational secondary education	723
+85510 	  Sports and recreation education	836
+85520 	  Cultural education	678
+86101 	  Hospital activities	954
+87300 	  Residential care activities for the elderly and disabled	662
+93120 	  Activities of sport clubs	426
+93290 	  Other amusement and recreation activities n.e.c.	764
+95110 	  Repair of computers and peripheral equipment	778
+2200 	  Logging	434
+32300 	  Manufacture of sports goods	668
+55900 	  Other accommodation	318
+75000 	  Veterinary activities	531
