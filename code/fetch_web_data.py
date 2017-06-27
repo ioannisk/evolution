@@ -236,10 +236,10 @@ print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( la
 
 
 wrong_web = open("wrong_web.txt", 'w' )
-wrong_web.write("label pred company_id url")
+wrong_web.write("label pred company_id url\n")
 for l, pred, c_id,url_ in zip(labels,y_pred_test,df_web["company_id"],df_web["urls"]):
     if l in selected_classes and (l!=pred):
-        wrong_web.write("{0} {1} {2}\n".format(l, pred, c_id,url_))
+        wrong_web.write("{0} {1} {2} {3}\n".format(l, pred, c_id,url_))
 stop
 
 print("TRAIN ON TOP 150 DESCRIPTIONS, TEST ON ALL WEB")
