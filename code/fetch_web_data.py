@@ -173,6 +173,7 @@ web_sites = []
 labels = []
 summaries = []
 company_id = []
+all_urls = []
 print("Fetch websites from database")
 counter = 0
 for i, l, c_id in zip(df['url'], df["label_num"], df["company_id"]):
@@ -189,6 +190,7 @@ for i, l, c_id in zip(df['url'], df["label_num"], df["company_id"]):
         web_sites.append(page_txt)
         company_id.append(c_id)
         labels.append(l)
+        all_urls.append(i)
     except:
         pass
 print("Vectorize documents")
@@ -197,6 +199,7 @@ df_web["class_num"] = labels
 df_web["class_txt"] = web_sites
 df_web["summaries"] = summaries
 df_web["company_id"]= company_id
+df_web["urls"]=all_urls
 print("Labeled websites are {0}".format(len(df_web)))
 for i in range(20,200,20):
     classes, prcntg = n_most_popular_classes(i)
@@ -233,9 +236,10 @@ print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( la
 
 
 wrong_web = open("wrong_web.txt", 'w' )
-for l, pred, c_id in zip(labels,y_pred_test,df_web["company_id"]):
+wrong_web.write("label pred company_id url")
+for l, pred, c_id,url_ in zip(labels,y_pred_test,df_web["company_id"],df_web["urls"]):
     if l in selected_classes and (l!=pred):
-        wrong_web.write("{0} {1} {2}\n".format(l, pred, c_id))
+        wrong_web.write("{0} {1} {2}\n".format(l, pred, c_id,url_))
 stop
 
 print("TRAIN ON TOP 150 DESCRIPTIONS, TEST ON ALL WEB")
