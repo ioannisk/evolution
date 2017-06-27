@@ -169,8 +169,17 @@ df_web["summaries"] = summaries
 df_web["company_id"]= company_id
 print("Labeled websites are {0}".format(len(df_web)))
 
+
+dic = {}
+for i, j in zip(df_web["summaries"],df_web["company_id"]):
+    dic[j] = i
+
 while True:
-    var = input("Please enter something: ")
-    print(var)
+    var = input("Enter website id: ")
+    print("#####################")
+    print(dic[j])
+
+
+
 
 
