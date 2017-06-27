@@ -1,6 +1,14 @@
 from evolutionai import StorageEngine
-from fetch_web_data import find_intersection_of_classes
+# from fetch_web_data import find_intersection_of_classes
 from parse_descriptions import read_descriptions
+
+def find_intersection_of_classes():
+    # ["class_num", "class_txt", "json"]
+    classes_desc = set(des_df["class_num"])
+    classes_web = set(df["label_num"])
+    intersection = classes_desc.intersection(classes_web)
+    return intersection
+
 
 storage = StorageEngine("/nvme/webcache/")
 df = pd.read_csv('../data/domains.tsv', sep='\t', names = ["company_name", "company_id", "url", "vertical"])
