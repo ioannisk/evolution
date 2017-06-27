@@ -150,8 +150,8 @@ df = df[df["label_num"].isin(used_classes)]
 # print(len(des_df))
 #
 print(len(set(df["label_num"])) == len(set(des_df["class_num"])))
-focus_classes_file = open("focus_classes.txt", 'w' )
-info = ['detail', 'excludes', 'title', 'includes']
+focus_classes_file = open("focus_classes_noex.txt", 'w' )
+info = ['detail', 'title', 'includes']
 focus_classes = []
 focus_txt = []
 for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):

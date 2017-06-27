@@ -1,3 +1,5 @@
 Class 27.90: Manufacture of other electrical equipment
 Class 33.12: Repair of machinery
-Sub-class 56.10/3: Take away food shops and mobile food stands
+Sub-class 86.10/1: Hospital activities
+Class 26.20: Manufacture of computers and peripheral equipment
+Class 32.50: Manufacture of medical and dental instruments and supplies
