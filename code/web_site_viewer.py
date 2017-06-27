@@ -13,7 +13,6 @@ def find_intersection_of_classes():
 
 storage = StorageEngine("/nvme/webcache/")
 df = pd.read_csv('../data/domains.tsv', sep='\t', names = ["company_name", "company_id", "url", "vertical"])
-stopWords = stopwords.words('english')
 # get path to the database
 storage = StorageEngine("/nvme/webcache/")
 # read the domains.tsv file in pandas
