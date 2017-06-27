@@ -29,9 +29,9 @@ for ver in df["vertical"]:
 df["label_num"] = label_num
 df["label_txt"] = label_txt
 # Keep only the descriptions that exist in the dataset
-intersection =find_intersection_of_classes()
-des_df = des_df[des_df["class_num"].isin(intersection)]
-df = df[df["label_num"].isin(intersection)]
+# intersection =find_intersection_of_classes()
+# des_df = des_df[des_df["class_num"].isin(intersection)]
+# df = df[df["label_num"].isin(intersection)]
 
 web_sites = []
 labels = []
