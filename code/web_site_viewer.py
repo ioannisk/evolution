@@ -177,7 +177,11 @@ for i, j in zip(df_web["summaries"],df_web["company_id"]):
 while True:
     var = input("Enter website id: ")
     print("#####################")
-    print(dic[var])
+    try:
+        print(dic[var])
+    except:
+        print("Code not in DB")
+        pass
 
 
 
