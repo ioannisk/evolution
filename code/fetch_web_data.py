@@ -254,13 +254,13 @@ y_pred_test = clf.predict(vec_web_sites)
 # print("Score {0}".format(score))
 print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
 
-for c in np.arange(0,1,0.05):
+for c in np.arange(0.0001,1,0.05):
     logistic = LogisticRegression(C=c)
     clf = logistic.fit(vec_des_data, des_labels)
     y_pred_test = clf.predict(vec_web_sites)
     print(" LogisticTesting accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
 
-for c in np.arange(0,1,0.05):
+for c in np.arange(0.0001,2,0.5):
     logistic = LinearSVC(C=c)
     clf = logistic.fit(vec_des_data, des_labels)
     y_pred_test = clf.predict(vec_web_sites)
