@@ -1,6 +1,7 @@
 from evolutionai import StorageEngine
 # from fetch_web_data import find_intersection_of_classes
 from parse_descriptions import read_descriptions
+import pandas as pd
 
 def find_intersection_of_classes():
     # ["class_num", "class_txt", "json"]
