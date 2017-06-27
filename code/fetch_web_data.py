@@ -232,7 +232,7 @@ a = 0.11
 gnb = MultinomialNB(alpha=a)
 clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
-print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=False ),a))
+print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
 
 stop
 
