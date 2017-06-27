@@ -234,7 +234,7 @@ clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
 print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
 
-stop
+# stop
 
 # wrong_web = open("wrong_web.txt", 'w' )
 # wrong_web.write("label pred company_id url\n")
@@ -248,9 +248,16 @@ print("TRAIN ON TOP 150 DESCRIPTIONS, TEST ON ALL WEB")
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 N_CLASSES = 150
 top_n_prc_classes, total_percentage = n_most_popular_classes(N_CLASSES)
+
+class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
+for i, j in top_n_prc_classes:
+    print(class_hash[i], j)
+
 top_n_classes, prc_top_n_classes  = zip(*top_n_prc_classes)
 top_n_classes = set(top_n_classes)
 prc_top_n_classes = list(prc_top_n_classes)
+
+
 # Filter dataframes to inlcude only top N classes
 des_df_top_n = des_df[des_df["class_num"].isin(top_n_classes)]
 df_top_n = df_web[df_web["class_num"].isin(top_n_classes)]
