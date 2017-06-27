@@ -232,15 +232,16 @@ a = 0.11
 gnb = MultinomialNB(alpha=a)
 clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
-print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
+print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=False ),a))
 
-
-wrong_web = open("wrong_web.txt", 'w' )
-wrong_web.write("label pred company_id url\n")
-for l, pred, c_id,url_ in zip(labels,y_pred_test,df_web["company_id"],df_web["urls"]):
-    if l in selected_classes and (l!=pred):
-        wrong_web.write("{0} {1} {2} {3}\n".format(l, pred, c_id,url_))
 stop
+
+# wrong_web = open("wrong_web.txt", 'w' )
+# wrong_web.write("label pred company_id url\n")
+# for l, pred, c_id,url_ in zip(labels,y_pred_test,df_web["company_id"],df_web["urls"]):
+#     if l in selected_classes and (l!=pred):
+#         wrong_web.write("{0} {1} {2} {3}\n".format(l, pred, c_id,url_))
+# stop
 
 print("TRAIN ON TOP 150 DESCRIPTIONS, TEST ON ALL WEB")
 ## Gather websites and descriptions that are in the top 150 classes
