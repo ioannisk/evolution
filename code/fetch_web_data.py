@@ -226,10 +226,10 @@ print(vec.vocabulary_ == tfidf_vec.vocabulary_)
 
 
 
-vec_des_data = tfidf_vec.transform(des_data)
-vec_web_sites = tfidf_vec.transform(web_sites)
-# vec_des_data = vec.transform(des_data)
-# vec_web_sites = vec.transform(web_sites)
+# vec_des_data = tfidf_vec.transform(des_data)
+# vec_web_sites = tfidf_vec.transform(web_sites)
+vec_des_data = vec.transform(des_data)
+vec_web_sites = vec.transform(web_sites)
 # print(vec.vocabulary_)
 print("Desc shape {0}".format(vec_des_data.shape))
 print("Web shape {0}".format(vec_web_sites.shape))
