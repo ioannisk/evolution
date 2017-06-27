@@ -221,7 +221,7 @@ des_labels = [i for i in des_df["class_num"]]
 vec = CountVectorizer( min_df=1 , stop_words=stopWords)
 
 print(vec.vocabulary_)
-stop
+# stop
 
 tfidf_vec = TfidfVectorizer( min_df=1 , stop_words=stopWords)
 vec.fit(des_data)
@@ -240,10 +240,11 @@ a = 0.11
 gnb = MultinomialNB(alpha=a)
 clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
-score = clf.score(vec_web_sites, )
-print("Score {0}".format(score,labels))
+score = clf.score(vec_web_sites, labels)
+print("Score {0}".format(score))
 print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
 
+stop
 # ÷
 
 wrong_web = open("wrong_web.txt", 'w' )
