@@ -211,7 +211,7 @@ for i in range(20,200,20):
 # Baseline Train on Descriptions, test on websites
 #
 #################################
-selected_classes = set(27900, 33120, 86101, 26200, 32500, 72110)
+selected_classes = {27900, 33120, 86101, 26200, 32500, 72110}
 
 print("TRAIN ON ALL DESCRIPTIONS, TEST ON ALL WEB")
 des_labels = [i for i in des_df["class_num"]]
