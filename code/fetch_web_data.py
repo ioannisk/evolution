@@ -226,14 +226,13 @@ print(vec.vocabulary_ == tfidf_vec.vocabulary_)
 print(tfidf_vec.idf_)
 
 
-# vec_des_data = vec.transform(des_data).toarray() + 0.0000001
-# vec_web_sites = vec.transform(web_sites).toarray() + 0.0000001
+vec_des_data = vec.transform(des_data)
+vec_web_sites = vec.transform(web_sites)
 
-
-tfidf_vec_des_data = tfidf_vec.transform(des_data)
-tfidf_vec_web_sites = tfidf_vec.transform(web_sites)
-vec_des_data = tfidf_vec_des_data
-vec_web_sites = tfidf_vec_web_sites
+# tfidf_vec_des_data = tfidf_vec.transform(des_data)
+# tfidf_vec_web_sites = tfidf_vec.transform(web_sites)
+# vec_des_data = tfidf_vec_des_data
+# vec_web_sites = tfidf_vec_web_sites
 
 
 
