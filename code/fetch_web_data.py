@@ -149,7 +149,7 @@ df = df[df["label_num"].isin(used_classes)]
 
 # print(len(des_df))
 #
-print(len(df) == len(des_df))
+print(len(set(df["label_num"])) == len(set(des_df["class_num"])))
 focus_classes_file = open("focus_classes.txt", 'w' )
 info = ['detail', 'excludes', 'title', 'includes']
 focus_classes = []
@@ -171,7 +171,7 @@ print(focus_classes)
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 for i,j in zip(focus_classes,focus_txt):
     focus_classes_file.write("{0} \t {1}\t{2}\n".format(i, class_hash[i],len(j)))
-# inrcicn
+inrcicn
 
 
 
