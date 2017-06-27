@@ -220,14 +220,14 @@ des_labels = [i for i in des_df["class_num"]]
 # , ngram_range=(1,2)
 vec = CountVectorizer( min_df=1 , stop_words=stopWords)
 vec.fit(des_data)
-tfidf_vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords,vocabulary=vec.vocabulary_)
+tfidf_vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords,vocabulary=vec.vocabulary_,sublinear_tf=True)
 tfidf_vec.fit(des_data)
 print(vec.vocabulary_ == tfidf_vec.vocabulary_)
 
 
 
-vec_des_data = vec.transform(des_data).toarray() + 0.0000001
-vec_web_sites = vec.transform(web_sites).toarray() + 0.0000001
+# vec_des_data = vec.transform(des_data).toarray() + 0.0000001
+# vec_web_sites = vec.transform(web_sites).toarray() + 0.0000001
 
 
 tfidf_vec_des_data = tfidf_vec.transform(des_data)
