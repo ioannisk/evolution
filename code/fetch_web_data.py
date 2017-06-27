@@ -198,7 +198,6 @@ df_web["class_txt"] = web_sites
 df_web["summaries"] = summaries
 df_web["company_id"]= company_id
 print("Labeled websites are {0}".format(len(df_web)))
-elcme
 for i in range(20,200,20):
     classes, prcntg = n_most_popular_classes(i)
     print(i, prcntg)
