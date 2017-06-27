@@ -223,18 +223,17 @@ vec.fit(des_data)
 tfidf_vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords,vocabulary=vec.vocabulary_,binary=True)
 tfidf_vec.fit(des_data)
 print(vec.vocabulary_ == tfidf_vec.vocabulary_)
+print(tfidf_vec.idf_)
 
 
-
-vec_des_data = vec.transform(des_data).toarray() + 0.0000001
-vec_web_sites = vec.transform(web_sites).toarray() + 0.0000001
+# vec_des_data = vec.transform(des_data).toarray() + 0.0000001
+# vec_web_sites = vec.transform(web_sites).toarray() + 0.0000001
 
 
 tfidf_vec_des_data = tfidf_vec.transform(des_data)
 tfidf_vec_web_sites = tfidf_vec.transform(web_sites)
-
-vec_des_data = tfidf_vec_des_data/vec_des_data
-vec_web_sites = tfidf_vec_web_sites/vec_web_sites
+vec_des_data = tfidf_vec_des_data
+vec_web_sites = tfidf_vec_web_sites
 
 
 
