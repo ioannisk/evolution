@@ -226,13 +226,13 @@ tfidf_vec.fit(des_data)
 # print(tfidf_vec.idf_)
 
 
-vec_des_data = vec.transform(des_data)
-vec_web_sites = vec.transform(web_sites)
+# vec_des_data = vec.transform(des_data)
+# vec_web_sites = vec.transform(web_sites)
 
-# tfidf_vec_des_data = tfidf_vec.transform(des_data)
-# tfidf_vec_web_sites = tfidf_vec.transform(web_sites)
-# vec_des_data = tfidf_vec_des_data
-# vec_web_sites = tfidf_vec_web_sites
+tfidf_vec_des_data = tfidf_vec.transform(des_data)
+tfidf_vec_web_sites = tfidf_vec.transform(web_sites)
+vec_des_data = tfidf_vec_des_data
+vec_web_sites = tfidf_vec_web_sites
 
 
 
@@ -255,9 +255,9 @@ print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( la
 
 for c in np.arange(0.001,1,0.05):
     logistic = LogisticRegression(C=c)
-    clf = gnb.fit(vec_des_data, des_labels)
+    clf = logistic.fit(vec_des_data, des_labels)
     y_pred_test = clf.predict(vec_web_sites)
-    print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),c))
+    print("Testing accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
 
 
 stop
