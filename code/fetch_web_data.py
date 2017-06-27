@@ -162,7 +162,7 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
         if i not in  des_json.keys():
             flag = False
         else:
-            class_txt += " " +des_json[i]
+            class_txt += " " + str(des_json[i])
     if flag:
         focus_classes.append(cl_num)
         focus_txt.append(class_txt)
