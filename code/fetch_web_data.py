@@ -177,9 +177,9 @@ all_urls = []
 print("Fetch websites from database")
 counter = 0
 for i, l, c_id in zip(df['url'], df["label_num"], df["company_id"]):
-    # counter +=1
-    # if counter > 10000:
-    #     break
+    counter +=1
+    if counter > 10000:
+        break
     # query database and get page object
     page = storage.get_page(i)
     # some domains are not scrapped
@@ -219,7 +219,15 @@ print("TRAIN ON ALL DESCRIPTIONS, TEST ON ALL WEB")
 des_labels = [i for i in des_df["class_num"]]
 # , ngram_range=(1,2)
 vec = CountVectorizer( min_df=1 , stop_words=stopWords)
+
+print(vec.vocabulary_)
+stop
+
+tfidf_vec = TfidfVectorizer( min_df=1 , stop_words=stopWords)
 vec.fit(des_data)
+tfidf_vec(des_data)
+
+
 vec_des_data = vec.transform(des_data)
 vec_web_sites = vec.transform(web_sites)
 # print(vec.vocabulary_)
@@ -238,11 +246,11 @@ print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( la
 
 # ÷
 
-# wrong_web = open("wrong_web.txt", 'w' )
-# wrong_web.write("label pred company_id url\n")
-# for l, pred, c_id,url_ in zip(labels,y_pred_test,df_web["company_id"],df_web["urls"]):
-#     if l in selected_classes and (l!=pred):
-#         wrong_web.write("{0} {1} {2} {3}\n".format(l, pred, c_id,url_))
+wrong_web = open("wrong_web.txt", 'w' )
+wrong_web.write("label pred company_id url\n")
+for l, pred, c_id,url_ in zip(labels,y_pred_test,df_web["company_id"],df_web["urls"]):
+    if l in selected_classes and (l!=pred):
+        wrong_web.write("{0} {1} {2} {3}\n".format(l, pred, c_id,url_))
 # stop
 
 print("TRAIN ON TOP 150 DESCRIPTIONS, TEST ON ALL WEB")
