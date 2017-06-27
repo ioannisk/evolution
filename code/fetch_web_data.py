@@ -172,12 +172,13 @@ df = df[df["label_num"].isin(used_classes)]
 web_sites = []
 labels = []
 summaries = []
+company_id = []
 print("Fetch websites from database")
 counter = 0
-for i, l in zip(df['url'], df["label_num"]):
-    # counter +=1
-    # if counter > 10000:
-    #     break
+for i, l, c_id in zip(df['url'], df["label_num"], df["company_id"]):
+    counter +=1
+    if counter > 10000:
+        break
     # query database and get page object
     page = storage.get_page(i)
     # some domains are not scrapped
@@ -186,6 +187,7 @@ for i, l in zip(df['url'], df["label_num"]):
         summaries.append(re.sub('\s+',' ',page_txt))
         page_txt = clean_up_txt(page_txt)
         web_sites.append(page_txt)
+        company_id.append(c_id)
         labels.append(l)
     except:
         pass
@@ -194,6 +196,7 @@ df_web = pd.DataFrame()
 df_web["class_num"] = labels
 df_web["class_txt"] = web_sites
 df_web["summaries"] = summaries
+df_web["company_id"]= company_id
 print("Labeled websites are {0}".format(len(df_web)))
 
 for i in range(20,200,20):
@@ -208,6 +211,8 @@ for i in range(20,200,20):
 # Baseline Train on Descriptions, test on websites
 #
 #################################
+selected_classes = set(27900, 33120, 86101, 26200, 32500, 72110)
+
 print("TRAIN ON ALL DESCRIPTIONS, TEST ON ALL WEB")
 des_labels = [i for i in des_df["class_num"]]
 # , ngram_range=(1,2)
@@ -227,7 +232,9 @@ clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
 print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
 
-
+for l, pred, c_id in zip(labels,y_pred_test,df_web["company_id"]):
+    if l in selected_classes and (l!=pred):
+        print (l, c_id)
 stop
 
 print("TRAIN ON TOP 150 DESCRIPTIONS, TEST ON ALL WEB")
