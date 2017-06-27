@@ -230,8 +230,8 @@ vec_des_data = vec.transform(des_data)
 vec_web_sites = vec.transform(web_sites)
 
 
-tfidf_vec_des_data = tfidf_vec.transform(des_data)
-tfidf_vec_web_sites = tfidf_vec.transform(web_sites)
+tfidf_vec_des_data = tfidf_vec.transform(des_data) + 0.0001
+tfidf_vec_web_sites = tfidf_vec.transform(web_sites) + 0.0001
 
 vec_des_data = vec_des_data/tfidf_vec_des_data
 vec_web_sites = vec_web_sites/tfidf_vec_web_sites
