@@ -5,6 +5,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn.svm import LinearSVC
 from collections import defaultdict
 from nltk.corpus import stopwords
 import pandas as pd
@@ -251,13 +252,19 @@ clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
 # score = clf.score(vec_web_sites, labels)
 # print("Score {0}".format(score))
-print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
+print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
 
-for c in np.arange(0.001,1,0.05):
+for c in np.arange(0,1,0.05):
     logistic = LogisticRegression(C=c)
     clf = logistic.fit(vec_des_data, des_labels)
     y_pred_test = clf.predict(vec_web_sites)
-    print("Testing accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
+    print(" LogisticTesting accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
+
+for c in np.arange(0,1,0.05):
+    logistic = LinearSVC(C=c)
+    clf = logistic.fit(vec_des_data, des_labels)
+    y_pred_test = clf.predict(vec_web_sites)
+    print(" SVM accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
 
 
 stop
