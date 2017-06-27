@@ -170,7 +170,7 @@ df_web["company_id"]= company_id
 print("Labeled websites are {0}".format(len(df_web)))
 
 while True:
-    var = raw_input("Please enter something: ")
+    var = input("Please enter something: ")
     print(var)
 
 
