@@ -226,8 +226,8 @@ print(vec.vocabulary_ == tfidf_vec.vocabulary_)
 
 
 
-# vec_des_data = vec.transform(des_data).toarray() + 0.0000001
-# vec_web_sites = vec.transform(web_sites).toarray() + 0.0000001
+vec_des_data = vec.transform(des_data).toarray() + 0.0000001
+vec_web_sites = vec.transform(web_sites).toarray() + 0.0000001
 
 
 tfidf_vec_des_data = tfidf_vec.transform(des_data)
