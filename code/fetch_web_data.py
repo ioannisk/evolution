@@ -224,21 +224,25 @@ tfidf_vec = TfidfVectorizer( min_df=1 , stop_words=stopWords,vocabulary=vec.voca
 tfidf_vec.fit(des_data)
 print(vec.vocabulary_ == tfidf_vec.vocabulary_)
 
-vec_des_data = vec.transform(des_data)
-vec_web_sites = vec.transform(web_sites)
+
+
+vec_des_data = tfidf_vec.transform(des_data)
+vec_web_sites = tfidf_vec.transform(web_sites)
+# vec_des_data = vec.transform(des_data)
+# vec_web_sites = vec.transform(web_sites)
 # print(vec.vocabulary_)
 print("Desc shape {0}".format(vec_des_data.shape))
 print("Web shape {0}".format(vec_web_sites.shape))
 # best alpha is 0.11 for 1 grams with acc 0.06
 # best alpha is 0.078 for 2 grams with acc 0.053
-# for a in np.arange(0.001,0.3,0.01):
-a = 0.11
-gnb = MultinomialNB(alpha=a)
-clf = gnb.fit(vec_des_data, des_labels)
-y_pred_test = clf.predict(vec_web_sites)
-score = clf.score(vec_web_sites, labels)
-print("Score {0}".format(score))
-print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
+for a in np.arange(0.001,0.3,0.01):
+# a = 0.11
+    gnb = MultinomialNB(alpha=a)
+    clf = gnb.fit(vec_des_data, des_labels)
+    y_pred_test = clf.predict(vec_web_sites)
+    # score = clf.score(vec_web_sites, labels)
+    # print("Score {0}".format(score))
+    print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
 
 stop
 # ÷
