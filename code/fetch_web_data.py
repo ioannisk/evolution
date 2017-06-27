@@ -149,7 +149,7 @@ df = df[df["label_num"].isin(used_classes)]
 
 # print(len(des_df))
 #
-print(len(df) = len(des_df))
+print(len(df) == len(des_df))
 focus_classes_file = open("focus_classes.txt", 'w' )
 info = ['detail', 'excludes', 'title', 'includes']
 focus_classes = []
