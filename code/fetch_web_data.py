@@ -143,41 +143,28 @@ df = df[df["label_num"].isin(used_classes)]
 # GOOD CANDIDATE CLASSES
 #
 ###############
-# 26200  Manufacture of computers and peripheral equipment
-# Other manufacturing n.e.c.
-#
-
-# print(len(des_df))
-#
-print(len(set(df["label_num"])) == len(set(des_df["class_num"])))
-focus_classes_file = open("focus_classes_noex.txt", 'w' )
-info = ['detail', 'title', 'includes']
-focus_classes = []
-focus_txt = []
-for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
-    # use flag to determine if a key in json is not in the class
-    flag = True
-    class_txt = ""
-    for i in info:
-        if i not in  des_json.keys():
-            flag = False
-        else:
-            class_txt += " " + str(des_json[i])
-    if flag:
-        focus_classes.append(cl_num)
-        focus_txt.append(class_txt)
-print(len)
-print(focus_classes)
-class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
-for i,j in zip(focus_classes,focus_txt):
-    focus_classes_file.write("{0} \t {1}\t{2}\n".format(i, class_hash[i],len(j)))
-inrcicn
-
-
-
-
-
-
+# print(len(set(df["label_num"])) == len(set(des_df["class_num"])))
+# focus_classes_file = open("focus_classes_noex.txt", 'w' )
+# info = ['detail', 'title', 'includes']
+# focus_classes = []
+# focus_txt = []
+# for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
+#     # use flag to determine if a key in json is not in the class
+#     flag = True
+#     class_txt = ""
+#     for i in info:
+#         if i not in  des_json.keys():
+#             flag = False
+#         else:
+#             class_txt += " " + str(des_json[i])
+#     if flag:
+#         focus_classes.append(cl_num)
+#         focus_txt.append(class_txt)
+# print(len)
+# print(focus_classes)
+# class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
+# for i,j in zip(focus_classes,focus_txt):
+#     focus_classes_file.write("{0} \t {1}\t{2}\n".format(i, class_hash[i],len(j)))
 #########################
 #########################
 #########################
@@ -241,6 +228,7 @@ y_pred_test = clf.predict(vec_web_sites)
 print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test ),a))
 
 
+stop
 
 print("TRAIN ON TOP 150 DESCRIPTIONS, TEST ON ALL WEB")
 ## Gather websites and descriptions that are in the top 150 classes
