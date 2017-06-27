@@ -218,9 +218,9 @@ selected_classes = {27900, 33120, 86101, 26200, 32500, 72110}
 print("TRAIN ON ALL DESCRIPTIONS, TEST ON ALL WEB")
 des_labels = [i for i in des_df["class_num"]]
 # , ngram_range=(1,2)
-vec = CountVectorizer( min_df=1 ,ngram_range=(1,2), stop_words=stopWords)
+vec = CountVectorizer( min_df=1 ,ngram_range=(1,), stop_words=stopWords)
 vec.fit(des_data)
-tfidf_vec = TfidfVectorizer( min_df=1 , ngram_range=(1,3),stop_words=stopWords,vocabulary=vec.vocabulary_)
+tfidf_vec = TfidfVectorizer( min_df=1 , ngram_range=(1,),stop_words=stopWords,vocabulary=vec.vocabulary_)
 tfidf_vec.fit(des_data)
 print(vec.vocabulary_ == tfidf_vec.vocabulary_)
 
@@ -243,7 +243,7 @@ print("Desc shape {0}".format(vec_des_data.shape))
 print("Web shape {0}".format(vec_web_sites.shape))
 # best alpha is 0.11 for 1 grams with acc 0.06
 # best alpha is 0.078 for 2 grams with acc 0.053
-for a in np.arange(0.001,0.3,0.01):
+for a in np.arange(0.001,0.5,0.05):
 # a = 0.11
     gnb = MultinomialNB(alpha=a)
     clf = gnb.fit(vec_des_data, des_labels)
