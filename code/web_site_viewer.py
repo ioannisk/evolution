@@ -177,7 +177,7 @@ for i, j in zip(df_web["summaries"],df_web["company_id"]):
 while True:
     var = input("Enter website id: ")
     print("#####################")
-    print(dic[j])
+    print(dic[var])
 
 
 
