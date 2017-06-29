@@ -191,7 +191,8 @@ while True:
     print(row)
     label =row["label"]
     pred = row["pred"]
-    print(label, pred)
+    print(label)
+    print(pred)
     # print(dic[var])
     # except:
     #     print("Code not in DB")
