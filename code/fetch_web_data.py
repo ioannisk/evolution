@@ -139,24 +139,24 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
         #     print("Key {0}:::::: {1}".format(key, text_buffer))
 
         # stop
-    if ("detail" in des_json.keys()) or ("includes" in des_json.keys()) :
-        used_classes.add(cl_num)
-        for key in des_json:
-            # print("Key: {0} ---- DES {1} ".format(key, des_json[key]))
-            if key!="excludes":
-                if type(des_json[key])==list:
-                    text_buffer = " "
-                    for bullet in des_json[key]:
-                        text_buffer += " " + bullet
-                else:
-                    text_buffer = des_json[key]
-                # text_buffer = " "
-                # for bullet in des_json[key]:
-                #     text_buffer += " " + bullet
-                valid_txt += " "+text_buffer
-        valid_txt = clean_up_txt(valid_txt)
-        des_data.append(valid_txt)
-        des_labels.append(cl_num)
+    # if ("detail" in des_json.keys()) or ("includes" in des_json.keys()) :
+    used_classes.add(cl_num)
+    for key in des_json:
+        # print("Key: {0} ---- DES {1} ".format(key, des_json[key]))
+        if key!="excludes":
+            if type(des_json[key])==list:
+                text_buffer = " "
+                for bullet in des_json[key]:
+                    text_buffer += " " + bullet
+            else:
+                text_buffer = des_json[key]
+            # text_buffer = " "
+            # for bullet in des_json[key]:
+            #     text_buffer += " " + bullet
+            valid_txt += " "+text_buffer
+    valid_txt = clean_up_txt(valid_txt)
+    des_data.append(valid_txt)
+    des_labels.append(cl_num)
 des_df = des_df[des_df["class_num"].isin(used_classes)]
 df = df[df["label_num"].isin(used_classes)]
 
@@ -244,7 +244,7 @@ selected_classes = {27900, 33120, 86101, 26200, 32500, 72110}
 print("TRAIN ON ALL DESCRIPTIONS, TEST ON ALL WEB")
 # des_labels = [i for i in des_df["class_num"]]
 # , ngram_range=(1,2)
-vec = CountVectorizer( min_df=1 ,ngram_range=(1,2),stop_words=stopWords)
+vec = CountVectorizer( min_df=1 ,stop_words=stopWords)
 vec.fit(des_data)
 tfidf_vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords,vocabulary=vec.vocabulary_, sublinear_tf=True)
 tfidf_vec.fit(des_data)
