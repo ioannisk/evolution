@@ -187,11 +187,11 @@ while True:
     var = input("Enter website id: ")
     print("#####################")
     # try:
-    row = df_wrong.loc[df_wrong['label'] == int(var)]
+    row = df_wrong.loc[df_wrong['company_id'] == (var)]
     print(row)
     label =row["label"]
     pred = row["pred"]
-    print(label, pred)
+    # print(label, pred)
     # print(dic[var])
     # except:
     #     print("Code not in DB")
