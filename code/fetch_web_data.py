@@ -347,15 +347,8 @@ tfidf_vec_web_sites = tfidf_vec.transform(web_data_top_n)
 vec_des_data = tfidf_vec_des_data
 vec_web_sites = tfidf_vec_web_sites
 
-#
-# Try different vocabulary for vectorization
-#
-# vec.fit(des_data_top_n)
-# vec_des_data = vec.transform(des_data_top_n)
-# vec_web_sites = vec.transform(web_data)
 print("Desc shape {0}".format(vec_des_data.shape))
 print("Web shape {0}".format(vec_web_sites.shape))
-# best alpha is 0.12 for 1 grams with acc 0.1
 for a in np.arange(0.001,0.3,0.01):
     # a = 0.12
     gnb = MultinomialNB(alpha=a)
@@ -394,8 +387,14 @@ des_web_sites = des_data + web_sites
 des_web_sites_labels =  des_labels + labels
 data_len = len(des_web_sites)
 partition = int(data_len*0.9)
-vec = CountVectorizer( min_df=1, stop_words=stopWords)
-des_web_sites = vec.fit_transform(des_web_sites)
+# vec = CountVectorizer( min_df=1, stop_words=stopWords)
+
+vec = CountVectorizer( min_df=1 , stop_words=stopWords)
+vec.fit(des_data)
+tfidf_vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords,vocabulary=vec.vocabulary_, sublinear_tf=True)
+tfidf_vec.fit(des_data)
+
+des_web_sites = tfidf_vec.transform(des_web_sites)
 train_X = des_web_sites[:partition]
 train_y = des_web_sites_labels[:partition]
 test_X = des_web_sites[partition:]
