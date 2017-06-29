@@ -187,7 +187,7 @@ while True:
     var = input("Enter website id: ")
     print("#####################")
     # try:
-    row = df_wrong.loc[df_wrong['company_id'] == int(var)]
+    row = df_wrong.loc[df_wrong['label'] == int(var)]
     print(row)
     label =row["label"]
     pred = row["pred"]
