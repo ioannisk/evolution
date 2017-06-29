@@ -160,10 +160,10 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
 des_df = des_df[des_df["class_num"].isin(used_classes)]
 df = df[df["label_num"].isin(used_classes)]
 
-for da, la in zip(des_data,des_labels):
-    print("Label {0}\nData\n{1}\n\n\n".format(la,da))
+# for da, la in zip(des_data,des_labels):
+#     print("Label {0}\nData\n{1}\n\n\n".format(la,da))
 
-stop
+# stop
 ###############
 #
 # GOOD CANDIDATE CLASSES
@@ -270,14 +270,14 @@ print("Web shape {0}".format(vec_web_sites.shape))
 
 # best alpha is 0.11 for 1 grams with acc 0.06
 # best alpha is 0.078 for 2 grams with acc 0.053
-# for a in np.arange(0.001,1,0.05):
-a = 0.101
-gnb = MultinomialNB(alpha=a)
-clf = gnb.fit(vec_des_data, des_labels)
-y_pred_test = clf.predict(vec_web_sites)
-# score = clf.score(vec_web_sites, labels)
-# print("Score {0}".format(score))
-print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
+for a in np.arange(0.001,1,0.05):
+# a = 0.101
+    gnb = MultinomialNB(alpha=a)
+    clf = gnb.fit(vec_des_data, des_labels)
+    y_pred_test = clf.predict(vec_web_sites)
+    # score = clf.score(vec_web_sites, labels)
+    # print("Score {0}".format(score))
+    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
 
 stop
 
