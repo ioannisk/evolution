@@ -132,9 +132,13 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
     if cl_num == 72110:
         # print("lol")
         for key in des_json.keys():
-            text_buffer = " "
-            for bullet in des_json[key]:
-                text_buffer += " " + bullet
+
+            if type(des_json[key])==list:
+                text_buffer = " "
+                for bullet in des_json[key]:
+                    text_buffer += " " + bullet
+            else:
+                text_buffer = des_json[key]
             print("Key {0}:::::: {1}".format(key, text_buffer))
 
         stop
