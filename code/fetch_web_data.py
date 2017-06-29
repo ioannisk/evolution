@@ -141,8 +141,8 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
 des_df = des_df[des_df["class_num"].isin(used_classes)]
 df = df[df["label_num"].isin(used_classes)]
 
-for i in des_data:
-    print(i)
+for da, la in zip(des_data,des_labels):
+    print("Label {0}\nData\n{1}\n\n\n".format(la,da))
 
 stop
 ###############
