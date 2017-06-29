@@ -294,21 +294,21 @@ for c in np.arange(0.0001,2,0.5):
     print(" SVM accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
 
 
-stop
+# stop
 # ÷
 
 
 
-
-wrong_web = open("wrong_web.txt", 'w' )
-wrong_web.write("label pred company_id url\n")
-for l, pred, c_id,url_ in zip(labels,y_pred_test,df_web["company_id"],df_web["urls"]):
-    if l in selected_classes and (l!=pred):
-        wrong_web.write("{0} {1} {2} {3}\n".format(l, pred, c_id,url_))
+### WRITE MISTAKES OF CLASSES OF INTERST
+# wrong_web = open("wrong_web.txt", 'w' )
+# wrong_web.write("label pred company_id url\n")
+# for l, pred, c_id,url_ in zip(labels,y_pred_test,df_web["company_id"],df_web["urls"]):
+#     if l in selected_classes and (l!=pred):
+#         wrong_web.write("{0} {1} {2} {3}\n".format(l, pred, c_id,url_))
 # stop
 
-print("TRAIN ON TOP 150 DESCRIPTIONS, TEST ON ALL WEB")
 ## Gather websites and descriptions that are in the top 150 classes
+print("TRAIN ON TOP 150 DESCRIPTIONS, TEST ON ALL WEB")
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 N_CLASSES = 150
 top_n_prc_classes, total_percentage = n_most_popular_classes(N_CLASSES)
@@ -328,25 +328,39 @@ df_top_n = df_web[df_web["class_num"].isin(top_n_classes)]
 
 des_data_top_n = list(des_df_top_n["class_txt"])
 des_labels_top_n = list(des_df_top_n["class_num"])
-web_data = list(df_top_n["class_txt"])
-web_labels = list(df_top_n["class_num"])
+web_data_top_n = list(df_top_n["class_txt"])
+web_labels_top_n = list(df_top_n["class_num"])
 
 vec = CountVectorizer( min_df=1 , stop_words=stopWords)
+tfidf_vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords,vocabulary=vec.vocabulary_, sublinear_tf=True)
+tfidf_vec.fit(des_data_top_n)
+# print(vec.vocabulary_ == tfidf_vec.vocabulary_)
+# print(tfidf_vec.idf_)
+
+
+# vec_des_data = vec.transform(des_data)
+# vec_web_sites = vec.transform(web_sites)
+
+tfidf_vec_des_data = tfidf_vec.transform(des_data_top_n)
+tfidf_vec_web_sites = tfidf_vec.transform(web_data_top_n)
+vec_des_data = tfidf_vec_des_data
+vec_web_sites = tfidf_vec_web_sites
+
 #
 # Try different vocabulary for vectorization
 #
-vec.fit(des_data_top_n)
-vec_des_data = vec.transform(des_data_top_n)
-vec_web_sites = vec.transform(web_data)
+# vec.fit(des_data_top_n)
+# vec_des_data = vec.transform(des_data_top_n)
+# vec_web_sites = vec.transform(web_data)
 print("Desc shape {0}".format(vec_des_data.shape))
 print("Web shape {0}".format(vec_web_sites.shape))
 # best alpha is 0.12 for 1 grams with acc 0.1
-# for a in np.arange(0.001,0.3,0.01):
-a = 0.12
-gnb = MultinomialNB(alpha=a)
-clf = gnb.fit(vec_des_data, des_labels_top_n)
-y_pred_test = clf.predict(vec_web_sites)
-print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( web_labels,y_pred_test ),a))
+for a in np.arange(0.001,0.3,0.01):
+    # a = 0.12
+    gnb = MultinomialNB(alpha=a)
+    clf = gnb.fit(vec_des_data, des_labels_top_n)
+    y_pred_test = clf.predict(vec_web_sites)
+    print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( web_labels_top_n,y_pred_test ),a))
 
 
 
@@ -388,13 +402,13 @@ test_y =des_web_sites_labels[partition:]
 
 print("Web shape {0}".format(train_X.shape))
 # best acc is 0.207 with alpha 0.021
-# for a in np.arange(0.00001,0.1,0.001):
-a = 0.02201
-gnb = MultinomialNB(alpha=a )
-# data = data.toarray()
-clf = gnb.fit(train_X, train_y)
-y_pred_test = clf.predict(test_X)
-print("Testing accuracy (web + des)trainging (web) testing: {0} with alpha {1}".format(accuracy_score(test_y, y_pred_test),a ))
+for a in np.arange(0.00001,0.9,0.05):
+# a = 0.02201
+    gnb = MultinomialNB(alpha=a )
+    # data = data.toarray()
+    clf = gnb.fit(train_X, train_y)
+    y_pred_test = clf.predict(test_X)
+    print("Testing accuracy (web + des)trainging (web) testing: {0} with alpha {1}".format(accuracy_score(test_y, y_pred_test),a ))
 
 
 
@@ -413,12 +427,12 @@ train_y = labels[:partition]
 test_X = data[partition:]
 test_y =labels[partition:]
 print("Web shape {0}".format(train_X.shape))
-# for a in np.arange(0.00001,0.1,0.005):
-a = 0.02001
-gnb = MultinomialNB(alpha=a)
-# data = data.toarray()
-clf = gnb.fit(train_X, train_y)
-y_pred_test = clf.predict(test_X)
-print("Testing accuracy web-web: {0} with alpha {1}".format(accuracy_score(test_y, y_pred_test), a))
+for a in np.arange(0.00001,0.5,0.05):
+# a = 0.02001
+    gnb = MultinomialNB(alpha=a)
+    # data = data.toarray()
+    clf = gnb.fit(train_X, train_y)
+    y_pred_test = clf.predict(test_X)
+    print("Testing accuracy web-web: {0} with alpha {1}".format(accuracy_score(test_y, y_pred_test), a))
 
 
