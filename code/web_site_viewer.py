@@ -185,8 +185,8 @@ company_dic = {}
 for i, j in zip(df_web["summaries"],df_web["company_id"]):
     company_dic = i
 
-des_dic = {}
-for i, j in zip(des_df["class_num"],des_df["company_id"]):
+# des_dic = {}
+# for i, j in zip(des_df["class_num"],des_df["company_id"]):
 
 
 # wrong_web = open("wrong_web","r")
