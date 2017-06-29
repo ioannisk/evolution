@@ -130,7 +130,8 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
     ### BUG WITH OR CONDINTION
     ##
     if cl_num == 72110:
-        print("lol")
+        # print("lol")
+        print des_json.keys()
         stop
     if ("detail" in des_json.keys()) or ("includes" in des_json.keys()) :
         used_classes.add(cl_num)
