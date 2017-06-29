@@ -122,7 +122,7 @@ df = df[df["label_num"].isin(intersection)]
 #
 ########################
 des_data = []
-des_labels_1 = []
+des_labels = []
 used_classes = set()
 for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
     valid_txt = ""
@@ -137,7 +137,7 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
                 valid_txt += " "+des_json[key][0]
         valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
-        des_labels_1.append(cl_num)
+        des_labels.append(cl_num)
 des_df = des_df[des_df["class_num"].isin(used_classes)]
 df = df[df["label_num"].isin(used_classes)]
 
@@ -219,7 +219,7 @@ for i in range(20,200,20):
 selected_classes = {27900, 33120, 86101, 26200, 32500, 72110}
 
 print("TRAIN ON ALL DESCRIPTIONS, TEST ON ALL WEB")
-des_labels = [i for i in des_df["class_num"]]
+# des_labels = [i for i in des_df["class_num"]]
 # , ngram_range=(1,2)
 vec = CountVectorizer( min_df=1 ,stop_words=stopWords)
 vec.fit(des_data)
@@ -250,7 +250,7 @@ print("Web shape {0}".format(vec_web_sites.shape))
 # for a in np.arange(0.001,1,0.05):
 a = 0.101
 gnb = MultinomialNB(alpha=a)
-clf = gnb.fit(vec_des_data, des_labels_1)
+clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
 # score = clf.score(vec_web_sites, labels)
 # print("Score {0}".format(score))
