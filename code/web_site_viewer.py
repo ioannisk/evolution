@@ -180,18 +180,20 @@ for i, j in zip(df_web["summaries"],df_web["company_id"]):
 # [label pred company_id url]
 df_wrong = pd.read_csv("wrong_web.txt", sep=" ")
 
-print(df_wrong["url"])
 # print(wrong)
 
 while True:
     var = input("Enter website id: ")
     print("#####################")
-    try:
-        df_wrong.loc[df['company_id'] == var]
-        # print(dic[var])
-    except:
-        print("Code not in DB")
-        pass
+    # try:
+    row = df_wrong.loc[df['company_id'] == var]
+    label =row["label"]
+    pred = row["pred"]
+    print(label, pred)
+    # print(dic[var])
+    # except:
+    #     print("Code not in DB")
+    #     pass
 
 
 
