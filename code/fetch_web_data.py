@@ -279,7 +279,7 @@ for a in np.arange(0.001,1,0.05):
     # print("Score {0}".format(score))
     print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
 
-stop
+# stop
 
 for c in np.arange(0.0001,1,0.05):
     logistic = LogisticRegression(C=c)
