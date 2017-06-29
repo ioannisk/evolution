@@ -122,6 +122,7 @@ df = df[df["label_num"].isin(intersection)]
 #
 ########################
 des_data = []
+des_labels = []
 used_classes = set()
 for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
     valid_txt = ""
@@ -136,7 +137,16 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
                 valid_txt += " "+des_json[key][0]
         valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
+        des_labels.append(cl_num)
 des_df = des_df[des_df["class_num"].isin(used_classes)]
+des_df["txt"] = valid_txt
+des_df["new_l"] = des_labels
+
+for i in des_df:
+    print(i)
+
+stop
+
 df = df[df["label_num"].isin(used_classes)]
 
 
