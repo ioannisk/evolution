@@ -122,6 +122,7 @@ df = df[df["label_num"].isin(intersection)]
 #
 ########################
 des_data = []
+des_labels_1 = []
 used_classes = set()
 for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
     valid_txt = ""
@@ -136,6 +137,7 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
                 valid_txt += " "+des_json[key][0]
         valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
+        des_labels_1.append(cl_num)
 des_df = des_df[des_df["class_num"].isin(used_classes)]
 df = df[df["label_num"].isin(used_classes)]
 
@@ -248,11 +250,13 @@ print("Web shape {0}".format(vec_web_sites.shape))
 # for a in np.arange(0.001,1,0.05):
 a = 0.101
 gnb = MultinomialNB(alpha=a)
-clf = gnb.fit(vec_des_data, des_labels)
+clf = gnb.fit(vec_des_data, des_labels_1)
 y_pred_test = clf.predict(vec_web_sites)
 # score = clf.score(vec_web_sites, labels)
 # print("Score {0}".format(score))
 print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
+
+stop
 
 for c in np.arange(0.0001,1,0.05):
     logistic = LogisticRegression(C=c)
