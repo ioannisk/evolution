@@ -129,27 +129,30 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
     ###
     ### BUG WITH OR CONDINTION
     ##
-    if cl_num == 72110:
-        # print("lol")
-        for key in des_json.keys():
+        # for key in des_json.keys():
+        #     if type(des_json[key])==list:
+        #         text_buffer = " "
+        #         for bullet in des_json[key]:
+        #             text_buffer += " " + bullet
+        #     else:
+        #         text_buffer = des_json[key]
+        #     print("Key {0}:::::: {1}".format(key, text_buffer))
 
-            if type(des_json[key])==list:
-                text_buffer = " "
-                for bullet in des_json[key]:
-                    text_buffer += " " + bullet
-            else:
-                text_buffer = des_json[key]
-            print("Key {0}:::::: {1}".format(key, text_buffer))
-
-        stop
+        # stop
     if ("detail" in des_json.keys()) or ("includes" in des_json.keys()) :
         used_classes.add(cl_num)
         for key in des_json:
             # print("Key: {0} ---- DES {1} ".format(key, des_json[key]))
             if key!="excludes":
-                text_buffer = " "
-                for bullet in des_json[key]:
-                    text_buffer += " " + bullet
+                if type(des_json[key])==list:
+                    text_buffer = " "
+                    for bullet in des_json[key]:
+                        text_buffer += " " + bullet
+                else:
+                    text_buffer = des_json[key]
+                # text_buffer = " "
+                # for bullet in des_json[key]:
+                #     text_buffer += " " + bullet
                 valid_txt += " "+text_buffer
         valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
