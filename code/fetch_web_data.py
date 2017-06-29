@@ -132,7 +132,10 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
     if cl_num == 72110:
         # print("lol")
         for key in des_json.keys():
-            print("Key {0}:::::: {1}".format(key, des_json[key]))
+            text_buffer = " "
+            for bullet in des_json[key]:
+                text_buffer += " " + bullet
+            print("Key {0}:::::: {1}".format(key, text_buffer))
 
         stop
     if ("detail" in des_json.keys()) or ("includes" in des_json.keys()) :
@@ -140,7 +143,10 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
         for key in des_json:
             # print("Key: {0} ---- DES {1} ".format(key, des_json[key]))
             if key!="excludes":
-                valid_txt += " "+des_json[key][0]
+                text_buffer = " "
+                for bullet in des_json[key]:
+                    text_buffer += " " + bullet
+                valid_txt += " "+text_buffer
         valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
         des_labels.append(cl_num)
