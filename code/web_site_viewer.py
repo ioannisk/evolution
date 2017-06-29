@@ -189,7 +189,7 @@ while True:
     # try:
     row = df_wrong.loc[df_wrong['company_id'] == (var)]
     print(row)
-    label =row["label"]
+    label =int(row["label"])
     pred = row["pred"]
     print(label)
     print(pred)
