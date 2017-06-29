@@ -142,10 +142,9 @@ des_df = des_df[des_df["class_num"].isin(used_classes)]
 des_df["txt"] = valid_txt
 des_df["new_l"] = des_labels
 
-for i,row in des_df.iterrows():
-    print(row["new_l"], row["class_num"])
-
-stop
+# for i,row in des_df.iterrows():
+#     print(row["new_l"], row["class_num"])
+# stop
 
 df = df[df["label_num"].isin(used_classes)]
 
@@ -183,10 +182,11 @@ print("Labeled websites are {0}".format(len(df_web)))
 
 company_dic = {}
 for i, j in zip(df_web["summaries"],df_web["company_id"]):
-    company_dic = i
+    company_dic[j] = i
 
-# des_dic = {}
-# for i, j in zip(des_df["class_num"],des_df["company_id"]):
+des_dic = {}
+for i, j in zip(des_df["class_num"],des_df["txt"]):
+    des_dic[i] = j
 
 
 # wrong_web = open("wrong_web","r")
@@ -204,8 +204,9 @@ while True:
     # print(row)
     label =int(row["label"])
     pred = int(row["pred"])
-    print(label)
-    print(pred)
+    print(des_dic[label])
+    print("#########")
+    print(des_dic[pred])
     # print(dic[var])
     # except:
     #     print("Code not in DB")
