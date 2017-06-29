@@ -392,9 +392,9 @@ partition = int(data_len*0.9)
 # vec = CountVectorizer( min_df=1, stop_words=stopWords)
 
 vec = CountVectorizer( min_df=1 , stop_words=stopWords)
-vec.fit(des_data)
+vec.fit(des_web_sites)
 tfidf_vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords,vocabulary=vec.vocabulary_, sublinear_tf=True)
-tfidf_vec.fit(des_data)
+tfidf_vec.fit(des_web_sites)
 
 des_web_sites = tfidf_vec.transform(des_web_sites)
 train_X = des_web_sites[:partition]
