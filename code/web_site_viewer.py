@@ -142,9 +142,9 @@ des_df = des_df[des_df["class_num"].isin(used_classes)]
 des_df["txt"] = valid_txt
 des_df["new_l"] = des_labels
 
-# for i,row in des_df.iterrows():
-#     print(row["new_l"], row["class_num"])
-# stop
+for i,row in des_df.iterrows():
+    print(row["class_num"], row["txt"])
+stop
 
 df = df[df["label_num"].isin(used_classes)]
 
