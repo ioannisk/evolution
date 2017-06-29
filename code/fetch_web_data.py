@@ -131,7 +131,9 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
     ##
     if cl_num == 72110:
         # print("lol")
-        print(des_json.keys())
+        for key in des_json.keys():
+            print("Key {0}:::::: {1}".format(key, des_json[key]))
+
         stop
     if ("detail" in des_json.keys()) or ("includes" in des_json.keys()) :
         used_classes.add(cl_num)
