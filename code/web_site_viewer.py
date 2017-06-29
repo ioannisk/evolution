@@ -101,6 +101,7 @@ for ver in df["vertical"]:
     label_n, label_t = ver.split("-",1)
     label_num.append(int(label_n))
     label_txt.append(label_t)
+
 df["label_num"] = label_num
 df["label_txt"] = label_txt
 # Keep only the descriptions that exist in the dataset
@@ -173,6 +174,11 @@ print("Labeled websites are {0}".format(len(df_web)))
 dic = {}
 for i, j in zip(df_web["summaries"],df_web["company_id"]):
     dic[j] = i
+
+
+# wrong_web = open("wrong_web","r")
+wrong = pd.read_csv("wrong_web.txt", sep=" ")
+print(wrong)
 
 while True:
     var = input("Enter website id: ")
