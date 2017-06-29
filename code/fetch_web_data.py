@@ -270,28 +270,30 @@ print("Web shape {0}".format(vec_web_sites.shape))
 
 # best alpha is 0.11 for 1 grams with acc 0.06
 # best alpha is 0.078 for 2 grams with acc 0.053
-for a in np.arange(0.001,1,0.05):
-# a = 0.101
-    gnb = MultinomialNB(alpha=a)
-    clf = gnb.fit(vec_des_data, des_labels)
-    y_pred_test = clf.predict(vec_web_sites)
-    # score = clf.score(vec_web_sites, labels)
-    # print("Score {0}".format(score))
-    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
+# for a in np.arange(0.001,1,0.05):
+a = 0.3
+gnb = MultinomialNB(alpha=a)
+clf = gnb.fit(vec_des_data, des_labels)
+y_pred_test = clf.predict(vec_web_sites)
+# score = clf.score(vec_web_sites, labels)
+# print("Score {0}".format(score))
+print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
 
 # stop
 
-for c in np.arange(0.0001,1,0.05):
-    logistic = LogisticRegression(C=c)
-    clf = logistic.fit(vec_des_data, des_labels)
-    y_pred_test = clf.predict(vec_web_sites)
-    print(" LogisticTesting accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
+# for c in np.arange(0.0001,1,0.05):
+c = 0.0001
+logistic = LogisticRegression(C=c)
+clf = logistic.fit(vec_des_data, des_labels)
+y_pred_test = clf.predict(vec_web_sites)
+print(" LogisticTesting accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
 
-for c in np.arange(0.0001,2,0.5):
-    logistic = LinearSVC(C=c)
-    clf = logistic.fit(vec_des_data, des_labels)
-    y_pred_test = clf.predict(vec_web_sites)
-    print(" SVM accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
+# for c in np.arange(0.0001,2,0.5):
+c = 0.0001
+logistic = LinearSVC(C=c)
+clf = logistic.fit(vec_des_data, des_labels)
+y_pred_test = clf.predict(vec_web_sites)
+print(" SVM accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
 
 
 # stop
@@ -349,12 +351,12 @@ vec_web_sites = tfidf_vec_web_sites
 
 print("Desc shape {0}".format(vec_des_data.shape))
 print("Web shape {0}".format(vec_web_sites.shape))
-for a in np.arange(0.001,0.3,0.01):
-    # a = 0.12
-    gnb = MultinomialNB(alpha=a)
-    clf = gnb.fit(vec_des_data, des_labels_top_n)
-    y_pred_test = clf.predict(vec_web_sites)
-    print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( web_labels_top_n,y_pred_test ),a))
+# for a in np.arange(0.001,0.3,0.01):
+a = 0.12
+gnb = MultinomialNB(alpha=a)
+clf = gnb.fit(vec_des_data, des_labels_top_n)
+y_pred_test = clf.predict(vec_web_sites)
+print("Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( web_labels_top_n,y_pred_test ),a))
 
 
 
