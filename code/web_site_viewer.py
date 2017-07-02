@@ -237,31 +237,31 @@ while True:
     print("#####################")
     print("#####################")
     var = input("Enter website id: ")
-    # try:
-    row = df_wrong.loc[df_wrong['company_id'] == (var)]
-    # print(row)
-    label =int(row["label"])
-    pred = int(row["pred"])
-    true_c = des_dic[label]
-    pred_c = des_dic[pred]
-    comapny_txt = company_dic[var]
-    true_over = count_overlap(comapny_txt, true_c)
-    pred_over = count_overlap(comapny_txt, pred_c)
+    try:
+        row = df_wrong.loc[df_wrong['company_id'] == (var)]
+        # print(row)
+        label =int(row["label"])
+        pred = int(row["pred"])
+        true_c = des_dic[label]
+        pred_c = des_dic[pred]
+        comapny_txt = company_dic[var]
+        true_over = count_overlap(comapny_txt, true_c)
+        pred_over = count_overlap(comapny_txt, pred_c)
 
-    true_buffer = ""
-    for key in true_over:
-        true_buffer += " {0}:{1} ".format(key, true_over[key])
-    print("True overlap is" + true_buffer)
+        true_buffer = ""
+        for key in true_over:
+            true_buffer += " {0}:{1} ".format(key, true_over[key])
+        print("True overlap is" + true_buffer)
 
-    pred_buffer = ""
-    for key in pred_over:
-        pred_buffer += " {0}:{1} ".format(key, pred_over[key])
-    print("Pred overlap is" + pred_buffer)
+        pred_buffer = ""
+        for key in pred_over:
+            pred_buffer += " {0}:{1} ".format(key, pred_over[key])
+        print("Pred overlap is" + pred_buffer)
 
     # print(dic[var])
-    # except:
-    #     print("Code not in DB")
-    #     pass
+    except:
+        print("Code not in DB. Please try again")
+        pass
 
 
 
