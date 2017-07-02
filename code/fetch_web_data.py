@@ -207,8 +207,9 @@ for i, l, c_id in zip(df['url'], df["label_num"], df["company_id"]):
     # if counter > 10000:
     #     break
     # query database and get page object
-    print(i)
+    # print(i)
     page = storage.get_page(i)
+    print(page)
     # some domains are not scrapped
     try:
         page_txt = page.textSummary
