@@ -271,7 +271,7 @@ print("Web shape {0}".format(vec_web_sites.shape))
 # best alpha is 0.1 for 1 grams with acc 0.85
 # best alpha is 0.3 for TFIDF grams with acc 0.95
 # for a in np.arange(0.001,1,0.05):
-# a = 0.3
+a = 0.1
 gnb = MultinomialNB(alpha=a)
 clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
