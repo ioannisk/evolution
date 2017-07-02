@@ -20,13 +20,15 @@ from sklearn.preprocessing import normalize
 
 
 def count_overlap(str1, str2):
+    stopWords = set(stopwords.words('english'))
     str1=str1.split()
     str2 = str2.split()
     overlap = Counter()
     for word1 in str1:
-        for word2 in str2:
-            if word1==word2:
-                overlap[word1] +=1
+        if word1 not in stopWords:
+            for word2 in str2:
+                if word1==word2:
+                    overlap[word1] +=1
     return overlap
 
 
@@ -228,9 +230,9 @@ df_wrong = pd.read_csv("wrong_web.txt", sep=" ")
 # print(wrong)
 
 stopWords = stopwords.words('english')
-print(stopWords)
-print(type(stopWords))
-stop
+# print(stopWords)
+# print(type(stopWords))
+# stop
 while True:
     print("#####################")
     print("#####################")
