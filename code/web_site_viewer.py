@@ -166,8 +166,8 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
                 # text_buffer = " "
                 # for bullet in des_json[key]:
                 #     text_buffer += " " + bullet
-                valid_txt += " "+text_buffer
-        valid_txt = clean_up_txt(valid_txt)
+                valid_txt += "|||"+text_buffer
+        # valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
         des_labels.append(cl_num)
 
@@ -247,6 +247,7 @@ while True:
         comapny_txt = company_dic[var]
         true_over = count_overlap(comapny_txt, true_c)
         pred_over = count_overlap(comapny_txt, pred_c)
+        print(comapny_txt)
 
         true_buffer = ""
         for key in true_over:
