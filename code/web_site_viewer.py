@@ -5,7 +5,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from collections import defaultdict
+from collections import defaultdict, Counter
 from nltk.corpus import stopwords
 import pandas as pd
 import re
@@ -17,6 +17,17 @@ from sklearn.preprocessing import normalize
 # import matplotlib
 # matplotlib.use('GTK')
 # import matplotlib.pyplot as plt
+
+
+def count_overlap(str1, str2):
+    str1=str1.split()
+    str2 = str2.split()
+    overlap = Counter()
+    for word1 in str1:
+        for word2 in str2
+            if word1==word2:
+                overlap[word1] +=1
+    return overlap
 
 
 ## META
@@ -217,18 +228,29 @@ df_wrong = pd.read_csv("wrong_web.txt", sep=" ")
 # print(wrong)
 
 while True:
-    var = input("Enter website id: ")
     print("#####################")
+    print("#####################")
+    var = input("Enter website id: ")
     # try:
     row = df_wrong.loc[df_wrong['company_id'] == (var)]
     # print(row)
     label =int(row["label"])
     pred = int(row["pred"])
-    print(des_dic[label])
-    print("#########")
-    print(des_dic[pred])
-    print("#########")
-    print(company_dic[var])
+    true_c = des_dic[label]
+    pred_c = des_dic[pred]
+    comapny_txt = company_dic[var]
+    true_over = count_overlap(comapny_txt, true_c)
+    pred_over = count_overlap(comapny_txt, pred_c)
+
+    true_buffer = ""
+    for key in true_over:
+        true_buffer += " {0}:{1} ".format(key, true_over[key])
+    print("True overlap is" + true_buffer)
+
+    pred_buffer = ""
+    for key in pred_over:
+        pred_buffer += " {0}:{1} ".format(key, pred_over[key])
+    print("Pred overlap is" + pred_buffer)
 
     # print(dic[var])
     # except:
