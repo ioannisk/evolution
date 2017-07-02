@@ -268,32 +268,30 @@ print("Web shape {0}".format(vec_web_sites.shape))
 
 # best alpha for tfidf sublinear0.201
 
-# best alpha is 0.11 for 1 grams with acc 0.06
-# best alpha is 0.078 for 2 grams with acc 0.053
-for a in np.arange(0.001,1,0.05):
-# a = 0.3
-    gnb = MultinomialNB(alpha=a)
-    clf = gnb.fit(vec_des_data, des_labels)
-    y_pred_test = clf.predict(vec_web_sites)
-    # score = clf.score(vec_web_sites, labels)
-    # print("Score {0}".format(score))
-    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
-
-stop
+# best alpha is 0.3 for TFIDF 1 grams with acc 0.95
+# best alpha is 0.101 for 1 grams with acc 0.084
+# for a in np.arange(0.001,1,0.05):
+a = 0.101
+gnb = MultinomialNB(alpha=a)
+clf = gnb.fit(vec_des_data, des_labels)
+y_pred_test = clf.predict(vec_web_sites)
+# score = clf.score(vec_web_sites, labels)
+# print("Score {0}".format(score))
+print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
 
 # for c in np.arange(0.0001,1,0.05):
-c = 0.0001
-logistic = LogisticRegression(C=c)
-clf = logistic.fit(vec_des_data, des_labels)
-y_pred_test = clf.predict(vec_web_sites)
-print(" LogisticTesting accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
+# c = 0.0001
+# logistic = LogisticRegression(C=c)
+# clf = logistic.fit(vec_des_data, des_labels)
+# y_pred_test = clf.predict(vec_web_sites)
+# print(" LogisticTesting accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
 
 # for c in np.arange(0.0001,2,0.5):
-c = 0.0001
-logistic = LinearSVC(C=c)
-clf = logistic.fit(vec_des_data, des_labels)
-y_pred_test = clf.predict(vec_web_sites)
-print(" SVM accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
+# c = 0.0001
+# logistic = LinearSVC(C=c)
+# clf = logistic.fit(vec_des_data, des_labels)
+# y_pred_test = clf.predict(vec_web_sites)
+# print(" SVM accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_pred_test),c))
 
 
 # stop
@@ -302,12 +300,12 @@ print(" SVM accuracy des - web: {0} with c {1}".format(accuracy_score( labels,y_
 
 
 ### WRITE MISTAKES OF CLASSES OF INTERST
-# wrong_web = open("wrong_web.txt", 'w' )
-# wrong_web.write("label pred company_id url\n")
-# for l, pred, c_id,url_ in zip(labels,y_pred_test,df_web["company_id"],df_web["urls"]):
-#     if l in selected_classes and (l!=pred):
-#         wrong_web.write("{0} {1} {2} {3}\n".format(l, pred, c_id,url_))
-# stop
+wrong_web = open("wrong_web.txt", 'w' )
+wrong_web.write("label pred company_id url\n")
+for l, pred, c_id,url_ in zip(labels,y_pred_test,df_web["company_id"],df_web["urls"]):
+    if l in selected_classes and (l!=pred):
+        wrong_web.write("{0} {1} {2} {3}\n".format(l, pred, c_id,url_))
+stop
 
 ## Gather websites and descriptions that are in the top 150 classes
 print("TRAIN ON TOP 150 DESCRIPTIONS, TEST ON ALL WEB")
