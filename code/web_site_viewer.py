@@ -166,8 +166,8 @@ for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
                 # text_buffer = " "
                 # for bullet in des_json[key]:
                 #     text_buffer += " " + bullet
-                valid_txt += "|||"+text_buffer
-        # valid_txt = clean_up_txt(valid_txt)
+                valid_txt += " "+text_buffer
+        valid_txt = clean_up_txt(valid_txt)
         des_data.append(valid_txt)
         des_labels.append(cl_num)
 
@@ -197,7 +197,8 @@ for i, l, c_id in zip(df['url'], df["label_num"], df["company_id"]):
     # some domains are not scrapped
     try:
         page_txt = page.textSummary
-        summaries.append(re.sub('\s+',' ',page_txt))
+        # summaries.append(re.sub('\s+',' ',page_txt))
+        summaries.append(page_txt)
         page_txt = clean_up_txt(page_txt)
         web_sites.append(page_txt)
         company_id.append(c_id)
