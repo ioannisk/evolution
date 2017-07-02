@@ -227,6 +227,10 @@ df_wrong = pd.read_csv("wrong_web.txt", sep=" ")
 # print(df_wrong[])
 # print(wrong)
 
+stopWords = stopwords.words('english')
+print(stopWords)
+print(type(stopWords))
+stop
 while True:
     print("#####################")
     print("#####################")
