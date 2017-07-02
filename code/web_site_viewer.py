@@ -227,6 +227,9 @@ while True:
     print(des_dic[label])
     print("#########")
     print(des_dic[pred])
+    print("#########")
+    print(company_dic[var])
+
     # print(dic[var])
     # except:
     #     print("Code not in DB")
