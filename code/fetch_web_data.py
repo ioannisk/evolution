@@ -89,7 +89,7 @@ def find_intersection_of_classes():
 # English stopwords
 stopWords = stopwords.words('english')
 # get path to the database
-storage = StorageEngine("/nvme/webcache/")
+storage = StorageEngine("/nvme/webcache_old/")
 # read the domains.tsv file in pandas
 print("Read domains")
 df = pd.read_csv('../data/domains.tsv', sep='\t', names = ["company_name", "company_id", "url", "vertical"])
