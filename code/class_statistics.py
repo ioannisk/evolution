@@ -17,4 +17,4 @@ for i in sorted_companies:
 
 for i in more_than:
     print(i[0], i[1])
-print(len(more_than_dic))
+print(len(more_than))
