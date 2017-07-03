@@ -24,6 +24,7 @@ from sklearn.preprocessing import normalize
 ## TITLE and DESCRIPTION
 
 def clean_up_txt(page_txt):
+    page_txt = page_txt.lower()
     page_txt = re.sub('\s+',' ',page_txt)
     page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
     return page_txt
