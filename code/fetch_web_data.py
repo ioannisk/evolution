@@ -10,6 +10,7 @@ from collections import defaultdict
 from nltk.corpus import stopwords
 import pandas as pd
 import re
+from collections import Counter
 from sklearn.metrics import accuracy_score
 from parse_descriptions import read_descriptions
 import numpy as np
