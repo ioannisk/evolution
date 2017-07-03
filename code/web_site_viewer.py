@@ -246,6 +246,7 @@ while True:
         true_c = des_dic[label]
         pred_c = des_dic[pred]
         comapny_txt = company_dic[var]
+        comapny_txt = clean_up_txt(comapny_txt)
         true_over = count_overlap(comapny_txt, true_c)
         pred_over = count_overlap(comapny_txt, pred_c)
         print(comapny_txt)
