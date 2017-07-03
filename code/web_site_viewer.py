@@ -24,7 +24,7 @@ def count_overlap(str1, str2):
     str1=str1.split()
     str2 = str2.split()
     overlap = Counter()
-    for word1 in str1:
+    for word1 in set(str1):
         if word1 not in stopWords:
             for word2 in str2:
                 if word1==word2:
