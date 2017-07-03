@@ -15,6 +15,10 @@ for i in sorted_companies:
     if i[1] >= N:
         more_than.append(i)
 
+data_count = 0
 for i in more_than:
     print(i[0], i[1])
-print(len(more_than))
+    data_count +=i[1]
+
+print("Classes {0}".format(len(more_than)))
+print("Data {0}".format(data_count))
