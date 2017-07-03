@@ -9,3 +9,4 @@ for id_ in df["vertical"]:
 sorted_companies = sorted(count_companies.items(), key=lambda pair: pair[1], reverse=True)
 for i in sorted_companies:
     print(i[0], i[1])
+print(len(sorted_companies))
