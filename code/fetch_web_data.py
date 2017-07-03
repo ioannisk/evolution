@@ -288,7 +288,7 @@ clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
 # score = clf.score(vec_web_sites, labels)
 # print("Score {0}".format(score))
-print(clf.feature_log_prob_)
+print(clf.class_count_)
 
 print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=False),a))
 
