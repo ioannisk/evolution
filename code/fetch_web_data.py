@@ -297,13 +297,21 @@ class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 
 
 counter_false = Counter()
+counter_class = Counter()
 for l, p in zip(labels, y_pred_test):
+    counter_class[l] +=1
     if l != p:
         counter_false[l] +=1
-false = counter_false.most_common()
-classes  = []
-stats = []
-total = 0
+for l in set(labels):
+    counter_false[l] /= float(counter_class[l])
+counter = counter_false.most_common()
+for i, j in counter:
+    print("{0}-{1} :::::: {2}".format(i, class_hash[i], j ))
+
+stop
+# false = counter_false.items()
+# labels, counts = zip(*false)
+# prcnt = np.asarray(counts),np.asarray(counter_class.ite)
 for l, p in false:
     total += p
     classes.append("{0} -- {1}".format(l, class_hash[l]))
