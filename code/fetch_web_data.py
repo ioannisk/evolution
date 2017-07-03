@@ -212,9 +212,9 @@ all_urls = []
 print("Fetch websites from database")
 counter = 0
 for i, l, c_id in zip(df['url'], df["label_num"], df["company_id"]):
-    counter +=1
-    if counter > 10000:
-        break
+    # counter +=1
+    # if counter > 10000:
+    #     break
     # query database and get page object
     page = storage.get_page(i)
     # some domains are not scrapped
@@ -306,7 +306,7 @@ for l in set(labels):
     counter_false[l] /= float(counter_class[l])
 counter = counter_false.most_common()
 for i, j in counter:
-    print("{0}-{1} (Total Counts {2}) {2}".format(i, class_hash[i], counter_class[i],j ))
+    print("{0}-{1} (Total Counts {2}) {3}".format(i, class_hash[i], counter_class[i],j ))
 
 stop
 # false = counter_false.items()
