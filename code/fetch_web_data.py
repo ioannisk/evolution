@@ -303,7 +303,7 @@ for l, p in zip(labels, y_pred_test):
 false = counter_false.most_common()
 classes  = []
 stats = []
-total
+total = 0
 for l, p in false:
     total +=1
     classes.append("{0} -- {1}".format(l, class_hash[l]))
