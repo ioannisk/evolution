@@ -249,8 +249,8 @@ while True:
         comapny_txt = company_dic[var]
         printable_txt = comapny_txt
         comapny_txt = clean_up_txt(comapny_txt)
-        true_over = count_overlap(comapny_txt, true_c)
-        pred_over = count_overlap(comapny_txt, pred_c)
+        true_over = count_overlap(true_c, comapny_txt)
+        pred_over = count_overlap(pred_c, comapny_txt)
 
 
         print("---------------------------------")
