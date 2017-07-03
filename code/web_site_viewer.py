@@ -268,12 +268,12 @@ while True:
         true_buffer = ""
         for key in true_over:
             true_buffer += " {0}:{1} ".format(key, true_over[key])
-        print("True overlap is" + true_buffer)
+        print(("True {0} overlap is" + true_buffer).format(true_c))
 
         pred_buffer = ""
         for key in pred_over:
             pred_buffer += " {0}:{1} ".format(key, pred_over[key])
-        print("Pred overlap is" + pred_buffer)
+        print(("Pred {0} overlap is" + pred_buffer).format(pred_c))
 
     # print(dic[var])
     except:
