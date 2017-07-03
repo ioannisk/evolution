@@ -293,6 +293,20 @@ print(clf.class_count_)
 print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=False),a))
 
 
+class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
+
+
+counter_true = Counter()
+counter_false = Counter()
+for l, p in zip(labels, y_pred_test):
+    if l == p:
+        counter_true[l] +=1
+    else:
+        counter_false[l] +=1
+print(len(counter_false))
+print(len(counter_true))
+
+stop
 
 # stop
 
