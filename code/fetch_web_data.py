@@ -28,12 +28,12 @@ def clean_up_txt(page_txt):
     page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
     return page_txt
 
-def remove_url_chars(string):
-    for ch in ['/','.', '_', '#', '-']:
-        string = string.lower()
-        if ch in string:
-            string=string.replace(ch," ")
-    return string
+# def remove_url_chars(string):
+#     for ch in ['/','.', '_', '#', '-']:
+#         string = string.lower()
+#         if ch in string:
+#             string=string.replace(ch," ")
+#     return string
 
 
 #################################
@@ -222,7 +222,7 @@ for i, l, c_id in zip(df['url'], df["label_num"], df["company_id"]):
         summaries.append(re.sub('\s+',' ',page_txt))
         # some preprocessing
         page_txt = clean_up_txt(page_txt)
-        page_txt = remove_url_chars(page_txt)
+        # page_txt = remove_url_chars(page_txt)
         web_sites.append(page_txt)
         company_id.append(c_id)
         labels.append(l)
