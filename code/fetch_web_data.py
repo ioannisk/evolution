@@ -305,7 +305,7 @@ classes  = []
 stats = []
 total = 0
 for l, p in false:
-    total +=1
+    total += p
     classes.append("{0} -- {1}".format(l, class_hash[l]))
     stats.append(p)
 stats = np.asarray(stats)*100/float(total)
