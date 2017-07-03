@@ -3,7 +3,7 @@ import pandas as pd
 from collections import Counter
 from itertools import dropwhile
 
-N = 20
+N = 50
 
 df = pd.read_csv('../data/domains.tsv', sep='\t', names = ["company_name", "company_id", "url", "vertical"])
 count_companies = Counter()
