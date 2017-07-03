@@ -289,23 +289,29 @@ clf = gnb.fit(vec_des_data, des_labels)
 y_pred_test = clf.predict(vec_web_sites)
 # score = clf.score(vec_web_sites, labels)
 # print("Score {0}".format(score))
-print(clf.class_count_)
-
 print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=False),a))
 
 
 class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 
 
-counter_true = Counter()
+
 counter_false = Counter()
 for l, p in zip(labels, y_pred_test):
-    if l == p:
-        counter_true[l] +=1
-    else:
+    if l != p:
         counter_false[l] +=1
-print(len(counter_false))
-print(len(counter_true))
+false = counter_false.most_common()
+classes  = []
+stats = np.array()
+total
+for l, p in false:
+    total +=1
+    classes.append("{0} -- {1}".format(l, class_hash[l]))
+    stats.append(p)
+stats = np.asarray(stats)/float(total)
+for i, j in zip(classes, stats):
+    print(i, j)
+
 
 stop
 
