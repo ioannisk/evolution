@@ -306,7 +306,7 @@ for l in set(labels):
     counter_false[l] /= float(counter_class[l])
 counter = counter_false.most_common()
 for i, j in counter:
-    print("{0}-{1} :::::: {2}".format(i, class_hash[i], j ))
+    print("{0}-{1} (Total Counts {2}) {2}".format(i, class_hash[i], counter_class[i],j ))
 
 stop
 # false = counter_false.items()
