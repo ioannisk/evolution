@@ -259,6 +259,7 @@ while True:
         print("Pred class is: {1}".format(pred))
         print("---------------------------------")
         print(pred_c)
+
         true_buffer = ""
         for key in true_over:
             true_buffer += " {0}:{1} ".format(key, true_over[key])
