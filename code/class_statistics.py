@@ -8,8 +8,8 @@ count_companies = Counter()
 for id_ in df["vertical"]:
     count_companies[id_] +=1
 
-for key, count in dropwhile(lambda key_count: key_count[1] >= 2, sorted_companies.most_common()):
-    del sorted_companies[key]
+for key, count in dropwhile(lambda key_count: key_count[1] >= 2, count_companies.most_common()):
+    del count_companies[key]
 
 
 sorted_companies = sorted(count_companies.items(), key=lambda pair: pair[1], reverse=True)
