@@ -7,8 +7,9 @@ df = pd.read_csv('../data/domains.tsv', sep='\t', names = ["company_name", "comp
 count_companies = Counter()
 for id_ in df["vertical"]:
     count_companies[id_] +=1
+count_companies = dict(count_companies)
 
-for key, count in dropwhile(lambda key_count: key_count[1] >= 2, count_companies.most_common()):
+for key, count in dropwhile(lambda key_count: key_count[1] >= 20, count_companies.most_common()):
     del count_companies[key]
 
 
