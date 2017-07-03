@@ -1,24 +1,24 @@
-label,pred,company_id,url,error,notes,,,
-86101,87200,08676343,www.djh-medic.ie,,,,c,should be correct
-86101,86220,09219446,www.epicmedical.co.uk,,,,k,more keywords in wrong des
-86101,28220,06777610,www.spectrumhealthcare.co.uk,,,,b,bad data – not enough information 
-86101,87300,06006457,excellultrasound.co.uk,,,,e,entailement could work
-86101,70229,08089428,geotabafrica.com,,,,,
-86101,82200,04665968,www.grazie.ca,,,,,
-86101,90030,08827709,hangaten.com,,,,,
-86101,71129,08460261,www.kuka.com,,,,,
-86101,62030,02400969,www.macmillan.org.uk,,,,,
-86101,8110,09089447,medasstones.com,,,,,
-86101,86220,08136144,www.medscape.com,,,,,
+label,pred,company_id,url,error,Notes,Proposed Solutions,c,should be correct
+86101,87200,08676343,www.djh-medic.ie,ks,more keywords and more tf in pred,match title ,kb,more keywords in wrong des BIG PROBLEM
+86101,86220,09219446,www.epicmedical.co.uk,ks,hard for a human to classify ,,ks,more keywords in wrong des SMALL PROBLEM
+86101,28220,06777610,www.spectrumhealthcare.co.uk,kb -wc,hard for a human to classify,,b,bad data – not enough information 
+86101,87300,06006457,excellultrasound.co.uk,b,,,e,entailement could work
+86101,70229,08089428,geotabafrica.com,wc,manages fleets ,,wc,wrong class 
+86101,82200,04665968,www.grazie.ca,wc,restaurant ,,,
+86101,90030,08827709,hangaten.com,wc,printing ,,,
+86101,71129,08460261,www.kuka.com,wc,software platform,,,
+86101,62030,02400969,www.macmillan.org.uk,c,more matched words on true label,,,
+86101,8110,09089447,medasstones.com,wc,granite manufacturers ,,,
+86101,86220,08136144,www.medscape.com,c,I dont know why this is misclassified ,,,
 72110,1110,08838370,www.14mg.co.uk,b,,,,
-72110,84120,07979043,www.ancona-alpha.com,,,,,
-72110,35110,07191622,www.appleybridgebiomasstoenergy.co.uk,,,,,
-72110,26600,07543962,autifony.com,,,,,
-72110,27200,SC303949,avanticell.com,,,,,
-72110,74901,07153483,www.biologic.ca,,,,,
-72110,71129,09066229,cleonenergy.co.uk,,,,,
-72110,1110,03670478,www.dgen.net,,,,,
-72110,82200,SC406341,glycobiochem.com,,,,,
+72110,84120,07979043,www.ancona-alpha.com,kb,,stemming would fix ,,
+72110,35110,07191622,www.appleybridgebiomasstoenergy.co.uk,kb,,better parsing term “bio” should match ,,
+72110,26600,07543962,autifony.com,wc,prediction makes more sense ,,,
+72110,27200,SC303949,avanticell.com,c,too many matches of some keywords,bigrams ,,
+72110,74901,07153483,www.biologic.ca,kb,bad parsing ,better parsing term “bio” should match ,,
+72110,71129,09066229,cleonenergy.co.uk,kb,not enough info ,,,
+72110,1110,03670478,www.dgen.net,b,,,,
+72110,82200,SC406341,glycobiochem.com,c,keyword missmatch ,stemming would fix ,,
 72110,72190,SC296459,www.highlandbiosciences.com,,,,,
 72110,72190,04784437,mologic.co.uk,,,,,
 33120,64921,SC087960,amkplantandtipperhire.co.uk,,,,,
@@ -29,7 +29,7 @@ label,pred,company_id,url,error,notes,,,
 33120,28940,07519345,www.clippanet.co.uk,,,,,
 33120,71129,02689763,www.cooltech-ltd.co.uk,,,,,
 33120,71129,07058198,www.datumengineering.org.uk,,,,,
-33120,1110,02630521,www.imlifts.co.uk,,,,,
+33120,1110,02630521,www.imlifts.co.uk,b,,,,
 33120,71129,07181647,mechspan.com,,,,,
 33120,46610,05156943,mikegarwoodltd.co.uk,,,,,
 32500,21200,06717387,endocuff.com,,,,,
