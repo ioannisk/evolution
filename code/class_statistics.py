@@ -12,7 +12,7 @@ for id_ in df["vertical"]:
     count_companies[id_] +=1
 sorted_companies = sorted(count_companies.items(), key=lambda pair: pair[1], reverse=True)
 
-for N in (np.arange(0,10)*10):
+for N in (np.arange(10,100)*10):
     more_than = []
     for i in sorted_companies:
         if i[1] >= N:
