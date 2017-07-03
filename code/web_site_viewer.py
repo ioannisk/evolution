@@ -256,7 +256,7 @@ while True:
         print("---------------------------------")
         print(true_c)
         print("---------------------------------")
-        print("Pred class is: {1}".format(pred))
+        print("Pred class is: {0}".format(pred))
         print("---------------------------------")
         print(pred_c)
 
