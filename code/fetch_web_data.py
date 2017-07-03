@@ -302,13 +302,13 @@ for l, p in zip(labels, y_pred_test):
         counter_false[l] +=1
 false = counter_false.most_common()
 classes  = []
-stats = np.array()
+stats = []
 total
 for l, p in false:
     total +=1
     classes.append("{0} -- {1}".format(l, class_hash[l]))
     stats.append(p)
-stats = np.asarray(stats)/float(total)
+stats = np.asarray(stats)*100/float(total)
 for i, j in zip(classes, stats):
     print(i, j)
 
