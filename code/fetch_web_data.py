@@ -210,9 +210,9 @@ all_urls = []
 print("Fetch websites from database")
 counter = 0
 for i, l, c_id in zip(df['url'], df["label_num"], df["company_id"]):
-    counter +=1
-    if counter > 10000:
-        break
+    # counter +=1
+    # if counter > 10000:
+    #     break
     # query database and get page object
     page = storage.get_page(i)
     # some domains are not scrapped
@@ -280,16 +280,16 @@ print("Web shape {0}".format(vec_web_sites.shape))
 
 # best alpha is 0.1 for 1 grams with acc 0.85
 # best alpha is 0.3 for TFIDF grams with acc 0.95
-# for a in np.arange(0.001,1,0.05):
-a = 0.1
-gnb = MultinomialNB(alpha=a)
-clf = gnb.fit(vec_des_data, des_labels)
-y_pred_test = clf.predict(vec_web_sites)
-# score = clf.score(vec_web_sites, labels)
-# print("Score {0}".format(score))
-print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
+for a in np.arange(0.001,1,0.05):
+# a = 0.1
+    gnb = MultinomialNB(alpha=a)
+    clf = gnb.fit(vec_des_data, des_labels)
+    y_pred_test = clf.predict(vec_web_sites)
+    # score = clf.score(vec_web_sites, labels)
+    # print("Score {0}".format(score))
+    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test),a))
 
-# stop
+stop
 
 # for c in np.arange(0.0001,1,0.05):
 # c = 0.0001
