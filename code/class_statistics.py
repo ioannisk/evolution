@@ -12,7 +12,7 @@ for id_ in df["vertical"]:
 sorted_companies = sorted(count_companies.items(), key=lambda pair: pair[1], reverse=True)
 more_than = []
 for i in sorted_companies:
-    print(i)
+    print(i[1])
     if i[1] >= N:
         more_than.append(i)
 
