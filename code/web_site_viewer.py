@@ -251,6 +251,14 @@ while True:
         pred_over = count_overlap(comapny_txt, pred_c)
         print(comapny_txt)
 
+        print("---------------------------------")
+        print("True class is: {0}".format(label))
+        print("---------------------------------")
+        print(true_c)
+        print("---------------------------------")
+        print("Pred class is: {1}".format(pred))
+        print("---------------------------------")
+        print(pred_c)
         true_buffer = ""
         for key in true_over:
             true_buffer += " {0}:{1} ".format(key, true_over[key])
