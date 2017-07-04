@@ -25,21 +25,21 @@ from os.path import isfile, join
 
 LabeledSentence = gensim.models.doc2vec.LabeledSentence
 
-class LabeledLineSentence(object):
-    def __init__(self, filename):
-        self.filename = filename
-    def __iter__(self):
-        for uid, line in enumerate(open(filename)):
-            yield LabeledSentence(words=line.split(), labels=['SENT_%s' % uid])
-
 # class LabeledLineSentence(object):
-#     def __init__(self, doc_list, labels_list):
-#        self.labels_list = labels_list
-#        self.doc_list = doc_list
+#     def __init__(self, filename):
+#         self.filename = filename
 #     def __iter__(self):
-#         for idx, doc in enumerate(self.doc_list):
-#             # print(doc)
-#             yield LabeledSentence(words=doc.split(),labels=[self.labels_list[idx]])
+#         for uid, line in enumerate(open(filename)):
+#             yield LabeledSentence(words=line.split(), labels=['SENT_%s' % uid])
+
+class LabeledLineSentence(object):
+    def __init__(self, doc_list, labels_list):
+       self.labels_list = labels_list
+       self.doc_list = doc_list
+    def __iter__(self):
+        for idx, doc in enumerate(self.doc_list):
+            # print(doc)
+            yield LabeledSentence(words=doc.split(),labels=[self.labels_list[idx]])
 
 
 def clean_up_txt(page_txt):
@@ -275,10 +275,14 @@ print("Labeled websites are {0}".format(len(df_web)))
 docLabels = []
 docLabels = [f for f in listdir("doc2vec_data") if f.endswith('.txt')]
 data = []
+counter__ = 0
 for doc in docLabels:
+    counter__ +=1
+    if counter__ >500:
+        break
     dd = open("doc2vec_data/" + doc, 'r')
     data.append(dd)
-    dd.close()
+    # dd.close()
 # print(data[0])
 # print(docLabels[0])
 
