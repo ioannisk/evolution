@@ -24,14 +24,22 @@ from os.path import isfile, join
 
 
 LabeledSentence = gensim.models.doc2vec.LabeledSentence
+
 class LabeledLineSentence(object):
-    def __init__(self, doc_list, labels_list):
-       self.labels_list = labels_list
-       self.doc_list = doc_list
+    def __init__(self, filename):
+        self.filename = filename
     def __iter__(self):
-        for idx, doc in enumerate(self.doc_list):
-            print(doc)
-            yield LabeledSentence(words=doc.split(),labels=[self.labels_list[idx]])
+        for uid, line in enumerate(open(filename)):
+            yield LabeledSentence(words=line.split(), labels=['SENT_%s' % uid])
+
+# class LabeledLineSentence(object):
+#     def __init__(self, doc_list, labels_list):
+#        self.labels_list = labels_list
+#        self.doc_list = doc_list
+#     def __iter__(self):
+#         for idx, doc in enumerate(self.doc_list):
+#             # print(doc)
+#             yield LabeledSentence(words=doc.split(),labels=[self.labels_list[idx]])
 
 
 def clean_up_txt(page_txt):
