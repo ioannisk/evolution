@@ -276,6 +276,7 @@ docLabels = []
 docLabels = [f for f in listdir("doc2vec_data") if f.endswith('.txt')]
 data = []
 counter__ = 0
+buffer_ = []
 for doc in docLabels:
     # counter__ +=1
     # if counter__ >500:
@@ -285,9 +286,11 @@ for doc in docLabels:
     if len(dd)>0:
     # print(dd)
     # print(dd[0])
-        data.append(dd)
+        data.append(dd[0])
+        buffer_.append(doc)
     # dd.close()
 
+docLabels = buffer_
 # print(data[0])
 # print(docLabels[0])
 
