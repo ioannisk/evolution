@@ -30,6 +30,7 @@ class LabeledLineSentence(object):
        self.doc_list = doc_list
     def __iter__(self):
         for idx, doc in enumerate(self.doc_list):
+            print(doc)
             yield LabeledSentence(words=doc.split(),labels=[self.labels_list[idx]])
 
 
