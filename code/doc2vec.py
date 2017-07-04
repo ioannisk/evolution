@@ -277,9 +277,9 @@ docLabels = [f for f in listdir("doc2vec_data") if f.endswith('.txt')]
 data = []
 counter__ = 0
 for doc in docLabels:
-    counter__ +=1
-    if counter__ >500:
-        break
+    # counter__ +=1
+    # if counter__ >500:
+    #     break
     dd = open("doc2vec_data/" + doc, 'r')
     data.append(dd)
     # dd.close()
