@@ -285,7 +285,7 @@ for doc in docLabels:
     if len(dd)>0:
     # print(dd)
     # print(dd[0])
-        data.append(dd[0])
+        data.append(dd)
     # dd.close()
 
 # print(data[0])
