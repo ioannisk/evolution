@@ -264,9 +264,9 @@ docLabels = []
 docLabels = [f for f in listdir("doc2vec_data") if f.endswith('.txt')]
 data = []
 for doc in docLabels:
-    data.append(open("doc2vec_data/" + doc, 'r')
-it = DocIt.DocIterator(data, docLabels)
+    data.append(open("doc2vec_data/" + doc, 'r'))
 
+it = DocIt.DocIterator(data, docLabels)
 model = gensim.models.Doc2Vec(size=300, window=10, min_count=5, workers=11,alpha=0.025, min_alpha=0.025) # use fixed learning rate
 model.build_vocab(it)
 for epoch in range(10):
