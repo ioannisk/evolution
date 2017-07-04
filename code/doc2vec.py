@@ -241,6 +241,7 @@ df_web["urls"]=all_urls
 print("Labeled websites are {0}".format(len(df_web)))
 
 documents = list(df_web["class_txt"])
+print(documents)
 model = Doc2Vec(documents, size=100, window=8, min_count=5, workers=12)
 model.save("model_doc2vec")
 
