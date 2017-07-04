@@ -23,6 +23,15 @@ from os import listdir
 from os.path import isfile, join
 
 
+class LabeledLineSentence(object):
+    def __init__(self, doc_list, labels_list):
+       self.labels_list = labels_list
+       self.doc_list = doc_list
+    def __iter__(self):
+        for idx, doc in enumerate(self.doc_list):
+            yield LabeledSentence(words=doc.split(),labels=[self.labels_list[idx]])
+
+
 def clean_up_txt(page_txt):
     page_txt = page_txt.lower()
     page_txt = re.sub('\s+',' ',page_txt)
@@ -252,13 +261,6 @@ print("Labeled websites are {0}".format(len(df_web)))
 
 
 # stop
-class LabeledLineSentence(object):
-    def __init__(self, doc_list, labels_list):
-       self.labels_list = labels_list
-       self.doc_list = doc_list
-    def __iter__(self):
-        for idx, doc in enumerate(self.doc_list):
-            yield LabeledSentence(words=doc.split(),labels=[self.labels_list[idx]])
 
 docLabels = []
 docLabels = [f for f in listdir("doc2vec_data") if f.endswith('.txt')]
