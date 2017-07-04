@@ -240,10 +240,19 @@ df_web["company_id"]= company_id
 df_web["urls"]=all_urls
 print("Labeled websites are {0}".format(len(df_web)))
 
+class LabeledLineSentence(object):
+    def __init__(self, filename):
+        self.filename = filename
+    def __iter__(self):
+        for uid, line in enumerate(open(filename)):
+            yield LabeledSentence(words=line.split(), labels=['SENT_%s' % uid])
+
 documents = list(df_web["class_txt"])
-print(documents)
-model = Doc2Vec(documents, size=100, window=8, min_count=5, workers=12)
-model.save("model_doc2vec")
+
+print(documents[0])
+
+# model = Doc2Vec(documents, size=100, window=8, min_count=5, workers=12)
+# model.save("model_doc2vec")
 
 
 
