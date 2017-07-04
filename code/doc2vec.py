@@ -282,6 +282,7 @@ for doc in docLabels:
     #     break
     dd = open("doc2vec_data/" + doc, 'r')
     dd = list(dd)
+    print(dd)
     data.append(dd)
     dd.close()
 
