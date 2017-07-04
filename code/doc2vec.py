@@ -281,8 +281,10 @@ for doc in docLabels:
     # if counter__ >500:
     #     break
     dd = open("doc2vec_data/" + doc, 'r')
+    dd = list(dd)
     data.append(dd)
-    # dd.close()
+    dd.close()
+
 # print(data[0])
 # print(docLabels[0])
 
