@@ -248,7 +248,14 @@ class LabeledLineSentence(object):
             yield LabeledSentence(words=line.split(), labels=['SENT_%s' % uid])
 
 documents = list(df_web["class_txt"])
+documents_raw = list(df_web["summaries"])
 
+print('------------------')
+print('------------------')
+print('------------------')
+print('------------------')
+print(documents_raw[0])
+print('------------------')
 print(documents[0])
 
 # model = Doc2Vec(documents, size=100, window=8, min_count=5, workers=12)
