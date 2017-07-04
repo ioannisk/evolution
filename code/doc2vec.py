@@ -267,7 +267,8 @@ for doc in docLabels:
     dd = open("doc2vec_data/" + doc, 'r')
     data.append(dd)
     dd.close()
-
+print(data[0])
+print(docLabels[0])
 
 it = DocIt.DocIterator(data, docLabels)
 model = gensim.models.Doc2Vec(size=300, window=10, min_count=5, workers=11,alpha=0.025, min_alpha=0.025) # use fixed learning rate
