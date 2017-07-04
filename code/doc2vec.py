@@ -302,6 +302,7 @@ for epoch in range(10):
     model.min_alpha = model.alpha # fix the learning rate, no deca
     model.train(it)
 
+model.save("doc2vec.model")
 # documents = list(df_web["class_txt"])
 # documents_raw = list(df_web["summaries"])
 
