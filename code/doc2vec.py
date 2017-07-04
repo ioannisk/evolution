@@ -242,7 +242,7 @@ print("Labeled websites are {0}".format(len(df_web)))
 
 
 
-for id_, txt in zip(df_web["company_id", df_web["summaries"]]):
+for id_, txt in zip(df_web["company_id"], df_web["summaries"]):
     f = open("doc2vec_data/{0}.txt".format(id_), "w")
     f.write(txt)
 
