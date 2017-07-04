@@ -308,21 +308,6 @@ counter = counter_false.most_common()
 for i, j in counter:
     print("{0}-{1} (Total Counts {2}) {3}".format(i, class_hash[i], counter_class[i],j ))
 
-stop
-# false = counter_false.items()
-# labels, counts = zip(*false)
-# prcnt = np.asarray(counts),np.asarray(counter_class.ite)
-for l, p in false:
-    total += p
-    classes.append("{0} -- {1}".format(l, class_hash[l]))
-    stats.append(p)
-stats = np.asarray(stats)*100/float(total)
-for i, j in zip(classes, stats):
-    print(i, j)
-
-
-stop
-
 # stop
 
 # for c in np.arange(0.0001,1,0.05):
@@ -346,13 +331,13 @@ stop
 
 
 ### WRITE MISTAKES OF CLASSES OF INTERST
-# wrong_web = open("wrong_web.txt", 'w' )
-# wrong_web.write("label pred company_id url\n")
+wrong_web = open("wrong_web.txt", 'w' )
+wrong_web.write("label pred company_id url\n")
 for l, pred, c_id,url_ in zip(labels,y_pred_test,df_web["company_id"],df_web["urls"]):
-    if c_id =="SC303949":
-        print("Label: {0} --- Pred: {1}".format(l, pred))
-    # if l in selected_classes and (l!=pred):
-        # wrong_web.write("{0} {1} {2} {3}\n".format(l, pred, c_id,url_))
+    # if c_id =="SC303949":
+    #     print("Label: {0} --- Pred: {1}".format(l, pred))
+    if l in selected_classes and (l!=pred):
+        wrong_web.write("{0} {1} {2} {3}\n".format(l, pred, c_id,url_))
 stop
 
 ## Gather websites and descriptions that are in the top 150 classes
