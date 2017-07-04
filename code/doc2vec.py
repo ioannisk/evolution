@@ -39,7 +39,7 @@ class LabeledLineSentence(object):
     def __iter__(self):
         for idx, doc in enumerate(self.doc_list):
             # print(doc)
-            yield LabeledSentence(words=doc.split(),labels=[self.labels_list[idx]])
+            yield LabeledSentence(words=doc.split(),tags=[self.labels_list[idx]])
 
 
 def clean_up_txt(page_txt):
@@ -278,22 +278,14 @@ data = []
 counter__ = 0
 buffer_ = []
 for doc in docLabels:
-    # counter__ +=1
-    # if counter__ >500:
-    #     break
     dd = open("doc2vec_data/" + doc, 'r')
     dd = list(dd)
     if len(dd)>0:
-    # print(dd)
-    # print(dd[0])
         data.append(dd[0])
         buffer_.append(doc)
-    # dd.close()
+
 
 docLabels = buffer_
-# print(data[0])
-# print(docLabels[0])
-
 it = LabeledLineSentence(data, docLabels)
 
 model = gensim.models.Doc2Vec(size=300, window=10, min_count=5, workers=11,alpha=0.025, min_alpha=0.025) # use fixed learning rate
