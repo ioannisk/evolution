@@ -296,6 +296,11 @@ class_hash = {num:txt for num, txt in zip(df["label_num"], df["label_txt"])}
 
 
 
+###############
+#
+# Prints class statistics
+#
+############
 counter_false = Counter()
 counter_class = Counter()
 for l, p in zip(labels, y_pred_test):
@@ -336,8 +341,9 @@ wrong_web.write("label pred company_id url\n")
 for l, pred, c_id,url_ in zip(labels,y_pred_test,df_web["company_id"],df_web["urls"]):
     # if c_id =="SC303949":
     #     print("Label: {0} --- Pred: {1}".format(l, pred))
-    if l in selected_classes and (l!=pred):
-        wrong_web.write("{0} {1} {2} {3}\n".format(l, pred, c_id,url_))
+
+    # if l in selected_classes and (l!=pred):
+    wrong_web.write("{0} {1} {2} {3}\n".format(l, pred, c_id,url_))
 stop
 
 ## Gather websites and descriptions that are in the top 150 classes
