@@ -213,9 +213,9 @@ all_urls = []
 print("Fetch websites from database")
 counter = 0
 for i, l, c_id in zip(df['url'], df["label_num"], df["company_id"]):
-    # counter +=1
-    # if counter > 1000:
-    #     break
+    counter +=1
+    if counter > 1000:
+        break
     # query database and get page object
     page = storage.get_page(i)
     # some domains are not scrapped
