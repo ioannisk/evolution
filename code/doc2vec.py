@@ -23,6 +23,7 @@ from os import listdir
 from os.path import isfile, join
 
 
+LabeledSentence = gensim.models.doc2vec.LabeledSentence
 class LabeledLineSentence(object):
     def __init__(self, doc_list, labels_list):
        self.labels_list = labels_list
@@ -271,7 +272,7 @@ for doc in docLabels:
     dd.close()
 # print(data[0])
 # print(docLabels[0])
-# LabeledSentence = gensim.models.doc2vec.LabeledSentence
+
 it = LabeledLineSentence(data, docLabels)
 
 model = gensim.models.Doc2Vec(size=300, window=10, min_count=5, workers=11,alpha=0.025, min_alpha=0.025) # use fixed learning rate
