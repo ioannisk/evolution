@@ -293,7 +293,7 @@ for doc in docLabels:
 docLabels = buffer_
 it = LabeledLineSentence(data, docLabels)
 
-model = gensim.models.Doc2Vec(size=300, window=10, min_count=5, workers=12,alpha=0.025, min_alpha=0.025) # use fixed learning rate
+model = gensim.models.Doc2Vec(size=100, window=5, min_count=5, workers=12,alpha=0.025, min_alpha=0.025) # use fixed learning rate
 model.build_vocab(it)
 for epoch in range(10):
     print(epoch)
