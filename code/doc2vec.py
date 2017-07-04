@@ -280,9 +280,9 @@ buffer_ = []
 
 cc = 0
 for doc in docLabels:
-    cc +=1
-    if cc >10000:
-        break
+    # cc +=1
+    # if cc >10000:
+    #     break
     dd = open("doc2vec_data/" + doc, 'r')
     dd = list(dd)
     if len(dd)>0:
@@ -293,7 +293,7 @@ for doc in docLabels:
 docLabels = buffer_
 it = LabeledLineSentence(data, docLabels)
 
-model = gensim.models.Doc2Vec(size=300, window=10, min_count=5, workers=11,alpha=0.025, min_alpha=0.025) # use fixed learning rate
+model = gensim.models.Doc2Vec(size=300, window=10, min_count=5, workers=12,alpha=0.025, min_alpha=0.025) # use fixed learning rate
 model.build_vocab(it)
 for epoch in range(10):
     print(epoch)
