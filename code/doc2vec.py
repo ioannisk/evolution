@@ -277,7 +277,12 @@ docLabels = [f for f in listdir("doc2vec_data") if f.endswith('.txt')]
 data = []
 counter__ = 0
 buffer_ = []
+
+cc = 0
 for doc in docLabels:
+    cc +=1
+    if cc >10000:
+        break
     dd = open("doc2vec_data/" + doc, 'r')
     dd = list(dd)
     if len(dd)>0:
