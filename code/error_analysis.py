@@ -13,7 +13,11 @@ from sklearn.naive_bayes import MultinomialNB
 des_df, df_web = data_pipeline()
 stopWords = stopwords.words('english')
 des_data = list(des_df["txt"])
+des_labels = list(df_df["class_num"])
+
 web_sites = list(df_web["class_txt"])
+labels = list(df_web["class_num"])
+
 print("vectorise")
 vec = CountVectorizer( min_df=1 ,stop_words=stopWords)
 vec.fit(des_data)
