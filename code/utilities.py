@@ -2,6 +2,9 @@ from evolutionai import StorageEngine
 import pandas as pd
 import json
 import re
+from nltk.corpus import stopwords
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 def clean_up_txt(page_txt):
@@ -107,6 +110,26 @@ def query_web_data(df, size=None):
     df_web["urls"]=all_urls
     print("Labeled websites are {0}".format(len(df_web)))
     return df_web
+
+
+def vectorize_corpus(des_data, web_sites,tfidf=False):
+    print("vectorise")
+    stopWords = stopwords.words('english')
+    vec = CountVectorizer( min_df=1 ,stop_words=stopWords)
+    vec.fit(des_data)
+    if tfidf == True:
+        a = 0.3
+        tfidf_vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords,vocabulary=vec.vocabulary_, sublinear_tf=True)
+        tfidf_vec.fit(des_data)
+        tfidf_vec_des_data = tfidf_vec.transform(des_data)
+        tfidf_vec_web_sites = tfidf_vec.transform(web_sites)
+        vec_des_data = tfidf_vec_des_data
+        vec_web_sites = tfidf_vec_web_sites
+    else:
+        a = 0.1
+        vec_des_data = vec.transform(des_data)
+        vec_web_sites = vec.transform(web_sites)
+    return vec_des_data, vec_web_sites
 
 def data_pipeline(size=None):
     des_df, df = load_domain_data()
