@@ -13,7 +13,7 @@ from sklearn.naive_bayes import MultinomialNB
 des_df, df_web = data_pipeline()
 stopWords = stopwords.words('english')
 des_data = list(des_df["txt"])
-des_labels = list(df_df["class_num"])
+des_labels = list(des_df["class_num"])
 
 web_sites = list(df_web["class_txt"])
 labels = list(df_web["class_num"])
