@@ -1,6 +1,6 @@
 from evolutionai import StorageEngine
 import pandas as pd
-
+import json
 
 def read_descriptions():
     df = pd.read_csv('../data/sic_descriptons.tsv', sep='\t', names = ["class_num", "class_txt", "json"])
