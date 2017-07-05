@@ -17,7 +17,6 @@ for N in (np.arange(10,100)*10):
     for i in sorted_companies:
         if i[1] >= N:
             more_than.append(i)
-
     data_count = 0
     for i in more_than:
         # print(i[0], i[1])
