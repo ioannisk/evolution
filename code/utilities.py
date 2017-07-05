@@ -25,7 +25,6 @@ def find_intersection_of_classes(des_df, df):
 
 
 def load_domain_data():
-    storage = StorageEngine("/nvme/webcache_old/")
     df = pd.read_csv('../data/domains.tsv', sep='\t', names = ["company_name", "company_id", "url", "vertical"])
     df = df[df.vertical != "None Supplied"]
     label_num, label_txt = [], []
@@ -74,6 +73,7 @@ def des_txt_and_class_filtering(des_df, df):
     return des_df, df
 
 def query_web_data(df, size=None):
+    storage = StorageEngine("/nvme/webcache_old/")
     web_sites = []
     labels = []
     summaries = []
