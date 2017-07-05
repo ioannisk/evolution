@@ -7,13 +7,14 @@ from sklearn.metrics import accuracy_score
 # des_df: "class_num", "class_txt", "json", "txt"
 ########################################
 
-def train_naive_bayes(tfidf=False):
+def train_naive_bayes():
     des_df, df_web = data_pipeline()
     des_data = list(des_df["txt"])
     des_labels = list(des_df["class_num"])
     web_sites = list(df_web["class_txt"])
     labels = list(df_web["class_num"])
-    vec_des_data, vec_web_sites = vectorize_corpus(des_data, web_sites,tfidf)
+    tfidf = False
+    vec_des_data, vec_web_sites = vectorize_corpus(des_data, web_sites,tfidf=tfidf)
     a=0.3 if tfidf else 0.1
     gnb = MultinomialNB(alpha=a)
     clf = gnb.fit(vec_des_data, des_labels)
@@ -22,4 +23,4 @@ def train_naive_bayes(tfidf=False):
 
 
 if __name__=="__main__":
-    train_naive_bayes(tfidf=True)
+    train_naive_bayes()
