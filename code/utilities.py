@@ -117,6 +117,6 @@ def data_pipeline(size):
     df_web = query_web_data(df,size=size)
     print(len(df), len(df_web))
 
-size=1000
+size=None
 data_pipeline(size)
 
