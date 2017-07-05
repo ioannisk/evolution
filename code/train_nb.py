@@ -13,7 +13,6 @@ def train_naive_bayes(tfidf=False):
     des_labels = list(des_df["class_num"])
     web_sites = list(df_web["class_txt"])
     labels = list(df_web["class_num"])
-    print("vectorise")
     vec_des_data, vec_web_sites = vectorize_corpus(des_data, web_sites,tfidf)
     a=0.3 if tfidf else 0.1
     gnb = MultinomialNB(alpha=a)
@@ -23,4 +22,4 @@ def train_naive_bayes(tfidf=False):
 
 
 if __name__=="__main__":
-    train_naive_bayes(tfidf=False)
+    train_naive_bayes(tfidf=True)
