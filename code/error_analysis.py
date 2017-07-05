@@ -3,7 +3,7 @@ from utilities import data_pipeline
 from  sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
-
+from sklearn.naive_bayes import MultinomialNB
 
 ########################################
 # df_web: "class_num","class_txt","summaries","company_id","urls"
