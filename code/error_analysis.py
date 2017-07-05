@@ -11,6 +11,7 @@ from nltk.corpus import stopwords
 ########################################
 
 des_df, df_web = data_pipeline()
+stopWords = stopwords.words('english')
 des_data = list(des_df["txt"])
 web_sites = list(df_web["class_txt"])
 vec = CountVectorizer( min_df=1 ,stop_words=stopWords)
