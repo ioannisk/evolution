@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score
 # des_df: "class_num", "class_txt", "json", "txt"
 ########################################
 
-def train_naive_bayes():
+def train_naive_bayes(tfidf=False):
     des_df, df_web = data_pipeline()
     des_data = list(des_df["txt"])
     des_labels = list(des_df["class_num"])
