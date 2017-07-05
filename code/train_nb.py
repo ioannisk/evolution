@@ -14,7 +14,7 @@ def train_naive_bayes():
     web_sites = list(df_web["class_txt"])
     labels = list(df_web["class_num"])
     tfidf = False
-    vec_des_data, vec_web_sites = vectorize_corpus(des_data, web_sites,tfidf=tfidf)
+    vec_des_data, vec_web_sites, vec = vectorize_corpus(des_data, web_sites,tfidf=tfidf)
     a=0.3 if tfidf else 0.1
     gnb = MultinomialNB(alpha=a)
     clf = gnb.fit(vec_des_data, des_labels)
