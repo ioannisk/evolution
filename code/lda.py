@@ -1,6 +1,5 @@
 from utilities import data_pipeline, vectorize_corpus
 from sklearn.decomposition import LatentDirichletAllocation
-from __future__ import print_function
 
 
 N_TOPICS = 10
