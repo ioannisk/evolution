@@ -3,12 +3,12 @@ import pandas as pd
 import json
 import re
 
+
 def clean_up_txt(page_txt):
     page_txt = page_txt.lower()
     page_txt = re.sub('\s+',' ',page_txt)
     page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
     return page_txt
-
 
 def read_descriptions():
     df = pd.read_csv('../data/sic_descriptons.tsv', sep='\t', names = ["class_num", "class_txt", "json"])
@@ -22,7 +22,6 @@ def find_intersection_of_classes(des_df, df):
     classes_web = set(df["label_num"])
     intersection = classes_desc.intersection(classes_web)
     return intersection
-
 
 def load_domain_data():
     df = pd.read_csv('../data/domains.tsv', sep='\t', names = ["company_name", "company_id", "url", "vertical"])
@@ -39,7 +38,6 @@ def load_domain_data():
     des_df = des_df[des_df["class_num"].isin(intersection)]
     df = df[df["label_num"].isin(intersection)]
     return des_df, df
-
 
 #########################
 #
@@ -91,7 +89,6 @@ def query_web_data(df, size=None):
         # some domains are not scrapped
         try:
             page_txt = page.textSummary
-
             summaries.append(re.sub('\s+',' ',page_txt))
             # some preprocessing
             page_txt = clean_up_txt(page_txt)
@@ -111,12 +108,12 @@ def query_web_data(df, size=None):
     print("Labeled websites are {0}".format(len(df_web)))
     return df_web
 
-def data_pipeline(size):
+def data_pipeline(size=None):
     des_df, df = load_domain_data()
     des_df, df = des_txt_and_class_filtering(des_df, df)
     df_web = query_web_data(df,size=size)
-    print(len(df), len(df_web))
+    return des_df, df_web
 
-size=None
-data_pipeline(size)
+
+# des_df, web_df = data_pipeline()
 
