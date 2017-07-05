@@ -22,6 +22,7 @@ def train_naive_bayes(tfidf=False):
     vec = CountVectorizer( min_df=1 ,stop_words=stopWords)
     vec.fit(des_data)
     if tfidf == True:
+        a = 0.3
         tfidf_vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords,vocabulary=vec.vocabulary_, sublinear_tf=True)
         tfidf_vec.fit(des_data)
         tfidf_vec_des_data = tfidf_vec.transform(des_data)
@@ -29,11 +30,12 @@ def train_naive_bayes(tfidf=False):
         vec_des_data = tfidf_vec_des_data
         vec_web_sites = tfidf_vec_web_sites
     else:
+        a = 0.1
         vec_des_data = vec.transform(des_data)
         vec_web_sites = vec.transform(web_sites)
     print("Desc shape {0}".format(vec_des_data.shape))
     print("Web shape {0}".format(vec_web_sites.shape))
-    a = 0.1
+    # a = 0.1
     gnb = MultinomialNB(alpha=a)
     clf = gnb.fit(vec_des_data, des_labels)
     y_pred_test = clf.predict(vec_web_sites)
