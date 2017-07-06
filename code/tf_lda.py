@@ -28,7 +28,7 @@ data = list(zip(des_vec, lda_vectors))
 # Tensorflow model
 ########################################################
 LEARNING_RATE = 0.0001
-BATCH_SIZE = 10
+BATCH_SIZE = 100
 EPOCHS = 10
 
 voc_size = des_vec.shape[1]
