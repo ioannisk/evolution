@@ -88,23 +88,23 @@ for l in [0, 0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
     ################################
     # TF model
     ################################
-    print("lambda {0}".format(l))
-    for i in range(EPOCHS):
-        # print("epoch {0}".format(i))
-        epoch_cost = 0.0
-        for j in range(0,len(data),BATCH_SIZE):
-            train_x = des_vec[j:j+BATCH_SIZE]
-            train_y = lda_vectors[j:j+BATCH_SIZE]
-            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
-            epoch_cost += cost
-    print("cost is {0}".format(epoch_cost/len(data)))
-    tf_pred = sess.run(pred, feed_dict={x:des_vec})
+    # print("lambda {0}".format(l))
+    # for i in range(EPOCHS):
+    #     # print("epoch {0}".format(i))
+    #     epoch_cost = 0.0
+    #     for j in range(0,len(data),BATCH_SIZE):
+    #         train_x = des_vec[j:j+BATCH_SIZE]
+    #         train_y = lda_vectors[j:j+BATCH_SIZE]
+    #         _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
+    #         epoch_cost += cost
+    # print("cost is {0}".format(epoch_cost/len(data)))
+    # tf_pred = sess.run(pred, feed_dict={x:des_vec})
     ################################
     # scikit model
     ################################
-    # reg = linear_model.Ridge (alpha = l)
-    # reg.fit(des_vec, lda_vectors)
-    # tf_pred = reg.predict(web_vec)
+    reg = linear_model.Ridge (alpha = l)
+    reg.fit(des_vec, lda_vectors)
+    tf_pred = reg.predict(des_vec)
 
     n_pred = clf.predict(tf_pred)
     print("NB acc {0}".format(accuracy_score( n_pred,des_labels, normalize=True)*100))
