@@ -65,8 +65,8 @@ loss = square_error + lamb*regularizer
 
 
 # pred =tf.nn.softmax(tf.matmul(x,W) + b)
-cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
-loss = cross_entropy
+# cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
+# loss = cross_entropy
 
 
 optimizer = tf.train.GradientDescentOptimizer(LEARNING_RATE).minimize(loss)
