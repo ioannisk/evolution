@@ -18,7 +18,6 @@ des_labels = des_data['labels']
 web_vec = web_data['vectors'].todense()
 web_labels = web_data['labels']
 
-
 data = list(zip(des_vec, lda_vectors))
 
 ########################################################
@@ -30,7 +29,6 @@ EPOCHS = 30
 
 voc_size = des_vec.shape[1]
 lda_topics = lda_vectors.shape[1]
-
 
 x = tf.placeholder(tf.float32, [None, voc_size])
 y = tf.placeholder(tf.float32,[None,lda_topics])
@@ -45,29 +43,21 @@ optimizer = tf.train.GradientDescentOptimizer(LEARNING_RATE).minimize(loss)
 init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
-########################################################
 
+########################################################
+# Training
+########################################################
 
 for i in range(EPOCHS):
     print("epoch {0}".format(i))
+    epoch_cost = 0.0
     for j in range(0,len(data),BATCH_SIZE):
         train_x = des_vec[j:j+BATCH_SIZE]
         train_y = lda_vectors[j:j+BATCH_SIZE]
+        _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y})
+        epoch_cost += cost
+    print(epoch_cost/len(data))
 
-        print(train_x.shape)
-        print(train_y.shape)
-
-
-        stop
-        # print(mini_batch[0])
-        # print(mini_batch[0][1])
-        # print(mini_batch[0][0])
-        train_x, train_y = zip(*mini_batch)
-        print(train_x[0])
-        print(train_y[1])
-        # print(mini_batch[0])
-        # print(mini_batch[1])
-        rvrv
 
 
 
