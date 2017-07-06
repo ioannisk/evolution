@@ -73,6 +73,7 @@ for i in range(EPOCHS):
         epoch_cost += cost
     print(epoch_cost/len(data))
     tf_pred = sess.run([pred], feed_dict={x:web_vec})
+    print(tf_pred.shape)
     n_pred = clf.predict(tf_pred)
     print("NB {0}".format(accuracy_score( web_labels,n_pred, normalize=True)))
 
