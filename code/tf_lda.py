@@ -35,7 +35,7 @@ data = list(zip(des_vec, lda_vectors))
 ########################################################
 # Tensorflow model
 ########################################################
-LEARNING_RATE = 0.0001
+LEARNING_RATE = 0.001
 BATCH_SIZE = 649
 EPOCHS = 1000
 HIDDEN = 100
@@ -46,6 +46,7 @@ lda_topics = lda_vectors.shape[1]
 x = tf.placeholder(tf.float32, [None, voc_size])
 y = tf.placeholder(tf.float32,[None,lda_topics])
 lamb = tf.placeholder("float", None)
+lr = tf.placeholder("float", None)
 
 W = tf.get_variable(name='W',shape=[voc_size, lda_topics],initializer=tf.contrib.layers.xavier_initializer())
 b = tf.get_variable(name='b', shape=[1,lda_topics],initializer=tf.contrib.layers.xavier_initializer())
@@ -83,6 +84,7 @@ clf.fit(lda_vectors, lda_labels)
 ########################################################
 # Training
 ########################################################
+# LEARNING_RATE
 for l in [0, 0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
     # l = 0
     ################################
@@ -95,9 +97,10 @@ for l in [0, 0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
         for j in range(0,len(data),BATCH_SIZE):
             train_x = des_vec[j:j+BATCH_SIZE]
             train_y = lda_vectors[j:j+BATCH_SIZE]
-            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
+            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l, lr=LEARNING_RATE})
             epoch_cost += cost
         print("epoch_cost is {0}".format(epoch_cost/(len(data))))
+        LEARNING_RATE *=0.99
     print("cost is {0}".format(epoch_cost/len(data)))
     tf_pred = sess.run(pred, feed_dict={x:des_vec})
     tf_pred_test = sess.run(pred, feed_dict={x:web_vec})
