@@ -27,7 +27,7 @@ lda.fit(vec_des_data)
 topics = lda.transform(vec_des_data)
 lda_data = {'vectors':topics, 'labels':des_labels }
 des_vectors = {'vectors':vec_des_data, 'labels':des_labels}
-web_vectors = {'vectors:':vec_web_sites, 'labels':labels}
+web_vectors = {'vectors':vec_web_sites, 'labels':labels}
 pickle.dump(lda_data, open("../models/topics/lda_data.pckl","wb"))
 pickle.dump(des_vectors, open("../models/topics/des_vectors.pckl","wb"))
 pickle.dump(web_vectors, open("../models/topics/web_vectors.pckl","wb"))
