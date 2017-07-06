@@ -19,6 +19,8 @@ def train_naive_bayes():
     gnb = MultinomialNB(alpha=a)
     clf = gnb.fit(vec_des_data, des_labels)
     y_pred_test = clf.predict(vec_web_sites)
+    y_pred_train = clf.predict(vec_des_data)
+    print("Training acc is {0}".format(accuracy_score(des_labels ,y_pred_train )))
     print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=True),a))
 
 
