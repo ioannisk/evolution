@@ -57,7 +57,7 @@ sess.run(init)
 ########################################################
 # Training
 ########################################################
-for l in [0.00001, 0.0001, 0.001, 0.01, 0.1, 1, 5, 10]:
+for l in [ 5, 10, 15, 20, 25, 50]:
     clf = KNeighborsClassifier(n_neighbors=1)
     clf.fit(lda_vectors, lda_labels)
     # l = 0
