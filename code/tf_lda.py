@@ -27,9 +27,9 @@ data = list(zip(des_vec, lda_vectors))
 ########################################################
 # Tensorflow model
 ########################################################
-LEARNING_RATE = 0.0001
+LEARNING_RATE = 0.001
 BATCH_SIZE = 10
-EPOCHS = 100
+EPOCHS = 10
 
 voc_size = des_vec.shape[1]
 lda_topics = lda_vectors.shape[1]
@@ -56,17 +56,18 @@ sess.run(init)
 ########################################################
 # Training
 ########################################################
-for l in [0.0001, 0.001, 0.01, 0.1, 1]:
-    print("lambda {0}".format(l))
-    for i in range(EPOCHS):
-        # print("epoch {0}".format(i))
-        epoch_cost = 0.0
-        for j in range(0,len(data),BATCH_SIZE):
-            train_x = des_vec[j:j+BATCH_SIZE]
-            train_y = lda_vectors[j:j+BATCH_SIZE]
-            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
-            epoch_cost += cost
-        print(epoch_cost/len(data))
+# for l in [0.0001, 0.001, 0.01, 0.1, 1]:
+print("lambda {0}".format(l))
+for i in range(EPOCHS):
+    # print("epoch {0}".format(i))
+    epoch_cost = 0.0
+    for j in range(0,len(data),BATCH_SIZE):
+        train_x = des_vec[j:j+BATCH_SIZE]
+        train_y = lda_vectors[j:j+BATCH_SIZE]
+        _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
+        epoch_cost += cost
+    print(epoch_cost/len(data))
+
         # cost = sess.run([loss], feed_dict={x:web_vec, y:web_labels})
         # print("Testing Cost is {0}".format(cost/len(web_vec)))
 
