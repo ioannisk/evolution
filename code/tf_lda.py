@@ -64,7 +64,7 @@ for i in range(EPOCHS):
     for j in range(0,len(data),BATCH_SIZE):
         train_x = des_vec[j:j+BATCH_SIZE]
         train_y = lda_vectors[j:j+BATCH_SIZE]
-        _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
+        _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y})
         epoch_cost += cost
     print(epoch_cost/len(data))
 
