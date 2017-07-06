@@ -35,7 +35,7 @@ data = list(zip(des_vec, lda_vectors))
 ########################################################
 # Tensorflow model
 ########################################################
-LEARNING_RATE = 0.01
+LEARNING_RATE = 0.001
 BATCH_SIZE = 649
 EPOCHS = 1000
 HIDDEN = 100
@@ -102,7 +102,7 @@ for l in [0, 0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
             _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l, lr:LEARNING_RATE})
             epoch_cost += cost
         print("epoch_cost is {0}".format(epoch_cost/(len(data))))
-        LEARNING_RATE *=0.99
+        # LEARNING_RATE
     print("cost is {0}".format(epoch_cost/len(data)))
     tf_pred = sess.run(pred, feed_dict={x:des_vec})
     tf_pred_test = sess.run(pred, feed_dict={x:web_vec})
