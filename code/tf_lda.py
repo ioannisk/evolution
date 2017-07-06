@@ -106,7 +106,7 @@ for l in [0, 0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
     # scikit model
     ################################
 
-    reg = linear_model.Ridge (alpha = l)
+    reg = linear_model.Ridge(alpha = l)
     reg.fit(des_vec, lda_vectors)
     tf_pred = reg.predict(des_vec)
     tf_pred_test = reg.predict(web_vec)
