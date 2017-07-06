@@ -73,7 +73,7 @@ for l in [0.00001, 0.0001, 0.001, 0.01, 0.1, 1]:
     print("cost is {0}".format(epoch_cost/len(data)))
     tf_pred = sess.run(pred, feed_dict={x:web_vec})
     n_pred = clf.predict(tf_pred)
-    print("NB acc {0}".format(accuracy_score( web_labels,n_pred, normalize=True)))
+    print("NB acc {0}".format(accuracy_score( web_labels,n_pred, normalize=True)*100))
     print()
 
         # print("Testing Cost is {0}".format(cost/len(web_vec)))
