@@ -25,7 +25,7 @@ lda = LatentDirichletAllocation(n_topics=N_TOPICS, max_iter=5,
 lda.fit(vec_des_data)
 topic = lda.transform(vec_des_data)
 for i in topic:
-    print(i)
+    print(sum(i))
 print(topic.shape)
 # tf_feature_names = vec.get_feature_names()
 # print_top_words(lda, tf_feature_names, n_top_words)
