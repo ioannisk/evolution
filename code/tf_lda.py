@@ -20,6 +20,7 @@ web_labels = web_data['labels']
 print(des_vec.shape)
 print(lda_vectors.shape)
 for i,j in zip(des_vec, lda_vectors):
+    j = j.reshape([1,10])
     print(i.shape, j.shape)
 
 
