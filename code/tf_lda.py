@@ -43,14 +43,14 @@ lamb = tf.placeholder("float", None)
 W = tf.get_variable(name='W',shape=[voc_size, lda_topics])
 b = tf.get_variable(name='b', shape=[1,lda_topics])
 
-pred =tf.nn.softmax(tf.matmul(x,W) + b)
-cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
-loss = cross_entropy
+# pred =tf.nn.softmax(tf.matmul(x,W) + b)
+# cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
+# loss = cross_entropy
 
-# pred = tf.matmul(x,W) + b
-# square_error = tf.reduce_sum(tf.square(y - pred))
-# regularizer = tf.nn.l2_loss(W)
-# loss = square_error + lamb*regularizer
+pred = tf.matmul(x,W) + b
+square_error = tf.reduce_sum(tf.square(y - pred))
+regularizer = tf.nn.l2_loss(W)
+loss = square_error + lamb*regularizer
 
 optimizer = tf.train.GradientDescentOptimizer(LEARNING_RATE).minimize(loss)
 
@@ -59,33 +59,35 @@ init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
 
+
+clf = KNeighborsClassifier(n_neighbors=1)
+clf.fit(lda_vectors, lda_labels)
+
 ########################################################
 # Training
 ########################################################
 for l in [0.001, 0.1, 1, 5, 10, 15, 20, 25, 50]:
-    clf = KNeighborsClassifier(n_neighbors=1)
-    clf.fit(lda_vectors, lda_labels)
     # l = 0
     ################################
     # TF model
     ################################
-    # print("lambda {0}".format(l))
-    # for i in range(EPOCHS):
-    #     # print("epoch {0}".format(i))
-    #     epoch_cost = 0.0
-    #     for j in range(0,len(data),BATCH_SIZE):
-    #         train_x = des_vec[j:j+BATCH_SIZE]
-    #         train_y = lda_vectors[j:j+BATCH_SIZE]
-    #         _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
-    #         epoch_cost += cost
-    # print("cost is {0}".format(epoch_cost/len(data)))
-    # tf_pred = sess.run(pred, feed_dict={x:web_vec})
+    print("lambda {0}".format(l))
+    for i in range(EPOCHS):
+        # print("epoch {0}".format(i))
+        epoch_cost = 0.0
+        for j in range(0,len(data),BATCH_SIZE):
+            train_x = des_vec[j:j+BATCH_SIZE]
+            train_y = lda_vectors[j:j+BATCH_SIZE]
+            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
+            epoch_cost += cost
+    print("cost is {0}".format(epoch_cost/len(data)))
+    tf_pred = sess.run(pred, feed_dict={x:web_vec})
     ################################
     # scikit model
     ################################
-    reg = linear_model.Ridge (alpha = l)
-    reg.fit(des_vec, lda_vectors)
-    tf_pred = reg.predict(web_vec)
+    # reg = linear_model.Ridge (alpha = l)
+    # reg.fit(des_vec, lda_vectors)
+    # tf_pred = reg.predict(web_vec)
 
     n_pred = clf.predict(tf_pred)
     print("NB acc {0}".format(accuracy_score( web_labels,n_pred, normalize=True)*100))
