@@ -108,7 +108,7 @@ for l in [0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
     # tf_pred = reg.predict(web_vec)
 
     n_pred = clf.predict(tf_pred)
-    print("NB acc {0}".format(accuracy_score( tf_pred,des_labels, normalize=True)*100))
+    print("NB acc {0}".format(accuracy_score( n_pred,des_labels, normalize=True)*100))
     print()
 
 # regression with L2 l=10 1-nn has accuracy of 0.85%
