@@ -48,11 +48,11 @@ lamb = tf.placeholder("float", None)
 # loss = square_error + lamb*regularizer
 
 
-W1 = tf.get_variable(name='W',shape=[voc_size, 30])
-W2 = tf.get_variable(name='W',shape=[30, lda_topics])
+W1 = tf.get_variable(name='W1',shape=[voc_size, 30])
+W2 = tf.get_variable(name='W2',shape=[30, lda_topics])
 
-b1 = tf.get_variable(name='b', shape=[1,30])
-b2 = tf.get_variable(name='b', shape=[1,lda_topics])
+b1 = tf.get_variable(name='b1', shape=[1,30])
+b2 = tf.get_variable(name='b2', shape=[1,lda_topics])
 
 h1 = tf.nn.relu(tf.matmul(x,W1) + b1)
 pred = tf.matmul(h1,W2) + b2
