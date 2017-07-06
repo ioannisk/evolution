@@ -54,7 +54,7 @@ W2 = tf.get_variable(name='W2',shape=[30, lda_topics])
 b1 = tf.get_variable(name='b1', shape=[1,30])
 b2 = tf.get_variable(name='b2', shape=[1,lda_topics])
 
-h1 = tf.nn.relu(tf.matmul(x,W1) + b1)
+h1 = tf.nn.sigmoid(tf.matmul(x,W1) + b1)
 pred = tf.matmul(h1,W2) + b2
 
 # pred = tf.matmul(x,W) + b
@@ -82,7 +82,7 @@ clf.fit(lda_vectors, lda_labels)
 ########################################################
 # Training
 ########################################################
-for l in [0.001, 0.1, 1, 5, 10, 15, 20, 25, 50]:
+for l in [10, 15, 20, 25, 50]:
     # l = 0
     ################################
     # TF model
