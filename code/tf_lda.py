@@ -29,7 +29,7 @@ BATCH_SIZE = 10
 EPOCHS = 30
 
 voc_size = des_vec.shape[1]
-lda_topics = lda_data.shape[1]
+lda_topics = lda_vectors.shape[1]
 
 
 x = tf.placeholder(tf.float32, [None, voc_size])
