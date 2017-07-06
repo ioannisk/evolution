@@ -1,6 +1,7 @@
 import tensorflow as tf
 import pickle
 import numpy as np
+from sklearn.neighbors import NearestNeighbors
 
 ########################################################
 # Data importing
@@ -20,8 +21,8 @@ web_labels = web_data['labels']
 
 data = list(zip(des_vec, lda_vectors))
 
-print(des_vec.shape)
-print(web_vec.shape)
+# print(des_vec.shape)
+# print(web_vec.shape)
 stop
 ########################################################
 # Tensorflow model
@@ -65,9 +66,9 @@ for l in [0.0001, 0.001, 0.01, 0.1, 1]:
             train_y = lda_vectors[j:j+BATCH_SIZE]
             _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
             epoch_cost += cost
-        # print(epoch_cost/len(data))
-        cost = sess.run([loss], feed_dict={x:web_vec, y:web_labels})
-        print("Testing Cost is {0}".format(cost/len(web_vec)))
+        print(epoch_cost/len(data))
+        # cost = sess.run([loss], feed_dict={x:web_vec, y:web_labels})
+        # print("Testing Cost is {0}".format(cost/len(web_vec)))
 
 
 
