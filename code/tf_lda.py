@@ -42,11 +42,14 @@ lamb = tf.placeholder("float", None)
 W = tf.get_variable(name='W',shape=[voc_size, lda_topics])
 b = tf.get_variable(name='b', shape=[1,lda_topics])
 
-pred = tf.nn.softmax(tf.matmul(x,W) + b)
+pred =tf.nn.softmax(tf.matmul(x,W) + b)
+cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
+loss = cross_entropy
 
-square_error = tf.reduce_sum(tf.square(y - pred))
-regularizer = tf.nn.l2_loss(W)
-loss = square_error + lamb*regularizer
+# pred = tf.matmul(x,W) + b
+# square_error = tf.reduce_sum(tf.square(y - pred))
+# regularizer = tf.nn.l2_loss(W)
+# loss = square_error + lamb*regularizer
 
 optimizer = tf.train.GradientDescentOptimizer(LEARNING_RATE).minimize(loss)
 
