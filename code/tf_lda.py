@@ -17,7 +17,7 @@ web_vec = web_data['vectors'].todense()
 web_labels = web_data['labels']
 
 
-print(len(des_vec[0]))
+print(des_vec.shape)
 
 
 x = tf.placeholder(tf.float32, [None, 784])
