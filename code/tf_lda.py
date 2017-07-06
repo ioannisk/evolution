@@ -16,7 +16,7 @@ des_labels = des_data['labels']
 print(web_data.keys())
 
 for i in web_data:
-    print i
+    print(i)
 
 web_vec = web_data['vectors']
 web_labels = web_data['labels']
