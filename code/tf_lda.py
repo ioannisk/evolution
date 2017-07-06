@@ -51,8 +51,6 @@ sess.run(init)
 
 
 
-for
-
 
 
 
