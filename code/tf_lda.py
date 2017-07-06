@@ -31,7 +31,7 @@ data = list(zip(des_vec, lda_vectors))
 ########################################################
 LEARNING_RATE = 0.00001
 BATCH_SIZE = 50
-EPOCHS = 1000
+EPOCHS = 500
 HIDDEN = 30
 
 voc_size = des_vec.shape[1]
@@ -59,7 +59,6 @@ b2 = tf.get_variable(name='b2', shape=[1,lda_topics])
 h1 = tf.nn.sigmoid(tf.matmul(x,W1) + b1)
 pred = tf.matmul(h1,W2) + b2
 
-pred = tf.matmul(x,W) + b
 square_error = tf.reduce_sum(tf.square(y - pred))
 regularizer = tf.nn.l2_loss(W1) + tf.nn.l2_loss(W2)
 loss = square_error + lamb*regularizer
