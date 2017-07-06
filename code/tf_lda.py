@@ -102,12 +102,16 @@ for l in [0, 0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
     ################################
     # scikit model
     ################################
+
     reg = linear_model.Ridge (alpha = l)
     reg.fit(des_vec, lda_vectors)
     tf_pred = reg.predict(des_vec)
+    tf_pred_test = reg.predict(web_vec)
 
     n_pred = clf.predict(tf_pred)
-    print("NB acc {0}".format(accuracy_score( n_pred,des_labels, normalize=True)*100))
+    n_pred_test = clf.predict(tf_pred_test)
+    print("NB TRAINING acc {0}".format(accuracy_score( n_pred,des_labels, normalize=True)*100))
+    print("NB TESTING acc {0}".format(accuracy_score( n_pred_test,web_labels, normalize=True)*100))
     print()
 
 # regression with L2 l=10 1-nn has accuracy of 0.85%
