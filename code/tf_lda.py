@@ -41,7 +41,8 @@ lamb = tf.placeholder("float", None)
 
 W = tf.get_variable(name='W',shape=[voc_size, lda_topics])
 b = tf.get_variable(name='b', shape=[1,lda_topics])
-pred = tf.matmul(x,W) + b
+
+pred = tf.nn.softmax(tf.matmul(x,W) + b)
 
 square_error = tf.reduce_sum(tf.square(y - pred))
 regularizer = tf.nn.l2_loss(W)
@@ -76,7 +77,7 @@ for l in [ 5, 10, 15, 20, 25, 50]:
     print("NB acc {0}".format(accuracy_score( web_labels,n_pred, normalize=True)*100))
     print()
 
-        # print("Testing Cost is {0}".format(cost/len(web_vec)))
+# regression with L2 l=10 1-nn has accuracy of 0.85%
 
 
 
