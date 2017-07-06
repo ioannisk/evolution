@@ -52,7 +52,8 @@ for i in range(EPOCHS):
     print("epoch {0}".format(i))
     for j in range(0,len(data),BATCH_SIZE):
         mini_batch = data[j:j+BATCH_SIZE]
-        print(mini_batch)
+        print(mini_batch[0])
+        print(mini_batch[1])
         rvrv
 
 
