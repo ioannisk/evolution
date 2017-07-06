@@ -35,7 +35,7 @@ data = list(zip(des_vec, lda_vectors))
 ########################################################
 # Tensorflow model
 ########################################################
-LEARNING_RATE = 0.001
+LEARNING_RATE = 0.0001
 BATCH_SIZE = 649
 EPOCHS = 2000
 HIDDEN = 100
@@ -48,28 +48,28 @@ y = tf.placeholder(tf.float32,[None,lda_topics])
 lamb = tf.placeholder("float", None)
 lr = tf.placeholder("float", None)
 
-# W = tf.get_variable(name='W',shape=[voc_size, lda_topics],initializer=tf.contrib.layers.xavier_initializer())
-# b = tf.get_variable(name='b', shape=[1,lda_topics],initializer=tf.contrib.layers.xavier_initializer())
-# pred = tf.matmul(x,W) + b
-# square_error = tf.reduce_sum(tf.square(y - pred))
-# regularizer = tf.nn.l2_loss(W)
-# loss = square_error + lamb*regularizer
-
-
-# W1 = tf.get_variable(name='W1',shape=[voc_size, HIDDEN])
-W1 = tf.Variable(tf.random_uniform([voc_size,HIDDEN],0,0.01))
-# W2 = tf.get_variable(name='W2',shape=[HIDDEN, lda_topics])
-W2 = tf.Variable(tf.random_uniform([HIDDEN,lda_topics],0,0.01))
-
-b1 = tf.get_variable(name='b1', shape=[1,HIDDEN])
-b2 = tf.get_variable(name='b2', shape=[1,lda_topics])
-
-h1 = tf.nn.sigmoid(tf.matmul(x,W1) + b1)
-pred = tf.matmul(h1,W2) + b2
-
+W = tf.get_variable(name='W',shape=[voc_size, lda_topics],initializer=tf.contrib.layers.xavier_initializer())
+b = tf.get_variable(name='b', shape=[1,lda_topics],initializer=tf.contrib.layers.xavier_initializer())
+pred = tf.matmul(x,W) + b
 square_error = tf.reduce_sum(tf.square(y - pred))
-regularizer = tf.nn.l2_loss(W1) + tf.nn.l2_loss(W2)
+regularizer = tf.nn.l2_loss(W)
 loss = square_error + lamb*regularizer
+
+
+# # W1 = tf.get_variable(name='W1',shape=[voc_size, HIDDEN])
+# W1 = tf.Variable(tf.random_uniform([voc_size,HIDDEN],0,0.01))
+# # W2 = tf.get_variable(name='W2',shape=[HIDDEN, lda_topics])
+# W2 = tf.Variable(tf.random_uniform([HIDDEN,lda_topics],0,0.01))
+
+# b1 = tf.get_variable(name='b1', shape=[1,HIDDEN])
+# b2 = tf.get_variable(name='b2', shape=[1,lda_topics])
+
+# h1 = tf.nn.sigmoid(tf.matmul(x,W1) + b1)
+# pred = tf.matmul(h1,W2) + b2
+
+# square_error = tf.reduce_sum(tf.square(y - pred))
+# regularizer = tf.nn.l2_loss(W1) + tf.nn.l2_loss(W2)
+# loss = square_error + lamb*regularizer
 
 # pred =tf.nn.softmax(tf.matmul(x,W) + b)
 # cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
