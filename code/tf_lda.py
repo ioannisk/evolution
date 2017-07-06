@@ -19,20 +19,18 @@ web_vec = web_data['vectors'].todense()
 web_labels = web_data['labels']
 
 
-a = list(zip(des_vec, lda_vectors))
-print(len(a))
-print(len(a[0]))
-print((a[0][0].shape))
-print((a[0][1].shape))
+data = list(zip(des_vec, lda_vectors))
 
 ########################################################
 # Tensorflow model
 ########################################################
 LEARNING_RATE = 0.5
 BATCH_SIZE = 10
+EPOCHS = 30
 
 voc_size = des_vec.shape[1]
 lda_topics = lda_data.shape[1]
+
 
 x = tf.placeholder(tf.float32, [None, voc_size])
 y = tf.placeholder(tf.float32,[None,lda_topics])
@@ -48,6 +46,14 @@ init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
 ########################################################
+
+
+for i in range(EPOCHS):
+    print("epoch {0}".format(i))
+    for j in range(0,len(data),BATCH_SIZE):
+        mini_batch = data[j:j+BATCH_SIZE]
+
+
 
 
 
