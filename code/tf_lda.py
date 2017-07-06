@@ -57,8 +57,8 @@ for i in range(EPOCHS):
         print(mini_batch[0][0])
 
         train_x, train_y = zip(*mini_batch)
-        print(train_x.shape)
-        print(train_y.shape)
+        print(train_x[0])
+        print(train_y[1])
         # print(mini_batch[0])
         # print(mini_batch[1])
         rvrv
