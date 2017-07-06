@@ -23,7 +23,7 @@ data = list(zip(des_vec, lda_vectors))
 
 # print(des_vec.shape)
 # print(web_vec.shape)
-stop
+
 ########################################################
 # Tensorflow model
 ########################################################
