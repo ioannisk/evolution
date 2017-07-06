@@ -26,8 +26,9 @@ web_labels = web_data['labels']
 data = list(zip(des_vec, lda_vectors))
 
 
-data = make_regression(n_samples=10000,n_features=500,n_targets=10)
-print(data.shape)
+x, y = make_regression(n_samples=10000,n_features=500,n_targets=10)
+print(x.shape)
+print(y.shape)
 
 stop
 
