@@ -77,7 +77,7 @@ sess = tf.Session()
 sess.run(init)
 
 
-clf = KNeighborsClassifier(n_neighbors=1)
+clf = KNeighborsClassifier(n_neighbors=2)
 clf.fit(lda_vectors, lda_labels)
 
 ########################################################
