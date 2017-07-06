@@ -6,8 +6,8 @@ des_data = pickle.load(open("../models/topics/des_vectors.pckl","rb"))
 web_data = pickle.load(open("../models/topics/web_vectors.pckl","rb"))
 
 print(lda_data)
+print(lda_data.keys())
 
-ronrv
 lda_vectors = lda_data['vectors']
 lda_labels = lda_data['labels']
 
