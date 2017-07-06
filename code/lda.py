@@ -12,7 +12,7 @@ def print_top_words(model, feature_names, n_top_words):
 
 N_TOPICS = 10
 n_top_words = 20
-des_df, df_web = data_pipeline()
+des_df, df_web = data_pipeline(1000)
 des_data = list(des_df["txt"])
 des_labels = list(des_df["class_num"])
 web_sites = list(df_web["class_txt"])
@@ -24,6 +24,8 @@ lda = LatentDirichletAllocation(n_topics=N_TOPICS, max_iter=5,
                                 random_state=0)
 lda.fit(vec_des_data)
 topic = lda.transform(vec_des_data)
+for i in topic:
+    print(i)
 print(topic.shape)
 # tf_feature_names = vec.get_feature_names()
 # print_top_words(lda, tf_feature_names, n_top_words)
