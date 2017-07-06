@@ -19,7 +19,7 @@ web_labels = web_data['labels']
 
 print(des_vec.shape)
 for i in des_vec:
-    print(i)
+    print(i.shape)
 
 
 x = tf.placeholder(tf.float32, [None, 784])
