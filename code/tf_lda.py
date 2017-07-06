@@ -5,6 +5,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 from sklearn import linear_model
 
+from sklearn.datasets import make_regression
+
 ########################################################
 # Data importing
 ########################################################
@@ -22,6 +24,11 @@ web_vec = web_data['vectors'].todense()
 web_labels = web_data['labels']
 
 data = list(zip(des_vec, lda_vectors))
+
+
+data = make_regression(n_samples=10000,n_features=500,n_targets=10)
+
+stop
 
 # print(des_vec.shape)
 # print(web_vec.shape)
