@@ -27,6 +27,7 @@ data = list(zip(des_vec, lda_vectors))
 
 
 data = make_regression(n_samples=10000,n_features=500,n_targets=10)
+print(data.shape)
 
 stop
 
