@@ -32,15 +32,6 @@ web_vec = x[9000:]
 lda_vectors = y[:9000]
 test_y = y[9000:]
 
-
-print(train_x.shape)
-print(test_x.shape)
-
-stop
-
-# print(des_vec.shape)
-# print(web_vec.shape)
-
 ########################################################
 # Tensorflow model
 ########################################################
