@@ -1,7 +1,8 @@
 import tensorflow as tf
 import pickle
 import numpy as np
-from sklearn.neighbors import NearestNeighbors
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
 
 ########################################################
 # Data importing
@@ -28,7 +29,7 @@ data = list(zip(des_vec, lda_vectors))
 # Tensorflow model
 ########################################################
 LEARNING_RATE = 0.0001
-BATCH_SIZE = 100
+BATCH_SIZE = 10
 EPOCHS = 10
 
 voc_size = des_vec.shape[1]
@@ -57,6 +58,9 @@ sess.run(init)
 # Training
 ########################################################
 # for l in [0.0001, 0.001, 0.01, 0.1, 1]:
+clf = KNeighborsClassifier(n_neighbors=1)
+clf.fit(lda_vectors, lda_labels)
+
 l = 0
 print("lambda {0}".format(l))
 for i in range(EPOCHS):
@@ -68,8 +72,10 @@ for i in range(EPOCHS):
         _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
         epoch_cost += cost
     print(epoch_cost/len(data))
+    tf_pred = sess.run([pred], feed_dict={x:web_vec})
+    n_pred = clf.predict(tf_pred)
+    print("NB {0}".format(accuracy_score( web_labels,n_pred, normalize=True)))
 
-        # cost = sess.run([loss], feed_dict={x:web_vec, y:web_labels})
         # print("Testing Cost is {0}".format(cost/len(web_vec)))
 
 
