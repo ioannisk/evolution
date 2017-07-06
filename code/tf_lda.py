@@ -31,7 +31,7 @@ data = list(zip(des_vec, lda_vectors))
 ########################################################
 LEARNING_RATE = 0.0001
 BATCH_SIZE = 20
-EPOCHS = 70
+EPOCHS = 100
 HIDDEN = 30
 
 voc_size = des_vec.shape[1]
@@ -41,28 +41,28 @@ x = tf.placeholder(tf.float32, [None, voc_size])
 y = tf.placeholder(tf.float32,[None,lda_topics])
 lamb = tf.placeholder("float", None)
 
-# W = tf.get_variable(name='W',shape=[voc_size, lda_topics])
-# b = tf.get_variable(name='b', shape=[1,lda_topics])
+W = tf.get_variable(name='W',shape=[voc_size, lda_topics])
+b = tf.get_variable(name='b', shape=[1,lda_topics])
+pred = tf.matmul(x,W) + b
+square_error = tf.reduce_sum(tf.square(y - pred))
+regularizer = tf.nn.l2_loss(W)
+loss = square_error + lamb*regularizer
+
+
+# W1 = tf.get_variable(name='W1',shape=[voc_size, HIDDEN])
+# W2 = tf.get_variable(name='W2',shape=[HIDDEN, lda_topics])
+
+
+# b1 = tf.get_variable(name='b1', shape=[1,HIDDEN])
+# b2 = tf.get_variable(name='b2', shape=[1,lda_topics])
+
+# h1 = tf.nn.sigmoid(tf.matmul(x,W1) + b1)
+# pred = tf.matmul(h1,W2) + b2
+
 # pred = tf.matmul(x,W) + b
 # square_error = tf.reduce_sum(tf.square(y - pred))
-# regularizer = tf.nn.l2_loss(W)
+# regularizer = tf.nn.l2_loss(W1) + tf.nn.l2_loss(W2)
 # loss = square_error + lamb*regularizer
-
-
-W1 = tf.get_variable(name='W1',shape=[voc_size, HIDDEN])
-W2 = tf.get_variable(name='W2',shape=[HIDDEN, lda_topics])
-
-
-b1 = tf.get_variable(name='b1', shape=[1,HIDDEN])
-b2 = tf.get_variable(name='b2', shape=[1,lda_topics])
-
-h1 = tf.nn.sigmoid(tf.matmul(x,W1) + b1)
-pred = tf.matmul(h1,W2) + b2
-
-# pred = tf.matmul(x,W) + b
-square_error = tf.reduce_sum(tf.square(y - pred))
-regularizer = tf.nn.l2_loss(W1) + tf.nn.l2_loss(W2)
-loss = square_error + lamb*regularizer
 
 
 # pred =tf.nn.softmax(tf.matmul(x,W) + b)
