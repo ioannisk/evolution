@@ -27,10 +27,9 @@ data = list(zip(des_vec, lda_vectors))
 
 
 x, y = make_regression(n_samples=10000,n_features=500,n_targets=10)
-
-train_x = x[:9000]
-test_x = x[9000:]
-train_y = y[:9000]
+des_vec = x[:9000]
+web_vec = x[9000:]
+lda_vectors = y[:9000]
 test_y = y[9000:]
 
 
@@ -106,9 +105,11 @@ for l in [0, 0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
             train_y = lda_vectors[j:j+BATCH_SIZE]
             _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
             epoch_cost += cost
+        print("epoch_cost is {0}".format(epoch_cost/(len(data))))
     print("cost is {0}".format(epoch_cost/len(data)))
     tf_pred = sess.run(pred, feed_dict={x:des_vec})
     tf_pred_test = sess.run(pred, feed_dict={x:web_vec})
+    stop
     ################################
     # scikit model
     ################################
