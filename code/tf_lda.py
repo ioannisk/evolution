@@ -35,8 +35,8 @@ data = list(zip(des_vec, lda_vectors))
 ########################################################
 # Tensorflow model
 ########################################################
-LEARNING_RATE = 0.001
-BATCH_SIZE = 320
+LEARNING_RATE = 0.01
+BATCH_SIZE = 649
 EPOCHS = 500
 HIDDEN = 100
 
@@ -118,7 +118,7 @@ for l in [0, 0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
     print("NB TRAINING acc {0}".format(accuracy_score( n_pred,des_labels, normalize=True)*100))
     print("NB TESTING acc {0}".format(accuracy_score( n_pred_test,web_labels, normalize=True)*100))
     print()
-
+    stop
 # regression with L2 l=10 1-nn has accuracy of 0.85%
 
 
