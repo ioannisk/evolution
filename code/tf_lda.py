@@ -59,7 +59,7 @@ pred = tf.matmul(h1,W2) + b2
 
 # pred = tf.matmul(x,W) + b
 square_error = tf.reduce_sum(tf.square(y - pred))
-regularizer = tf.nn.l2_loss(W)
+regularizer = tf.nn.l2_loss(W1) + tf.nn.l2_loss(W2)
 loss = square_error + lamb*regularizer
 
 
