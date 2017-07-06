@@ -76,8 +76,9 @@ optimizer = tf.train.GradientDescentOptimizer(LEARNING_RATE).minimize(loss)
 init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
-clf = KNeighborsClassifier(n_neighbors=1)
-clf.fit(lda_vectors, lda_labels)
+
+# clf = KNeighborsClassifier(n_neighbors=1)
+# clf.fit(lda_vectors, lda_labels)
 
 ########################################################
 # Training
