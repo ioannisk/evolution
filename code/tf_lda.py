@@ -29,7 +29,7 @@ data = list(zip(des_vec, lda_vectors))
 ########################################################
 # Tensorflow model
 ########################################################
-LEARNING_RATE = 0.01
+LEARNING_RATE = 0.0001
 BATCH_SIZE = 649
 EPOCHS = 10
 HIDDEN = 100
@@ -44,7 +44,7 @@ lamb = tf.placeholder("float", None)
 W = tf.get_variable(name='W',shape=[voc_size, lda_topics])
 b = tf.get_variable(name='b', shape=[1,lda_topics])
 pred = tf.matmul(x,W) + b
-square_error = tf.reduce_sum(tf.square(y - pred))
+square_error = tf.reduce_mean(tf.square(y - pred))
 regularizer = tf.nn.l2_loss(W)
 loss = square_error + lamb*regularizer
 
@@ -70,13 +70,9 @@ loss = square_error + lamb*regularizer
 
 
 optimizer = tf.train.GradientDescentOptimizer(LEARNING_RATE).minimize(loss)
-
-
 init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
-
-
 clf = KNeighborsClassifier(n_neighbors=1)
 clf.fit(lda_vectors, lda_labels)
 
