@@ -30,7 +30,7 @@ data = list(zip(des_vec, lda_vectors))
 ########################################################
 LEARNING_RATE = 0.0001
 BATCH_SIZE = 10
-EPOCHS = 10
+EPOCHS = 100
 
 voc_size = des_vec.shape[1]
 lda_topics = lda_vectors.shape[1]
@@ -57,7 +57,7 @@ sess.run(init)
 ########################################################
 # Training
 ########################################################
-for l in [0.0001, 0.001, 0.01, 0.1, 1]:
+for l in [0.00001, 0.0001, 0.001, 0.01, 0.1, 1]:
     clf = KNeighborsClassifier(n_neighbors=1)
     clf.fit(lda_vectors, lda_labels)
     # l = 0
@@ -72,7 +72,6 @@ for l in [0.0001, 0.001, 0.01, 0.1, 1]:
             epoch_cost += cost
     print("cost is {0}".format(epoch_cost/len(data)))
     tf_pred = sess.run(pred, feed_dict={x:web_vec})
-    print(tf_pred.shape)
     n_pred = clf.predict(tf_pred)
     print("NB acc {0}".format(accuracy_score( web_labels,n_pred, normalize=True)))
     print()
