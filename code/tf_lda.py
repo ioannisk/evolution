@@ -7,7 +7,7 @@ web_data = pickle.load(open("../models/topics/web_vectors.pckl","rb"))
 
 
 lda_vectors = lda_data['vectors']
-lda_vectors = np.asarray([vec.reshape([1,10]) vec in lda_vectors])
+lda_vectors = np.asarray([vec.reshape([1,10]) for vec in lda_vectors])
 lda_labels = lda_data['labels']
 
 des_vec = des_data['vectors'].todense()
