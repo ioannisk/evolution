@@ -40,17 +40,33 @@ x = tf.placeholder(tf.float32, [None, voc_size])
 y = tf.placeholder(tf.float32,[None,lda_topics])
 lamb = tf.placeholder("float", None)
 
-W = tf.get_variable(name='W',shape=[voc_size, lda_topics])
-b = tf.get_variable(name='b', shape=[1,lda_topics])
+# W = tf.get_variable(name='W',shape=[voc_size, lda_topics])
+# b = tf.get_variable(name='b', shape=[1,lda_topics])
+# pred = tf.matmul(x,W) + b
+# square_error = tf.reduce_sum(tf.square(y - pred))
+# regularizer = tf.nn.l2_loss(W)
+# loss = square_error + lamb*regularizer
+
+
+W1 = tf.get_variable(name='W',shape=[voc_size, 30])
+W2 = tf.get_variable(name='W',shape=[30, lda_topics])
+
+b1 = tf.get_variable(name='b', shape=[1,30])
+b2 = tf.get_variable(name='b', shape=[1,lda_topics])
+
+h1 = tf.nn.relu(tf.matmul(x,W1) + b1)
+pred = tf.matmul(h1,W2) + b2
+
+# pred = tf.matmul(x,W) + b
+square_error = tf.reduce_sum(tf.square(y - pred))
+regularizer = tf.nn.l2_loss(W)
+loss = square_error + lamb*regularizer
+
 
 # pred =tf.nn.softmax(tf.matmul(x,W) + b)
 # cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
 # loss = cross_entropy
 
-pred = tf.matmul(x,W) + b
-square_error = tf.reduce_sum(tf.square(y - pred))
-regularizer = tf.nn.l2_loss(W)
-loss = square_error + lamb*regularizer
 
 optimizer = tf.train.GradientDescentOptimizer(LEARNING_RATE).minimize(loss)
 
