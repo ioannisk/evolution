@@ -37,7 +37,7 @@ data = list(zip(des_vec, lda_vectors))
 ########################################################
 LEARNING_RATE = 0.001
 BATCH_SIZE = 50
-EPOCHS = 1000
+EPOCHS = 10
 HIDDEN = 50
 
 voc_size = des_vec.shape[1]
@@ -118,6 +118,7 @@ for l in [1, 10, 15, 20, 25, 50]:
     # rmse = np.mean(np.square(tf_pred-lda_vectors))
     # print("RMSE  {0}".format(rmse))
 
+    print(sum(tf_pred[0]))
     n_pred = clf.predict(tf_pred)
     n_pred_test = clf.predict(tf_pred_test)
     print("NB TRAINING acc {0}".format(accuracy_score( n_pred,des_labels, normalize=True)*100))
