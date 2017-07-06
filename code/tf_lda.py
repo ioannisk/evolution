@@ -1,5 +1,6 @@
 import tensorflow as tf
 import pickle
+import numpy as np
 
 lda_data = pickle.load(open("../models/topics/lda_data.pckl","rb"))
 des_data = pickle.load(open("../models/topics/des_vectors.pckl","rb"))
