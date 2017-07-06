@@ -19,7 +19,7 @@ web_vec = web_data['vectors'].todense()
 web_labels = web_data['labels']
 
 
-a = zip(des_vec, lda_vectors)
+a = list(zip(des_vec, lda_vectors))
 print(len(a))
 print(len(a[0]))
 print((a[0][0].shape))
