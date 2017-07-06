@@ -32,13 +32,18 @@ lda_topics = lda_vectors.shape[1]
 
 x = tf.placeholder(tf.float32, [None, voc_size])
 y = tf.placeholder(tf.float32,[None,lda_topics])
+lamb = tf.placeholder("float", None)
 
 W = tf.get_variable(name='W',shape=[voc_size, lda_topics])
 b = tf.get_variable(name='b', shape=[1,lda_topics])
 pred = tf.matmul(x,W) + b
 
-loss = tf.reduce_sum(tf.square(y - pred))
+square_error = tf.reduce_sum(tf.square(y - pred))
+regularizer = tf.nn.l2_loss(W)
+loss = square_error + lamb*regularizer
+
 optimizer = tf.train.GradientDescentOptimizer(LEARNING_RATE).minimize(loss)
+
 
 init = tf.global_variables_initializer()
 sess = tf.Session()
@@ -47,16 +52,19 @@ sess.run(init)
 ########################################################
 # Training
 ########################################################
-
-for i in range(EPOCHS):
-    print("epoch {0}".format(i))
-    epoch_cost = 0.0
-    for j in range(0,len(data),BATCH_SIZE):
-        train_x = des_vec[j:j+BATCH_SIZE]
-        train_y = lda_vectors[j:j+BATCH_SIZE]
-        _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y})
-        epoch_cost += cost
-    print(epoch_cost/len(data))
+for l in [0.0001, 0.001, 0.01, 0.1, 1]:
+    print("lambda {0}".format(l))
+    for i in range(EPOCHS):
+        # print("epoch {0}".format(i))
+        epoch_cost = 0.0
+        for j in range(0,len(data),BATCH_SIZE):
+            train_x = des_vec[j:j+BATCH_SIZE]
+            train_y = lda_vectors[j:j+BATCH_SIZE]
+            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
+            epoch_cost += cost
+        # print(epoch_cost/len(data))
+        cost = sess.run([loss], feed_dict={x:web_vec, y:web_labels})
+        print("Testing Cost is {0}".format(cost/len(web_vec)))
 
 
 
