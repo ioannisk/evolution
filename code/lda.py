@@ -19,7 +19,7 @@ des_labels = list(des_df["class_num"])
 web_sites = list(df_web["class_txt"])
 labels = list(df_web["class_num"])
 vec_des_data, vec_web_sites, vec = vectorize_corpus(des_data, web_sites,tfidf=False)
-lda = LatentDirichletAllocation(n_topics=N_TOPICS, max_iter=10,
+lda = LatentDirichletAllocation(n_topics=N_TOPICS, max_iter=100,
                                 learning_method='online',
                                 learning_offset=50.,
                                 random_state=0,n_jobs=-1)

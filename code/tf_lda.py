@@ -52,6 +52,7 @@ lamb = tf.placeholder("float", None)
 W1 = tf.get_variable(name='W1',shape=[voc_size, HIDDEN])
 W2 = tf.get_variable(name='W2',shape=[HIDDEN, lda_topics])
 
+
 b1 = tf.get_variable(name='b1', shape=[1,HIDDEN])
 b2 = tf.get_variable(name='b2', shape=[1,lda_topics])
 
@@ -98,7 +99,7 @@ for l in [10, 15, 20, 25, 50]:
             _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
             epoch_cost += cost
     print("cost is {0}".format(epoch_cost/len(data)))
-    tf_pred = sess.run(pred, feed_dict={x:web_vec})
+    tf_pred = sess.run(pred, feed_dict={x:des_vec})
     ################################
     # scikit model
     ################################
@@ -106,8 +107,8 @@ for l in [10, 15, 20, 25, 50]:
     # reg.fit(des_vec, lda_vectors)
     # tf_pred = reg.predict(web_vec)
 
-    n_pred = clf.predict(tf_pred)
-    print("NB acc {0}".format(accuracy_score( web_labels,n_pred, normalize=True)*100))
+    # n_pred = clf.predict(tf_pred)
+    print("NB acc {0}".format(accuracy_score( tf_pred,des_labels, normalize=True)*100))
     print()
 
 # regression with L2 l=10 1-nn has accuracy of 0.85%
