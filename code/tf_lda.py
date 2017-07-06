@@ -57,24 +57,23 @@ sess.run(init)
 ########################################################
 # Training
 ########################################################
-# for l in [0.0001, 0.001, 0.01, 0.1, 1]:
-clf = KNeighborsClassifier(n_neighbors=1)
-clf.fit(lda_vectors, lda_labels)
-
-l = 0
-print("lambda {0}".format(l))
-for i in range(EPOCHS):
-    # print("epoch {0}".format(i))
-    epoch_cost = 0.0
-    for j in range(0,len(data),BATCH_SIZE):
-        train_x = des_vec[j:j+BATCH_SIZE]
-        train_y = lda_vectors[j:j+BATCH_SIZE]
-        _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
-        epoch_cost += cost
-    print(epoch_cost/len(data))
-    tf_pred = sess.run(pred, feed_dict={x:web_vec})
-    print(tf_pred.shape)
-    n_pred = clf.predict(tf_pred)
+for l in [0.0001, 0.001, 0.01, 0.1, 1]:
+    clf = KNeighborsClassifier(n_neighbors=1)
+    clf.fit(lda_vectors, lda_labels)
+    # l = 0
+    print("lambda {0}".format(l))
+    for i in range(EPOCHS):
+        # print("epoch {0}".format(i))
+        epoch_cost = 0.0
+        for j in range(0,len(data),BATCH_SIZE):
+            train_x = des_vec[j:j+BATCH_SIZE]
+            train_y = lda_vectors[j:j+BATCH_SIZE]
+            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l})
+            epoch_cost += cost
+        print(epoch_cost/len(data))
+        tf_pred = sess.run(pred, feed_dict={x:web_vec})
+        print(tf_pred.shape)
+        n_pred = clf.predict(tf_pred)
     print("NB {0}".format(accuracy_score( web_labels,n_pred, normalize=True)))
 
         # print("Testing Cost is {0}".format(cost/len(web_vec)))
