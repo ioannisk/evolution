@@ -18,9 +18,10 @@ web_labels = web_data['labels']
 
 
 print(des_vec.shape)
+print(des_vec[0])
 
 
 x = tf.placeholder(tf.float32, [None, 784])
 y_true = tf.placeholder(tf.float32,[None,10])
 
-W = tf.Variable(name='wh1',shape=[784, 128])
+W = tf.get_variable(name='W',shape=[784, 128])
