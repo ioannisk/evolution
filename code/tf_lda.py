@@ -23,7 +23,7 @@ data = list(zip(des_vec, lda_vectors))
 ########################################################
 # Tensorflow model
 ########################################################
-LEARNING_RATE = 0.5
+LEARNING_RATE = 0.0001
 BATCH_SIZE = 10
 EPOCHS = 30
 
@@ -37,7 +37,7 @@ W = tf.get_variable(name='W',shape=[voc_size, lda_topics])
 b = tf.get_variable(name='b', shape=[1,lda_topics])
 pred = tf.matmul(x,W) + b
 
-loss = -tf.reduce_sum(tf.square(y - pred))
+loss = tf.reduce_sum(tf.square(y - pred))
 optimizer = tf.train.GradientDescentOptimizer(LEARNING_RATE).minimize(loss)
 
 init = tf.global_variables_initializer()
