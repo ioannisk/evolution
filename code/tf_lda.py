@@ -27,8 +27,15 @@ data = list(zip(des_vec, lda_vectors))
 
 
 x, y = make_regression(n_samples=10000,n_features=500,n_targets=10)
-print(x.shape)
-print(y.shape)
+
+train_x = x[:9000]
+test_x = x[9000:]
+train_y = y[:9000]
+test_y = y[9000:]
+
+
+print(train_x.shape)
+print(test_x.shape)
 
 stop
 
