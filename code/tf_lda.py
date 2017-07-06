@@ -84,7 +84,7 @@ clf.fit(lda_vectors, lda_labels)
 ########################################################
 # Training
 ########################################################
-for l in [10, 15, 20, 25, 50]:
+for l in [0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
     # l = 0
     ################################
     # TF model
@@ -107,7 +107,7 @@ for l in [10, 15, 20, 25, 50]:
     # reg.fit(des_vec, lda_vectors)
     # tf_pred = reg.predict(web_vec)
 
-    # n_pred = clf.predict(tf_pred)
+    n_pred = clf.predict(tf_pred)
     print("NB acc {0}".format(accuracy_score( tf_pred,des_labels, normalize=True)*100))
     print()
 
