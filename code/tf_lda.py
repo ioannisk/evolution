@@ -32,7 +32,7 @@ data = list(zip(des_vec, lda_vectors))
 LEARNING_RATE = 0.00001
 BATCH_SIZE = 50
 EPOCHS = 500
-HIDDEN = 30
+HIDDEN = 100
 
 voc_size = des_vec.shape[1]
 lda_topics = lda_vectors.shape[1]
@@ -57,16 +57,16 @@ b1 = tf.get_variable(name='b1', shape=[1,HIDDEN])
 b2 = tf.get_variable(name='b2', shape=[1,lda_topics])
 
 h1 = tf.nn.sigmoid(tf.matmul(x,W1) + b1)
-pred = tf.matmul(h1,W2) + b2
+pred = tf.nn.softmax(tf.matmul(h1,W2) + b2)
 
-square_error = tf.reduce_sum(tf.square(y - pred))
-regularizer = tf.nn.l2_loss(W1) + tf.nn.l2_loss(W2)
-loss = square_error + lamb*regularizer
+# square_error = tf.reduce_sum(tf.square(y - pred))
+# regularizer = tf.nn.l2_loss(W1) + tf.nn.l2_loss(W2)
+# loss = square_error + lamb*regularizer
 
 
 # pred =tf.nn.softmax(tf.matmul(x,W) + b)
-# cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
-# loss = cross_entropy
+cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
+loss = cross_entropy
 
 
 optimizer = tf.train.GradientDescentOptimizer(LEARNING_RATE).minimize(loss)
