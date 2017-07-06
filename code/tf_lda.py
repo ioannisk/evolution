@@ -36,8 +36,8 @@ test_y = y[9000:]
 # Tensorflow model
 ########################################################
 LEARNING_RATE = 0.0001
-BATCH_SIZE = 50
-EPOCHS = 10
+BATCH_SIZE = 100
+EPOCHS = 1000
 HIDDEN = 100
 
 voc_size = des_vec.shape[1]
