@@ -26,11 +26,11 @@ web_labels = web_data['labels']
 data = list(zip(des_vec, lda_vectors))
 
 
-x, y = make_regression(n_samples=10000,n_features=500,n_targets=10)
-des_vec = x[:9000]
-web_vec = x[9000:]
-lda_vectors = y[:9000]
-test_y = y[9000:]
+# x, y = make_regression(n_samples=10000,n_features=500,n_targets=10)
+# des_vec = x[:9000]
+# web_vec = x[9000:]
+# lda_vectors = y[:9000]
+# test_y = y[9000:]
 
 ########################################################
 # Tensorflow model
