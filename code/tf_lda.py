@@ -49,7 +49,7 @@ data = list(zip(des_vec, lda_vectors))
 NN = 5
 LEARNING_RATE = 0.0001
 BATCH_SIZE = 50
-EPOCHS = 2000
+EPOCHS = 600
 HIDDEN = 30
 
 voc_size = des_vec.shape[1]
