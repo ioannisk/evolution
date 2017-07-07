@@ -87,12 +87,6 @@ loss = square_error + lamb*regularizer
 
 
 
-correct_prediction = tf.equal(tf.argmax(pred,1), tf.argmax(y,1))
-accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-
-
-
-
 
 optimizer = tf.train.AdamOptimizer(LEARNING_RATE).minimize(loss)
 init = tf.global_variables_initializer()
@@ -105,8 +99,7 @@ clf.fit(lda_vectors, lda_labels)
 ########################################################
 # Training
 ########################################################
-# LEARNING_RATE
-# for l in [1, 10, 15, 20, 25, 50]:
+for l in [1, 10, 15, 20, 25, 50]:
     # l = 0
     ################################
     # TF model
@@ -129,25 +122,20 @@ clf.fit(lda_vectors, lda_labels)
     ################################
     # scikit model
     ################################
-for _ in range(2000):
-  batch_xs, batch_ys = mnist.train.next_batch(100)
-  sess.run(optimizer, feed_dict={x: batch_xs, y: batch_ys, lamb:0})
-print(sess.run(accuracy, feed_dict={x: mnist.test.images, y: mnist.test.labels}))
 
+    reg = linear_model.Ridge(alpha = l)
+    reg.fit(des_vec, lda_vectors)
+    tf_pred = reg.predict(des_vec)
+    tf_pred_test = reg.predict(web_vec)
+    rmse = np.mean(np.square(tf_pred-lda_vectors))
+    print("RMSE  {0}".format(rmse))
 
-    # reg = linear_model.Ridge(alpha = l)
-    # reg.fit(des_vec, lda_vectors)
-    # tf_pred = reg.predict(des_vec)
-    # tf_pred_test = reg.predict(web_vec)
-    # rmse = np.mean(np.square(tf_pred-lda_vectors))
-    # print("RMSE  {0}".format(rmse))
-
-    # print(sum(tf_pred[0]))
-    # n_pred = clf.predict(tf_pred)
-    # n_pred_test = clf.predict(tf_pred_test)
-    # print("NB TRAINING acc {0}".format(accuracy_score( n_pred,des_labels, normalize=True)*100))
-    # print("NB TESTING acc {0}".format(accuracy_score( n_pred_test,web_labels, normalize=True)*100))
-    # print()
+    print(sum(tf_pred[0]))
+    n_pred = clf.predict(tf_pred)
+    n_pred_test = clf.predict(tf_pred_test)
+    print("NB TRAINING acc {0}".format(accuracy_score( n_pred,des_labels, normalize=True)*100))
+    print("NB TESTING acc {0}".format(accuracy_score( n_pred_test,web_labels, normalize=True)*100))
+    print()
     # stop
 # regression with L2 l=10 1-nn has accuracy of 0.85%
 
