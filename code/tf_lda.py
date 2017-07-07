@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 from sklearn import linear_model
-
+from sklearn.neighbors import NearestNeighbors
 from sklearn.datasets import make_regression
 
 
@@ -36,8 +36,6 @@ data = list(zip(des_vec, lda_vectors))
 ########################################################
 # Tensorflow model
 ########################################################
-from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
 LEARNING_RATE = 0.01
 BATCH_SIZE = 50
