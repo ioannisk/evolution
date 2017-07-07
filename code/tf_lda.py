@@ -17,7 +17,7 @@ def top_nn_accuracy(indexes, train_l, test_label):
         top_n = set(train_l[ind])
         if label in top_n:
             true_positives +=1
-    return true_positives/float(len(test_label))
+    return true_positives*100/float(len(indexes))
 
 
 
@@ -143,8 +143,8 @@ for l in [0, 0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
     train_acc= top_nn_accuracy(ind_train, lda_labels, des_labels)
     test_acc= top_nn_accuracy(ind_test, lda_labels, web_labels)
 
-    print("TOP {0} TESTING acc is {1}".format(NN,train_acc ))
-    print("TOP {0} TRAINING acc is {1}".format(NN,test_acc ))
+    print("TOP {0} TRAINING acc is {1}".format(NN,train_acc ))
+    print("TOP {0} TESTING acc is {1}".format(NN,test_acc ))
     # for
 
     # n_pred = clf.predict(tf_pred)
