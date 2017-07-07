@@ -11,7 +11,7 @@ from sklearn.datasets import make_regression
 def top_nn_accuracy(indexes, train_l, test_label):
     train_l = np.asarray(train_l)
     true_positives = 0
-    for i in range(len(ind)):
+    for i in range(len(indexes)):
         label = test_label[i]
         ind = list(indexes[i])
         top_n = set(train_l[ind])
