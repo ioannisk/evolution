@@ -15,9 +15,6 @@ def top_nn_accuracy(indexes, train_l, test_label):
         label = test_label[i]
         ind = list(indexes[i])
         top_n = set(train_l[ind])
-        print(label)
-        print(top_n)
-        # stop
         if label in top_n:
             true_positives +=1
     return true_positives/float(len(test_label))
