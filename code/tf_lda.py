@@ -7,6 +7,14 @@ from sklearn import linear_model
 
 from sklearn.datasets import make_regression
 
+
+def top_nn_accuracy(ind, train_l, test_label):
+    for i in ind:
+        print(i)
+        stop
+
+
+
 ########################################################
 # Data importing
 ########################################################
@@ -25,18 +33,9 @@ web_labels = web_data['labels']
 
 data = list(zip(des_vec, lda_vectors))
 
-
-# x, y = make_regression(n_samples=10000,n_features=500,n_targets=10)
-# des_vec = x[:9000]
-# web_vec = x[9000:]
-# lda_vectors = y[:9000]
-# test_y = y[9000:]
-
 ########################################################
 # Tensorflow model
 ########################################################
-
-
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
@@ -45,11 +44,8 @@ BATCH_SIZE = 50
 EPOCHS = 10
 HIDDEN = 100
 
-
-voc_size = 784
-lda_topics = 10
-# voc_size = des_vec.shape[1]
-# lda_topics = lda_vectors.shape[1]
+voc_size = des_vec.shape[1]
+lda_topics = lda_vectors.shape[1]
 
 x = tf.placeholder(tf.float32, [None, voc_size])
 y = tf.placeholder(tf.float32,[None,lda_topics])
@@ -85,21 +81,22 @@ loss = square_error + lamb*regularizer
 # cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
 # loss = cross_entropy
 
-
-
-
 optimizer = tf.train.AdamOptimizer(LEARNING_RATE).minimize(loss)
 init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
-
-clf = KNeighborsClassifier(n_neighbors=1)
-clf.fit(lda_vectors, lda_labels)
-
 ########################################################
 # Training
 ########################################################
-for l in [1, 10, 15, 20, 25, 50]:
+
+clf = KNeighborsClassifier(n_neighbors=1)
+clf.fit(lda_vectors, lda_labels)
+nn = NearestNeighbors(n_neighbors=5, algorithm='ball_tree').fit(lda_vectors)
+
+
+
+
+for l in [0, 0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
     # l = 0
     ################################
     # TF model
@@ -123,6 +120,7 @@ for l in [1, 10, 15, 20, 25, 50]:
     # scikit model
     ################################
 
+
     reg = linear_model.Ridge(alpha = l)
     reg.fit(des_vec, lda_vectors)
     tf_pred = reg.predict(des_vec)
@@ -130,7 +128,14 @@ for l in [1, 10, 15, 20, 25, 50]:
     rmse = np.mean(np.square(tf_pred-lda_vectors))
     print("RMSE  {0}".format(rmse))
 
-    print(sum(tf_pred[0]))
+
+    dist_train, ind_train = nn.kneighbors(tf_pred)
+    dist_test, ind_test = nn.kneighbors(web_vec)
+
+    top_nn_accuracy(ind_train, lda_labels, test_label)
+
+    # for
+
     n_pred = clf.predict(tf_pred)
     n_pred_test = clf.predict(tf_pred_test)
     print("NB TRAINING acc {0}".format(accuracy_score( n_pred,des_labels, normalize=True)*100))
