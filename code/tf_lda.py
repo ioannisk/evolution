@@ -81,7 +81,7 @@ h1 = tf.nn.sigmoid(tf.matmul(x,W1) + b1)
 # regularizer = tf.nn.l2_loss(W1) + tf.nn.l2_loss(W2)
 # loss = square_error + lamb*regularizer
 
-pred =tf.nn.softmax(tf.matmul(x,W) + b)
+pred =tf.nn.softmax(tf.matmul(h1,W2) + b2)
 cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
 loss = cross_entropy
 
