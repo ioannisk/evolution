@@ -17,9 +17,10 @@ def top_nn_accuracy(indexes, train_l, test_label):
         top_n = set(train_l[ind])
         print(label)
         print(top_n)
-        stop
+        # stop
         if label in top_n:
             true_positives +=1
+    return true_positives/float(len(test_label))
 
 
 
@@ -48,6 +49,7 @@ data = list(zip(des_vec, lda_vectors))
 # Tensorflow model
 ########################################################
 
+NN = 5
 LEARNING_RATE = 0.01
 BATCH_SIZE = 50
 EPOCHS = 10
@@ -100,7 +102,7 @@ sess.run(init)
 
 clf = KNeighborsClassifier(n_neighbors=1)
 clf.fit(lda_vectors, lda_labels)
-nn = NearestNeighbors(n_neighbors=5, algorithm='ball_tree').fit(lda_vectors)
+nn = NearestNeighbors(n_neighbors=NN, algorithm='ball_tree').fit(lda_vectors)
 
 
 
@@ -141,14 +143,17 @@ for l in [0, 0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
     dist_train, ind_train = nn.kneighbors(tf_pred)
     dist_test, ind_test = nn.kneighbors(tf_pred_test)
 
-    top_nn_accuracy(ind_train, lda_labels, des_labels)
+    train_acc= top_nn_accuracy(ind_train, lda_labels, des_labels)
+    test_acc= top_nn_accuracy(ind_test, lda_labels, web_labels)
 
+    print("TOP {0} TESTING acc is {1}".format(NN,train_acc ))
+    print("TOP {0} TRAINING acc is {1}".format(NN,test_acc ))
     # for
 
-    n_pred = clf.predict(tf_pred)
-    n_pred_test = clf.predict(tf_pred_test)
-    print("NB TRAINING acc {0}".format(accuracy_score( n_pred,des_labels, normalize=True)*100))
-    print("NB TESTING acc {0}".format(accuracy_score( n_pred_test,web_labels, normalize=True)*100))
+    # n_pred = clf.predict(tf_pred)
+    # n_pred_test = clf.predict(tf_pred_test)
+    # print("NB TRAINING acc {0}".format(accuracy_score( n_pred,des_labels, normalize=True)*100))
+    # print("NB TESTING acc {0}".format(accuracy_score( n_pred_test,web_labels, normalize=True)*100))
     print()
     # stop
 # regression with L2 l=10 1-nn has accuracy of 0.85%
