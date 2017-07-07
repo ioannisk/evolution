@@ -11,7 +11,7 @@ def print_top_words(model, feature_names, n_top_words):
     print()
 
 
-N_TOPICS = 20
+N_TOPICS = 5
 n_top_words = 20
 des_df, df_web = data_pipeline()
 des_data = list(des_df["txt"])
