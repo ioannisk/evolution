@@ -40,10 +40,10 @@ data = list(zip(des_vec, lda_vectors))
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
-LEARNING_RATE = 0.1
+LEARNING_RATE = 0.01
 BATCH_SIZE = 50
 EPOCHS = 10
-HIDDEN = 50
+HIDDEN = 100
 
 
 voc_size = 784
