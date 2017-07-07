@@ -128,9 +128,9 @@ for l in [0, 0.001, 0.01, 0.1, 1, 10, 15, 20, 25, 50]:
 
 
     dist_train, ind_train = nn.kneighbors(tf_pred)
-    dist_test, ind_test = nn.kneighbors(web_vec)
+    dist_test, ind_test = nn.kneighbors(tf_pred_test)
 
-    top_nn_accuracy(ind_train, lda_labels, test_label)
+    top_nn_accuracy(ind_train, lda_labels, des_labels)
 
     # for
 
