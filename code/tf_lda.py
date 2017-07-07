@@ -124,8 +124,8 @@ for l in [0, 0.001, 20, 25, 50, 70, 100,200]:
             print("cost is {0}".format(epoch_cost/len(data)))
 
     print("cost is {0}".format(epoch_cost/len(data)))
-    tf_pred = sess.run(pred, feed_dict={x:des_vec})
-    tf_pred_test = sess.run(pred, feed_dict={x:web_vec})
+    tf_pred = sess.run(pred, feed_dict={x:des_vec,dropout:1})
+    tf_pred_test = sess.run(pred, feed_dict={x:web_vec,dropout:1})
     # stop
     ################################
     # scikit model
