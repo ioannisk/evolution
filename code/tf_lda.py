@@ -75,15 +75,15 @@ b2 = tf.get_variable(name='b2', shape=[1,lda_topics])
 h1 = tf.nn.sigmoid(tf.matmul(x,W1) + b1)
 
 
-# pred = tf.matmul(h1,W2) + b2
+pred = tf.matmul(h1,W2) + b2
 
-# square_error = tf.reduce_sum(tf.square(y - pred))
-# regularizer = tf.nn.l2_loss(W1) + tf.nn.l2_loss(W2)
-# loss = square_error + lamb*regularizer
+square_error = tf.reduce_sum(tf.square(y - pred))
+regularizer = tf.nn.l2_loss(W1) + tf.nn.l2_loss(W2)
+loss = square_error + lamb*regularizer
 
-pred =tf.nn.softmax(tf.matmul(h1,W2) + b2)
-cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
-loss = cross_entropy
+# pred =tf.nn.softmax(tf.matmul(h1,W2) + b2)
+# cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
+# loss = cross_entropy
 
 
 
