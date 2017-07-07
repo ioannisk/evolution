@@ -129,7 +129,7 @@ clf.fit(lda_vectors, lda_labels)
     ################################
     # scikit model
     ################################
-for _ in range(1000):
+for _ in range(2000):
   batch_xs, batch_ys = mnist.train.next_batch(100)
   sess.run(optimizer, feed_dict={x: batch_xs, y: batch_ys, lamb:0})
 print(sess.run(accuracy, feed_dict={x: mnist.test.images, y: mnist.test.labels}))
