@@ -50,7 +50,7 @@ NN = 10
 LEARNING_RATE = 0.0001
 BATCH_SIZE = 300
 EPOCHS = 650
-HIDDEN = 30
+HIDDEN = 15
 
 voc_size = des_vec.shape[1]
 lda_topics = lda_vectors.shape[1]
@@ -115,7 +115,7 @@ for l in [0, 0.001, 20, 25, 50, 70, 100,200]:
         for j in range(0,len(data),BATCH_SIZE):
             train_x = des_vec[j:j+BATCH_SIZE]
             train_y = lda_vectors[j:j+BATCH_SIZE]
-            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l, lr:LEARNING_RATE,dropout:0.7})
+            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l, lr:LEARNING_RATE,dropout:0.4})
             epoch_cost += cost
         # print("epoch_cost is {0}".format(epoch_cost/(len(data))))
         LEARNING_RATE *= 0.99
