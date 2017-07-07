@@ -104,7 +104,7 @@ nn = NearestNeighbors(n_neighbors=NN, algorithm='ball_tree').fit(lda_vectors)
 
 
 
-for l in [ 20, 25, 50, 70, 100]:
+for l in [ 20, 25, 50, 70, 100,200]:
     # l = 0
     ################################
     # TF model
