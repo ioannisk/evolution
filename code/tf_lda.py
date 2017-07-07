@@ -8,15 +8,21 @@ from sklearn.neighbors import NearestNeighbors
 from sklearn.datasets import make_regression
 
 
-def top_nn_accuracy(ind, train_l, test_label):
-    for i in ind:
-        train_l = np.asarray(train_l)
-        i = list(i)
-        # print(i.shape)
-        # print(train_l.shape)
-        # print(i)
-        print(train_l[i])
+def top_nn_accuracy(indexes, train_l, test_label):
+    train_l = np.asarray(train_l)
+    true_positives = 0
+    for i in range(len(ind)):
+        label = test_label[i]
+        ind = list(indexes[i])
+        top_n = set(train_l[ind])
+        print(label)
+        print(top_n)
         stop
+        if label in top_n:
+            true_positives +=1
+
+
+
 
 
 
