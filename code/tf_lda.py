@@ -49,7 +49,7 @@ data = list(zip(des_vec, lda_vectors))
 NN = 10
 LEARNING_RATE = 0.0001
 BATCH_SIZE = 300
-EPOCHS = 600
+EPOCHS = 1000
 HIDDEN = 30
 
 voc_size = des_vec.shape[1]
@@ -77,7 +77,7 @@ b1 = tf.get_variable(name='b1', shape=[1,HIDDEN])
 b2 = tf.get_variable(name='b2', shape=[1,lda_topics])
 
 h1 = tf.nn.sigmoid(tf.matmul(x,W1) + b1)
-h1 = tf.nn.dropout(h1_pre, dropout)
+h1 = tf.nn.dropout(h1, dropout)
 
 # pred = tf.matmul(h1,W2) + b2
 # square_error = tf.reduce_sum(tf.square(y - pred))
@@ -103,7 +103,7 @@ nn = NearestNeighbors(n_neighbors=NN, algorithm='ball_tree').fit(lda_vectors)
 
 
 
-for l in [ 20, 25, 50, 70, 100,200]:
+for l in [0, 0.001, 20, 25, 50, 70, 100,200]:
     # l = 0
     ################################
     # TF model
@@ -113,6 +113,8 @@ for l in [ 20, 25, 50, 70, 100,200]:
         # print("epoch {0}".format(i))
         epoch_cost = 0.0
         for j in range(0,len(data),BATCH_SIZE):
+            if j%200 ==0:
+                print("epoch {0}".format(j))
             train_x = des_vec[j:j+BATCH_SIZE]
             train_y = lda_vectors[j:j+BATCH_SIZE]
             _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l, lr:LEARNING_RATE,dropout:0.7})
