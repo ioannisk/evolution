@@ -147,10 +147,10 @@ for l in [ 20, 25, 50, 70, 100,200]:
     print("TOP {0} TESTING acc is {1}".format(NN,test_acc ))
     # for
 
-    # n_pred = clf.predict(tf_pred)
-    # n_pred_test = clf.predict(tf_pred_test)
-    # print("NB TRAINING acc {0}".format(accuracy_score( n_pred,des_labels, normalize=True)*100))
-    # print("NB TESTING acc {0}".format(accuracy_score( n_pred_test,web_labels, normalize=True)*100))
+    n_pred = clf.predict(tf_pred)
+    n_pred_test = clf.predict(tf_pred_test)
+    print("NB TRAINING acc {0}".format(accuracy_score( n_pred,des_labels, normalize=True)*100))
+    print("NB TESTING acc {0}".format(accuracy_score( n_pred_test,web_labels, normalize=True)*100))
     print()
     # stop
 # regression with L2 l=10 1-nn has accuracy of 0.85%
