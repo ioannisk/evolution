@@ -112,9 +112,9 @@ for l in [0, 0.001, 20, 25, 50, 70, 100,200]:
     for i in range(EPOCHS):
         # print("epoch {0}".format(i))
         epoch_cost = 0.0
-        for j in range(0,len(data),BATCH_SIZE):
-            if j%200 ==0:
+        if j%200 ==0:
                 print("epoch {0}".format(j))
+        for j in range(0,len(data),BATCH_SIZE):
             train_x = des_vec[j:j+BATCH_SIZE]
             train_y = lda_vectors[j:j+BATCH_SIZE]
             _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l, lr:LEARNING_RATE,dropout:0.7})
