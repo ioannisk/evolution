@@ -59,7 +59,7 @@ x = tf.placeholder(tf.float32, [None, voc_size])
 y = tf.placeholder(tf.float32,[None,lda_topics])
 lamb = tf.placeholder("float", None)
 lr = tf.placeholder("float", None)
-
+dropout = tf.placeholder("float", None)
 # W = tf.get_variable(name='W',shape=[voc_size, lda_topics],initializer=tf.contrib.layers.xavier_initializer())
 # b = tf.get_variable(name='b', shape=[1,lda_topics],initializer=tf.contrib.layers.xavier_initializer())
 # pred = tf.matmul(x,W) + b
@@ -77,17 +77,16 @@ b1 = tf.get_variable(name='b1', shape=[1,HIDDEN])
 b2 = tf.get_variable(name='b2', shape=[1,lda_topics])
 
 h1 = tf.nn.sigmoid(tf.matmul(x,W1) + b1)
+h1 = tf.nn.dropout(h1_pre, dropout)
 
+# pred = tf.matmul(h1,W2) + b2
+# square_error = tf.reduce_sum(tf.square(y - pred))
+# regularizer = tf.nn.l2_loss(W1) + tf.nn.l2_loss(W2)
+# loss = square_error + lamb*regularizer
 
-pred = tf.matmul(h1,W2) + b2
-
-square_error = tf.reduce_sum(tf.square(y - pred))
-regularizer = tf.nn.l2_loss(W1) + tf.nn.l2_loss(W2)
-loss = square_error + lamb*regularizer
-
-# pred =tf.nn.softmax(tf.matmul(h1,W2) + b2)
-# cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
-# loss = cross_entropy
+pred =tf.nn.softmax(tf.matmul(h1,W2) + b2)
+cross_entropy = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=[1]))
+loss = cross_entropy
 
 optimizer = tf.train.AdamOptimizer(LEARNING_RATE).minimize(loss)
 init = tf.global_variables_initializer()
@@ -116,7 +115,7 @@ for l in [ 20, 25, 50, 70, 100,200]:
         for j in range(0,len(data),BATCH_SIZE):
             train_x = des_vec[j:j+BATCH_SIZE]
             train_y = lda_vectors[j:j+BATCH_SIZE]
-            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l, lr:LEARNING_RATE})
+            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l, lr:LEARNING_RATE,dropout:0.7})
             epoch_cost += cost
         # print("epoch_cost is {0}".format(epoch_cost/(len(data))))
         LEARNING_RATE *= 0.99
