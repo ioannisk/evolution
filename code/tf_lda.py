@@ -10,6 +10,7 @@ from sklearn.datasets import make_regression
 
 def top_nn_accuracy(ind, train_l, test_label):
     for i in ind:
+        print(i)
         print(train_l[i])
         stop
 
