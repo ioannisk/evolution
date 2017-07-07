@@ -103,8 +103,9 @@ nn = NearestNeighbors(n_neighbors=NN, algorithm='ball_tree').fit(lda_vectors)
 
 
 
-for l in [0, 0.0001, 0.001, 0.01, 20, 25, 50, 70, 100,200]:
-    # l = 0
+# for l in [0, 0.0001, 0.001, 0.01, 20, 25, 50, 70, 100,200]:
+for d in [0.5, 0.6, 0.7, 0.8, 0.9, 1]
+    l = 0
     ################################
     # TF model
     ################################
@@ -115,7 +116,7 @@ for l in [0, 0.0001, 0.001, 0.01, 20, 25, 50, 70, 100,200]:
         for j in range(0,len(data),BATCH_SIZE):
             train_x = des_vec[j:j+BATCH_SIZE]
             train_y = lda_vectors[j:j+BATCH_SIZE]
-            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l, lr:LEARNING_RATE,dropout:0.8})
+            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l, lr:LEARNING_RATE,dropout:d})
             epoch_cost += cost
         # print("epoch_cost is {0}".format(epoch_cost/(len(data))))
         LEARNING_RATE *= 0.99
