@@ -46,7 +46,7 @@ data = list(zip(des_vec, lda_vectors))
 # Tensorflow model
 ########################################################
 
-NN = 5
+NN = 10
 LEARNING_RATE = 0.0001
 BATCH_SIZE = 50
 EPOCHS = 600
@@ -110,31 +110,31 @@ for l in [ 20, 25, 50, 70, 100,200]:
     # TF model
     ################################
     print("lambda {0}".format(l))
-    for i in range(EPOCHS):
-        # print("epoch {0}".format(i))
-        epoch_cost = 0.0
-        for j in range(0,len(data),BATCH_SIZE):
-            train_x = des_vec[j:j+BATCH_SIZE]
-            train_y = lda_vectors[j:j+BATCH_SIZE]
-            _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l, lr:LEARNING_RATE})
-            epoch_cost += cost
-        # print("epoch_cost is {0}".format(epoch_cost/(len(data))))
-        LEARNING_RATE *= 0.99
-    print("cost is {0}".format(epoch_cost/len(data)))
-    tf_pred = sess.run(pred, feed_dict={x:des_vec})
-    tf_pred_test = sess.run(pred, feed_dict={x:web_vec})
+    # for i in range(EPOCHS):
+    #     # print("epoch {0}".format(i))
+    #     epoch_cost = 0.0
+    #     for j in range(0,len(data),BATCH_SIZE):
+    #         train_x = des_vec[j:j+BATCH_SIZE]
+    #         train_y = lda_vectors[j:j+BATCH_SIZE]
+    #         _, cost = sess.run([optimizer, loss], feed_dict={x:train_x, y:train_y, lamb:l, lr:LEARNING_RATE})
+    #         epoch_cost += cost
+    #     # print("epoch_cost is {0}".format(epoch_cost/(len(data))))
+    #     LEARNING_RATE *= 0.99
+    # print("cost is {0}".format(epoch_cost/len(data)))
+    # tf_pred = sess.run(pred, feed_dict={x:des_vec})
+    # tf_pred_test = sess.run(pred, feed_dict={x:web_vec})
     # stop
     ################################
     # scikit model
     ################################
 
 
-    # reg = linear_model.Ridge(alpha = l)
-    # reg.fit(des_vec, lda_vectors)
-    # tf_pred = reg.predict(des_vec)
-    # tf_pred_test = reg.predict(web_vec)
-    # rmse = np.mean(np.square(tf_pred-lda_vectors))
-    # print("RMSE  {0}".format(rmse))
+    reg = linear_model.Ridge(alpha = l)
+    reg.fit(des_vec, lda_vectors)
+    tf_pred = reg.predict(des_vec)
+    tf_pred_test = reg.predict(web_vec)
+    rmse = np.mean(np.square(tf_pred-lda_vectors))
+    print("RMSE  {0}".format(rmse))
 
 
     dist_train, ind_train = nn.kneighbors(tf_pred)
