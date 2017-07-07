@@ -50,7 +50,7 @@ NN = 10
 LEARNING_RATE = 0.0001
 BATCH_SIZE = 300
 EPOCHS = 2000
-HIDDEN = 400
+HIDDEN = 300
 
 voc_size = des_vec.shape[1]
 lda_topics = lda_vectors.shape[1]
@@ -76,7 +76,7 @@ W2 = tf.Variable(tf.random_uniform([HIDDEN,lda_topics],0,0.01))
 b1 = tf.get_variable(name='b1', shape=[1,HIDDEN])
 b2 = tf.get_variable(name='b2', shape=[1,lda_topics])
 
-h1 = tf.nn.sigmoid(tf.matmul(x,W1) + b1)
+h1 = tf.nn.relu(tf.matmul(x,W1) + b1)
 h1 = tf.nn.dropout(h1, dropout)
 
 # pred = tf.matmul(h1,W2) + b2
@@ -103,7 +103,7 @@ nn = NearestNeighbors(n_neighbors=NN, algorithm='ball_tree').fit(lda_vectors)
 
 
 
-for l in [0, 0.001, 20, 25, 50, 70, 100,200]:
+for l in [0, 0.0001, 0.001, 0.01, 20, 25, 50, 70, 100,200]:
     # l = 0
     ################################
     # TF model
