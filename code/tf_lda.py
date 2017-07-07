@@ -132,7 +132,7 @@ clf.fit(lda_vectors, lda_labels)
 for _ in range(1000):
   batch_xs, batch_ys = mnist.train.next_batch(100)
   sess.run(optimizer, feed_dict={x: batch_xs, y: batch_ys, lamb:0})
-print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+print(sess.run(accuracy, feed_dict={x: mnist.test.images, y: mnist.test.labels}))
 
 
     # reg = linear_model.Ridge(alpha = l)
