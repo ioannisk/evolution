@@ -1,4 +1,8 @@
 glove
+models
 snli
 word_sequence
 data
+doc2vec_data/
+nohup.out
+models/doc2vec
