@@ -18,7 +18,7 @@ label,pred,company_id,url,error,Notes,Proposed Solutions,c,should be correct
 72110,74901,07153483,www.biologic.ca,kb,bad parsing ,better parsing term “bio” should match ,,
 72110,71129,09066229,cleonenergy.co.uk,kb,not enough info ,,,
 72110,1110,03670478,www.dgen.net,b,,,,
-72110,82200,SC406341,glycobiochem.com,c,keyword missmatch ,stemming would fix ,,
+72110,82200,SC406341,glycobiochem.com,c,keyword mismatch ,stemming would fix ,,
 72110,72190,SC296459,www.highlandbiosciences.com,,,,,
 72110,72190,04784437,mologic.co.uk,,,,,
 33120,64921,SC087960,amkplantandtipperhire.co.uk,,,,,

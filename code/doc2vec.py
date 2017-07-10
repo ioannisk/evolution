@@ -22,6 +22,14 @@ from sklearn.preprocessing import normalize
 from os import listdir
 from os.path import isfile, join
 
+#####################
+#
+# Check thi out: https://medium.com/@mishra.thedeepak/doc2vec-in-a-simple-way-fa80bfe81104
+# Code taken from: https://medium.com/@klintcho/doc2vec-tutorial-using-gensim-ab3ac03d3a1
+#
+#####################
+
+
 
 LabeledSentence = gensim.models.doc2vec.LabeledSentence
 
@@ -38,7 +46,6 @@ class LabeledLineSentence(object):
        self.doc_list = doc_list
     def __iter__(self):
         for idx, doc in enumerate(self.doc_list):
-            # print(doc)
             yield LabeledSentence(words=doc.split(),tags=[self.labels_list[idx]])
 
 
