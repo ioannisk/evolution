@@ -1,7 +1,7 @@
 import tensorflow as tf
 # from tensorflow.python.ops import  rnn, seq2seq
 # from tensorflow.python.ops import SimpleSeq2Seq
-from tf.contrib.legacy_seq2seq import basic_rnn_seq2seq
+from tensorflow.contrib.legacy_seq2seq import basic_rnn_seq2seq
 from embedding_utils import input_projection3D
 
 class DAModel(object):
