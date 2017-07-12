@@ -1,6 +1,6 @@
 import tensorflow as tf
 # from tensorflow.python.ops import  rnn, seq2seq
-from tensorflow.python.ops import seq2seq
+from tensorflow.python.ops import basic_rnn_seq2seq
 from embedding_utils import input_projection3D
 
 class DAModel(object):
@@ -115,7 +115,7 @@ class DAModel(object):
 
         _, targets = tf.nn.top_k(self.targets)
 
-        loss = seq2seq.sequence_loss_by_example(
+        loss = basic_rnn_seq2seq.sequence_loss_by_example(
                 [self.logits],
                 [targets],
                 [tf.ones([batch_size])],
