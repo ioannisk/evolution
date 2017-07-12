@@ -147,7 +147,7 @@ def load_text_embeddings(path):
     :return: a tuple (wordlist, array)
     """
     words = []
-
+    print("reading embeddings")
     # start from index 1 and reserve 0 for unknown
     vectors = []
     with open(path, 'rb') as f:
