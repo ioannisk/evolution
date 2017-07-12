@@ -1,7 +1,6 @@
-
-
 import tensorflow as tf
-from tensorflow.python.ops import  rnn, rnn_cell, seq2seq
+from tensorflow.python.ops import  rnn, seq2seq
+
 from embedding_utils import input_projection3D
 
 class DAModel(object):
