@@ -82,6 +82,7 @@ def load_embeddings(embeddings_path, vocabulary_path=None,
         'Either load or generate extra vectors'
 
     logging.debug('Loading embeddings')
+    print('Loading embeddings')
     if vocabulary_path is None:
         wordlist, embeddings = load_text_embeddings(embeddings_path)
     else:

@@ -4,6 +4,7 @@ with open("/home/ioannis/data/glove/glove.840B.300d.txt", "r") as file_ :
         counter +=1
         if counter%100000==0:
             print counter
+        line = line.decode('utf-8')
         line = line.strip().split()
         if len(line) != 301:
             print line[0]
