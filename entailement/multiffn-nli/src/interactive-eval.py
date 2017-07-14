@@ -90,16 +90,20 @@ def plot_attention(tokens1, tokens2, attention):
     len1 = len(tokens1)
     len2 = len(tokens2)
     extent = [0, len2, 0, len1]
-    pl.matshow(attention, extent=extent, aspect='auto')
-    ticks1 = np.arange(len1) + 0.5
-    ticks2 = np.arange(len2) + 0.5
-    pl.xticks(ticks2, tokens2, rotation=45)
-    pl.yticks(ticks1, reversed(tokens1))
-    ax = pl.gca()
-    ax.xaxis.set_ticks_position('bottom')
-    pl.colorbar()
-    pl.title('Alignments')
-    pl.show(block=False)
+    try:
+        pl.matshow(attention, extent=extent, aspect='auto')
+        ticks1 = np.arange(len1) + 0.5
+        ticks2 = np.arange(len2) + 0.5
+        pl.xticks(ticks2, tokens2, rotation=45)
+        pl.yticks(ticks1, reversed(tokens1))
+        ax = pl.gca()
+        ax.xaxis.set_ticks_position('bottom')
+        pl.colorbar()
+        pl.title('Alignments')
+        pl.show(block=False)
+    except:
+        print("Invalid input ???")
+        pass
 
 
 if __name__ == '__main__':

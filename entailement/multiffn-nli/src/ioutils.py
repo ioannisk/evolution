@@ -10,7 +10,7 @@ import logging
 import numpy as np
 import nltk
 from collections import defaultdict
-
+import IPython
 import utils
 
 
@@ -162,7 +162,7 @@ def load_text_embeddings(path):
             words.append(word)
             vector = np.array([float(x) for x in fields[1:]], dtype=np.float32)
             vectors.append(vector)
-
+    IPython.embed()
     embeddings = np.array(vectors, dtype=np.float32)
 
     return words, embeddings
