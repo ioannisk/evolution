@@ -153,7 +153,7 @@ def load_text_embeddings(path):
     vectors = []
     with open(path, 'rb') as f:
         for line in f:
-            line = line.decode('utf-8')
+            # line = line.decode('utf-8')
             line = line.strip()
             if line == '':
                 continue
@@ -163,7 +163,7 @@ def load_text_embeddings(path):
             words.append(word)
             vector = np.array([float(x) for x in fields[1:]], dtype=np.float32)
             vectors.append(vector)
-    IPython.embed()
+    # IPython.embed()
     embeddings = np.array(vectors, dtype=np.float32)
 
     return words, embeddings
