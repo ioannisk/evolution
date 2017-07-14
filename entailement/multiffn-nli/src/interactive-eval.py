@@ -10,7 +10,7 @@ import argparse
 import tensorflow as tf
 import numpy as np
 import matplotlib
-matplotlib.use('TKAgg')  # necessary on OS X
+# matplotlib.use('TKAgg')  # necessary on OS X
 from matplotlib import pyplot as pl
 
 from classifiers import multimlp
