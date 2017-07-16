@@ -19,6 +19,17 @@ def read_data():
     with open("../data/web_site_data.txt". "r") as file_:
         for line in file_:
             line = line.strip()
-            class_num , txt = line.split('\t')
+            id_, class_num , txt = line.split('\t')
             web[class_num] = txt
+    return des, web
+
+
+def make_pairs(des, web):
+    positive = []
+    for key in web
+
+
+
+if __name__ =="__main__":
+    des, web  = read_data()
 
