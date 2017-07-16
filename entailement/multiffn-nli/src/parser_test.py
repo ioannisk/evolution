@@ -5,6 +5,7 @@ import re
 
 def replace_list(page_txt):
     page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
+    return page_txt
 
 def test_snli(filename="/home/ioannis/data/snli_1.0/snli_1.0_train.jsonl"):
     with open(filename, 'rb') as f:
