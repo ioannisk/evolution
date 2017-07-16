@@ -16,7 +16,7 @@ def test_snli(filename="/home/ioannis/data/snli_1.0/snli_1.0_train.jsonl"):
             sen2 = data["sentence2"]
 
             print tokens1
-            print sen1
+            print sen1.split()
             iecnicn
 
 if __name__=="__main__":
