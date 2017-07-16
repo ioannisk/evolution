@@ -1,11 +1,10 @@
 import nltk
 import json
+import re
 
-def replace_list(str1):
-    chars = ".,!?"
-    for i in chars:
-        st1 = str1.replace(i, " {0}".format(i))
-    return str1
+
+def replace_list(page_txt):
+    page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
 
 def test_snli(filename="/home/ioannis/data/snli_1.0/snli_1.0_train.jsonl"):
     with open(filename, 'rb') as f:
