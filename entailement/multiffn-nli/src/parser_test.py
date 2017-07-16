@@ -13,13 +13,18 @@ def test_snli(filename="/home/ioannis/data/snli_1.0/snli_1.0_train.jsonl"):
             tokens1 = tree1.leaves()
             tokens2 = tree2.leaves()
             sen1 = data["sentence1"]
-            sen1 = sen1.replace(".", " .")
+            sen1 = sen1.replace(".", " .").split()
             sen2 = data["sentence2"]
-            sen2 = sen2.replace(".", " .")
+            sen2 = sen2.replace(".", " .").split()
 
-            print tokens1
-            print sen1.split()
-            iecnicn
+            a = (sen1 == tokens1)
+            b = (sen2 == tokens2)
+            if (not a) or (not b):
+                print sen1
+
+            # print tokens1
+            # print sen1.split()
+            # iecnicn
 
 if __name__=="__main__":
     test_snli()
