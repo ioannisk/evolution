@@ -21,7 +21,11 @@ def read_data():
     with open("../data/web_site_data.txt", "r") as file_:
         for line in file_:
             line = line.strip()
-            id_, class_num , txt = line.split('\t')
+            try:
+                id_, class_num , txt = line.split('\t')
+            except:
+                print line.split('\t')
+                fjnfvn
 
             if class_num in web_class:
                 web_class[class_num].append((id_, txt))
