@@ -20,9 +20,11 @@ def test_snli(filename="/home/ioannis/data/snli_1.0/snli_1.0_train.jsonl"):
             tokens1 = tree1.leaves()
             tokens2 = tree2.leaves()
             sen1 = data["sentence1"]
-            sen1 = replace_list(sen1).split()
+            sen1 = replace_list(sen1)
+            sen1 = sen1.split()
             sen2 = data["sentence2"]
-            sen2 = replace_list(sen2).split()
+            sen2 = replace_list(sen2)
+            sen2 = sen2.split()
 
             a = (sen1 == tokens1)
             b = (sen2 == tokens2)
