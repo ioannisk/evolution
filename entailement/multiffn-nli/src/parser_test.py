@@ -1,5 +1,12 @@
 import nltk
 import json
+
+def replace_list(str1):
+    chars = ".,!?"
+    for i in chars:
+        st1 = str1.replace(i, " {0}".format(i))
+    return str1
+
 def test_snli(filename="/home/ioannis/data/snli_1.0/snli_1.0_train.jsonl"):
     with open(filename, 'rb') as f:
 
@@ -13,9 +20,9 @@ def test_snli(filename="/home/ioannis/data/snli_1.0/snli_1.0_train.jsonl"):
             tokens1 = tree1.leaves()
             tokens2 = tree2.leaves()
             sen1 = data["sentence1"]
-            sen1 = sen1.replace(".", " .").split()
+            sen1 = replace_list(sen1).split()
             sen2 = data["sentence2"]
-            sen2 = sen2.replace(".", " .").split()
+            sen2 = replace_list(sen2).split()
 
             a = (sen1 == tokens1)
             b = (sen2 == tokens2)
