@@ -1,6 +1,6 @@
 import nltk
 import json
-def test_snli(filename="/home/ioannis/data/snli_1.0"):
+def test_snli(filename="/home/ioannis/data/snli_1.0/snli_1.0_train.jsonl"):
     with open(filename, 'rb') as f:
         line = line.strip()
         for line in f:
