@@ -105,6 +105,7 @@ def query_web_data(df, size=None):
     df_web = pd.DataFrame()
     df_web["class_num"] = labels
     df_web["class_txt"] = web_sites
+    ### raw website nice print ##
     df_web["summaries"] = summaries
     df_web["company_id"]= company_id
     df_web["urls"]=all_urls
