@@ -13,7 +13,9 @@ def test_snli(filename="/home/ioannis/data/snli_1.0/snli_1.0_train.jsonl"):
             tokens1 = tree1.leaves()
             tokens2 = tree2.leaves()
             sen1 = data["sentence1"]
+            sen1 = sen1.replace(".", " .")
             sen2 = data["sentence2"]
+            sen2 = sen2.replace(".", " .")
 
             print tokens1
             print sen1.split()
