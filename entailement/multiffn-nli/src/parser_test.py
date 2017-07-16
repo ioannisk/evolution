@@ -21,6 +21,7 @@ def test_snli(filename="/home/ioannis/data/snli_1.0/snli_1.0_train.jsonl"):
             b = (sen2 == tokens2)
             if (not a) or (not b):
                 print sen1
+                print tokens1
 
             # print tokens1
             # print sen1.split()
