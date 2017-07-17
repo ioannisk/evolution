@@ -591,7 +591,7 @@ class DecomposableNLIModel(object):
                     accumulated_loss = 0
 
                     valid_msg = "not yet"
-                    if validation_counter % 10 ==0:
+                    if validation_counter % 20 ==0:
                         tic_valid = time.time()
                         valid_loss, valid_accuracy =self.evaluate(session, valid_dataset, False, batch_size=50)
                         valid_msg = 'Validation loss: %f\tValidation accuracy: %f' % (valid_loss, valid_accuracy)
