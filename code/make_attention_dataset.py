@@ -58,11 +58,8 @@ def read_data():
                         id_class[id_] = class_num
             except:
                 pass
-    print(len(des.keys()))
-    print(len(web_class.keys()))
+    print(len(id_txt.keys()))
     des, web_class = delete_difference(des, web_class)
-    print(len(des.keys()))
-    print(len(web_class.keys()))
     return des, web_class, id_txt, id_class
 
 
