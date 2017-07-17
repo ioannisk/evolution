@@ -46,7 +46,11 @@ def make_pairs(des, web_class, id_txt, id_class):
     for class_num in web_class:
         des_txt = des[class_num]
         for id_, web_txt in web_class[class_num]:
-            positive.append((des_txt, web_txt))
+            positive.append({'des':des_txt, 'web':web_txt, 'class':1})
+    with open("positive_pairs.txt", 'wb') as file_:
+        for i in positive:
+            file_.write(json.dump(i))
+    dcindi
     counter = 0
     print len(positive)
     for i in range(len(positive)):
@@ -58,16 +62,11 @@ def make_pairs(des, web_class, id_txt, id_class):
         unsuccesful_sample = True
         while unsuccesful_sample:
             cl = random.sample(classes,1)[0]
-            # print id_
-            # print cl
-            # print id_class[id_]
-            # necn
-            # print
             if id_class[id_]==cl:
                 unsuccesful_sample = True
             else:
                 unsuccesful_sample = False
-        negative.append((des[cl], id_txt[id_]))
+        negative.append({'des'des[cl], 'web'id_txt[id_], 'class':0)
 
 
 
