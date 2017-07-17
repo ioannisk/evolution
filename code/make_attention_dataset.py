@@ -48,7 +48,7 @@ def read_data():
             except:
                 pass
     # print(web_lens.sort())
-    print(web_class.keys()==des.keys)
+    print(web_class.keys()==des.keys())
     return des, web_class, id_txt, id_class
 
 
