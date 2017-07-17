@@ -305,6 +305,7 @@ def _convert_pairs_to_indices(sentences, word_dict, max_len=None,
         max_len = sizes.max()
 
     shape = (len(sentences), max_len)
+    print (shape)
     array = np.full(shape, word_dict[PADDING], dtype=np.int32)
 
     for i, sent in enumerate(sentences):
