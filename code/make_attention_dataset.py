@@ -27,7 +27,7 @@ def read_data():
             class_num , txt = line.split('\t')
             des[class_num] = txt
             des_lens.append(len(txt.split()))
-    print(des_lens)
+    print(sorted(des_lens))
     fvnofv
     web_lens = []
     with open("../data/web_site_data.txt", "r") as file_:
