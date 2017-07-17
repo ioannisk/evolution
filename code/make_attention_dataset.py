@@ -11,7 +11,8 @@ import time
 # des_df = pickle.load(open("../data/des_df.pkl","rb"))
 
 
-
+MAX_DES_LEN=100
+MAX_WEB_LEN=1000
 
 def read_data():
     des = {}
@@ -25,18 +26,16 @@ def read_data():
         for line in file_:
             line = line.strip()
             class_num , txt = line.split('\t')
-            des[class_num] = txt
-            des_lens.append(len(txt.split()))
-    print(sorted(des_lens))
-    fvnofv
-    web_lens = []
+            if len(txt.split()) <=MAX_DES_LEN:
+                des[class_num] = txt
     with open("../data/web_site_data.txt", "r") as file_:
         for line in file_:
             line = line.strip()
             try:
                 id_, class_num , txt = line.split('\t')
-                web_lens.append(len(txt.split()))
-                if len(txt.split()) <=3000:
+                if class_num in des.keys():
+                    break
+                if len(txt.split()) <=MAX_WEB_LEN:
                     # if max_des <= len(txt.split()):
                     #     max_des = len(txt.split())
                     if class_num in web_class:
@@ -49,6 +48,7 @@ def read_data():
             except:
                 pass
     # print(web_lens.sort())
+    print(web_class.keys()==des.keys)
     return des, web_class, id_txt, id_class
 
 
