@@ -42,9 +42,16 @@ def make_pairs(des, web_class, id_txt, id_class):
     negative = []
     ids = set(id_txt.keys())
     classes = set(des.keys())
+    counter=0
     for class_num in web_class:
         des_txt = des[class_num]
         for id_, web_txt in web_class[class_num]:
+            counter +=1
+            if counter % 10000 ==0:
+                print counter
+
+
+
             positive.append((des_txt, web_txt))
     counter = 0
     for i in range(len(positive)):
