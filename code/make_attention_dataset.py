@@ -47,7 +47,7 @@ def read_data():
                     id_class[id_] = class_num
             except:
                 pass
-    print(web_lens.sort())
+    # print(web_lens.sort())
     return des, web_class, id_txt, id_class
 
 
