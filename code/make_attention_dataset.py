@@ -47,14 +47,18 @@ def make_pairs(des, web_class, id_txt, id_class):
         des_txt = des[class_num]
         for id_, web_txt in web_class[class_num]:
             positive.append({'des':des_txt, 'web':web_txt, 'class':1})
-    with open("../data/positive_pairs.txt", 'wb') as file_:
-        for i in positive:
-            json.dump(i, file_)
-            file_.write('\n')
+    file_training =  open("../data/training_pairs.txt", 'wb')
+    file_validation =  open("../data/validation_pairs.txt", 'wb')
+    counter =0
+    for i in positive:
+        counter +=1
+        if counter >= int(len(ids)*0.95):
+            json.dump(i, file_validation)
+            file_validation.write('\n')
+        else:
+            json.dump(i, file_training)
+            file_training.write('\n')
     counter = 0
-    print len(positive)
-    print len(ids)
-    osmc
     for i in range(len(positive)):
         counter +=1
         if counter % 1000 ==0:
@@ -69,10 +73,14 @@ def make_pairs(des, web_class, id_txt, id_class):
             else:
                 unsuccesful_sample = False
         negative.append({'des':des[cl], 'web':id_txt[id_], 'class':0})
-    with open("../data/negative_pairs.txt", 'wb') as file_:
-        for i in negative:
-            json.dump(i, file_)
-            file_.write('\n')
+    for i in negative:
+    counter +=1
+    if counter >= int(len(ids)*0.95):
+        json.dump(i, file_validation)
+        file_validation.write('\n')
+    else:
+        json.dump(i, file_training)
+        file_training.write('\n')
 
 
 # def make_training_validation():
