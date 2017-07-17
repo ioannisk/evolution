@@ -582,13 +582,14 @@ class DecomposableNLIModel(object):
                     avg_loss = accumulated_loss / report_interval
                     accumulated_loss = 0
 
-                    feeds = self._create_batch_feed(valid_dataset,
-                                                    0, 1, l2, 0)
 
+
+                    valid_loss, valid_accuracy =evaluate(session, valid_dataset, False, batch_size=100)
+                    valid_msg = 'Validation loss: %f\tValidation accuracy: %f' % (valid_loss, valid_accuracy)
+                    # feeds = self._create_batch_feed(valid_dataset,
+                    #                                 0, 1, l2, 0)
                     # valid_loss, valid_msg = self._run_on_validation(session,
                     #                                                 feeds)
-                    valid_loss = 0
-                    valid_msg = "unkonw"
 
 
                     msg = '%d completed epochs, %d batches' % (i, batch_counter)
