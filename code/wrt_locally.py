@@ -11,7 +11,7 @@ def wrt_dataframes():
         for txt, class_num, id_ in zip(df_web["class_txt"], df_web["class_num"],df_web["company_id"]):
             if txt is not "":
                 for i in txt.split():
-                    print(txt.split()
+                    print(txt.split())
                     print(i)
                     print(len(i))
                 fknvfknv
