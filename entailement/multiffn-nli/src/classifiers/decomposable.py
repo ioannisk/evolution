@@ -565,7 +565,7 @@ class DecomposableNLIModel(object):
         for i in range(num_epochs):
             train_dataset.shuffle_data()
             batch_index = 0
-
+            times_collector = []
             while batch_index < train_dataset.num_items:
                 batch_index2 = batch_index + batch_size
                 tic = time.time()
@@ -580,8 +580,11 @@ class DecomposableNLIModel(object):
                 batch_index = batch_index2
                 batch_counter += 1
                 toc =time.time()
-                print(toc -tic)
+                times_collector.append(toc -tic)
                 if batch_counter % report_interval == 0:
+                    print("BATCH COUNTER {0}".format(batch_counter))
+                    print("TIME TAKEN {0}".format(sum(times_collector)))
+                    times_collector = []
                     avg_loss = accumulated_loss / report_interval
                     accumulated_loss = 0
 
