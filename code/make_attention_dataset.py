@@ -46,7 +46,12 @@ def make_pairs(des, web_class, id_txt, id_class):
         des_txt = des[class_num]
         for id_, web_txt in web_class[class_num]:
             positive.append((des_txt, web_txt))
+    counter = 0
     for i in range(len(positive)):
+        counter +=1
+        if counter % 10000 ===0:
+            print counter
+
         # take one random sample (sample is return as a list so take 0 element)
         id_ = random.sample(ids, 1)[0]
         unsuccesful_sample = True
