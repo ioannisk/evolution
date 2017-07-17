@@ -95,7 +95,7 @@ def query_web_data(df, size=None):
             page_txt = page.textSummary
             print()
             print("TITLE ::::: {0}".format(page.title))
-            print("METAS ::::: {0}".format(page.metas.content))
+            print("METAS ::::: {0}".format(page.metas))
             print("HEADERS ::: {0}".format(page.headers))
             print()
             print()
