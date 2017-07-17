@@ -94,16 +94,16 @@ def query_web_data(df, size=None):
         # some domains are not scrapped
         try:
             page_txt = page.textSummary
-            print()
-            print("TITLE ::::: {0}".format(page.title))
+            # print()
+            # print("TITLE ::::: {0}".format(page.title))
             a = " ".join([m.content for m in page.metas if m.name == "description"]).strip()
             if a !="":
                 description_counter +=1
 
                 # print("METAS ::::: {0}".format(" ".join([m.content for m in page.metas if m.name == "description"]).strip()))
-            print("HEADERS ::: {0}".format(page.headers))
-            print()
-            print()
+            # print("HEADERS ::: {0}".format(page.headers))
+            # print()
+            # print()
             summaries.append(re.sub('\s+',' ',page_txt))
             # some preprocessing
             page_txt = clean_up_txt(page_txt)
