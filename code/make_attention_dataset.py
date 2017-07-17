@@ -47,9 +47,11 @@ def read_data():
             except:
                 pass
     # print(web_lens.sort())
-    print(len(web_class.keys()))
-    print(len(des.keys()))
-    print(web_class.keys().symmetric_difference(des.keys()))
+    web_keys = set(web_class.keys())
+    des_keys = set(des.keys())
+    print(len(web_keys))
+    print(len(des_keys))
+    print(web_keys.symmetric_difference(des_keys))
     return des, web_class, id_txt, id_class
 
 
