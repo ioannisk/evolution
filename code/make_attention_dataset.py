@@ -49,7 +49,7 @@ def make_pairs(des, web_class, id_txt, id_class):
     counter = 0
     for i in range(len(positive)):
         counter +=1
-        if counter % 10000 ===0:
+        if counter % 10000 ==0:
             print counter
 
         # take one random sample (sample is return as a list so take 0 element)
