@@ -38,8 +38,6 @@ def read_data():
                     id_class[id_] = class_num
             except:
                 pass
-
-    print sorted(max_des)
     return des, web_class, id_txt, id_class
 
 
