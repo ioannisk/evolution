@@ -19,11 +19,11 @@ def delete_difference(dic1,dic2):
     b = set(dic2.keys())
     diff =  a.symmetric_difference(b)
     for key in diff:
-        if key in a:
-            del a[key]
-        if key in b:
-            del b[key]
-    return a, b
+        if key in dic1:
+            del dic1[key]
+        if key in dic2:
+            del dic2[key]
+    return dic1, dic2
 
 
 def read_data():
