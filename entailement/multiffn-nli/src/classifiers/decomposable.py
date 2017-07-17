@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+####
+#### LINE 586 for validation stats
+####
 import abc
 import json
 import logging
@@ -582,8 +585,11 @@ class DecomposableNLIModel(object):
                     feeds = self._create_batch_feed(valid_dataset,
                                                     0, 1, l2, 0)
 
-                    valid_loss, valid_msg = self._run_on_validation(session,
-                                                                    feeds)
+                    # valid_loss, valid_msg = self._run_on_validation(session,
+                    #                                                 feeds)
+                    valid_loss = 0
+                    valid_msg = "unkonw"
+
 
                     msg = '%d completed epochs, %d batches' % (i, batch_counter)
                     msg += '\tAverage training batch loss: %f' % avg_loss
