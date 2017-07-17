@@ -581,20 +581,25 @@ class DecomposableNLIModel(object):
                 batch_counter += 1
                 toc =time.time()
                 times_collector.append(toc -tic)
+
+
+                validation_counter =0
                 if batch_counter % report_interval == 0:
+                    validation_counter +=1
                     print("BATCH COUNTER {0}".format(batch_counter))
                     print("TIME TAKEN {0}".format(sum(times_collector)))
 
                     avg_loss = accumulated_loss / report_interval
                     accumulated_loss = 0
 
-
-                    tic_valid = time.time()
-                    valid_loss, valid_accuracy =self.evaluate(session, valid_dataset, False, batch_size=50)
-                    valid_msg = 'Validation loss: %f\tValidation accuracy: %f' % (valid_loss, valid_accuracy)
-                    toc_valid = time.time()
-                    print ("VALIDATION TIME IS {0}".format(toc_valid -tic_valid))
-                    times_collector = []
+                    valid_msg = "not yet"
+                    if validation_counter % 10 ==0:
+                        tic_valid = time.time()
+                        valid_loss, valid_accuracy =self.evaluate(session, valid_dataset, False, batch_size=50)
+                        valid_msg = 'Validation loss: %f\tValidation accuracy: %f' % (valid_loss, valid_accuracy)
+                        toc_valid = time.time()
+                        print ("VALIDATION TIME IS {0}".format(toc_valid -tic_valid))
+                        times_collector = []
                     # feeds = self._create_batch_feed(valid_dataset,
                     #                                 0, 1, l2, 0)
                     # valid_loss, valid_msg = self._run_on_validation(session,
