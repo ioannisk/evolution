@@ -282,7 +282,7 @@ def read_corpus(filename, lowercase, language='en'):
                 # tokens1 = tree1.leaves()
                 # tokens2 = tree2.leaves()
                 tokens1 = sentence1_parse.split()
-                tokens12 = sentence2_parse.split()
+                tokens2 = sentence2_parse.split()
                 t = (tokens1, tokens2, label)
                 useful_data.append(t)
 
