@@ -23,17 +23,17 @@ def read_data():
             line = line.strip()
             try:
                 id_, class_num , txt = line.split('\t')
+                if class_num in web_class:
+                    web_class[class_num].append((id_, txt))
+                else:
+                    web_class[class_num] = []
+                    web_class[class_num].append((id_, txt))
+                id_txt[id_] = txt
+                id_class[id_] = class_num
             except:
-                print line.split('\t')
-                kcnkdc
+                pass
 
-            if class_num in web_class:
-                web_class[class_num].append((id_, txt))
-            else:
-                web_class[class_num] = []
-                web_class[class_num].append((id_, txt))
-            id_txt[id_] = txt
-            id_class[id_] = class_num
+
     return des, web_class, id_txt, id_class
 
 
