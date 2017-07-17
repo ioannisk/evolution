@@ -93,6 +93,12 @@ def query_web_data(df, size=None):
         # some domains are not scrapped
         try:
             page_txt = page.textSummary
+            print()
+            print("TITLE ::::: {0}".format(page.title))
+            print("METAS ::::: {0}".format(page.metas))
+            print("HEADERS ::: {0}".format(page.headers))
+            print()
+            print()
             summaries.append(re.sub('\s+',' ',page_txt))
             # some preprocessing
             page_txt = clean_up_txt(page_txt)
@@ -139,6 +145,7 @@ def data_pipeline(size=None):
     df_web = query_web_data(df,size=size)
     return des_df, df_web
 
-
+if __name__=="__main__":
+    data_pipeline()
 # des_df, web_df = data_pipeline()
 
