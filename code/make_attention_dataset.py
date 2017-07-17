@@ -84,7 +84,7 @@ def make_pairs(des, web_class, id_txt, id_class):
 
 
 if __name__ =="__main__":
-    # des, web_class, id_txt, id_class  = read_data()
-    # make_pairs(des, web_class, id_txt, id_class)
+    des, web_class, id_txt, id_class  = read_data()
+    make_pairs(des, web_class, id_txt, id_class)
     # make_training_validation()
 
