@@ -33,8 +33,8 @@ def read_data():
             line = line.strip()
             try:
                 id_, class_num , txt = line.split('\t')
-                if class_num not in des.keys():
-                    break
+                # if class_num not in des.keys():
+                #     break
                 if len(txt.split()) <=MAX_WEB_LEN:
                     # if max_des <= len(txt.split()):
                     #     max_des = len(txt.split())
