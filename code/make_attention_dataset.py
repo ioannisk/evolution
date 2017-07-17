@@ -9,16 +9,22 @@ import time
 # df_web = pickle.load( open("../data/df_web.pkl","rb"))
 # des_df = pickle.load(open("../data/des_df.pkl","rb"))
 
+
 def read_data():
     des = {}
     web_class = {}
     id_txt = {}
     id_class = {}
+    max_des = 0
     with open("../data/descriptions_data.txt","r") as file_:
         for line in file_:
             line = line.strip()
             class_num , txt = line.split('\t')
             des[class_num] = txt
+            if max_des <= len(txt.split()):
+                max_des = len(txt.split())
+    print max_des
+    ldmcof
     with open("../data/web_site_data.txt", "r") as file_:
         for line in file_:
             line = line.strip()
@@ -94,6 +100,6 @@ def make_pairs(des, web_class, id_txt, id_class):
 
 if __name__ =="__main__":
     des, web_class, id_txt, id_class  = read_data()
-    make_pairs(des, web_class, id_txt, id_class)
+    # make_pairs(des, web_class, id_txt, id_class)
     # make_training_validation()
 
