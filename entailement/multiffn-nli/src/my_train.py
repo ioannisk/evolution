@@ -2,7 +2,8 @@
 
 
 # nohup python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/training_pairs.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad &
-#python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/training_pairs.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad
+# nohup python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/training_pairs.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad &
+# python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/training_pairs.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.1 --optim adagrad
 
 #python -u my_train.py ~/data/glove/fast_glove.txt /home/ioannis/evolution/data/training_pairs.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -c 2 -r 0.05 --optim adagrad
 

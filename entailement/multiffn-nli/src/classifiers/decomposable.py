@@ -10,7 +10,7 @@ import os
 
 import tensorflow as tf
 import numpy as np
-
+import time
 import utils
 
 
@@ -568,6 +568,7 @@ class DecomposableNLIModel(object):
 
             while batch_index < train_dataset.num_items:
                 batch_index2 = batch_index + batch_size
+                tic = time.time()
                 batch = train_dataset.get_batch(batch_index, batch_index2)
                 feeds = self._create_batch_feed(batch, learning_rate,
                                                 dropout_keep, l2, clip_norm)
@@ -586,6 +587,7 @@ class DecomposableNLIModel(object):
 
                     valid_loss, valid_accuracy =self.evaluate(session, valid_dataset, False, batch_size=50)
                     valid_msg = 'Validation loss: %f\tValidation accuracy: %f' % (valid_loss, valid_accuracy)
+
                     # feeds = self._create_batch_feed(valid_dataset,
                     #                                 0, 1, l2, 0)
                     # valid_loss, valid_msg = self._run_on_validation(session,
@@ -600,6 +602,8 @@ class DecomposableNLIModel(object):
                         best_loss = valid_loss
                         self.save(save_dir, session, saver)
                         msg += '\t(saved model)'
+                    toc =time.time()
+                    print(toc -tic)
 
                     logger.info(msg)
 
