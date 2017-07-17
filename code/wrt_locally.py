@@ -3,7 +3,7 @@ import pickle
 
 
 def wrt_dataframes():
-    des_df, df_web = data_pipeline(1000)
+    des_df, df_web = data_pipeline()
     with open("../data/descriptions_data.txt","w") as file_:
         for txt, class_num in zip(des_df["txt"], des_df["class_num"]):
             file_.write("{0}\t{1}\n".format(class_num, txt))
