@@ -14,6 +14,18 @@ import time
 MAX_DES_LEN=100
 MAX_WEB_LEN=1000
 
+def delete_difference(dic1,dic2):
+    a = dic1.keys()
+    b = dic2.keys()
+    diff =  a.symmetric_difference(b)
+    for key in diff:
+        if key in a:
+            del a[key]
+        if key in b:
+            del b[key]
+    return a, b
+
+
 def read_data():
     des = {}
     web_class = {}
@@ -46,12 +58,11 @@ def read_data():
                         id_class[id_] = class_num
             except:
                 pass
-    # print(web_lens.sort())
-    web_keys = set(web_class.keys())
-    des_keys = set(des.keys())
-    print(len(web_keys))
-    print(len(des_keys))
-    print(web_keys.symmetric_difference(des_keys))
+    print(len(des.keys()))
+    print(len(web_class.keys()))
+    des, web_class = delete_difference(des, web_class)
+    print(len(des.keys()))
+    print(len(web_class.keys()))
     return des, web_class, id_txt, id_class
 
 
