@@ -14,10 +14,7 @@ def wrt_dataframes():
                 for i in txt.split():
                     if len(i)>1:
                         buffer_txt += " "+i
-                print(txt)
-                print(buffer_txt)
-                knf
-                file_.write("{0}\t{1}\t{2}\n".format(id_, class_num, txt))
+                file_.write("{0}\t{1}\t{2}\n".format(id_, class_num, buffer_txt))
 
     # pickle.dump(des_df, open("../data/des_df.pkl","wb"), protocol=2)
     # pickle.dump(df_web, open("../data/df_web.pkl","wb"), protocol=2)
