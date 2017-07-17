@@ -49,18 +49,19 @@ def make_pairs(des, web_class, id_txt, id_class):
             positive.append((des_txt, web_txt))
     for i in range(len(positive)):
         # take one random sample (sample is return as a list so take 0 element)
-        tic = time.clock()
         id_ = random.sample(ids, 1)[0]
-        toc = time.clock()
-        print toc - tic
-        djcndcnd
         unsuccesful_sample = True
         while unsuccesful_sample:
             cl = random.sample(classes,1)[0]
-            unsuccesful_sample = False
+            print id_
+            print cl
+            print id_class[id_]
+            necn
             # print
             if id_class[id_]==cl:
                 unsuccesful_sample = True
+            else:
+                unsuccesful_sample = False
         negative.append((des[cl], id_txt[id_]))
 
 
