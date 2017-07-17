@@ -19,16 +19,22 @@ def read_data():
     id_txt = {}
     id_class = {}
     max_des = 0
+
+    des_lens = []
     with open("../data/descriptions_data.txt","r") as file_:
         for line in file_:
             line = line.strip()
             class_num , txt = line.split('\t')
             des[class_num] = txt
+            des_lens.append(len(txt.split()))
+    print(des_lens.sort())
+    web_lens = []
     with open("../data/web_site_data.txt", "r") as file_:
         for line in file_:
             line = line.strip()
             try:
                 id_, class_num , txt = line.split('\t')
+                web_lens.append(len(txt.split()))
                 if len(txt.split()) <=3000:
                     # if max_des <= len(txt.split()):
                     #     max_des = len(txt.split())
@@ -41,6 +47,7 @@ def read_data():
                     id_class[id_] = class_num
             except:
                 pass
+    print(web_lens.sort())
     return des, web_class, id_txt, id_class
 
 
@@ -93,6 +100,6 @@ def make_pairs(des, web_class, id_txt, id_class):
 
 if __name__ =="__main__":
     des, web_class, id_txt, id_class  = read_data()
-    make_pairs(des, web_class, id_txt, id_class)
+    # make_pairs(des, web_class, id_txt, id_class)
     # make_training_validation()
 
