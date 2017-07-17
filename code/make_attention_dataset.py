@@ -49,7 +49,7 @@ def read_data():
     # print(web_lens.sort())
     print(len(web_class.keys()))
     print(len(des.keys()))
-    print(web_class.keys().symmetric_difference(des.keys())))
+    print(web_class.keys().symmetric_difference(des.keys()))
     return des, web_class, id_txt, id_class
 
 
