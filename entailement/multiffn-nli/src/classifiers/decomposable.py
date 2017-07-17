@@ -579,6 +579,8 @@ class DecomposableNLIModel(object):
 
                 batch_index = batch_index2
                 batch_counter += 1
+                toc =time.time()
+                print(toc -tic)
                 if batch_counter % report_interval == 0:
                     avg_loss = accumulated_loss / report_interval
                     accumulated_loss = 0
@@ -602,8 +604,8 @@ class DecomposableNLIModel(object):
                         best_loss = valid_loss
                         self.save(save_dir, session, saver)
                         msg += '\t(saved model)'
-                    toc =time.time()
-                    print(toc -tic)
+
+
 
                     logger.info(msg)
 
