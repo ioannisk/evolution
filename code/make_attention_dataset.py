@@ -66,7 +66,7 @@ def make_pairs(des, web_class, id_txt, id_class):
                 unsuccesful_sample = True
             else:
                 unsuccesful_sample = False
-        negative.append({'des'des[cl], 'web'id_txt[id_], 'class':0)
+        negative.append({'des':des[cl], 'web':id_txt[id_], 'class':0)
 
 
 
