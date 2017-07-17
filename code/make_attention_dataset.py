@@ -46,7 +46,7 @@ def make_pairs(des, web_class, id_txt, id_class):
     for class_num in web_class:
         des_txt = des[class_num]
         for id_, web_txt in web_class[class_num]:
-            positive.append({'des':des_txt, 'web':web_txt, 'class':1})
+            positive.append({'des':des_txt, 'web':web_txt, 'class':"entailment"})
     file_training =  open("../data/training_pairs.txt", 'wb')
     file_validation =  open("../data/validation_pairs.txt", 'wb')
     counter =0
@@ -72,7 +72,7 @@ def make_pairs(des, web_class, id_txt, id_class):
                 unsuccesful_sample = True
             else:
                 unsuccesful_sample = False
-        negative.append({'des':des[cl], 'web':id_txt[id_], 'class':0})
+        negative.append({'des':des[cl], 'web':id_txt[id_], 'class':"contradiction"})
     for i in negative:
     counter +=1
     if counter >= int(len(ids)*0.95):
