@@ -22,14 +22,15 @@ def read_data():
             class_num , txt = line.split('\t')
             des[class_num] = txt
 
-    max_des=0
+    max_des=[]
     with open("../data/web_site_data.txt", "r") as file_:
         for line in file_:
             line = line.strip()
             try:
                 id_, class_num , txt = line.split('\t')
-                if max_des <= len(txt.split()):
-                    max_des = len(txt.split())
+                max_des.append(len(txt.split()))
+                # if max_des <= len(txt.split()):
+                #     max_des = len(txt.split())
                 if class_num in web_class:
                     web_class[class_num].append((id_, txt))
                 else:
@@ -40,7 +41,7 @@ def read_data():
             except:
                 pass
 
-    print max_des
+    print max_des.sort
     return des, web_class, id_txt, id_class
 
 
