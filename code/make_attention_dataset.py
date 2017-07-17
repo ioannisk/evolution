@@ -41,7 +41,7 @@ def read_data():
             except:
                 pass
 
-    print max_des.sort
+    print max_des.sorted
     return des, web_class, id_txt, id_class
 
 
