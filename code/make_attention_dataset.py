@@ -74,13 +74,13 @@ def make_pairs(des, web_class, id_txt, id_class):
                 unsuccesful_sample = False
         negative.append({'des':des[cl], 'web':id_txt[id_], 'class':"contradiction"})
     for i in negative:
-    counter +=1
-    if counter >= int(len(ids)*0.95):
-        json.dump(i, file_validation)
-        file_validation.write('\n')
-    else:
-        json.dump(i, file_training)
-        file_training.write('\n')
+        counter +=1
+        if counter >= int(len(ids)*0.95):
+            json.dump(i, file_validation)
+            file_validation.write('\n')
+        else:
+            json.dump(i, file_training)
+            file_training.write('\n')
 
 
 # def make_training_validation():
