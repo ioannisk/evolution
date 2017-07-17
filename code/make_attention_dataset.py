@@ -48,8 +48,8 @@ def make_pairs(des, web_class, id_txt, id_class):
         for id_, web_txt in web_class[class_num]:
             positive.append((des_txt, web_txt))
     counter = 0
+    print len(positive)
     for i in range(len(positive)):
-        print len(positive)
         counter +=1
         if counter % 1000 ==0:
             print counter
