@@ -90,13 +90,6 @@ def make_pairs(des, web_class, id_txt, id_class):
             file_training.write('\n')
 
 
-# def make_training_validation():å
-#     training_data = []
-#     validation_data = []
-#     with open("../data/positive_pairs.txt", 'rb') as file_:
-
-
-
 
 if __name__ =="__main__":
     des, web_class, id_txt, id_class  = read_data()
