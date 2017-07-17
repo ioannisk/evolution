@@ -3,7 +3,9 @@
 
 # nohup python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/training_pairs.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad &
 #python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/training_pairs.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad
-#python -u my_train.py ~/data/glove/fast_glove.txt /home/ioannis/evolution/data/training_pairs.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad
+
+
+#python -u my_train.py ~/data/glove/fast_glove.txt /home/ioannis/evolution/data/small_training.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad
 
 from __future__ import division, print_function
 
@@ -81,12 +83,12 @@ if __name__ == '__main__':
     word_dict, embeddings = ioutils.load_embeddings(args.embeddings, args.vocab,
                                                     True, normalize=True)
 
-    print(word_dict)
+    # print(word_dict)
     logger.info('Converting words to indices')
     # find out which labels are there in the data
     # (more flexible to different datasets)
     label_dict = utils.create_label_dict(train_pairs)
-    train_data = utils.create_dataset(train_pairs, word_dict, label_dict)
+    # train_data = utils.create_dataset(train_pairs, word_dict, label_dict)
     valid_data = utils.create_dataset(valid_pairs, word_dict, label_dict)
 
     ioutils.write_params(args.save, lowercase=args.lower, language=args.lang,
