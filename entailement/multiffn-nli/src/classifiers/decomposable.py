@@ -584,7 +584,6 @@ class DecomposableNLIModel(object):
 
                 validation_counter =0
                 if batch_counter % report_interval == 0:
-                    validation_counter +=1
                     print("BATCH COUNTER {0}".format(batch_counter))
                     print("TIME TAKEN {0}".format(sum(times_collector)))
 
@@ -599,21 +598,23 @@ class DecomposableNLIModel(object):
                         toc_valid = time.time()
                         print ("VALIDATION TIME IS {0}".format(toc_valid -tic_valid))
                         times_collector = []
+
                     # feeds = self._create_batch_feed(valid_dataset,
                     #                                 0, 1, l2, 0)
                     # valid_loss, valid_msg = self._run_on_validation(session,
                     #                                                 feeds)
 
 
-                    msg = '%d completed epochs, %d batches' % (i, batch_counter)
-                    msg += '\tAverage training batch loss: %f' % avg_loss
-                    msg += '\t' + valid_msg
+                        msg = '%d completed epochs, %d batches' % (i, batch_counter)
+                        msg += '\tAverage training batch loss: %f' % avg_loss
+                        msg += '\t' + valid_msg
 
-                    if valid_loss < best_loss:
-                        best_loss = valid_loss
-                        self.save(save_dir, session, saver)
-                        msg += '\t(saved model)'
-                    logger.info(msg)
+                        if valid_loss < best_loss:
+                            best_loss = valid_loss
+                            self.save(save_dir, session, saver)
+                            msg += '\t(saved model)'
+                        logger.info(msg)
+                    validation_counter +=1
                 batch_counter += 1
 
     def evaluate(self, session, dataset, return_answers, batch_size=5000):
