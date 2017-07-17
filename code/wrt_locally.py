@@ -10,11 +10,13 @@ def wrt_dataframes():
     with open("../data/web_site_data.txt", "w") as file_:
         for txt, class_num, id_ in zip(df_web["class_txt"], df_web["class_num"],df_web["company_id"]):
             if txt is not "":
+                buffer_txt = ""
                 for i in txt.split():
-                    print(txt.split())
-                    print(i)
-                    print(len(i))
-                fknvfknv
+                    if len(i)>1:
+                        buffer_txt += " "+i
+                print(txt)
+                print(buffer_txt)
+                knf
                 file_.write("{0}\t{1}\t{2}\n".format(id_, class_num, txt))
 
     # pickle.dump(des_df, open("../data/des_df.pkl","wb"), protocol=2)
