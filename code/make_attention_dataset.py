@@ -2,6 +2,7 @@ import pickle
 import pandas
 import json
 import random
+import time
 #### data -> dictionairy -> json
 
 
@@ -42,29 +43,22 @@ def make_pairs(des, web_class, id_txt, id_class):
     negative = []
     ids = set(id_txt.keys())
     classes = set(des.keys())
-    counter=0
     for class_num in web_class:
         des_txt = des[class_num]
         for id_, web_txt in web_class[class_num]:
-            counter +=1
-            if counter % 10000 ==0:
-                print counter
-
-
-
             positive.append((des_txt, web_txt))
-    counter = 0
     for i in range(len(positive)):
-        counter +=1
-        if counter % 10000 ==0:
-            print counter
-
         # take one random sample (sample is return as a list so take 0 element)
+        tic = time.clock()
         id_ = random.sample(ids, 1)[0]
+        toc = time.clock()
+        print toc - tic
+        djcndcnd
         unsuccesful_sample = True
         while unsuccesful_sample:
             cl = random.sample(classes,1)[0]
             unsuccesful_sample = False
+            # print
             if id_class[id_]==cl:
                 unsuccesful_sample = True
         negative.append((des[cl], id_txt[id_]))
