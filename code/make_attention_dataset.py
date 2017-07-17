@@ -51,7 +51,6 @@ def make_pairs(des, web_class, id_txt, id_class):
         for i in positive:
             json.dump(i, file_)
             file_.write('\n')
-    dcindi
     counter = 0
     print len(positive)
     for i in range(len(positive)):
@@ -68,6 +67,11 @@ def make_pairs(des, web_class, id_txt, id_class):
             else:
                 unsuccesful_sample = False
         negative.append({'des':des[cl], 'web':id_txt[id_], 'class':0})
+    with open("negative_pairs.txt", 'wb') as file_:
+        for i in negative:
+            json.dump(i, file_)
+            file_.write('\n')
+
 
 
 
