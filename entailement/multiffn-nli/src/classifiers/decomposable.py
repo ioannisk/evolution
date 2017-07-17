@@ -613,10 +613,8 @@ class DecomposableNLIModel(object):
                         best_loss = valid_loss
                         self.save(save_dir, session, saver)
                         msg += '\t(saved model)'
-                batch_counter += 1
-
-
                     logger.info(msg)
+                batch_counter += 1
 
     def evaluate(self, session, dataset, return_answers, batch_size=5000):
         """
