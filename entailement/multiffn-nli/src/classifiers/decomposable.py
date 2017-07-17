@@ -584,7 +584,7 @@ class DecomposableNLIModel(object):
 
 
 
-                    valid_loss, valid_accuracy =self.evaluate(session, valid_dataset, False, batch_size=100)
+                    valid_loss, valid_accuracy =self.evaluate(session, valid_dataset, False, batch_size=1000)
                     valid_msg = 'Validation loss: %f\tValidation accuracy: %f' % (valid_loss, valid_accuracy)
                     # feeds = self._create_batch_feed(valid_dataset,
                     #                                 0, 1, l2, 0)
