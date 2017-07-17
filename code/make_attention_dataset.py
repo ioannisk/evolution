@@ -73,6 +73,7 @@ def make_pairs(des, web_class, id_txt, id_class):
             else:
                 unsuccesful_sample = False
         negative.append({'des':des[cl], 'web':id_txt[id_], 'class':"contradiction"})
+    counter = 0
     for i in negative:
         counter +=1
         if counter >= int(len(ids)*0.95):
