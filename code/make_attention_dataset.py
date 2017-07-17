@@ -90,7 +90,7 @@ def make_pairs(des, web_class, id_txt, id_class):
             file_training.write('\n')
 
 
-# def make_training_validation():
+# def make_training_validation():å
 #     training_data = []
 #     validation_data = []
 #     with open("../data/positive_pairs.txt", 'rb') as file_:
@@ -99,7 +99,6 @@ def make_pairs(des, web_class, id_txt, id_class):
 
 
 if __name__ =="__main__":
-    wrt_dataframes()
     des, web_class, id_txt, id_class  = read_data()
     make_pairs(des, web_class, id_txt, id_class)
     # make_training_validation()
