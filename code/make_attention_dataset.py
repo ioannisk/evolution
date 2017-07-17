@@ -33,18 +33,17 @@ def read_data():
             line = line.strip()
             try:
                 id_, class_num , txt = line.split('\t')
-                # if class_num not in des.keys():
-                #     break
-                if len(txt.split()) <=MAX_WEB_LEN:
-                    # if max_des <= len(txt.split()):
-                    #     max_des = len(txt.split())
-                    if class_num in web_class:
-                        web_class[class_num].append((id_, txt))
-                    else:
-                        web_class[class_num] = []
-                        web_class[class_num].append((id_, txt))
-                    id_txt[id_] = txt
-                    id_class[id_] = class_num
+                if class_num in des.keys():
+                    if len(txt.split()) <=MAX_WEB_LEN:
+                        # if max_des <= len(txt.split()):
+                        #     max_des = len(txt.split())
+                        if class_num in web_class:
+                            web_class[class_num].append((id_, txt))
+                        else:
+                            web_class[class_num] = []
+                            web_class[class_num].append((id_, txt))
+                        id_txt[id_] = txt
+                        id_class[id_] = class_num
             except:
                 pass
     # print(web_lens.sort())
