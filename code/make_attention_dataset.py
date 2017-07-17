@@ -12,7 +12,7 @@ import time
 
 
 MAX_DES_LEN=100
-MAX_WEB_LEN=1000
+MAX_WEB_LEN=500
 
 def delete_difference(dic1,dic2):
     a = set(dic1.keys())
