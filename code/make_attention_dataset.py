@@ -72,8 +72,8 @@ def make_pairs(des, web_class, id_txt, id_class):
         des_txt = des[class_num]
         for id_, web_txt in web_class[class_num]:
             positive.append({'des':des_txt, 'web':web_txt, 'class':"entailment"})
-    file_training =  open("../data/training_pairs.json", 'wb')
-    file_validation =  open("../data/validation_pairs.json", 'wb')
+    file_training =  open("../data/training_pairs_300.json", 'wb')
+    file_validation =  open("../data/validation_pairs_300.json", 'wb')
     counter =0
     for i in positive:
         counter +=1
@@ -112,6 +112,6 @@ def make_pairs(des, web_class, id_txt, id_class):
 
 if __name__ =="__main__":
     des, web_class, id_txt, id_class  = read_data()
-    # make_pairs(des, web_class, id_txt, id_class)
+    make_pairs(des, web_class, id_txt, id_class)
     # make_training_validation()
 
