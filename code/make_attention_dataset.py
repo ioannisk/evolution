@@ -11,7 +11,7 @@ import time
 # des_df = pickle.load(open("../data/des_df.pkl","rb"))
 
 
-MAX_DES_LEN=100
+MAX_DES_LEN=300
 MAX_WEB_LEN=500
 
 def delete_difference(dic1,dic2):
