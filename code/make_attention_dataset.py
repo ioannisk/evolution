@@ -49,7 +49,7 @@ def make_pairs(des, web_class, id_txt, id_class):
             positive.append({'des':des_txt, 'web':web_txt, 'class':1})
     with open("positive_pairs.txt", 'wb') as file_:
         for i in positive:
-            file_.write(json.dump(i))
+            json.dump(i, file_)
     dcindi
     counter = 0
     print len(positive)
