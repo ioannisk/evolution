@@ -15,8 +15,8 @@ MAX_DES_LEN=100
 MAX_WEB_LEN=1000
 
 def delete_difference(dic1,dic2):
-    a = dic1.keys()
-    b = dic2.keys()
+    a = set(dic1.keys())
+    b = set(dic2.keys())
     diff =  a.symmetric_difference(b)
     for key in diff:
         if key in a:
