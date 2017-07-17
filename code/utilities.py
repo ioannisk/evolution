@@ -83,6 +83,7 @@ def query_web_data(df, size=None):
     all_urls = []
     print("Fetch websites from database")
     counter = 0
+    description_counter = 0
     for i, l, c_id in zip(df['url'], df["label_num"], df["company_id"]):
         if size !=None:
             counter +=1
@@ -95,7 +96,11 @@ def query_web_data(df, size=None):
             page_txt = page.textSummary
             print()
             print("TITLE ::::: {0}".format(page.title))
-            print("METAS ::::: {0}".format(" ".join([m.content for m in page.metas if m.name == "description"]).strip()))
+            a = " ".join([m.content for m in page.metas if m.name == "description"]).strip()
+            if a !="":
+                description_counter +=1
+
+                # print("METAS ::::: {0}".format(" ".join([m.content for m in page.metas if m.name == "description"]).strip()))
             print("HEADERS ::: {0}".format(page.headers))
             print()
             print()
@@ -109,6 +114,7 @@ def query_web_data(df, size=None):
             all_urls.append(i)
         except:
             pass
+    print(description_counter)
     df_web = pd.DataFrame()
     df_web["class_num"] = labels
     df_web["class_txt"] = web_sites
