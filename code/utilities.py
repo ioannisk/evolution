@@ -96,6 +96,7 @@ def query_web_data(df, size=None):
         try:
             page_txt = page.textSummary
             print(page.title)
+            print("###")
             # print()
             description = " ".join([m.content for m in page.metas if m.name == "description"]).strip()
             description = clean_up_txt(description)
