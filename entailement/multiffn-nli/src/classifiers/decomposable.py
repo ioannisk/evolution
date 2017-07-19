@@ -7,7 +7,7 @@ import abc
 import json
 import logging
 import os
-from collections import Counter
+
 import tensorflow as tf
 import numpy as np
 import time
@@ -564,63 +564,56 @@ class DecomposableNLIModel(object):
         saver = tf.train.Saver(tf.trainable_variables(), max_to_keep=1)
 
         for i in range(num_epochs):
-            # for jj in range(20):
-            #     train_dataset.shuffle_data()
+            for jj in range(20):
+                train_dataset.shuffle_data()
             batch_index = 0
-            # times_collector = []
-            # validation_counter =0
-            label_counter = Counter()
+            times_collector = []
+            validation_counter =0
             while batch_index < train_dataset.num_items:
                 batch_index2 = batch_index + batch_size
                 # tic = time.time()
                 batch = train_dataset.get_batch(batch_index, batch_index2)
-                for l in batch.labels:
-                    label_counter[l] +=1
+                feeds = self._create_batch_feed(batch, learning_rate,
+                                                dropout_keep, l2, clip_norm)
+
+                ops = [self.train_op, self.loss]
+                _, loss = session.run(ops, feed_dict=feeds)
+                accumulated_loss += loss
+
                 batch_index = batch_index2
-            print label_counter
-            stop
+                batch_counter += 1
+                # toc =time.time()
+                # times_collector.append(toc -tic)
+                if batch_counter % report_interval == 0:
+                    # print("BATCH {0} ".format(batch_counter))
+                    # print("TIME TAKEN {0}".format(sum(times_collector)))
+                    # times_collector = []
+                    avg_loss = accumulated_loss / report_interval
+                    accumulated_loss = 0
 
-                # feeds = self._create_batch_feed(batch, learning_rate,
-                #                                 dropout_keep, l2, clip_norm)
-
-                # ops = [self.train_op, self.loss]
-                # _, loss = session.run(ops, feed_dict=feeds)
-                # accumulated_loss += loss
-
-                # batch_index = batch_index2
-                # batch_counter += 1
-                # # toc =time.time()
-                # # times_collector.append(toc -tic)
-                # if batch_counter % report_interval == 0:
-                #     # print("BATCH {0} ".format(batch_counter))
-                #     # print("TIME TAKEN {0}".format(sum(times_collector)))
-                #     # times_collector = []
-                #     avg_loss = accumulated_loss / report_interval
-                #     accumulated_loss = 0
-
-                #     # valid_msg = "not yet"
-                #     # if validation_counter % 20 ==0:
-                #     # tic_valid = time.time()
-                #     valid_loss, valid_accuracy =self.evaluate(session, valid_dataset, False, batch_size=50)
-                #     valid_msg = 'Validation loss: %f\tValidation accuracy: %f' % (valid_loss, valid_accuracy)
-                #     # toc_valid = time.time()
-                #     # print ("VALIDATION TIME IS {0}".format(toc_valid -tic_valid))
+                    # valid_msg = "not yet"
+                    # if validation_counter % 20 ==0:
+                    # tic_valid = time.time()
+                    valid_loss, valid_accuracy =self.evaluate(session, valid_dataset, False, batch_size=50)
+                    valid_msg = 'Validation loss: %f\tValidation accuracy: %f' % (valid_loss, valid_accuracy)
+                    # toc_valid = time.time()
+                    # print ("VALIDATION TIME IS {0}".format(toc_valid -tic_valid))
 
 
-                #     # feeds = self._create_batch_feed(valid_dataset,
-                #     #                                 0, 1, l2, 0)
-                #     # valid_loss, valid_msg = self._run_on_validation(session,
-                #     #                                                 feeds)
+                    # feeds = self._create_batch_feed(valid_dataset,
+                    #                                 0, 1, l2, 0)
+                    # valid_loss, valid_msg = self._run_on_validation(session,
+                    #                                                 feeds)
 
-                #     msg = '%d completed epochs, %d batches' % (i, batch_counter)
-                #     msg += '\tAverage training batch loss: %f' % avg_loss
-                #     msg += '\t' + valid_msg
+                    msg = '%d completed epochs, %d batches' % (i, batch_counter)
+                    msg += '\tAverage training batch loss: %f' % avg_loss
+                    msg += '\t' + valid_msg
 
-                #     if valid_loss < best_loss:
-                #         best_loss = valid_loss
-                #         self.save(save_dir, session, saver)
-                #         msg += '\t(saved model)'
-                #     logger.info(msg)
+                    if valid_loss < best_loss:
+                        best_loss = valid_loss
+                        self.save(save_dir, session, saver)
+                        msg += '\t(saved model)'
+                    logger.info(msg)
                 # validation_counter +=1
                 # batch_counter += 1
 
