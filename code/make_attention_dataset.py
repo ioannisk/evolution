@@ -138,8 +138,8 @@ def shuffle_data():
     file_validation_out =  open("../data/validation_{0}.json".format(MAX_LEN), 'wb')
     merge_lists(file_training,file_training_out)
     merge_lists(file_validation,file_validation_out)
-    os.remove(file_training)
-    os.remove(file_validation)
+    os.remove("../data/training_pairs_{0}.json".format(MAX_LEN))
+    os.remove("../data/validation_pairs_{0}.json".format(MAX_LEN))
 
 
 
