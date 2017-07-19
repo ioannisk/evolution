@@ -46,7 +46,8 @@ def read_data():
             class_num , txt = line.split('\t')
             if len(txt.split()) <=MAX_DES_LEN:
                 des[class_num] = txt
-    with open("../data/web_site_data.txt", "r") as file_:
+    with open("../data/web_site_meta.txt", "r") as file_:
+    # with open("../data/web_site_data.txt", "r") as file_:
         for line in file_:
             line = line.strip()
             try:
