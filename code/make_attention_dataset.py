@@ -144,8 +144,8 @@ def shuffle_data():
 
 
 if __name__ =="__main__":
-    # des, web_class, id_txt, id_class  = read_data()
-    # make_pairs(des, web_class, id_txt, id_class)
+    des, web_class, id_txt, id_class  = read_data()
+    make_pairs(des, web_class, id_txt, id_class)
     shuffle_data()
     # make_training_validation()
 
