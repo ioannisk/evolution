@@ -82,6 +82,7 @@ def query_web_data(df, size=None):
     company_id = []
     all_urls = []
     descriptions = []
+    titles = []
     print("Fetch websites from database")
     counter = 0
     description_counter = 0
@@ -94,15 +95,13 @@ def query_web_data(df, size=None):
         page = storage.get_page(i)
         # some domains are not scrapped
         try:
-            page_txt = page.textSummary
-            print(page.title)
-            print("###")
-            # print()
+            title = page.title
+            title = clean_up_txt(title)
+            titles.append(title)
             description = " ".join([m.content for m in page.metas if m.name == "description"]).strip()
             description = clean_up_txt(description)
             descriptions.append(description)
-            # print()
-            # print()
+            page_txt = page.textSummary
             summaries.append(re.sub('\s+',' ',page_txt))
             # some preprocessing
             page_txt = clean_up_txt(page_txt)
@@ -113,6 +112,10 @@ def query_web_data(df, size=None):
             all_urls.append(i)
         except:
             pass
+    print(len(titles))
+    print(len(descriptions))
+    print(len(web_sites))
+    stop
     df_web = pd.DataFrame()
     df_web["class_num"] = labels
     df_web["class_txt"] = web_sites
@@ -120,6 +123,8 @@ def query_web_data(df, size=None):
     df_web["summaries"] = summaries
     df_web["company_id"]= company_id
     df_web["urls"]=all_urls
+    df_web["titles"]= titles
+    df_web["descriptions"] = descriptions
     print("Labeled websites are {0}".format(len(df_web)))
     return df_web
 
