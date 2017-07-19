@@ -122,7 +122,6 @@ def merge_lists(file_, outfile):
         line = line.strip()
         line = json.loads(line)
         en_list.append(line) if line["class"] =="entailment" else con_list.append(line)
-        json.dump(i, file_validation)
     for en, con in zip(en_list, con_list):
         write_json_line(en, outfile)
         write_json_line(con, outfile)
