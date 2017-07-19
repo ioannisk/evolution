@@ -14,6 +14,12 @@ import time
 MAX_DES_LEN=200
 MAX_WEB_LEN=200
 
+def write_json_line(json_ ,file_):
+    json.dump(json_ , file_)
+    file_.write('\n')
+
+
+
 def delete_difference(dic1,dic2):
     a = set(dic1.keys())
     b = set(dic2.keys())
@@ -109,24 +115,29 @@ def make_pairs(des, web_class, id_txt, id_class):
             file_training.write('\n')
 
 
-def zip_lists(file_):
+def merge_lists(file_, outfile):
     en_list = []
     con_list = []
     for line in file_:
         line = line.strip()
         line = json.loads(line)
         en_list.append(line) if line["class"] =="entailment" else con_list.append(line)
+        json.dump(i, file_validation)
+    for en, con in zip(en_list, con_list):
+        write_json_line(en, outfile)
+        write_json_line(con, outfile)
 
 
-    print len(en_list), len(con_list)
 
 def shuffle_data():
     training_data = []
     validation_data = []
     file_training =  open("../data/training_pairs_200.json", 'rb')
     file_validation =  open("../data/validation_pairs_200.json", 'rb')
-    zip_lists(file_training)
-    zip_lists(file_validation)
+    file_training_out =  open("../data/training_pairs.json", 'rb')
+    file_validation_out =  open("../data/validation_pairs.json", 'rb')
+    merge_lists(file_training)
+    merge_lists(file_validation)
 
 
 
