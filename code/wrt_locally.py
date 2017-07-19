@@ -6,7 +6,7 @@ def remove_words_less_than(txt, more_than):
     for i in txt.split():
         # remove characters
         if len(i)>more_than:
-            buffer_txt += " "+i
+            buffer_txt += i +" "
     return buffer_txt
 
 def wrt_dataframes():
@@ -26,7 +26,7 @@ def wrt_dataframes():
                 continue
             des = remove_words_less_than(des,1)
             tit = remove_words_less_than(tit,1)
-            buffer_txt = des + " " + tit
+            buffer_txt = des + tit
             file_.write("{0}\t{1}\t{2}\n".format(id_, class_num, buffer_txt))
 
 
