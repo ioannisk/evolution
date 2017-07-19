@@ -39,7 +39,7 @@ def read_data():
     id_txt = {}
     id_class = {}
     max_des = 0
-
+    lens = []
     des_lens = []
     with open("../data/descriptions_data.txt","r") as file_:
         for line in file_:
@@ -52,6 +52,7 @@ def read_data():
             line = line.strip()
             try:
                 id_, class_num , txt = line.split('\t')
+                lens.append(len(txt.split()))
                 if class_num in des.keys():
                     if len(txt.split()) <=MAX_WEB_LEN:
                         # if max_des <= len(txt.split()):
@@ -65,6 +66,7 @@ def read_data():
                         id_class[id_] = class_num
             except:
                 pass
+    print(sorted(lens))
     print(len(id_txt.keys()))
     des, web_class = delete_difference(des, web_class)
     return des, web_class, id_txt, id_class
