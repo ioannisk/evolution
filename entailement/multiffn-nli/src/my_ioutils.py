@@ -246,7 +246,7 @@ def read_corpus(filename, lowercase, language='en'):
     # we are only interested in the actual sentences + gold label
     # the corpus files has a few more things
     useful_data = []
-
+    label_set = {}
     # the SNLI corpus has one JSON object per line
     with open(filename, 'rb') as f:
 
@@ -276,7 +276,7 @@ def read_corpus(filename, lowercase, language='en'):
                 sentence1_parse = data['des']
                 sentence2_parse = data['web']
                 label = data['class']
-
+                label_set.add(label)
                 # tree1 = nltk.Tree.fromstring(sentence1_parse)
                 # tree2 = nltk.Tree.fromstring(sentence2_parse)
                 # tokens1 = tree1.leaves()
@@ -285,6 +285,6 @@ def read_corpus(filename, lowercase, language='en'):
                 tokens2 = sentence2_parse.split()
                 t = (tokens1, tokens2, label)
                 useful_data.append(t)
-
+    print("Lables are {0}".format(label_set))
     return useful_data
 
