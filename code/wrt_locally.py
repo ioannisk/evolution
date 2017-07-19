@@ -24,8 +24,8 @@ def wrt_dataframes():
         for des, tit, class_num, id_ in zip(df_web["descriptions"], df_web["titles"], df_web["class_num"],df_web["company_id"]):
             if des=="" and tit =="":
                 continue
-            des = remove_words_less_than(des)
-            tit = remove_words_less_than(tit)
+            des = remove_words_less_than(des,1)
+            tit = remove_words_less_than(tit,1)
             buffer_txt = des + " " + tit
             file_.write("{0}\t{1}\t{2}\n".format(id_, class_num, buffer_txt))
 
