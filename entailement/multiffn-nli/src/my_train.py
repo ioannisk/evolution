@@ -93,6 +93,7 @@ if __name__ == '__main__':
     # find out which labels are there in the data
     # (more flexible to different datasets)
     label_dict = utils.create_label_dict(train_pairs)
+    NUMBER_CLASSES = len(label_dict)
     train_data = utils.create_dataset(train_pairs, word_dict, label_dict)
     valid_data = utils.create_dataset(valid_pairs, word_dict, label_dict)
 
@@ -118,14 +119,14 @@ if __name__ == '__main__':
     print("embedding_size {0}".format(embedding_size))
 
     if args.model == 'mlp':
-        model = MultiFeedForwardClassifier(args.num_units, 2, vocab_size,
+        model = MultiFeedForwardClassifier(args.num_units, NUMBER_CLASSES, vocab_size,
                                            embedding_size,
                                            use_intra_attention=args.use_intra,
                                            training=True,
                                            project_input=args.no_project,
                                            optimizer=args.optim)
     else:
-        model = LSTMClassifier(args.num_units, 2, vocab_size,
+        model = LSTMClassifier(args.num_units, NUMBER_CLASSES, vocab_size,
                                embedding_size, training=True,
                                project_input=args.no_project,
                                optimizer=args.optim)
