@@ -589,7 +589,7 @@ class DecomposableNLIModel(object):
 
                     avg_loss = accumulated_loss / report_interval
                     accumulated_loss = 0
-`
+
                     valid_msg = "not yet"
                     if validation_counter % 20 ==0:
                         tic_valid = time.time()
