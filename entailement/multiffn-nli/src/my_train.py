@@ -118,14 +118,14 @@ if __name__ == '__main__':
     print("embedding_size {0}".format(embedding_size))
 
     if args.model == 'mlp':
-        model = MultiFeedForwardClassifier(args.num_units, 3, vocab_size,
+        model = MultiFeedForwardClassifier(args.num_units, num_classes=2, vocab_size,
                                            embedding_size,
                                            use_intra_attention=args.use_intra,
                                            training=True,
                                            project_input=args.no_project,
                                            optimizer=args.optim)
     else:
-        model = LSTMClassifier(args.num_units, 3, vocab_size,
+        model = LSTMClassifier(args.num_units, num_classes=2, vocab_size,
                                embedding_size, training=True,
                                project_input=args.no_project,
                                optimizer=args.optim)

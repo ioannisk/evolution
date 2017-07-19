@@ -6,7 +6,7 @@
 
 
 ####### FAST DEPLOYMENT #####################
-# python train.py ~/data/glove/fast_glove.txt ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl test_models mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad
+# python train.py ~/data/glove/fast_glove.txt ~/data/snli_1.0/train_fast.json ~/data/snli_1.0/snli_1.0_dev.jsonl test_models mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad
 
 from __future__ import division, print_function
 
@@ -109,14 +109,14 @@ if __name__ == '__main__':
     embedding_size = embeddings.shape[1]
 
     if args.model == 'mlp':
-        model = MultiFeedForwardClassifier(args.num_units, 3, vocab_size,
+        model = MultiFeedForwardClassifier(args.num_units, num_classes=3, vocab_size,
                                            embedding_size,
                                            use_intra_attention=args.use_intra,
                                            training=True,
                                            project_input=args.no_project,
                                            optimizer=args.optim)
     else:
-        model = LSTMClassifier(args.num_units, 3, vocab_size,
+        model = LSTMClassifier(args.num_units, num_classes=3, vocab_size,
                                embedding_size, training=True,
                                project_input=args.no_project,
                                optimizer=args.optim)

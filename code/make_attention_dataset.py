@@ -77,7 +77,7 @@ def make_pairs(des, web_class, id_txt, id_class):
     counter =0
     for i in positive:
         counter +=1
-        if counter >= int(len(ids)*0.95):
+        if counter >= int(len(ids)*0.97):
             json.dump(i, file_validation)
             file_validation.write('\n')
         else:
@@ -101,7 +101,7 @@ def make_pairs(des, web_class, id_txt, id_class):
     counter = 0
     for i in negative:
         counter +=1
-        if counter >= int(len(ids)*0.95):
+        if counter >= int(len(ids)*0.97):
             json.dump(i, file_validation)
             file_validation.write('\n')
         else:
