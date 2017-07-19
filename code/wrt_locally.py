@@ -1,6 +1,13 @@
 from utilities import data_pipeline
 import pickle
 
+def remove_words_less_than(txt, more_than):
+    buffer_txt = ""
+    for i in txt.split():
+        # remove characters
+        if len(i)>more_than:
+            buffer_txt += " "+i
+    return buffer_txt
 
 def wrt_dataframes():
     des_df, df_web = data_pipeline()
@@ -9,15 +16,26 @@ def wrt_dataframes():
             file_.write("{0}\t{1}\n".format(class_num, txt))
     with open("../data/web_site_data.txt", "w") as file_:
         for txt, class_num, id_ in zip(df_web["class_txt"], df_web["class_num"],df_web["company_id"]):
-            if txt is not "":
-                buffer_txt = ""
-                for i in txt.split():
-                    if len(i)>1:
-                        buffer_txt += " "+i
-                file_.write("{0}\t{1}\t{2}\n".format(id_, class_num, buffer_txt))
+            if txt is "":
+                continue
+            buffer_txt = remove_words_less_than(txt, 1)
+            file_.write("{0}\t{1}\t{2}\n".format(id_, class_num, buffer_txt))
+    with open("../data/web_site_meta.txt", "w") as file_:
+        for des, tit, class_num, id_ in zip(df_web["descriptions"], df_web["titles"], df_web["class_num"],df_web["company_id"]):
+            if des=="" and tit =="":
+                continue
+            des = remove_words_less_than(des)
+            tit = remove_words_less_than(tit)
+            buffer_txt = des + " " + tit
+            file_.write("{0}\t{1}\t{2}\n".format(id_, class_num, buffer_txt))
+
+
 
     # pickle.dump(des_df, open("../data/des_df.pkl","wb"), protocol=2)
     # pickle.dump(df_web, open("../data/df_web.pkl","wb"), protocol=2)
+# def wrt_meta_txt():
+#     des_df, df_web = data_pipeline()
+#     with open("../data/descriptions_data.txt","w") as file_:
 
 if __name__=="__main__":
     wrt_dataframes()
