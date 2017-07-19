@@ -246,7 +246,7 @@ def read_corpus(filename, lowercase, language='en'):
     # we are only interested in the actual sentences + gold label
     # the corpus files has a few more things
     useful_data = []
-    label_set = {}
+    label_set = set()
     # the SNLI corpus has one JSON object per line
     with open(filename, 'rb') as f:
 
