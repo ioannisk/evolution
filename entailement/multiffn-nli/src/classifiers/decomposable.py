@@ -574,7 +574,7 @@ class DecomposableNLIModel(object):
                 batch_index2 = batch_index + batch_size
                 # tic = time.time()
                 batch = train_dataset.get_batch(batch_index, batch_index2)
-                for l in batch_data.labels:
+                for l in batch.labels:
                     label_counter[l] +=1
             print label_counter
             stop
