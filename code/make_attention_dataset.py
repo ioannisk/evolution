@@ -11,8 +11,8 @@ import time
 # des_df = pickle.load(open("../data/des_df.pkl","rb"))
 
 
-MAX_DES_LEN=300
-MAX_WEB_LEN=300
+MAX_DES_LEN=200
+MAX_WEB_LEN=200
 
 def delete_difference(dic1,dic2):
     a = set(dic1.keys())
@@ -72,8 +72,8 @@ def make_pairs(des, web_class, id_txt, id_class):
         des_txt = des[class_num]
         for id_, web_txt in web_class[class_num]:
             positive.append({'des':des_txt, 'web':web_txt, 'class':"entailment"})
-    file_training =  open("../data/training_pairs_300.json", 'wb')
-    file_validation =  open("../data/validation_pairs_300.json", 'wb')
+    file_training =  open("../data/training_pairs_200.json", 'wb')
+    file_validation =  open("../data/validation_pairs_200.json", 'wb')
     counter =0
     for i in positive:
         counter +=1

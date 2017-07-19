@@ -563,7 +563,8 @@ class DecomposableNLIModel(object):
         saver = tf.train.Saver(tf.trainable_variables(), max_to_keep=1)
 
         for i in range(num_epochs):
-            train_dataset.shuffle_data()
+            for i in range(20):
+                train_dataset.shuffle_data()
             batch_index = 0
             times_collector = []
             while batch_index < train_dataset.num_items:

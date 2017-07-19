@@ -269,7 +269,7 @@ def read_corpus(filename, lowercase, language='en'):
                 if lowercase:
                     line = line.lower()
                 data = json.loads(line)
-                if data['gold_label'] == '-' or data['gold_label'] == "neutral":
+                if data['gold_label'] == '-':
                     # ignore items without a gold label
                     continue
 
