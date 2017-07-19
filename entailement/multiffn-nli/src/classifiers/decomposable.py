@@ -508,6 +508,7 @@ class DecomposableNLIModel(object):
         """
         Create a feed dictionary to be given to the tensorflow session.
         """
+        print(set(batch.labels))
         feeds = {self.sentence1: batch_data.sentences1,
                  self.sentence2: batch_data.sentences2,
                  self.sentence1_size: batch_data.sizes1,
