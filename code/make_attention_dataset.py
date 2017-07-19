@@ -116,7 +116,7 @@ def shuffle_data():
     for line in file_training:
         line = line.strip()
         line = json.loads(line)
-        print line
+        print line["class"]
         stop
 
 
