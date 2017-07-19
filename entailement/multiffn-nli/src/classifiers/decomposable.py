@@ -576,6 +576,7 @@ class DecomposableNLIModel(object):
                 batch = train_dataset.get_batch(batch_index, batch_index2)
                 for l in batch.labels:
                     label_counter[l] +=1
+                batch_index = batch_index2
             print label_counter
             stop
 
