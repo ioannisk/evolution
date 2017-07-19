@@ -4,7 +4,7 @@
 # nohup python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/training_pairs.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad &
 # nohup python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/training_pairs.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad &> nohup2.out&
 
-# python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/training_100.json /home/ioannis/evolution/data/validation_100.json my_model mlp --lower -e 30 -u 300 -d 0.7  -b 50 -r 0.05 --report 300
+# python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/training_100.json /home/ioannis/evolution/data/validation_100.json my_model mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300
 
 
 
@@ -14,7 +14,8 @@
 
 
 ####### INFERENCE #######
-
+# python interactive-eval.py my_model/ ~/data/glove/glove.840B.300d.txt -i -a
+# python interactive-eval.py my_model/ ~/data/glove/fast_glove.txt -i -a
 
 from __future__ import division, print_function
 

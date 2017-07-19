@@ -46,7 +46,7 @@ def read_data():
             class_num , txt = line.split('\t')
             if len(txt.split()) <=MAX_DES_LEN:
                 des[class_num] = txt
-    with open("../data/web_site_meta.txt", "r") as file_:
+    with open("../data/web_site_data.txt", "r") as file_:
         for line in file_:
             line = line.strip()
             try:
@@ -133,8 +133,8 @@ def shuffle_data():
     validation_data = []
     file_training =  open("../data/training_pairs_{0}.json".format(MAX_LEN), 'rb')
     file_validation =  open("../data/validation_pairs_{0}.json".format(MAX_LEN), 'rb')
-    file_training_out =  open("../data/training_{0}.json".format(MAX_LEN), 'wb')
-    file_validation_out =  open("../data/validation_{0}.json".format(MAX_LEN), 'wb')
+    file_training_out =  open("../data/txt_training_{0}.json".format(MAX_LEN), 'wb')
+    file_validation_out =  open("../data/txt_validation_{0}.json".format(MAX_LEN), 'wb')
     merge_lists(file_training,file_training_out)
     merge_lists(file_validation,file_validation_out)
     os.remove("../data/training_pairs_{0}.json".format(MAX_LEN))
