@@ -108,7 +108,7 @@ def make_pairs(des, web_class, id_txt, id_class):
             json.dump(i, file_training)
             file_training.write('\n')
 
-def shuffle():
+def shuffle_data():
     training_data = []
     validation_data = []
     file_training =  open("../data/training_pairs_200.json", 'rb')
