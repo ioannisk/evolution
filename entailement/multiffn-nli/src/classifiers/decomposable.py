@@ -563,10 +563,11 @@ class DecomposableNLIModel(object):
         saver = tf.train.Saver(tf.trainable_variables(), max_to_keep=1)
 
         for i in range(num_epochs):
-            for i in range(20):
+            for jj in range(20):
                 train_dataset.shuffle_data()
             batch_index = 0
             times_collector = []
+            validation_counter =0
             while batch_index < train_dataset.num_items:
                 batch_index2 = batch_index + batch_size
                 tic = time.time()
@@ -582,8 +583,6 @@ class DecomposableNLIModel(object):
                 toc =time.time()
                 times_collector.append(toc -tic)
 
-
-                validation_counter =0
                 if batch_counter % report_interval == 0:
                     print("BATCH COUNTER {0}".format(batch_counter))
                     print("TIME TAKEN {0}".format(sum(times_collector)))
