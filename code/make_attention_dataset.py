@@ -11,7 +11,7 @@ import os
 # df_web = pickle.load( open("../data/df_web.pkl","rb"))
 # des_df = pickle.load(open("../data/des_df.pkl","rb"))
 
-MAX_LEN=110
+MAX_LEN=200
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
 
@@ -46,8 +46,8 @@ def read_data():
             class_num , txt = line.split('\t')
             if len(txt.split()) <=MAX_DES_LEN:
                 des[class_num] = txt
-    with open("../data/web_site_meta.txt", "r") as file_:
-    # with open("../data/web_site_data.txt", "r") as file_:
+    # with open("../data/web_site_meta.txt", "r") as file_:
+    with open("../data/web_site_data.txt", "r") as file_:
         for line in file_:
             line = line.strip()
             try:
