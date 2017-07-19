@@ -613,7 +613,7 @@ class DecomposableNLIModel(object):
                         self.save(save_dir, session, saver)
                         msg += '\t(saved model)'
                     logger.info(msg)
-                train_dataset.shuffle_data()
+            train_dataset.shuffle_data()
                 # validation_counter +=1
                 # batch_counter += 1
 
