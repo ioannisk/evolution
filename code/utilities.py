@@ -52,7 +52,7 @@ def des_txt_and_class_filtering(des_df, df):
     des_data = []
     des_labels = []
     used_classes = set()
-    for des_json, cl_num in zip(des_df['json'], des_df["class_num"]):
+    for des_json, cl_num in zip(list(des_df['json']), list(des_df["class_num"])):
         valid_txt = ""
         if ("detail" in des_json.keys()) or ("includes" in des_json.keys()) :
             used_classes.add(cl_num)
@@ -97,15 +97,15 @@ def query_web_data(df, size=None):
         try:
             title = page.title
             title = clean_up_txt(title)
-            titles.append(title)
             description = " ".join([m.content for m in page.metas if m.name == "description"]).strip()
             description = clean_up_txt(description)
-            descriptions.append(description)
             page_txt = page.textSummary
-            summaries.append(re.sub('\s+',' ',page_txt))
             # some preprocessing
             page_txt = clean_up_txt(page_txt)
             # page_txt = remove_url_chars(page_txt)
+            summaries.append(re.sub('\s+',' ',page_txt))
+            descriptions.append(description)
+            titles.append(title)
             web_sites.append(page_txt)
             company_id.append(c_id)
             labels.append(l)
