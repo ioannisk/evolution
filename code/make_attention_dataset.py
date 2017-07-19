@@ -108,16 +108,26 @@ def make_pairs(des, web_class, id_txt, id_class):
             json.dump(i, file_training)
             file_training.write('\n')
 
+
+def zip_lists(file_):
+    en_list = []
+    con_list = []
+    for line in file_:
+        line = line.strip()
+        line = json.loads(line)
+        if line["class"] =="entailment"
+            en_list.append(line)
+        else:
+            con_list.append(line)
+    print len(en_list), len(con_list)
+
 def shuffle_data():
     training_data = []
     validation_data = []
     file_training =  open("../data/training_pairs_200.json", 'rb')
     file_validation =  open("../data/validation_pairs_200.json", 'rb')
-    for line in file_training:
-        line = line.strip()
-        line = json.loads(line)
-        print line["class"]
-        stop
+    zip_lists(file_training)
+    zip_lists(file_validation)
 
 
 
