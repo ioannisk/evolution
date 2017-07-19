@@ -133,8 +133,8 @@ def shuffle_data():
     validation_data = []
     file_training =  open("../data/training_pairs_200.json", 'rb')
     file_validation =  open("../data/validation_pairs_200.json", 'rb')
-    file_training_out =  open("../data/training_pairs.json", 'rb')
-    file_validation_out =  open("../data/validation_pairs.json", 'rb')
+    file_training_out =  open("../data/training_pairs.json", 'wb')
+    file_validation_out =  open("../data/validation_pairs.json", 'wb')
     merge_lists(file_training,file_training_out)
     merge_lists(file_validation,file_validation_out)
 
