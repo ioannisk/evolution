@@ -11,7 +11,7 @@ import os
 # df_web = pickle.load( open("../data/df_web.pkl","rb"))
 # des_df = pickle.load(open("../data/des_df.pkl","rb"))
 
-MAX_LEN=100
+MAX_LEN=110
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
 

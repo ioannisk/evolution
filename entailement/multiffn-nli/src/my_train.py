@@ -6,12 +6,13 @@
 
 # python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/training_100.json /home/ioannis/evolution/data/validation_100.json my_model mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300
 
+# python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/meta_training_100.json /home/ioannis/evolution/data/meta_validation_100.json my_model mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300
+
 
 
 
 ###### FAST DEPLOY #######
-# python -u my_train.py ~/data/glove/fast_glove.txt /home/ioannis/evolution/data/training_pairs.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 300 -d 0.8  -b 32 -r 0.005 --optim adagrad
-
+# python -u my_train.py ~/data/glove/fast_glove.txt /home/ioannis/evolution/data/meta_training_100.json /home/ioannis/evolution/data/meta_validation_100.json my_model mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300
 
 ####### INFERENCE #######
 # python interactive-eval.py my_model/ ~/data/glove/glove.840B.300d.txt -i -a
@@ -120,7 +121,7 @@ if __name__ == '__main__':
     vocab_size = embeddings.shape[0]
     embedding_size = embeddings.shape[1]
 
-    print("vocab size{0}".format(vocab_size))
+    print("vocab size {0}".format(vocab_size))
     print("embedding_size {0}".format(embedding_size))
 
     if args.model == 'mlp':
