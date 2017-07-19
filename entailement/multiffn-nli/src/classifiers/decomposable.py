@@ -533,7 +533,7 @@ class DecomposableNLIModel(object):
 
     def train(self, session, train_dataset, valid_dataset, save_dir,
               learning_rate, num_epochs, batch_size, dropout_keep=1, l2=0,
-              clip_norm=10, report_interval=4000):
+              clip_norm=10, report_interval=1000):
         """
         Train the model
 

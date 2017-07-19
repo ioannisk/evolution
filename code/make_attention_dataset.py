@@ -3,6 +3,7 @@ import pandas
 import json
 import random
 import time
+import os
 # from utilities import data_pipeline
 #### data -> dictionairy -> json
 
@@ -10,9 +11,9 @@ import time
 # df_web = pickle.load( open("../data/df_web.pkl","rb"))
 # des_df = pickle.load(open("../data/des_df.pkl","rb"))
 
-
-MAX_DES_LEN=200
-MAX_WEB_LEN=200
+MAX_LEN=100
+MAX_DES_LEN=MAX_LEN
+MAX_WEB_LEN=MAX_LEN
 
 def write_json_line(json_ ,file_):
     json.dump(json_ , file_)
@@ -78,8 +79,8 @@ def make_pairs(des, web_class, id_txt, id_class):
         des_txt = des[class_num]
         for id_, web_txt in web_class[class_num]:
             positive.append({'des':des_txt, 'web':web_txt, 'class':"entailment"})
-    file_training =  open("../data/training_pairs_200.json", 'wb')
-    file_validation =  open("../data/validation_pairs_200.json", 'wb')
+    file_training =  open("../data/training_pairs_{}.json".fomat(MAX_LEN), 'wb')
+    file_validation =  open("../data/validation_pairs_{}.json".format(MAX_LEN), 'wb')
     counter =0
     for i in positive:
         counter +=1
@@ -131,12 +132,14 @@ def merge_lists(file_, outfile):
 def shuffle_data():
     training_data = []
     validation_data = []
-    file_training =  open("../data/training_pairs_200.json", 'rb')
-    file_validation =  open("../data/validation_pairs_200.json", 'rb')
-    file_training_out =  open("../data/training_pairs.json", 'wb')
-    file_validation_out =  open("../data/validation_pairs.json", 'wb')
+    file_training =  open("../data/training_pairs_{0}.json".format(MAX_LEN), 'rb')
+    file_validation =  open("../data/validation_pairs_{0}.json".format(MAX_LEN), 'rb')
+    file_training_out =  open("../data/training_{0}.json".format(MAX_LEN), 'wb')
+    file_validation_out =  open("../data/validation_{0}.json".format(MAX_LEN), 'wb')
     merge_lists(file_training,file_training_out)
     merge_lists(file_validation,file_validation_out)
+    os.remove(file_training)
+    os.remove(file_validation)
 
 
 
