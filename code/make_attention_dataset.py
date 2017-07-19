@@ -114,6 +114,8 @@ def shuffle_data():
     file_training =  open("../data/training_pairs_200.json", 'rb')
     file_validation =  open("../data/validation_pairs_200.json", 'rb')
     for line in file_training:
+        line = line.strip()
+        line = json.loads(line)
         print line
         stop
 
