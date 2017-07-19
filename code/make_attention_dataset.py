@@ -108,10 +108,16 @@ def make_pairs(des, web_class, id_txt, id_class):
             json.dump(i, file_training)
             file_training.write('\n')
 
+def shuffle():
+    file_training =  open("../data/training_pairs_200.json", 'rb')
+    file_validation =  open("../data/validation_pairs_200.json", 'rb')
+
+
 
 
 if __name__ =="__main__":
     des, web_class, id_txt, id_class  = read_data()
     make_pairs(des, web_class, id_txt, id_class)
+    shuffle_data()
     # make_training_validation()
 
