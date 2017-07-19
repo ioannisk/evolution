@@ -115,7 +115,7 @@ def zip_lists(file_):
     for line in file_:
         line = line.strip()
         line = json.loads(line)
-        if line["class"] =="entailment"
+        if line["class"] =="entailment":
             en_list.append(line)
         else:
             con_list.append(line)
