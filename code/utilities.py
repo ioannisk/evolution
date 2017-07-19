@@ -114,6 +114,7 @@ def query_web_data(df, size=None):
             all_urls.append(i)
         except:
             pass
+    print(len(web_sites))
     print(description_counter)
     stop
     df_web = pd.DataFrame()
