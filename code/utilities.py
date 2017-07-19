@@ -112,10 +112,6 @@ def query_web_data(df, size=None):
             all_urls.append(i)
         except:
             pass
-    print(len(titles))
-    print(len(descriptions))
-    print(len(web_sites))
-    stop
     df_web = pd.DataFrame()
     df_web["class_num"] = labels
     df_web["class_txt"] = web_sites
