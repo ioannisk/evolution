@@ -16,7 +16,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 #     return cosine_similarity(query_v, string_v)[0][0]
 
 def tf_idf_vectorization(corpus):
-    print("TF_IDF Vectorization")
+    print("tfidf Vectorization")
     stopWords = stopwords.words('english')
     # vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords, sublinear_tf=False)
     vec = TfidfVectorizer( min_df=1,sublinear_tf=False)
@@ -67,6 +67,7 @@ def classification(list_, true_cl, N):
 
 
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
+    print("cosine similarity inference")
     inference = []
     for web, web_cl in zip(web_tfidf, web_class):
         predictions = []
