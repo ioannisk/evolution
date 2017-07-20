@@ -57,7 +57,8 @@ def load_json_data_file(file_):
 
 ## find if in top N
 def classification(list_, true_cl, N):
-    print list_[0]
+    i,j =  list_[0]
+    print i, j
     for i, sim, cl in enumerate(list_):
         print i, sim, cl
         stop
