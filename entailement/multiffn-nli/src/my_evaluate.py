@@ -27,7 +27,7 @@ def print_errors(pairs, answers, label_dict, probabilities):
         sent2 = ' '.join(pair[1])
         print('Sent 1: {}\nSent 2: {}'.format(sent1, sent2))
         print('System label: {}, True label: {} - {}'.format(answer,
-                                                            label_number, label_str)
+                                                            label_number, label_str))
 
 
 if __name__ == '__main__':
