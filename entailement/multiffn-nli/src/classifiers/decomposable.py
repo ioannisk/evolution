@@ -145,7 +145,7 @@ class DecomposableNLIModel(object):
         self.logits = self.aggregate(self.v1, self.v2)
 
         ###### MY CODE #######
-        self.probas = tf.nn.softmax(self.logits)
+        # self.probas = tf.nn.softmax(self.logits)
         ######################
 
         self.answer = tf.argmax(self.logits, 1, 'answer')
@@ -637,9 +637,9 @@ class DecomposableNLIModel(object):
         """
         if return_answers:
             #### MY CODE ####
-            # self.probas
+            # ops = [self.loss, self.accuracy, self.answer,self.probas]
             #################
-            ops = [self.loss, self.accuracy, self.answer,self.probas]
+            ops = [self.loss, self.accuracy, self.answer]
         else:
             ops = [self.loss, self.accuracy]
 
@@ -666,7 +666,7 @@ class DecomposableNLIModel(object):
             if return_answers:
                 answers.append(results[2])
                 #### MY CODE ####
-                probabilities.append(results[3])
+                # probabilities.append(results[3])
                 #################
 
 
