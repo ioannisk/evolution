@@ -62,7 +62,7 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
         for des, des_cl in zip(des_tfidf, des_class):
             sim = cosine_similarity(web,des)
             predictions.append((sim, des_cl))
-        print predictions
+        print sorted(predictions, key=lambda x: x[1], reverse=True)
         stop
 
         # print document
