@@ -79,8 +79,8 @@ def main():
     ## train tf-idf vectorizer
     tfidf_vec = tf_idf_vectorization(training_corpus)
     ## vetorize des and validation websites
-    des_tfidf = tfidf_vec.fit(descriptions_txt)
-    web_tfidf = tfidf_vec.fit(web_txt)
+    des_tfidf = tfidf_vec.transform(descriptions_txt)
+    web_tfidf = tfidf_vec.transform(web_txt)
     tfidf_inference(des_tfidf, des_class, web_tfidf, web_class)
 
 
