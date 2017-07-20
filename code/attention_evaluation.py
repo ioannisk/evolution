@@ -74,15 +74,18 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     print((des_tfidf.shape))
     print((web_tfidf.shape))
     print(len(des_class))
+    counter = 0
     for i, (web, web_cl) in enumerate(zip(web_tfidf, web_class)):
         similarities = []
         if i%100==0:
             print i
         for des, des_cl in zip(des_tfidf, des_class):
             # sim = cosine_similarity(web,des)[0][0]
+            counter +=1
             sim =1
             similarities.append((sim, des_cl))
         inference.append(classification(similarities, web_cl, 5))
+        print counter
     accuracy = sum(inference)/float(len(inference))
     return accuracy
 
