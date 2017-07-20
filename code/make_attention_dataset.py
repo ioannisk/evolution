@@ -11,7 +11,7 @@ import os
 # df_web = pickle.load( open("../data/df_web.pkl","rb"))
 # des_df = pickle.load(open("../data/des_df.pkl","rb"))
 
-MAX_LEN=200
+MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
 
@@ -46,8 +46,8 @@ def read_data():
             class_num , txt = line.split('\t')
             if len(txt.split()) <=MAX_DES_LEN:
                 des[class_num] = txt
-    # with open("../data/web_site_meta.txt", "r") as file_:
-    with open("../data/web_site_data.txt", "r") as file_:
+    with open("../data/web_site_meta.txt", "r") as file_:
+    # with open("../data/web_site_data.txt", "r") as file_:
         for line in file_:
             line = line.strip()
             try:
@@ -78,13 +78,14 @@ def make_pairs(des, web_class, id_txt, id_class):
     for class_num in web_class:
         des_txt = des[class_num]
         for id_, web_txt in web_class[class_num]:
-            positive.append({'des':des_txt, 'web':web_txt, 'class':"entailment"})
+            positive.append({'des':des_txt, 'web':web_txt, 'class':"entailment",
+             'des_class':class_num , 'web_class':class_num, 'web_id':id_ })
     file_training =  open("../data/training_pairs_{}.json".format(MAX_LEN), 'wb')
     file_validation =  open("../data/validation_pairs_{}.json".format(MAX_LEN), 'wb')
     counter =0
     for i in positive:
         counter +=1
-        if counter >= int(len(ids)*0.97):
+        if counter >= int(len(ids)*0.95):
             json.dump(i, file_validation)
             file_validation.write('\n')
         else:
@@ -104,11 +105,12 @@ def make_pairs(des, web_class, id_txt, id_class):
                 unsuccesful_sample = True
             else:
                 unsuccesful_sample = False
-        negative.append({'des':des[cl], 'web':id_txt[id_], 'class':"contradiction"})
+        negative.append({'des':des[cl], 'web':id_txt[id_], 'class':"contradiction",
+            'des_class':cl, 'web_class':id_class[id_], 'web_id':id_ })
     counter = 0
     for i in negative:
         counter +=1
-        if counter >= int(len(ids)*0.97):
+        if counter >= int(len(ids)*0.95):
             json.dump(i, file_validation)
             file_validation.write('\n')
         else:
