@@ -64,7 +64,9 @@ def classification(list_, true_cl, N):
         if i >=5:
             return 0
 
-
+###########################
+### Maybe use linear kernel
+###########################
 
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     print("cosine similarity inference")
@@ -72,13 +74,13 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     print(len(des_tfidf))
     print(len(des_class))
     for i, (web, web_cl) in enumerate(zip(web_tfidf, web_class)):
-        predictions = []
+        similarities = []
         if i%100==0:
             print i
         for des, des_cl in zip(des_tfidf, des_class):
-            sim = cosine_similarity(web,des)
-            predictions.append((sim, des_cl))
-        inference.append(classification(predictions, web_cl, 5))
+            sim = cosine_similarity(web,des)[0][0]
+            similarities.append((sim, des_cl))
+        inference.append(classification(similarities, web_cl, 5))
     accuracy = sum(inference)/float(len(inference))
     return accuracy
 
