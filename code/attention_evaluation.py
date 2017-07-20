@@ -28,7 +28,7 @@ def make_training_corpus(file_):
     # return des_txt, web_txt, binary_class, des_class, web_class, web_id
 
 def load_json_data_file(file_):
-    des_txt = web_txt = binary_classe = des_classe = web_classe = web_id = []
+    des_txt = web_txt = binary_class = des_class = web_class = web_id = []
     for line in file_:
         line = line.strip()
         line = json.loads(line)
