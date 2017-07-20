@@ -59,7 +59,7 @@ def load_json_data_file(file_):
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     for web in web_tfidf:
         for des in des_tfidf:
-            cosine_similarity(web,vec)
+            cosine_similarity(web,des)
 
         # print document
 
