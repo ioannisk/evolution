@@ -60,18 +60,22 @@ def classification(list_, true_cl, N):
     srt = sorted(list_, key=lambda x: x[0], reverse=True)
     for i, (sim, cl) in enumerate(list_):
         if cl == true_cl:
-            return
+            return 1
         if i >=5:
+            return 0
 
 
 
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
+    inference = []
     for web, web_cl in zip(web_tfidf, web_class):
         predictions = []
         for des, des_cl in zip(des_tfidf, des_class):
             sim = cosine_similarity(web,des)
             predictions.append((sim, des_cl))
-        classification(predictions, web_cl, 5)
+        inference.append(classification(predictions, web_cl, 5))
+    accuracy = sum(inference)/float(len(inference))
+    return accuracy
 
 
         # print document
@@ -97,7 +101,8 @@ def main():
     ## vetorize des and validation websites
     des_tfidf = tfidf_vec.transform(descriptions_txt)
     web_tfidf = tfidf_vec.transform(web_txt)
-    tfidf_inference(des_tfidf, des_class, web_tfidf, web_class)
+    accuracy = tfidf_inference(des_tfidf, des_class, web_tfidf, web_class)
+    print accuracy
 
 
 
