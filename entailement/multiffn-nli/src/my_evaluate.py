@@ -66,9 +66,10 @@ if __name__ == '__main__':
                                 params['language'])
     dataset = utils.create_dataset(pairs, word_dict, label_dict)
     loss, acc, answers, probabilities = model.evaluate(sess, dataset, True, 50, testing_mode=True)
+
+    # if args.errors:
+    #     print_errors(pairs, answers, label_dict, probabilities)
     print(len(probabilities))
     print('Loss: %f' % loss)
     print('Accuracy: %f' % acc)
 
-    if args.errors:
-        print_errors(pairs, answers, label_dict, probabilities)
