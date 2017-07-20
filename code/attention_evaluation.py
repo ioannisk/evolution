@@ -58,7 +58,8 @@ def load_datasets():
     with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_data_file(file_)
     print(len(des_txt))
-
+    print(len(web_txt))
+    print(len(binary_class))
 
 
 
