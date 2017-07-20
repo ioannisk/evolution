@@ -8,6 +8,7 @@ import tensorflow as tf
 import my_ioutils
 import utils
 import ioutils
+import IPython
 
 """
 Evaluate the performance of an NLI model on a dataset
@@ -66,7 +67,7 @@ if __name__ == '__main__':
                                 params['language'])
     dataset = utils.create_dataset(pairs, word_dict, label_dict)
     loss, acc, answers, probabilities = model.evaluate(sess, dataset, True, 10, testing_mode=True)
-
+    IPython.embed()
     # if args.errors:
     #     print_errors(pairs, answers, label_dict, probabilities)
     print(len(probabilities))
