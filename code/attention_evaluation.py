@@ -7,7 +7,8 @@ from nltk.corpus import stopwords
 def tf_idf_vectorization(corpus):
     print("TF_IDF Vectorization")
     stopWords = stopwords.words('english')
-    vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords, sublinear_tf=True)
+    # vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords, sublinear_tf=False)
+    vec = TfidfVectorizer( min_df=1,sublinear_tf=False)
     vec.fit(corpus)
     return vec
 
@@ -32,15 +33,16 @@ def load_json_data_file(file_):
     for line in file_:
         line = line.strip()
         line = json.loads(line)
-        des_txt.append(line["des"])
-        web_txt.append(line["web"])
-        binary_class.append(line["class"])
-        des_class.append(line["des_class"])
-        web_class.append(line["web_class"])
-        web_id.append(line["web_id"])
+        if line["class"]=="entailment":
+            des_txt.append(line["des"])
+            web_txt.append(line["web"])
+            binary_class.append(line["class"])
+            des_class.append(line["des_class"])
+            web_class.append(line["web_class"])
+            web_id.append(line["web_id"])
+            # training_corpus.append(web_txt)
     # print counter
     return des_txt, web_txt, binary_class, des_class, web_class, web_id
-
 
 
 def load_datasets():
@@ -58,9 +60,12 @@ def load_datasets():
             descriptions_txt.append(line[1])
     with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_data_file(file_)
+    ## train tf-idf vectorizer ##
     print(len(des_txt))
-    print(len(web_txt))
-    print(len(binary_class))
+    tfidf_vec = tf_idf_vectorization(training_corpus)
+    des_tfidf = tfidf_vec.fit(descriptions_txt)
+
+
 
 
 
