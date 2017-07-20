@@ -5,7 +5,7 @@ from __future__ import division, print_function, unicode_literals
 import argparse
 from itertools import izip
 import tensorflow as tf
-
+import my_ioutils
 import utils
 import ioutils
 
