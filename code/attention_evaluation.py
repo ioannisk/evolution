@@ -42,8 +42,8 @@ def load_datasets():
             line = line.strip()
             line = line.split('\t')
             training_corpus.append(line[1])
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
-        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_data_file(file_)
+    # with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
+        # des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_data_file(file_)
 
 
 
