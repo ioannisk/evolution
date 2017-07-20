@@ -19,7 +19,7 @@ def print_errors(pairs, answers, label_dict, probabilities):
     Print the pairs for which the model gave a wrong answer,
     their gold label and the system one.
     """
-    for pair, answer, prob in izip(pairs, answers, probabilities):
+    for pair, answer, prob in izip(pairs, answers):
         label_str = pair[2]
         label_number = label_dict[label_str]
         # if answer != label_number:
@@ -67,4 +67,4 @@ if __name__ == '__main__':
     print('Accuracy: %f' % acc)
 
     if args.errors:
-        print_errors(pairs, answers, label_dict, probabilities)
+        print_errors(pairs, answers, label_dict,probabilities)
