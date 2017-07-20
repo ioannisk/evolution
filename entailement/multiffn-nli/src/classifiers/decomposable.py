@@ -143,6 +143,11 @@ class DecomposableNLIModel(object):
         self.v1 = self.compare(repr1, self.beta, self.sentence1_size)
         self.v2 = self.compare(repr2, self.alpha, self.sentence2_size, True)
         self.logits = self.aggregate(self.v1, self.v2)
+
+        ###### MY CODE #######
+        self.probas = tf.nn.softmax(self.logits)
+        ######################
+
         self.answer = tf.argmax(self.logits, 1, 'answer')
 
         hits = tf.equal(tf.cast(self.answer, tf.int32), self.label)
@@ -617,7 +622,7 @@ class DecomposableNLIModel(object):
                 # validation_counter +=1
                 # batch_counter += 1
 
-    def evaluate(self, session, dataset, return_answers, batch_size=5000):
+    def evaluate(self, session, dataset, return_answers, batch_size=5000, testing_mode=False):
         """
         Run the model on the given dataset
 
@@ -631,7 +636,10 @@ class DecomposableNLIModel(object):
             or else (loss, accuracy, answers)
         """
         if return_answers:
-            ops = [self.loss, self.accuracy, self.answer]
+            #### MY CODE ####
+            # self.probas
+            #################
+            ops = [self.loss, self.accuracy, self.answer,self.probas]
         else:
             ops = [self.loss, self.accuracy]
 
@@ -642,6 +650,7 @@ class DecomposableNLIModel(object):
         weighted_accuracies = []
         weighted_losses = []
         answers = []
+        probabilities = []
         while i <= dataset.num_items:
             subset = dataset.get_batch(i, j)
 
@@ -656,6 +665,10 @@ class DecomposableNLIModel(object):
             weighted_accuracies.append(results[1] * subset.num_items)
             if return_answers:
                 answers.append(results[2])
+                #### MY CODE ####
+                probabilities.append(results[3])
+                #################
+
 
         avg_accuracy = np.sum(weighted_accuracies) / dataset.num_items
         avg_loss = np.sum(weighted_losses) / dataset.num_items
@@ -663,5 +676,6 @@ class DecomposableNLIModel(object):
         if return_answers:
             all_answers = np.concatenate(answers)
             ret.append(all_answers)
+            ret.append(probabilities)
 
         return ret
