@@ -22,11 +22,11 @@ def print_errors(pairs, answers, label_dict):
     for pair, answer in izip(pairs, answers):
         label_str = pair[2]
         label_number = label_dict[label_str]
-        if answer != label_number:
-            sent1 = ' '.join(pair[0])
-            sent2 = ' '.join(pair[1])
-            print('Sent 1: {}\nSent 2: {}'.format(sent1, sent2))
-            print('System label: {}, gold label: {}'.format(answer,
+        # if answer != label_number:
+        sent1 = ' '.join(pair[0])
+        sent2 = ' '.join(pair[1])
+        print('Sent 1: {}\nSent 2: {}'.format(sent1, sent2))
+        print('System label: {}, gold label: {}'.format(answer,
                                                             label_number))
 
 

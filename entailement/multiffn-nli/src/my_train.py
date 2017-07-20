@@ -22,6 +22,13 @@
 # python interactive-eval.py my_model/ ~/data/glove/glove.840B.300d.txt -i -a
 # python interactive-eval.py my_model/ ~/data/glove/fast_glove.txt -i -a
 
+
+###### Evaluate on validation data set ######
+### training #####
+# python my_evaluate.py my_model/ /home/ioannis/evolution/data/meta_training_110.json ~/data/glove/glove.840B.300d.txt
+#### validation #####
+# python my_evaluate.py my_model/ /home/ioannis/evolution/data/meta_validation_110.json ~/data/glove/glove.840B.300d.txt
+
 from __future__ import division, print_function
 
 """
