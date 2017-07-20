@@ -27,23 +27,38 @@ def make_training_corpus(file_):
     return training_corpus
     # return des_txt, web_txt, binary_class, des_class, web_class, web_id
 
+def load_json_data_file(file_):
+    des_txt = web_txt = binary_classe = des_classe = web_classe = web_id = []
+    for line in file_:
+        line = line.strip()
+        line = json.loads(line)
+        des_txt.append(line["des"])
+        web_txt.append(line["web"])
+        binary_class.append(line["class"])
+        des_class.append(line["des_class"])
+        web_class.append(line["web_class"])
+        web_id.append(line["web_id"])
+    return des_txt, web_txt, binary_class, des_class, web_class, web_id
+
 
 
 def load_datasets():
     print("Loading data sets")
+    des_txt = []
+    des_class = []
     with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
         training_corpus = make_training_corpus(file_)
-        print(len(training_corpus))
-
-
-            # training_corpus.append(line[2])
     with open("/home/ioannis/evolution/data/descriptions_data.txt","rb") as file_:
         for line in file_:
             line = line.strip()
             line = line.split('\t')
+            des_class.append(line[0])
             training_corpus.append(line[1])
-    # with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
-        # des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_data_file(file_)
+            des_txt.append(line[1])
+    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
+        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_data_file(file_)
+    print(len(des_txt))
+
 
 
 
