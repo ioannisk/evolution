@@ -22,6 +22,7 @@ def make_training_corpus(file_):
         des_class = line["des_class"]
         web_class = line["web_class"]
         web_id = line["web_id"]
+        print binary_class
         if binary_class=="entailement":
             training_corpus.append(web_txt)
     return training_corpus
