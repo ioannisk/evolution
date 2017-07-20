@@ -1,8 +1,19 @@
 import json
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
+from sklearn.metrics.pairwise import cosine_similarity
 
 # vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords,vocabulary=vec.vocabulary_, sublinear_tf=True)
+
+# def cosine_sim_parts_calculator(query, string):
+#     q = []
+#     s = []
+#     q.append(query)
+#     s.append(string)
+#     query_v = tfidf_vectorizer.transform(q)
+#     string_v = tfidf_vectorizer.transform(s)
+#     # string_v = tfidf_vectorizer.transform(s)
+#     return cosine_similarity(query_v, string_v)[0][0]
 
 def tf_idf_vectorization(corpus):
     print("TF_IDF Vectorization")
@@ -45,7 +56,12 @@ def load_json_data_file(file_):
     return des_txt, web_txt, binary_class, des_class, web_class, web_id
 
 
-def load_datasets():
+def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
+    for document in web_tfidf:
+        print document
+
+
+def main():
     print("Loading data sets")
     descriptions_txt = []
     descriptions_class = []
@@ -60,16 +76,19 @@ def load_datasets():
             descriptions_txt.append(line[1])
     with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_data_file(file_)
-    ## train tf-idf vectorizer ##
-    print(len(des_txt))
+    ## train tf-idf vectorizer
     tfidf_vec = tf_idf_vectorization(training_corpus)
+    ## vetorize des and validation websites
     des_tfidf = tfidf_vec.fit(descriptions_txt)
+    web_tfidf = tfidf_vec.fit(web_txt)
+    tfidf_inference(des_tfidf, des_class, web_tfidf, web_class)
+
 
 
 
 
 
 if __name__=="__main__":
-    load_datasets()
+    main()
 # def make_evaluation():
 
