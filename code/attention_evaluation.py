@@ -55,6 +55,11 @@ def load_json_data_file(file_):
     # print counter
     return des_txt, web_txt, binary_class, des_class, web_class, web_id
 
+## find if in top N
+def classification(list_, true_cl, N):
+    for i, sim, cl in enumerate(list_):
+        print i, sim, cl
+        stop
 
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     for web, web_cl in zip(web_tfidf, web_class):
@@ -62,8 +67,9 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
         for des, des_cl in zip(des_tfidf, des_class):
             sim = cosine_similarity(web,des)
             predictions.append((sim, des_cl))
-        print sorted(predictions, key=lambda x: x[0], reverse=True)
-        stop
+        srt = sorted(predictions, key=lambda x: x[0], reverse=True)
+        classification(srt, web_cl, 5)
+
 
         # print document
 
