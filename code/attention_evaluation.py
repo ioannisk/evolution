@@ -29,8 +29,6 @@ def make_training_corpus(file_):
 
 
 
-
-
 def load_datasets():
     print("Loading data sets")
     with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
@@ -48,4 +46,8 @@ def load_datasets():
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_data_file(file_)
 
 
-def make_evaluation():
+
+if __name__=="__main__":
+    load_datasets()
+# def make_evaluation():
+
