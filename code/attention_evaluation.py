@@ -72,6 +72,7 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     print("cosine similarity inference")
     inference = []
     print((des_tfidf.shape))
+    print((web_tfidf.shape))
     print(len(des_class))
     for i, (web, web_cl) in enumerate(zip(web_tfidf, web_class)):
         similarities = []
@@ -108,7 +109,7 @@ def main():
     ## vetorize des and validation websites
     des_tfidf = tfidf_vec.transform(descriptions_txt)
     web_tfidf = tfidf_vec.transform(web_txt)
-    accuracy = tfidf_inference(des_tfidf, des_class, web_tfidf, web_class)
+    accuracy = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
     print accuracy
 
 
