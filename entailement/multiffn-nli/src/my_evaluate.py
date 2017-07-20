@@ -20,18 +20,15 @@ def print_errors(pairs, answers, label_dict, probabilities):
     Print the pairs for which the model gave a wrong answer,
     their gold label and the system one.
     """
-    for pair, answer in izip(pairs, answers):
+    for pair, answer, prob in izip(pairs, answers, probabilities):
         label_str = pair[2]
         label_number = label_dict[label_str]
         # if answer != label_number:
         sent1 = ' '.join(pair[0])
         sent2 = ' '.join(pair[1])
         print('Sent 1: {}\nSent 2: {}'.format(sent1, sent2))
-        print('System label: {}, True label: {} - {}'.format(answer,
-                                                            label_number, label_str))
-    print(len(pairs))
-    print(len(answers))
-    print(len(probabilities))
+        print('System label: {}, True label: {} - {} ##Pro {}##'.format(answer,
+                                                            label_number, label_str,prob))
 
 
 if __name__ == '__main__':
@@ -67,10 +64,11 @@ if __name__ == '__main__':
                                 params['language'])
     dataset = utils.create_dataset(pairs, word_dict, label_dict)
     loss, acc, answers, probabilities = model.evaluate(sess, dataset, True, 10, testing_mode=True)
-    IPython.embed()
-    # if args.errors:
-    #     print_errors(pairs, answers, label_dict, probabilities)
-    print(len(probabilities))
+    # IPython.embed()
+    formated_probabilities = [j for i in probabilities for j in i ]
+    if args.errors:
+        print_errors(pairs, answers, label_dict, formated_probabilities)
+    print(len(formated_probabilities))
     print('Loss: %f' % loss)
     print('Accuracy: %f' % acc)
 
