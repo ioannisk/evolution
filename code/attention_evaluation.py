@@ -69,8 +69,10 @@ def classification(list_, true_cl, N):
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     print("cosine similarity inference")
     inference = []
-    for web, web_cl in zip(web_tfidf, web_class):
+    for i, (web, web_cl) in enumerate(zip(web_tfidf, web_class)):
         predictions = []
+        if i%100==0:
+            print i
         for des, des_cl in zip(des_tfidf, des_class):
             sim = cosine_similarity(web,des)
             predictions.append((sim, des_cl))
