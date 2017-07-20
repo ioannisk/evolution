@@ -28,6 +28,9 @@ def print_errors(pairs, answers, label_dict, probabilities):
         print('Sent 1: {}\nSent 2: {}'.format(sent1, sent2))
         print('System label: {}, True label: {} - {}'.format(answer,
                                                             label_number, label_str))
+    print(len(pairs))
+    print(len(answers))
+    print(len(probabilities))
 
 
 if __name__ == '__main__':
@@ -63,8 +66,9 @@ if __name__ == '__main__':
                                 params['language'])
     dataset = utils.create_dataset(pairs, word_dict, label_dict)
     loss, acc, answers, probabilities = model.evaluate(sess, dataset, True, 50, testing_mode=True)
+    print(len(probabilities))
     print('Loss: %f' % loss)
     print('Accuracy: %f' % acc)
 
     if args.errors:
-        print_errors(pairs, answers, label_dict,probabilities)
+        print_errors(pairs, answers, label_dict, probabilities)
