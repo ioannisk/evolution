@@ -56,20 +56,12 @@ def load_json_data_file(file_):
     # print counter
     return des_txt, web_txt, binary_class, des_class, web_class, web_id
 
-## find if in top N
-def classification(list_, true_cl, N):
-    srt = sorted(list_, key=lambda x: x[0], reverse=True)
-    for i, (sim, cl) in enumerate(list_):
-        if cl == true_cl:
-            return 1
-        if i >=649:
-            return 0
-
 ###########################
 ### Maybe use linear kernel
 ###########################
 
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
+    true_positive = 0
     print("cosine similarity inference")
     inference = []
     print("des vectors {}".format(des_tfidf.shape))
@@ -79,30 +71,13 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     # print pairwise_cos_matrix.shape
     print("pairwise evaluation {}".format(pairwise_cos_matrix.shape))
     assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[0])
-    for row in pairwise_cos_matrix:
-        print len(des_class)
-        print len(row)
-        stop
-        # zip(row, )
-
-
-
-
-
-    stop
-    for i, (web, web_cl) in enumerate(zip(web_tfidf, web_class)):
-        similarities = []
-        if i%100==0:
-            print i
-        for des, des_cl in zip(des_tfidf, des_class):
-            sim = cosine_similarity(web,des)[0][0]
-            similarities.append((sim, des_cl))
-        inference.append(classification(similarities, web_cl, 5))
-    accuracy = sum(inference)/float(len(inference))
-    return accuracy
-
-
-        # print document
+    for i, row in enumerate(pairwise_cos_matrix):
+        sim_labels = list(zip(row, des_class))
+        ranked = sorted(sim_labels, reverse=True)
+        similarities, classes = zip(*ranked)
+        if web_class[i] in classes[:10]:
+            true_positive +=1
+    return true_positive*100/float(len(web_class))
 
 
 def main():
