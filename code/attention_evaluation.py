@@ -3,8 +3,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
+from utilities import load_json_validation_file
 
-TOP_N = 1
+TOP_N = 10
 
 def tf_idf_vectorization(corpus):
     print("tfidf Vectorization")
@@ -30,21 +31,6 @@ def make_training_corpus(file_):
     return training_corpus
     # return des_txt, web_txt, binary_class, des_class, web_class, web_id
 
-def load_json_validation_file(file_):
-    des_txt, web_txt, binary_class, des_class, web_class, web_id = [], [],[], [], [], []
-    for line in file_:
-        line = line.strip()
-        line = json.loads(line)
-        if line["class"]=="entailment":
-            des_txt.append(line["des"])
-            web_txt.append(line["web"])
-            binary_class.append(line["class"])
-            des_class.append(line["des_class"])
-            web_class.append(line["web_class"])
-            web_id.append(line["web_id"])
-            # training_corpus.append(web_txt)
-    # print counter
-    return des_txt, web_txt, binary_class, des_class, web_class, web_id
 
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     true_positive = 0
