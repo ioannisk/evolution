@@ -71,7 +71,7 @@ if __name__ == '__main__':
     print(label_dict)
     print(len(formated_probabilities))
     for i, a in enumerate(answers):
-        print (a, formated_probabilities[i][label_dict['entailement']])
+        print (a, formated_probabilities[i][label_dict['entailment']])
     print('Loss: %f' % loss)
     print('Accuracy: %f' % acc)
 
