@@ -30,7 +30,7 @@ def make_training_corpus(file_):
     return training_corpus
     # return des_txt, web_txt, binary_class, des_class, web_class, web_id
 
-def load_json_data_file(file_):
+def load_json_validation_file(file_):
     des_txt, web_txt, binary_class, des_class, web_class, web_id = [], [],[], [], [], []
     for line in file_:
         line = line.strip()
@@ -65,7 +65,6 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
             true_positive +=1
     return true_positive*100/float(len(web_class))
 
-
 def baseline_tfidf():
     print("Loading data sets")
     descriptions_txt = []
@@ -80,7 +79,7 @@ def baseline_tfidf():
             training_corpus.append(line[1])
             descriptions_txt.append(line[1])
     with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
-        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_data_file(file_)
+        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
     ## train tf-idf vectorizer
     # tfidf_vec = tf_idf_vectorization(descriptions_txt)
     tfidf_vec = tf_idf_vectorization(training_corpus)
