@@ -144,24 +144,6 @@ def vectorize_corpus(des_data, web_sites,tfidf=False):
         vec_web_sites = vec.transform(web_sites)
     return vec_des_data, vec_web_sites, vec
 
-
-def load_json_validation_file(file_):
-    des_txt, web_txt, binary_class, des_class, web_class, web_id = [], [],[], [], [], []
-    for line in file_:
-        line = line.strip()
-        line = json.loads(line)
-        if line["class"]=="entailment":
-            des_txt.append(line["des"])
-            web_txt.append(line["web"])
-            binary_class.append(line["class"])
-            des_class.append(line["des_class"])
-            web_class.append(line["web_class"])
-            web_id.append(line["web_id"])
-            # training_corpus.append(web_txt)
-    # print counter
-    return des_txt, web_txt, binary_class, des_class, web_class, web_id
-
-
 def data_pipeline(size=None):
     des_df, df = load_domain_data()
     des_df, df = des_txt_and_class_filtering(des_df, df)
