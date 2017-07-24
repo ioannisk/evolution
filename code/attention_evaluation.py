@@ -76,6 +76,8 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     print((web_tfidf.shape))
     print(len(des_class))
     a  = cosine_similarity(web_tfidf[0:1], des_tfidf)
+    b = cosine_similarity(web_tfidf, des_tfidf)
+    print a==b[0]
     # print(np.max(web_tfidf[0]))
     print a.shape
     stop
