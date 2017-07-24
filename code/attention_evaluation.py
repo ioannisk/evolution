@@ -2,6 +2,7 @@ import json
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
 
 # vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords,vocabulary=vec.vocabulary_, sublinear_tf=True)
 
