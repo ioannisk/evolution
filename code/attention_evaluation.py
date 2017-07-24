@@ -75,7 +75,7 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
         sim_labels = list(zip(row, des_class))
         ranked = sorted(sim_labels, reverse=True)
         similarities, classes = zip(*ranked)
-        if web_class[i] in classes[:10]:
+        if web_class[i] in classes[:5]:
             true_positive +=1
     return true_positive*100/float(len(web_class))
 
