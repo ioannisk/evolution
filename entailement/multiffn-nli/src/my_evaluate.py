@@ -68,9 +68,10 @@ if __name__ == '__main__':
     formated_probabilities = [prob_tuple for batch in probabilities for prob_tuple in batch ]
     if args.errors:
         print_errors(pairs, answers, label_dict, formated_probabilities)
-    print(label_dict)
-    print (args.model)
-    print(len(formated_probabilities))
+    with open(args.model+"prob_predictions.txt") as file_:
+        # formated probabilities returs tuple with prob for con and entailement
+        for prob_tuple in formated_probabilities:
+            file_.write("{}\n".format(prob_tuple[label_dict['entailement']]))
     # for i, a in enumerate(answers):
         # print (a, formated_probabilities[i][label_dict['entailment']])
     print('Loss: %f' % loss)
