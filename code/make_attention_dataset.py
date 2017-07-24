@@ -166,21 +166,24 @@ def make_ranking_validation():
     with open("/home/ioannis/evolution/data/meta_ranking_validation_{0}.json".format(MAX_LEN),"wb") as file_:
         counter = 0
         for i, website_txt in enumerate(web_txt):
-            counter +=1
-            if counter % 100==0:
-                print counter
+
+            # if counter % 100==0:
+            #     print counter
             if binary_class[i]!="entailment":
+                counter +=1
                 continue
-            id_ = web_id[i]
-            true_cl = des_class[i]
-            for description_class, description_txt in zip(descriptions_class, descriptions_txt):
-                if description_class==true_cl:
-                    class_buffer = 'entailment'
-                else:
-                    class_buffer = 'contradiction'
-                    # json_buffer={'des':description_txt , 'web':website_txt , 'class':'entailment', 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class}
-                json_buffer={'des':description_txt , 'web':website_txt , 'class':class_buffer, 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class}
-                write_json_line(json_buffer,file_)
+
+        print counter
+            # id_ = web_id[i]
+            # true_cl = des_class[i]
+            # for description_class, description_txt in zip(descriptions_class, descriptions_txt):
+            #     if description_class==true_cl:
+            #         class_buffer = 'entailment'
+            #     else:
+            #         class_buffer = 'contradiction'
+            #         # json_buffer={'des':description_txt , 'web':website_txt , 'class':'entailment', 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class}
+            #     json_buffer={'des':description_txt , 'web':website_txt , 'class':class_buffer, 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class}
+            #     write_json_line(json_buffer,file_)
 
 
 
