@@ -69,9 +69,10 @@ if __name__ == '__main__':
     if args.errors:
         print_errors(pairs, answers, label_dict, formated_probabilities)
     print(label_dict)
+    print (args.model)
     print(len(formated_probabilities))
-    for i, a in enumerate(answers):
-        print (a, formated_probabilities[i][label_dict['entailment']])
+    # for i, a in enumerate(answers):
+        # print (a, formated_probabilities[i][label_dict['entailment']])
     print('Loss: %f' % loss)
     print('Accuracy: %f' % acc)
 
