@@ -102,7 +102,7 @@ def decomposable_attention_eval():
             line = line.strip()
             line = json.loads(line)
             web_class = line['web_class']
-            description_class = line['description_class']
+            description_class = line['des_class']
             web_id = line['web_id']
             companies.add(web_id)
         print len(companies)
