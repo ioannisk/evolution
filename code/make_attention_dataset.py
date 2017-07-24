@@ -169,9 +169,9 @@ def make_ranking_validation():
 
             # if counter % 100==0:
             #     print counter
-            if binary_class[i]!="entailment":
-                counter +=1
-                continue
+            counter +=1
+            # if binary_class[i]!="entailment":
+            #     continue
 
         print counter
             # id_ = web_id[i]
