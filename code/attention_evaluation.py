@@ -104,12 +104,17 @@ def decomposable_attention_eval():
             web_class = line['web_class']
             description_class = line['des_class']
             web_id = line['web_id']
+
             companies.add(web_id)
     counter = 0
-    for i in range(0,len(predictions), 649):
-        counter+=1
-    print counter
+    step = 649
+    ###
+    # TODO FIND THE RANK OF THE CORRECT EXAMPLE
+    ####
 
+    for i in range(0,len(predictions), step):
+        list_pred = predictions[i:i+step]
+        list_
 
 
             # 'des':description_txt , 'web':website_txt , 'class':class_buffer, 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class
