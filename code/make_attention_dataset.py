@@ -163,7 +163,7 @@ def make_ranking_validation():
     ###############
     # Make the actual dataset
     ###############
-    with open("/home/ioannis/evolution/data/descriptions_data.txt","wb") as file_:
+    with open("/home/ioannis/evolution/data/meta_ranking_validation_{0}.json".format(MAX_LEN),"wb") as file_:
         counter = 0
         for i, website_txt in enumerate(web_txt):
             counter +=1
