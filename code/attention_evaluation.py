@@ -10,7 +10,7 @@ def tf_idf_vectorization(corpus):
     print("tfidf Vectorization")
     stopWords = stopwords.words('english')
     # vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords, sublinear_tf=False)
-    vec = TfidfVectorizer( min_df=1,sublinear_tf=True)
+    vec = TfidfVectorizer( min_df=1,sublinear_tf=False)
     vec.fit(corpus)
     return vec
 
@@ -45,10 +45,6 @@ def load_json_data_file(file_):
             # training_corpus.append(web_txt)
     # print counter
     return des_txt, web_txt, binary_class, des_class, web_class, web_id
-
-###########################
-### Maybe use linear kernel
-###########################
 
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     true_positive = 0
@@ -92,14 +88,10 @@ def baseline_tfidf():
     des_tfidf = tfidf_vec.transform(descriptions_txt)
     web_tfidf = tfidf_vec.transform(web_txt)
     accuracy = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
-    print accuracy
-
-
-
-
-
+    return accuracy
 
 if __name__=="__main__":
-    baseline_tfidf()
+    accuracy = baseline_tfidf()
+    print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
 # def make_evaluation():
 
