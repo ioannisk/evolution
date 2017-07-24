@@ -78,7 +78,7 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     pairwise_cos_matrix  = cosine_similarity(web_tfidf, des_tfidf)
     # print pairwise_cos_matrix.shape
     print(pairwise_cos_matrix.shape)
-    assert pairwise_cos_matrix.shape = (web_tfidf.shape[0], des_tfidf.shape[1])
+    assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[1])
     # for
 
 
