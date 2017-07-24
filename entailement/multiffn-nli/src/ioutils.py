@@ -166,6 +166,12 @@ def load_text_embeddings(path):
     # IPython.embed()
     embeddings = np.array(vectors, dtype=np.float32)
 
+    ## Save embeddings
+    vocab_file = open("/home/ioannis/data/glove/glove-840B-vocabulary.txt", "wb")
+    for i in words:
+        vocab_file.write("{}\n".format(i))
+    npy_file = open("/home/ioannis/data/glove/glove-840B.npy", "wb")
+    np.save(npy_file, embeddings)
     return words, embeddings
 
 

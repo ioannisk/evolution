@@ -11,6 +11,7 @@
 
 ###### this gave 81% accuracy ######
 # python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/meta_training_110.json /home/ioannis/evolution/data/meta_validation_110.json my_model_1 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.005 --report 300
+
 ###### Evaluate on validation data set ######
 ### training #####
 # python my_evaluate.py my_model/ /home/ioannis/evolution/data/meta_training_110.json ~/data/glove/glove.840B.300d.txt
@@ -21,8 +22,15 @@
 
 ###### this gave 81% accuracy ######
 # python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/meta_training_111.json /home/ioannis/evolution/data/meta_validation_111.json my_model_111 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.005 --report 300
+
 ## Evaluate ##
 # python my_evaluate.py my_model_111/ /home/ioannis/evolution/data/meta_validation_111.json ~/data/glove/glove.840B.300d.txt
+
+## Ranking Evaluation
+#
+# python my_evaluate.py my_model_111/ /home/ioannis/evolution/data/meta_ranking_validation_111.json ~/data/glove/glove.840B.300d.txt
+# python my_evaluate.py my_model_111/ /home/ioannis/evolution/data/meta_validation_111.json ~/data/glove/glove.840B.300d.txt
+
 
 
 ###### FAST DEPLOY #######
