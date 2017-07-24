@@ -146,8 +146,42 @@ def shuffle_data():
 
 
 def make_ranking_validation():
-    file_validation_out =  open("../data/meta_validation_{0}.json".format(MAX_LEN), 'rb')
-    des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_validation_out)
+    ##########################
+    # Load data necessary for making the raning validation data
+    #########################
+    descriptions_class = []
+    descriptions_txt = []
+    with open("../data/meta_validation_{0}.json".format(MAX_LEN), 'rb') as file_:
+        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
+    with open("/home/ioannis/evolution/data/descriptions_data.txt","rb") as file_:
+        for line in file_:
+            line = line.strip()
+            line = line.split('\t')
+            descriptions_class.append(line[0])
+            descriptions_txt.append(line[1])
+    ###############
+    # Make the actual dataset
+    ###############
+    with open("/home/ioannis/evolution/data/descriptions_data.txt","rb") as file_:
+        counter = 0
+        for i, website_txt in enumerate(web_txt):
+            if binary_class[i]!="entailment":
+                continue
+            id_ = web_id[i]
+            true_cl = des_class[i]
+            for description_class, description_txt in zip(descriptions_class, descriptions_txt):
+                if description_class==true_cl:
+                    counter +=1
+
+    print counter
+
+
+            # json_buffer = {}
+            # write_json_line(json_,file_)
+
+
+
+
 
 
 
