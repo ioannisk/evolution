@@ -71,7 +71,7 @@ if __name__ == '__main__':
     with open(args.model+"prob_predictions.txt", "wb") as file_:
         # formated probabilities returs tuple with prob for con and entailement
         for prob_tuple in formated_probabilities:
-            file_.write("{}\n".format(prob_tuple[label_dict['entailement']]))
+            file_.write("{}\n".format(prob_tuple[label_dict['entailment']]))
     # for i, a in enumerate(answers):
         # print (a, formated_probabilities[i][label_dict['entailment']])
     print('Loss: %f' % loss)
