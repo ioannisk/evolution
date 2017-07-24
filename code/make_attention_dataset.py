@@ -153,7 +153,7 @@ def make_ranking_validation():
     descriptions_txt = []
     with open("../data/meta_validation_{0}.json".format(MAX_LEN), 'rb') as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
-    print("Different website txt {0}".format(len(web_id)/2))
+    print("Different website txt {0}".format(web_id))
     with open("/home/ioannis/evolution/data/descriptions_data.txt","rb") as file_:
         for line in file_:
             line = line.strip()
@@ -166,24 +166,21 @@ def make_ranking_validation():
     with open("/home/ioannis/evolution/data/meta_ranking_validation_{0}.json".format(MAX_LEN),"wb") as file_:
         counter = 0
         for i, website_txt in enumerate(web_txt):
-
-            # if counter % 100==0:
-            #     print counter
+            if counter % 100==0:
+                print counter
             counter +=1
-            # if binary_class[i]!="entailment":
-            #     continue
-
-        print counter
-            # id_ = web_id[i]
-            # true_cl = des_class[i]
-            # for description_class, description_txt in zip(descriptions_class, descriptions_txt):
-            #     if description_class==true_cl:
-            #         class_buffer = 'entailment'
-            #     else:
-            #         class_buffer = 'contradiction'
-            #         # json_buffer={'des':description_txt , 'web':website_txt , 'class':'entailment', 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class}
-            #     json_buffer={'des':description_txt , 'web':website_txt , 'class':class_buffer, 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class}
-            #     write_json_line(json_buffer,file_)
+            if binary_class[i]!="entailment":
+                continue
+            id_ = web_id[i]
+            true_cl = des_class[i]
+            for description_class, description_txt in zip(descriptions_class, descriptions_txt):
+                if description_class==true_cl:
+                    class_buffer = 'entailment'
+                else:
+                    class_buffer = 'contradiction'
+                    # json_buffer={'des':description_txt , 'web':website_txt , 'class':'entailment', 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class}
+                json_buffer={'des':description_txt , 'web':website_txt , 'class':class_buffer, 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class}
+                write_json_line(json_buffer,file_)
 
 
 
