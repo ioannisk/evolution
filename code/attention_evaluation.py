@@ -89,6 +89,27 @@ def baseline_tfidf():
     accuracy = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
     return accuracy
 
+def decomposable_attention_eval():
+    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/my_model_111/prob_predictions.txt", "rb") as file_:
+        predictions = []
+        for line in file_:
+            line = line.strip()
+            predictions.append(float(line))
+        print len(predictions)
+    with open("/home/ioannis/evolution/meta_ranking_validation_111.json", "rb" as file_):
+        companies = set()
+        for line in file_:
+            line = line.strip()
+            line = json.loads(line)
+            web_class = line['web_class']
+            description_class = line['description_class']
+            web_id = line['web_id']
+            companies.add(web_id)
+        print len(companies)
+            # 'des':description_txt , 'web':website_txt , 'class':class_buffer, 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class
+
+
+
 if __name__=="__main__":
     accuracy = baseline_tfidf()
     print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
