@@ -4,17 +4,7 @@ from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-# vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords,vocabulary=vec.vocabulary_, sublinear_tf=True)
-
-# def cosine_sim_parts_calculator(query, string):
-#     q = []
-#     s = []
-#     q.append(query)
-#     s.append(string)
-#     query_v = tfidf_vectorizer.transform(q)
-#     string_v = tfidf_vectorizer.transform(s)
-#     # string_v = tfidf_vectorizer.transform(s)
-#     return cosine_similarity(query_v, string_v)[0][0]
+TOP_N = 10
 
 def tf_idf_vectorization(corpus):
     print("tfidf Vectorization")
@@ -75,12 +65,12 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
         sim_labels = list(zip(row, des_class))
         ranked = sorted(sim_labels, reverse=True)
         similarities, classes = zip(*ranked)
-        if web_class[i] in classes[:649]:
+        if web_class[i] in classes[:TOP_N]:
             true_positive +=1
     return true_positive*100/float(len(web_class))
 
 
-def main():
+def baseline_tfidf():
     print("Loading data sets")
     descriptions_txt = []
     descriptions_class = []
@@ -110,6 +100,6 @@ def main():
 
 
 if __name__=="__main__":
-    main()
+    baseline_tfidf()
 # def make_evaluation():
 
