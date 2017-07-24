@@ -162,7 +162,7 @@ def make_ranking_validation():
     ###############
     # Make the actual dataset
     ###############
-    with open("/home/ioannis/evolution/data/descriptions_data.txt","rb") as file_:
+    with open("/home/ioannis/evolution/data/descriptions_data.txt","wb") as file_:
         for i, website_txt in enumerate(web_txt):
             if binary_class[i]!="entailment":
                 continue
