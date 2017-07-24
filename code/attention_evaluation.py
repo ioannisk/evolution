@@ -96,7 +96,7 @@ def decomposable_attention_eval():
             line = line.strip()
             predictions.append(float(line))
         print len(predictions)
-    with open("/home/ioannis/evolution/meta_ranking_validation_111.json", "rb") as file_:
+    with open("/home/ioannis/evolution/data/meta_ranking_validation_111.json", "rb") as file_:
         companies = set()
         for line in file_:
             line = line.strip()
