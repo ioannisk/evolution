@@ -16,7 +16,7 @@
 ### training #####
 # python my_evaluate.py my_model/ /home/ioannis/evolution/data/meta_training_110.json ~/data/glove/glove.840B.300d.txt
 #### validation #####
-# python my_evaluate.py my_model/ /home/ioannis/evolution/data/meta_validation_110.json ~/data/glove/glove.840B.300d.txt
+# python my_evaluate.py /home/ioannis/models/my_model/ /home/ioannis/evolution/data/meta_validation_110.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
 
 
 
@@ -24,17 +24,16 @@
 # python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/meta_training_111.json /home/ioannis/evolution/data/meta_validation_111.json my_model_111 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.005 --report 300
 
 ## Evaluate ##
-# python my_evaluate.py my_model_111/ /home/ioannis/evolution/data/meta_validation_111.json ~/data/glove/glove.840B.300d.txt
+# python my_evaluate.py my_model_111/ /home/ioannis/evolution/data/meta_validation_111.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
 
 ## Ranking Evaluation
-#
-# python my_evaluate.py my_model_111/ /home/ioannis/evolution/data/meta_ranking_validation_111.json ~/data/glove/glove.840B.300d.txt
-# python my_evaluate.py my_model_111/ /home/ioannis/evolution/data/meta_validation_111.json ~/data/glove/glove.840B.300d.txt
+# python my_evaluate.py my_model_111/ /home/ioannis/evolution/data/meta_ranking_validation_111.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
+
 
 
 
 ###### FAST DEPLOY #######
-# python -u my_train.py ~/data/glove/fast_glove.txt /home/ioannis/evolution/data/meta_training_110.json /home/ioannis/evolution/data/meta_validation_110.json my_model mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300
+# python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/meta_training_110.json /home/ioannis/evolution/data/meta_validation_110.json my_model mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
 
 ####### INFERENCE #######
 # python interactive-eval.py my_model/ ~/data/glove/glove.840B.300d.txt -i -a

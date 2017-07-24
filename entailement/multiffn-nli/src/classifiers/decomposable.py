@@ -651,6 +651,8 @@ class DecomposableNLIModel(object):
         weighted_losses = []
         answers = []
         probabilities = []
+        print(dataset.num_items)
+        stop
         while i <= dataset.num_items:
             subset = dataset.get_batch(i, j)
 
