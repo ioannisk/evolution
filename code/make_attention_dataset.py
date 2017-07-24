@@ -153,7 +153,7 @@ def make_ranking_validation():
     descriptions_txt = []
     with open("../data/meta_validation_{0}.json".format(MAX_LEN), 'rb') as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
-    print("Different website txt {0}".format(web_id))
+    print("Different website txt {0}".format(len(web_id)))
     with open("/home/ioannis/evolution/data/descriptions_data.txt","rb") as file_:
         for line in file_:
             line = line.strip()
