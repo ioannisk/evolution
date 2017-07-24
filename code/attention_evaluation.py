@@ -105,7 +105,13 @@ def decomposable_attention_eval():
             description_class = line['des_class']
             web_id = line['web_id']
             companies.add(web_id)
-        print len(companies)
+    counter = 0
+    for i in range(0,len(predictions), 649):
+        counter+=1
+    print counter
+
+
+
             # 'des':description_txt , 'web':website_txt , 'class':class_buffer, 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class
 
 
