@@ -72,14 +72,18 @@ def classification(list_, true_cl, N):
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     print("cosine similarity inference")
     inference = []
-    print((des_tfidf.shape))
-    print((web_tfidf.shape))
-    print(len(des_class))
+    print("des vectors {}".format(des_tfidf.shape))
+    print("web vectors {}".format(web_tfidf.shape))
+    # print(len(des_class))
     pairwise_cos_matrix  = cosine_similarity(web_tfidf, des_tfidf)
     # print pairwise_cos_matrix.shape
-    print(pairwise_cos_matrix.shape)
+    print("pairwise evaluation {}".format(pairwise_cos_matrix.shape))
     assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[0])
-    # for
+    for row in pairwise_cos_matrix:
+        print len(des_class)
+        print len(r)
+        stop
+        # zip(row, )
 
 
 
