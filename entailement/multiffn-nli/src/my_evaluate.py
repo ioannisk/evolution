@@ -68,6 +68,7 @@ if __name__ == '__main__':
     formated_probabilities = [prob_tuple for batch in probabilities for prob_tuple in batch ]
     if args.errors:
         print_errors(pairs, answers, label_dict, formated_probabilities)
+    print label_dict
     print(len(formated_probabilities))
     print('Loss: %f' % loss)
     print('Accuracy: %f' % acc)
