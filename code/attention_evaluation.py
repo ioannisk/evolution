@@ -96,7 +96,8 @@ def main():
     with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_data_file(file_)
     ## train tf-idf vectorizer
-    tfidf_vec = tf_idf_vectorization(descriptions_txt)
+    # tfidf_vec = tf_idf_vectorization(descriptions_txt)
+    tfidf_vec = tf_idf_vectorization(training_corpus)
     ## vetorize des and validation websites
     des_tfidf = tfidf_vec.transform(descriptions_txt)
     web_tfidf = tfidf_vec.transform(web_txt)
