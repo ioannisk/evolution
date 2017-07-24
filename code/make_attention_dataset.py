@@ -4,7 +4,7 @@ import json
 import random
 import time
 import os
-# from utilities import data_pipeline
+from attention_evaluation import load_json_validation_file
 #### data -> dictionairy -> json
 
 
@@ -145,9 +145,15 @@ def shuffle_data():
 
 
 
+def make_ranking_validation():
+    file_validation_out =  open("../data/meta_validation_{0}.json".format(MAX_LEN), 'rb')
+    des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_validation_out)
+
+
+
 if __name__ =="__main__":
-    des, web_class, id_txt, id_class  = read_data()
-    make_pairs(des, web_class, id_txt, id_class)
-    shuffle_data()
-    # make_training_validation()
+    # des, web_class, id_txt, id_class  = read_data()
+    # make_pairs(des, web_class, id_txt, id_class)
+    # shuffle_data()
+    make_ranking_validation()
 

@@ -46,8 +46,6 @@ def load_json_validation_file(file_):
     # print counter
     return des_txt, web_txt, binary_class, des_class, web_class, web_id
 
-
-
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     true_positive = 0
     print("cosine similarity inference")
