@@ -81,7 +81,7 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[0])
     for row in pairwise_cos_matrix:
         print len(des_class)
-        print len(r)
+        print len(row)
         stop
         # zip(row, )
 
