@@ -144,15 +144,47 @@ def decomposable_attention_eval():
 
         # ensure only used classes are taken into consideration
         used_list_des = [jj for jj in list_des if jj in used_classes]
-
         if list_web[0] in used_list_des[:TOP_N]:
             # print(list_des[:TOP_N])
             true_positive +=1
         # print ranked_list
     return true_positive*100/float(len(companies))
 
+
+def baseline_nb():
+    with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
+        counter = 0
+        kk = set()
+        for line in file_:
+            line = line.strip()
+            line = json.loads(line)
+            des_txt = line["des"]
+            web_txt = line["web"]
+            binary_class = line["class"]
+            des_class = line["des_class"]
+            web_class = line["web_class"]
+            web_id = line["web_id"]
+            kk.add(web_id)
+            counter +=1
+        print counter
+        print len(kk)
+    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
+        for line in file_:
+            line = line.strip()
+            line = json.loads(line)
+            used_classes.add(line["web_class"])
+
+
+
+
+
+
+
+
 if __name__=="__main__":
-    accuracy = baseline_tfidf()
-    print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
-    accuracy = decomposable_attention_eval()
-    print("Decomposable attention in top {} ranks is {}".format(TOP_N, accuracy))
+    # accuracy = baseline_tfidf()
+    # print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
+    accuracy = baseline_nb()
+    print("Naive Bayes baseline in top {} ranks is {}".format(TOP_N, accuracy))
+    # accuracy = decomposable_attention_eval()
+    # print("Decomposable attention in top {} ranks is {}".format(TOP_N, accuracy))
