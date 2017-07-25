@@ -3,15 +3,13 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 TOP_N = 10
 
 ##########################################################
 # Due to data preprocessing not all 649 classes must be used
 ##########################################################
-
-
 def tf_idf_vectorization(corpus):
     print("tfidf Vectorization")
     stopWords = stopwords.words('english')
@@ -100,7 +98,6 @@ def baseline_tfidf():
     accuracy = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
     return accuracy
 
-
 def find_only_used_classes():
     used_classes = set()
     with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
@@ -114,7 +111,6 @@ def find_only_used_classes():
             line = json.loads(line)
             used_classes.add(line["web_class"])
     return used_classes
-
 
 def decomposable_attention_eval():
     used_classes =  find_only_used_classes()
@@ -145,25 +141,18 @@ def decomposable_attention_eval():
         ranked_list = sorted(list(zip(list_pred, list_web, list_des)),reverse=True)
         list_pred,list_web,list_des = zip(*ranked_list)
         list_des = list(list_des)
-        #
+
         # ensure only used classes are taken into consideration
-        #
-        # print "71129" in used_classes
-        used_list_des = [i for i in list_des if i in used_classes]
+        used_list_des = [jj for jj in list_des if jj in used_classes]
+
         if list_web[0] in used_list_des[:TOP_N]:
             # print(list_des[:TOP_N])
             true_positive +=1
         # print ranked_list
     return true_positive*100/float(len(companies))
 
-
-            # 'des':description_txt , 'web':website_txt , 'class':class_buffer, 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class
-
-
-
 if __name__=="__main__":
     accuracy = baseline_tfidf()
     print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
     accuracy = decomposable_attention_eval()
     print("Decomposable attention in top {} ranks is {}".format(TOP_N, accuracy))
-
