@@ -98,23 +98,24 @@ def decomposable_attention_eval():
         print len(predictions)
     with open("/home/ioannis/evolution/data/meta_ranking_validation_111.json", "rb") as file_:
         companies = set()
+        description_class = []
+        web_class = []
         for line in file_:
             line = line.strip()
             line = json.loads(line)
-            web_class = line['web_class']
-            description_class = line['des_class']
-            web_id = line['web_id']
-
-            companies.add(web_id)
+            web_class.append(line['web_class'])
+            description_class.append(line['des_class'])
+            companies.add(line['web_id'])
     counter = 0
     step = 649
     ###
     # TODO FIND THE RANK OF THE CORRECT EXAMPLE
     ####
-
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
-        list_
+        list_web = web_class[i:i+step]
+        print list_web
+        stop
 
 
             # 'des':description_txt , 'web':website_txt , 'class':class_buffer, 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class
