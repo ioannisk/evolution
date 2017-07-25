@@ -152,9 +152,11 @@ def decomposable_attention_eval():
 
 
 def baseline_nb():
+    x_train = []
+    y_train = []
+    x_valid = []
+    y_valid = []
     with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
-        counter = 0
-        kk = set()
         for line in file_:
             line = line.strip()
             line = json.loads(line)
@@ -166,12 +168,24 @@ def baseline_nb():
             des_class = line["des_class"]
             web_class = line["web_class"]
             web_id = line["web_id"]
-            kk.add(web_id)
-            counter +=1
-        print counter
-        print len(kk)
-        stop
-    # with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
+            x_train.append(web_txt)
+            y_train.append(y_train)
+    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
+        for line in file_:
+            line = line.strip()
+            line = json.loads(line)
+            binary_class = line["class"]
+            if binary_class!= "entailment":
+                continue
+            des_txt = line["des"]
+            web_txt = line["web"]
+            des_class = line["des_class"]
+            web_class = line["web_class"]
+            web_id = line["web_id"]
+            x_valid.append(web_txt)
+            y_valid.append(y_train)
+    print len(x_valid)
+    print len(x_train)
 
 
 
