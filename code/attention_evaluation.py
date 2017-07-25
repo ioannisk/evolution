@@ -156,17 +156,17 @@ def baseline_nb():
             web_id = line["web_id"]
             x_valid.append(web_txt)
             y_valid.append(web_class)
-    with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
-        for line in file_:
-            line = line.strip()
-            line = line.split('\t')
-            ## ensure only used classes are used for inference
-            if line[0] not in used_classes:
-                continue
-            x_train.append(line[1])
-            y_train.append(line[0])
-            descriptions_class.append(line[0])
-            descriptions_txt.append(line[1])
+    # with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
+    #     for line in file_:
+    #         line = line.strip()
+    #         line = line.split('\t')
+    #         ## ensure only used classes are used for inference
+    #         if line[0] not in used_classes:
+    #             continue
+    #         x_train.append(line[1])
+    #         y_train.append(line[0])
+    #         descriptions_class.append(line[0])
+    #         descriptions_txt.append(line[1])
 
     vec = tf_idf_vectorization(x_train)
     tfidf_train = vec.transform(x_train)
@@ -178,9 +178,6 @@ def baseline_nb():
         # print("training nb with alpha {}".format(a))
         clf = gnb.fit(tfidf_train, y_train)
         y_pred_test = clf.predict(tfidf_valid)
-        # print len(y_valid)
-        # print len(y_pred_test)
-        # import IPython; IPython.embed()
         print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True),a))
 
 
