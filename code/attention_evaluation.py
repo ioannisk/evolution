@@ -68,7 +68,6 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
         ranked = sorted(sim_labels, reverse=True)
         similarities, classes = zip(*ranked)
         classes = list(classes)
-        classes.remove("71129")
         if web_class[i] in classes[:TOP_N]:
             true_positive +=1
     return true_positive*100/float(len(web_class))
@@ -84,6 +83,7 @@ def baseline_tfidf():
         for line in file_:
             line = line.strip()
             line = line.split('\t')
+            ## ensure only used classes are used for inference
             if line[0] not in used_classes:
                 continue
             descriptions_class.append(line[0])
@@ -124,12 +124,15 @@ def decomposable_attention_eval():
             predictions.append(float(line))
         print len(predictions)
     with open("/home/ioannis/evolution/data/meta_ranking_validation_111.json", "rb") as file_:
+        used_classes =  find_only_used_classes()
         companies = set()
         description_class = []
         web_class = []
         for line in file_:
             line = line.strip()
             line = json.loads(line)
+            if line['web_class'] not in used_classes:
+                continue
             web_class.append(line['web_class'])
             description_class.append(line['des_class'])
             companies.add(line['web_id'])
@@ -137,11 +140,15 @@ def decomposable_attention_eval():
     # TODO FIND THE RANK OF THE CORRECT EXAMPLE
     ####
     true_positive = 0
-    step = 649
+    step = len(used_classes)
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
         list_web = web_class[i:i+step]
         list_des = description_class[i:i+step]
+        print list_web
+        print len(list_web)
+        stop
+
         ranked_list = sorted(list(zip(list_pred, list_web, list_des)),reverse=True)
         list_pred,list_web,list_des = zip(*ranked_list)
         list_des = list(list_des)
