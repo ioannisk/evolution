@@ -155,7 +155,6 @@ def decomposable_attention_eval():
         ranked_list = sorted(list(zip(list_pred, list_web, list_des)),reverse=True)
         list_pred,list_web,list_des = zip(*ranked_list)
         list_des = list(list_des)
-        list_des.remove("71129")
         if list_web[0] in list_des[:TOP_N]:
             # print(list_des[:TOP_N])
             true_positive +=1
