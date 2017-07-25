@@ -128,7 +128,7 @@ def baseline_nb():
     descriptions_class = []
     descriptions_txt = []
     used_classes = find_only_used_classes()
-    with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
+    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
         for line in file_:
             line = line.strip()
             line = json.loads(line)
@@ -142,7 +142,7 @@ def baseline_nb():
             web_id = line["web_id"]
             x_train.append(web_txt)
             y_train.append(y_train)
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
+    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
         for line in file_:
             line = line.strip()
             line = json.loads(line)
@@ -156,7 +156,7 @@ def baseline_nb():
             web_id = line["web_id"]
             x_valid.append(web_txt)
             y_valid.append(y_train)
-    with open("/home/ioannis/evolution/data/descriptions_data.txt","rb") as file_:
+    with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
         for line in file_:
             line = line.strip()
             line = line.split('\t')
