@@ -61,7 +61,10 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
         sim_labels = list(zip(row, des_class))
         ranked = sorted(sim_labels, reverse=True)
         similarities, classes = zip(*ranked)
+        print classes
+        print list(classes)
         classes = list(classes).remove("71129")
+        print classes
         if web_class[i] in classes[:TOP_N]:
             true_positive +=1
     return true_positive*100/float(len(web_class))
@@ -119,6 +122,7 @@ def decomposable_attention_eval():
         ranked_list = sorted(list(zip(list_pred, list_web, list_des)),reverse=True)
         list_pred,list_web,list_des = zip(*ranked_list)
         list_des = list(list_des).remove("71129")
+
         if list_web[0] in list_des[:TOP_N]:
             print(list_des[:TOP_N])
             true_positive +=1
