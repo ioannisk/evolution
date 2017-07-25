@@ -114,7 +114,9 @@ def decomposable_attention_eval():
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
         list_web = web_class[i:i+step]
-        print list_web
+        list_des = description_class[i:i+step]
+        ranked_list = sorted(list(zip(list_pred, list_web, list_des)),reverse=True)
+        print ranked_list
         stop
 
 
