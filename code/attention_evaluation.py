@@ -49,7 +49,6 @@ def load_json_validation_file(file_):
             web_class.append(line["web_class"])
             web_id.append(line["web_id"])
             # training_corpus.append(web_txt)
-    # print counter
     return des_txt, web_txt, binary_class, des_class, web_class, web_id
 
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
@@ -176,14 +175,12 @@ def baseline_nb():
     # print tfidf_valid.shape
     for a in (np.arange(1,11)*0.1):
         gnb = MultinomialNB(alpha=a)
-        print "training nb with alpha {}".format(a)
+        print("training nb with alpha {}".format(a))
         # tfidf_train = tfidf_train[:1000]
         # y_train = y_train[:1000]
         # print descriptions_class.shape
-        print tfidf_train.shape
+        print(tfidf_train.shape)
         clf = gnb.fit(tfidf_train, descriptions_class)
-        print "testing"
-        print tfidf_valid.shape
         y_pred_test = clf.predict(tfidf_valid)
         print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True),a))
 
@@ -198,7 +195,7 @@ def decomposable_attention_eval():
         for line in file_:
             line = line.strip()
             predictions.append(float(line))
-        print len(predictions)
+        print(len(predictions))
     with open("/home/ioannis/evolution/data/meta_ranking_validation_111.json", "rb") as file_:
         companies = set()
         description_class = []
@@ -224,9 +221,7 @@ def decomposable_attention_eval():
         # ensure only used classes are taken into consideration
         used_list_des = [jj for jj in list_des if jj in used_classes]
         if list_web[0] in used_list_des[:TOP_N]:
-            # print(list_des[:TOP_N])
             true_positive +=1
-        # print ranked_list
     return true_positive*100/float(len(companies))
 
 
