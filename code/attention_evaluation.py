@@ -168,20 +168,20 @@ def baseline_nb():
             descriptions_class.append(line[0])
             descriptions_txt.append(line[1])
 
-    vec = tf_idf_vectorization(descriptions_txt)
-    tfidf_train = vec.transform(descriptions_txt)
+    vec = tf_idf_vectorization(x_train)
+    tfidf_train = vec.transform(x_train)
     tfidf_valid = vec.transform(x_valid)
     # print tfidf_train.shape
     # print tfidf_valid.shape
-    for a in (np.arange(1,20)*0.1):
+    for a in (np.arange(1,10)*0.1):
         gnb = MultinomialNB(alpha=a)
         # print("training nb with alpha {}".format(a))
-        clf = gnb.fit(tfidf_train, descriptions_class)
+        clf = gnb.fit(tfidf_train, y_train)
         y_pred_test = clf.predict(tfidf_valid)
         # print len(y_valid)
         # print len(y_pred_test)
         # import IPython; IPython.embed()
-        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True),a))
+        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True)*100,a))
 
 
     # naive_bayes_optimizer()
