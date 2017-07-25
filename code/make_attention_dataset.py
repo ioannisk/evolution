@@ -140,21 +140,6 @@ def shuffle_data():
     os.remove("../data/training_pairs_{0}.json".format(MAX_LEN))
     os.remove("../data/validation_pairs_{0}.json".format(MAX_LEN))
 
-def find_only_used_classes():
-    used_classes = set()
-    with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
-        for line in file_:
-            line = line.strip()
-            line = json.loads(line)
-            used_classes.add(line["web_class"])
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
-        for line in file_:
-            line = line.strip()
-            line = json.loads(line)
-            used_classes.add(line["web_class"])
-    return used_classes
-
-
 
 def make_ranking_validation():
     ##########################
@@ -193,12 +178,6 @@ def make_ranking_validation():
                     # json_buffer={'des':description_txt , 'web':website_txt , 'class':'entailment', 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class}
                 json_buffer={'des':description_txt , 'web':website_txt , 'class':class_buffer, 'web_id':id_, 'web_class':web_class[i], 'des_class':description_class}
                 write_json_line(json_buffer,file_)
-
-
-
-
-
-
 
 if __name__ =="__main__":
     # des, web_class, id_txt, id_class  = read_data()
