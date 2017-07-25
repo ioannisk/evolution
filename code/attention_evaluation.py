@@ -1,9 +1,10 @@
 import json
 from sklearn.feature_extraction.text import TfidfVectorizer
+from make_attention_dataset import find_only_used_classes
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
-from make_attention_dataset import find_only_used_classes
+
 
 TOP_N = 1
 
