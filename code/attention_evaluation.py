@@ -132,8 +132,8 @@ def decomposable_attention_eval():
         for line in file_:
             line = line.strip()
             line = json.loads(line)
-            if line['des_class'] not in used_classes:
-                continue
+            # if line['des_class'] not in used_classes:
+            #     continue
             counter +=1
             web_class.append(line['web_class'])
             description_class.append(line['des_class'])
@@ -142,7 +142,7 @@ def decomposable_attention_eval():
     # TODO FIND THE RANK OF THE CORRECT EXAMPLE
     ####
     true_positive = 0
-    step = len(used_classes)
+    step = 649
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
         list_web = web_class[i:i+step]
