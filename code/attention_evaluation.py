@@ -77,7 +77,7 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     print("pairwise evaluation {}".format(pairwise_cos_matrix.shape))
     assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[0])
     used_classes = find_only_used_classes()
-    print "71129" in len(used_classes)
+    print "71129" in (used_classes)
     stop
     for i, row in enumerate(pairwise_cos_matrix):
         sim_labels = list(zip(row, des_class))
