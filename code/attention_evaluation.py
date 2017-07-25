@@ -5,7 +5,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
 
-TOP_N = 1
+TOP_N = 10
 
 ##########################################################
 # Due to data preprocessing not all 649 classes must be used
