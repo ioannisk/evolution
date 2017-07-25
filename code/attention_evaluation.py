@@ -6,12 +6,39 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
+from collections import Counter
+
 
 TOP_N = 10
 
 ##########################################################
 # Due to data preprocessing not all 649 classes must be used
 ##########################################################
+def find_only_used_classes():
+    used_classes = set()
+    count_dic = Counter()
+    sum_all = 0
+    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
+        for line in file_:
+            line = line.strip()
+            line = json.loads(line)
+            used_classes.add(line["web_class"])
+            count_dic[line["web_class"]] +=1
+            sum_all +=1
+    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
+        for line in file_:
+            line = line.strip()
+            line = json.loads(line)
+            used_classes.add(line["web_class"])
+            count_dic[line["web_class"]] +=1
+            sum_all +=1
+    cmon = count_dic.most_common(10)
+    print cmon
+    stop
+    return used_classes
+
+
+
 def tf_idf_vectorization(corpus):
     print("tfidf Vectorization")
     stopWords = stopwords.words('english')
@@ -99,27 +126,6 @@ def baseline_tfidf():
     accuracy = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
     return accuracy
 
-def find_only_used_classes():
-    used_classes = set()
-    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
-        for line in file_:
-            line = line.strip()
-            line = json.loads(line)
-            used_classes.add(line["web_class"])
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
-        for line in file_:
-            line = line.strip()
-            line = json.loads(line)
-            used_classes.add(line["web_class"])
-    return used_classes
-
-
-def naive_bayes_optimizer():
-    gnb = MultinomialNB(alpha=a)
-    clf = gnb.fit(vec_des_data, des_labels)
-
-
-
 def baseline_nb():
     x_train = []
     y_train = []
@@ -171,13 +177,13 @@ def baseline_nb():
     vec = tf_idf_vectorization(descriptions_txt)
     tfidf_train = vec.transform(descriptions_txt)
     tfidf_valid = vec.transform(x_valid)
-    for a in (np.arange(1,10)*0.1):
-        gnb = MultinomialNB(alpha=a)
-        # print("training nb with alpha {}".format(a))
-        clf = gnb.fit(tfidf_train, descriptions_class)
-        y_pred_test = clf.predict(tfidf_valid)
-        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True)*100,a))
 
+    # for a in (np.arange(1,11)*0.1):
+    #     gnb = MultinomialNB(alpha=a)
+    #     # print("training nb with alpha {}".format(a))
+    #     clf = gnb.fit(tfidf_train, descriptions_class)
+    #     y_pred_test = clf.predict(tfidf_valid)
+    #     print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True)*100,a))
 
     # naive_bayes_optimizer()
 
@@ -211,7 +217,6 @@ def decomposable_attention_eval():
         ranked_list = sorted(list(zip(list_pred, list_web, list_des)),reverse=True)
         list_pred,list_web,list_des = zip(*ranked_list)
         list_des = list(list_des)
-
         # ensure only used classes are taken into consideration
         used_list_des = [jj for jj in list_des if jj in used_classes]
         if list_web[0] in used_list_des[:TOP_N]:
