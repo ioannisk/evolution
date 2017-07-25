@@ -17,7 +17,7 @@ def train_naive_bayes():
     vec_des_data, vec_web_sites, vec = vectorize_corpus(des_data, web_sites,tfidf=tfidf)
     a=0.3 if tfidf else 0.1
     gnb = MultinomialNB(alpha=a)
-    print vec_des_data.shape
+    print(vec_des_data.shape)
     try:
         print(des_labels.shape)
     except:
