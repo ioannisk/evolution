@@ -17,11 +17,19 @@ def train_naive_bayes():
     vec_des_data, vec_web_sites, vec = vectorize_corpus(des_data, web_sites,tfidf=tfidf)
     a=0.3 if tfidf else 0.1
     gnb = MultinomialNB(alpha=a)
-    print(vec_des_data.shape)
-    try:
-        print(des_labels.shape)
-    except:
-        print(len(des_labels))
+    # print(vec_des_data.shape)
+    # try:
+    #     print(des_labels.shape)
+    # except:
+    #     print(len(des_labels))
+
+    X_train= vec_web_sites[:len(vec_web_sites)*0.95]
+    X_valid= vec_web_sites[len(vec_web_sites)*0.95:]
+
+    Y_train = labels[:len(vec_web_sites)*0.95]
+    Y_valid = labels[len(vec_web_sites)*0.95:]
+    import IPython; IPython.embed()
+
     clf = gnb.fit(vec_des_data, des_labels)
     y_pred_test = clf.predict(vec_web_sites)
     y_pred_train = clf.predict(vec_des_data)

@@ -33,8 +33,8 @@ def find_only_used_classes():
             count_dic[line["web_class"]] +=1
             sum_all +=1
     cmon = count_dic.most_common()
-    for i,j in cmon:
-        print (i, j*100/sum_all)
+    # for i,j in cmon:
+    #     print (i, j*100/sum_all)
     return used_classes
 
 
