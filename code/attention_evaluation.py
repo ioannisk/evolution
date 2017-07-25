@@ -1,6 +1,5 @@
 import json
 from sklearn.feature_extraction.text import TfidfVectorizer
-from make_attention_dataset import find_only_used_classes
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
@@ -100,6 +99,22 @@ def baseline_tfidf():
     web_tfidf = tfidf_vec.transform(web_txt)
     accuracy = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
     return accuracy
+
+
+def find_only_used_classes():
+    used_classes = set()
+    with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
+        for line in file_:
+            line = line.strip()
+            line = json.loads(line)
+            used_classes.add(line["web_class"])
+    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
+        for line in file_:
+            line = line.strip()
+            line = json.loads(line)
+            used_classes.add(line["web_class"])
+    return used_classes
+
 
 def decomposable_attention_eval():
     with open("/home/ioannis/evolution/entailement/multiffn-nli/src/my_model_111/prob_predictions.txt", "rb") as file_:
