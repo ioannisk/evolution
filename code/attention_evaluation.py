@@ -148,9 +148,9 @@ def decomposable_attention_eval():
         #
         # ensure only used classes are taken into consideration
         #
-        print "71129" in used_classes
+        # print "71129" in used_classes
         used_list_des = [i for i in list_des if i in used_classes]
-        if list_web[0] in list_des[:TOP_N]:
+        if list_web[0] in used_list_des[:TOP_N]:
             # print(list_des[:TOP_N])
             true_positive +=1
         # print ranked_list
