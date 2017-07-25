@@ -1,5 +1,5 @@
 import json
-from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
@@ -168,13 +168,14 @@ def baseline_nb():
     #         descriptions_class.append(line[0])
     #         descriptions_txt.append(line[1])
 
-    vec = CountVectorizer()
-    vec.fit(x_train)
+    for i in x_train:
+        print i
+    vec = tf_idf_vectorization(x_train)
     tfidf_train = vec.transform(x_train)
     tfidf_valid = vec.transform(x_valid)
     print tfidf_train.shape
     print tfidf_valid.shape
-    for a in np.arange(0.0000001,0.5, 0.1):
+    for a in (np.arange(1,10)*0.1):
         gnb = MultinomialNB(alpha=a)
         # print("training nb with alpha {}".format(a))
         clf = gnb.fit(tfidf_train, y_train)
