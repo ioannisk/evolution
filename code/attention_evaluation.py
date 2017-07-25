@@ -31,7 +31,7 @@ def train_naive_bayes_des():
     labels = list(df_web["class_num"])
     web_des = list(df_web["descriptions"])
     for i, d in enumerate(web_des):
-        print d
+        print(d)
 
 
     tfidf = False
