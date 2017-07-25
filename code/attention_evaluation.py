@@ -180,8 +180,8 @@ def baseline_nb():
         print "training nb with alpha {}".format(a)
         # tfidf_train = tfidf_train[:1000]
         # y_train = y_train[:1000]
-        descriptions_class = np.reshape(descriptions_class, (-1, 1))
-        print descriptions_class.shape
+        descriptions_class
+        # print descriptions_class.shape
         clf = gnb.fit(descriptions_txt, descriptions_class)
         print "testing"
         y_pred_test = clf.predict(tfidf_valid)
