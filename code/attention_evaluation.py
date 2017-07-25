@@ -181,7 +181,7 @@ def baseline_nb():
         # print len(y_valid)
         # print len(y_pred_test)
         # import IPython; IPython.embed()
-        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True)*100,a))
+        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True),a))
 
 
     # naive_bayes_optimizer()
