@@ -16,7 +16,7 @@ def tf_idf_vectorization(corpus):
     print("tfidf Vectorization")
     stopWords = stopwords.words('english')
     # vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords, sublinear_tf=False)
-    vec = TfidfVectorizer( min_df=1,sublinear_tf=False)
+    vec = TfidfVectorizer( min_df=1,sublinear_tf=True)
     vec.fit(corpus)
     return vec
 
