@@ -182,7 +182,7 @@ def baseline_nb():
         # y_train = y_train[:1000]
         descriptions_class = np.reshape(descriptions_class, (-1, 1))
         print descriptions_class.shape
-        clf = gnb.fit(descriptions_txt, )
+        clf = gnb.fit(descriptions_txt, descriptions_class)
         print "testing"
         y_pred_test = clf.predict(tfidf_valid)
         print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True),a))
