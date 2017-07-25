@@ -115,9 +115,9 @@ def find_only_used_classes():
     return used_classes
 
 
-# def naive_bayes_optimizer():
-#     gnb = MultinomialNB(alpha=a)
-#     clf = gnb.fit(vec_des_data, des_labels)
+def naive_bayes_optimizer():
+    gnb = MultinomialNB(alpha=a)
+    clf = gnb.fit(vec_des_data, des_labels)
 
 
 
@@ -170,6 +170,15 @@ def baseline_nb():
     vec = tf_idf_vectorization(x_train)
     tfidf_train = vec.fit(x_train)
     tfidf_valid = vec.fit(x_valid)
+    for a in (np.arange(11)*0.1):
+        gnb = MultinomialNB(alpha=a)
+        clf = gnb.fit(tfidf_train, y_train)
+        y_pred_test = clf.predict(tfidf_valid)
+        y_pred_train = clf.predict(tfidf_train)
+        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True),a))
+
+
+    # naive_bayes_optimizer()
 
 
 def decomposable_attention_eval():
