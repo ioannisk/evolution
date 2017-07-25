@@ -156,29 +156,25 @@ def baseline_nb():
             web_id = line["web_id"]
             x_valid.append(web_txt)
             y_valid.append(web_class)
-    # with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
-    #     for line in file_:
-    #         line = line.strip()
-    #         line = line.split('\t')
-    #         ## ensure only used classes are used for inference
-    #         if line[0] not in used_classes:
-    #             continue
-    #         x_train.append(line[1])
-    #         y_train.append(line[0])
-    #         descriptions_class.append(line[0])
-    #         descriptions_txt.append(line[1])
+    with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
+        for line in file_:
+            line = line.strip()
+            line = line.split('\t')
+            ## ensure only used classes are used for inference
+            if line[0] not in used_classes:
+                continue
+            x_train.append(line[1])
+            y_train.append(line[0])
+            descriptions_class.append(line[0])
+            descriptions_txt.append(line[1])
 
-    for i in x_train:
-        print i
-    vec = tf_idf_vectorization(x_train)
-    tfidf_train = vec.transform(x_train)
+    vec = tf_idf_vectorization(descriptions_txt)
+    tfidf_train = vec.transform(descriptions_txt)
     tfidf_valid = vec.transform(x_valid)
-    print tfidf_train.shape
-    print tfidf_valid.shape
     for a in (np.arange(1,10)*0.1):
         gnb = MultinomialNB(alpha=a)
         # print("training nb with alpha {}".format(a))
-        clf = gnb.fit(tfidf_train, y_train)
+        clf = gnb.fit(tfidf_train, descriptions_class)
         y_pred_test = clf.predict(tfidf_valid)
         print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True),a))
 
