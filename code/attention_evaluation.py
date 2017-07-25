@@ -175,6 +175,7 @@ def baseline_nb():
     # print tfidf_valid.shape
     for a in (np.arange(1,11)*0.1):
         gnb = MultinomialNB(alpha=a)
+        import IPython; IPython.embed()
         print("training nb with alpha {}".format(a))
         # tfidf_train = tfidf_train[:1000]
         # y_train = y_train[:1000]
