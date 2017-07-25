@@ -196,8 +196,8 @@ def baseline_nb():
 
 
 if __name__=="__main__":
-    # accuracy = baseline_tfidf()
-    # print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
+    accuracy = baseline_tfidf()
+    print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
     accuracy = baseline_nb()
     print("Naive Bayes baseline in top {} ranks is {}".format(TOP_N, accuracy))
     # accuracy = decomposable_attention_eval()
