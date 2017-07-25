@@ -126,6 +126,8 @@ def baseline_nb():
     y_train = []
     x_valid = []
     y_valid = []
+    descriptions_class = []
+    descriptions_txt = []
     used_classes = find_only_used_classes()
     with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
         for line in file_:
@@ -164,12 +166,13 @@ def baseline_nb():
                 continue
             x_train.append(line[1])
             y_train.append(line[0])
-            # descriptions_class.append(line[0])
-            # training_corpus.append(line[1])
-            # descriptions_txt.append(line[1])
-    vec = tf_idf_vectorization(x_train)
-    tfidf_train = vec.transform(x_train)
+            descriptions_class.append(line[0])
+            descriptions_txt.append(line[1])
+
+    vec = tf_idf_vectorization(descriptions_txt)
+    tfidf_train = vec.transform(descriptions_txt)
     tfidf_valid = vec.transform(x_valid)
+
     print tfidf_train.shape
     print tfidf_valid.shape
     for a in (np.arange(1,11)*0.1):
@@ -177,7 +180,7 @@ def baseline_nb():
         print "training nb with alpha {}".format(a)
         tfidf_train = tfidf_train[:1000]
         y_train = y_train[:1000]
-        clf = gnb.fit(tfidf_train, y_train)
+        clf = gnb.fit(descriptions_txt, descriptions_class)
         print "testing"
         y_pred_test = clf.predict(tfidf_valid)
         print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True),a))
