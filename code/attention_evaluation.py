@@ -172,17 +172,15 @@ def baseline_nb():
     vec = tf_idf_vectorization(descriptions_txt)
     tfidf_train = vec.transform(descriptions_txt)
     tfidf_valid = vec.transform(x_valid)
-
-    print tfidf_train.shape
-    print tfidf_valid.shape
+    # print tfidf_train.shape
+    # print tfidf_valid.shape
     for a in (np.arange(1,11)*0.1):
         gnb = MultinomialNB(alpha=a)
         print "training nb with alpha {}".format(a)
         # tfidf_train = tfidf_train[:1000]
         # y_train = y_train[:1000]
-        descriptions_class
         # print descriptions_class.shape
-        clf = gnb.fit(descriptions_txt, descriptions_class)
+        clf = gnb.fit(tfidf_train, descriptions_class)
         print "testing"
         y_pred_test = clf.predict(tfidf_valid)
         print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True),a))
