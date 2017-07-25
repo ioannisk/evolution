@@ -171,7 +171,7 @@ def baseline_nb():
         print counter
         print len(kk)
         stop
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
+    # with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
 
 
 
