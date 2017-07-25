@@ -148,6 +148,8 @@ def decomposable_attention_eval():
         print list_web
         print len(list_web)
         print web_class[i+step+1]
+        print web_class[i+step+2]
+        print web_class[i+step+3]
         stop
 
         ranked_list = sorted(list(zip(list_pred, list_web, list_des)),reverse=True)
