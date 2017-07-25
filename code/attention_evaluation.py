@@ -9,13 +9,7 @@ from sklearn.metrics import accuracy_score
 from collections import Counter
 from utilities import data_pipeline, vectorize_corpus
 
-
-
-
 TOP_N = 10
-
-
-
 
 def train_naive_bayes_des():
     des_data_n = []
@@ -29,9 +23,12 @@ def train_naive_bayes_des():
     des_labels = list(des_df["class_num"])
     web_sites = list(df_web["class_txt"])
     labels = list(df_web["class_num"])
+    titles = list(df_web["titles"])
     web_des = list(df_web["descriptions"])
     for i, d in enumerate(web_des):
-        print(d=="")
+        # skip empty descriptions
+        if d=="" or titles[i]=="":
+            continue
 
 
     tfidf = False
