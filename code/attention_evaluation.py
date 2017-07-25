@@ -130,5 +130,6 @@ def decomposable_attention_eval():
 if __name__=="__main__":
     accuracy = baseline_tfidf()
     print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
-    decomposable_attention_eval()
+    accuracy = decomposable_attention_eval()
+    print("Decomposable attention in top {} ranks is {}".format(TOP_N, accuracy))
 
