@@ -23,12 +23,13 @@ def train_naive_bayes():
     # except:
     #     print(len(des_labels))
 
+    import IPython; IPython.embed()
     X_train= vec_web_sites[:len(vec_web_sites)*0.95]
     X_valid= vec_web_sites[len(vec_web_sites)*0.95:]
 
     Y_train = labels[:len(vec_web_sites)*0.95]
     Y_valid = labels[len(vec_web_sites)*0.95:]
-    import IPython; IPython.embed()
+
 
     clf = gnb.fit(vec_des_data, des_labels)
     y_pred_test = clf.predict(vec_web_sites)
