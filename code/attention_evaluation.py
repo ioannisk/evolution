@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
 from collections import Counter
+from utilities import data_pipeline, vectorize_corpus
+
+
 
 
 TOP_N = 10
