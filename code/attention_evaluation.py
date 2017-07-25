@@ -24,7 +24,7 @@ def train_naive_bayes_des():
     labels_n = []
     web_des_n = []
 
-    des_df, df_web = data_pipeline()
+    des_df, df_web = data_pipeline(1000)
     des_data = list(des_df["txt"])
     des_labels = list(des_df["class_num"])
     web_sites = list(df_web["class_txt"])
