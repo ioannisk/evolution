@@ -117,6 +117,7 @@ def find_only_used_classes():
 
 
 def decomposable_attention_eval():
+    used_classes =  find_only_used_classes()
     with open("/home/ioannis/evolution/entailement/multiffn-nli/src/my_model_111/prob_predictions.txt", "rb") as file_:
         predictions = []
         for line in file_:
@@ -124,7 +125,6 @@ def decomposable_attention_eval():
             predictions.append(float(line))
         print len(predictions)
     with open("/home/ioannis/evolution/data/meta_ranking_validation_111.json", "rb") as file_:
-        used_classes =  find_only_used_classes()
         companies = set()
         description_class = []
         web_class = []
@@ -132,29 +132,23 @@ def decomposable_attention_eval():
         for line in file_:
             line = line.strip()
             line = json.loads(line)
-            # if line['des_class'] not in used_classes:
-            #     continue
             counter +=1
             web_class.append(line['web_class'])
             description_class.append(line['des_class'])
             companies.add(line['web_id'])
-    ###
-    # TODO FIND THE RANK OF THE CORRECT EXAMPLE
-    ####
     true_positive = 0
     step = 649
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
         list_web = web_class[i:i+step]
         list_des = description_class[i:i+step]
-        # print list_web
-        # print web_class[i:i+step+1]
-        # print len(list_web)
-        # stop
-
         ranked_list = sorted(list(zip(list_pred, list_web, list_des)),reverse=True)
         list_pred,list_web,list_des = zip(*ranked_list)
         list_des = list(list_des)
+        #
+        # ensure only used classes are taken into consideration
+        #
+        used_list_des = [i for i in list_des if i in used_classes]
         if list_web[0] in list_des[:TOP_N]:
             # print(list_des[:TOP_N])
             true_positive +=1
