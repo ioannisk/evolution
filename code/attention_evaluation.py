@@ -171,8 +171,8 @@ def baseline_nb():
     vec = tf_idf_vectorization(x_train)
     tfidf_train = vec.transform(x_train)
     tfidf_valid = vec.transform(x_valid)
-    # print tfidf_train.shape
-    # print tfidf_valid.shape
+    print tfidf_train.shape
+    print tfidf_valid.shape
     for a in (np.arange(1,10)*0.1):
         gnb = MultinomialNB(alpha=a)
         # print("training nb with alpha {}".format(a))
