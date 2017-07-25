@@ -118,6 +118,7 @@ def decomposable_attention_eval():
         ranked_list = sorted(list(zip(list_pred, list_web, list_des)),reverse=True)
         list_pred,list_web,list_des = zip(*ranked_list)
         if list_web[0] in list_des[:TOP_N]:
+            print(list_des[:TOP_N])
             true_positive +=1
         # print ranked_list
     return true_positive*100/float(len(companies))
