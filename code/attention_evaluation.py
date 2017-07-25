@@ -138,9 +138,6 @@ def decomposable_attention_eval():
             web_class.append(line['web_class'])
             description_class.append(line['des_class'])
             companies.add(line['web_id'])
-    print "###"
-    print counter
-    stop
     ###
     # TODO FIND THE RANK OF THE CORRECT EXAMPLE
     ####
@@ -150,8 +147,9 @@ def decomposable_attention_eval():
         list_pred = predictions[i:i+step]
         list_web = web_class[i:i+step]
         list_des = description_class[i:i+step]
-        # print list_web
-        # print len(list_web)
+        print list_web
+        print web_class[i:i+step+1]
+        print len(list_web)
         stop
 
         ranked_list = sorted(list(zip(list_pred, list_web, list_des)),reverse=True)
