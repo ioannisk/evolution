@@ -101,12 +101,12 @@ def baseline_tfidf():
 
 def find_only_used_classes():
     used_classes = set()
-    with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
+    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
         for line in file_:
             line = line.strip()
             line = json.loads(line)
             used_classes.add(line["web_class"])
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
+    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
         for line in file_:
             line = line.strip()
             line = json.loads(line)
