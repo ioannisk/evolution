@@ -4,7 +4,7 @@ from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-TOP_N = 1
+TOP_N = 3
 
 def tf_idf_vectorization(corpus):
     print("tfidf Vectorization")
