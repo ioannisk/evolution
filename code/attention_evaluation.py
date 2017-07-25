@@ -180,8 +180,10 @@ def baseline_nb():
         # tfidf_train = tfidf_train[:1000]
         # y_train = y_train[:1000]
         # print descriptions_class.shape
+        print tfidf_train.shape
         clf = gnb.fit(tfidf_train, descriptions_class)
         print "testing"
+        print tfidf_valid.shape
         y_pred_test = clf.predict(tfidf_valid)
         print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True),a))
 
