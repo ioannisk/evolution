@@ -31,7 +31,7 @@ def train_naive_bayes_des():
     labels = list(df_web["class_num"])
     web_des = list(df_web["descriptions"])
     for i, d in enumerate(web_des):
-        sstop
+        print d
 
 
     tfidf = False
@@ -279,6 +279,8 @@ def decomposable_attention_eval():
 
 
 if __name__=="__main__":
+    train_naive_bayes_des()
+    stop
     # accuracy = baseline_tfidf()
     # print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
     accuracy = baseline_nb()
