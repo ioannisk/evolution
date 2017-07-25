@@ -110,6 +110,7 @@ def decomposable_attention_eval():
     # TODO FIND THE RANK OF THE CORRECT EXAMPLE
     ####
     true_positive = 0
+    step = 649
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
         list_web = web_class[i:i+step]
