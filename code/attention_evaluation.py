@@ -158,9 +158,11 @@ def baseline_nb():
         for line in file_:
             line = line.strip()
             line = json.loads(line)
+            binary_class = line["class"]
+            if binary_class!= "entailment":
+                continue
             des_txt = line["des"]
             web_txt = line["web"]
-            binary_class = line["class"]
             des_class = line["des_class"]
             web_class = line["web_class"]
             web_id = line["web_id"]
@@ -168,11 +170,9 @@ def baseline_nb():
             counter +=1
         print counter
         print len(kk)
+        stop
     with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
-        for line in file_:
-            line = line.strip()
-            line = json.loads(line)
-            used_classes.add(line["web_class"])
+
 
 
 
