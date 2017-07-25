@@ -3,26 +3,13 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
+from make_attention_dataset import find_only_used_classes
 
 TOP_N = 1
-
 
 ##########################################################
 # Due to data preprocessing not all 649 classes must be used
 ##########################################################
-def find_only_used_classes():
-    used_classes = set()
-    with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
-        for line in file_:
-            line = line.strip()
-            line = json.loads(line)
-            used_classes.add(line["web_class"])
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
-        for line in file_:
-            line = line.strip()
-            line = json.loads(line)
-            used_classes.add(line["web_class"])
-    return used_classes
 
 
 def tf_idf_vectorization(corpus):
@@ -76,9 +63,6 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     # print pairwise_cos_matrix.shape
     print("pairwise evaluation {}".format(pairwise_cos_matrix.shape))
     assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[0])
-    used_classes = find_only_used_classes()
-    print "71129" in (used_classes)
-    stop
     for i, row in enumerate(pairwise_cos_matrix):
         sim_labels = list(zip(row, des_class))
         ranked = sorted(sim_labels, reverse=True)
@@ -93,12 +77,15 @@ def baseline_tfidf():
     print("Loading data sets")
     descriptions_txt = []
     descriptions_class = []
+    used_classes = find_only_used_classes()
     with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
         training_corpus = make_training_corpus(file_)
     with open("/home/ioannis/evolution/data/descriptions_data.txt","rb") as file_:
         for line in file_:
             line = line.strip()
             line = line.split('\t')
+            if line[0] not in used_classes:
+                continue
             descriptions_class.append(line[0])
             training_corpus.append(line[1])
             descriptions_txt.append(line[1])

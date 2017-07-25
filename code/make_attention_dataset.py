@@ -19,8 +19,6 @@ def write_json_line(json_ ,file_):
     json.dump(json_ , file_)
     file_.write('\n')
 
-
-
 def delete_difference(dic1,dic2):
     a = set(dic1.keys())
     b = set(dic2.keys())
@@ -31,7 +29,6 @@ def delete_difference(dic1,dic2):
         if key in dic2:
             del dic2[key]
     return dic1, dic2
-
 
 def read_data():
     des = {}
@@ -143,6 +140,20 @@ def shuffle_data():
     os.remove("../data/training_pairs_{0}.json".format(MAX_LEN))
     os.remove("../data/validation_pairs_{0}.json".format(MAX_LEN))
 
+def find_only_used_classes():
+    used_classes = set()
+    with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
+        for line in file_:
+            line = line.strip()
+            line = json.loads(line)
+            used_classes.add(line["web_class"])
+    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
+        for line in file_:
+            line = line.strip()
+            line = json.loads(line)
+            used_classes.add(line["web_class"])
+    return used_classes
+
 
 
 def make_ranking_validation():
@@ -151,6 +162,7 @@ def make_ranking_validation():
     #########################
     descriptions_class = []
     descriptions_txt = []
+    used_classes = find_only_used_classes()
     with open("../data/meta_validation_{0}.json".format(MAX_LEN), 'rb') as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
     print("Different website txt {0}".format(len(web_id)))
