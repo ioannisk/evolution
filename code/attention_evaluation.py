@@ -176,7 +176,7 @@ def baseline_nb():
         # print("training nb with alpha {}".format(a))
         clf = gnb.fit(tfidf_train, descriptions_class)
         y_pred_test = clf.predict(tfidf_valid)
-        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True),a))
+        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True)*100,a))
 
 
     # naive_bayes_optimizer()
