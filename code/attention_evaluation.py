@@ -141,7 +141,7 @@ def baseline_nb():
             web_class = line["web_class"]
             web_id = line["web_id"]
             x_train.append(web_txt)
-            y_train.append(y_train)
+            y_train.append(web_class)
     with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
         for line in file_:
             line = line.strip()
@@ -155,7 +155,7 @@ def baseline_nb():
             web_class = line["web_class"]
             web_id = line["web_id"]
             x_valid.append(web_txt)
-            y_valid.append(y_train)
+            y_valid.append(web_class)
     with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
         for line in file_:
             line = line.strip()
@@ -178,9 +178,9 @@ def baseline_nb():
         # print("training nb with alpha {}".format(a))
         clf = gnb.fit(tfidf_train, descriptions_class)
         y_pred_test = clf.predict(tfidf_valid)
-        print len(y_valid)
-        print len(y_pred_test)
-        import IPython; IPython.embed()
+        # print len(y_valid)
+        # print len(y_pred_test)
+        # import IPython; IPython.embed()
         print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True),a))
 
 
