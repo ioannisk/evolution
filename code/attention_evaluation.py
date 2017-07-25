@@ -168,8 +168,8 @@ def baseline_nb():
             # training_corpus.append(line[1])
             # descriptions_txt.append(line[1])
     vec = tf_idf_vectorization(x_train)
-    tfidf_train = vec.fit(x_train)
-    tfidf_valid = vec.fit(x_valid)
+    tfidf_train = vec.transform(x_train)
+    tfidf_valid = vec.transform(x_valid)
     print tfidf_train.shape
     print tfidf_valid.shape
     for a in (np.arange(11)*0.1):
