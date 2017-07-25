@@ -132,7 +132,7 @@ def decomposable_attention_eval():
         for line in file_:
             line = line.strip()
             line = json.loads(line)
-            if line['web_class'] not in used_classes:
+            if line['des_class'] not in used_classes:
                 continue
             counter +=1
             web_class.append(line['web_class'])
