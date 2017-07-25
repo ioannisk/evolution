@@ -4,6 +4,8 @@ from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import accuracy_score
 
 TOP_N = 10
 
@@ -112,6 +114,64 @@ def find_only_used_classes():
             used_classes.add(line["web_class"])
     return used_classes
 
+
+# def naive_bayes_optimizer():
+#     gnb = MultinomialNB(alpha=a)
+#     clf = gnb.fit(vec_des_data, des_labels)
+
+
+
+def baseline_nb():
+    x_train = []
+    y_train = []
+    x_valid = []
+    y_valid = []
+    used_classes = find_only_used_classes()
+    with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
+        for line in file_:
+            line = line.strip()
+            line = json.loads(line)
+            binary_class = line["class"]
+            if binary_class!= "entailment":
+                continue
+            des_txt = line["des"]
+            web_txt = line["web"]
+            des_class = line["des_class"]
+            web_class = line["web_class"]
+            web_id = line["web_id"]
+            x_train.append(web_txt)
+            y_train.append(y_train)
+    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
+        for line in file_:
+            line = line.strip()
+            line = json.loads(line)
+            binary_class = line["class"]
+            if binary_class!= "entailment":
+                continue
+            des_txt = line["des"]
+            web_txt = line["web"]
+            des_class = line["des_class"]
+            web_class = line["web_class"]
+            web_id = line["web_id"]
+            x_valid.append(web_txt)
+            y_valid.append(y_train)
+    with open("/home/ioannis/evolution/data/descriptions_data.txt","rb") as file_:
+        for line in file_:
+            line = line.strip()
+            line = line.split('\t')
+            ## ensure only used classes are used for inference
+            if line[0] not in used_classes:
+                continue
+            x_train.append(line[1])
+            y_train.append(line[0])
+            # descriptions_class.append(line[0])
+            # training_corpus.append(line[1])
+            # descriptions_txt.append(line[1])
+    vec = tf_idf_vectorization(x_train)
+    tfidf_train = vec.fit(x_train)
+    tfidf_valid = vec.fit(x_valid)
+
+
 def decomposable_attention_eval():
     used_classes =  find_only_used_classes()
     with open("/home/ioannis/evolution/entailement/multiffn-nli/src/my_model_111/prob_predictions.txt", "rb") as file_:
@@ -149,48 +209,6 @@ def decomposable_attention_eval():
             true_positive +=1
         # print ranked_list
     return true_positive*100/float(len(companies))
-
-
-def baseline_nb():
-    x_train = []
-    y_train = []
-    x_valid = []
-    y_valid = []
-    with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
-        for line in file_:
-            line = line.strip()
-            line = json.loads(line)
-            binary_class = line["class"]
-            if binary_class!= "entailment":
-                continue
-            des_txt = line["des"]
-            web_txt = line["web"]
-            des_class = line["des_class"]
-            web_class = line["web_class"]
-            web_id = line["web_id"]
-            x_train.append(web_txt)
-            y_train.append(y_train)
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
-        for line in file_:
-            line = line.strip()
-            line = json.loads(line)
-            binary_class = line["class"]
-            if binary_class!= "entailment":
-                continue
-            des_txt = line["des"]
-            web_txt = line["web"]
-            des_class = line["des_class"]
-            web_class = line["web_class"]
-            web_id = line["web_id"]
-            x_valid.append(web_txt)
-            y_valid.append(y_train)
-    print len(x_valid)
-    print len(x_train)
-
-
-
-
-
 
 
 
