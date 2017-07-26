@@ -62,8 +62,8 @@ def train_naive_bayes_des():
     #     print(len(des_labels))
 
     # import IPython; IPython.embed()
-    # dim =int((vec_web_sites.shape[0]))
-    # split = int(dim*0.95)
+    dim =int((vec_web_sites.shape[0]))
+    split = int(dim*0.95)
     X_train= vec_web_sites[:split]
     X_valid= vec_web_sites[split:]
     Y_train = labels[:split]
@@ -74,11 +74,11 @@ def train_naive_bayes_des():
     print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )))
     print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
 
-    # clf = gnb.fit(vec_des_data, des_labels)
-    # y_pred_test = clf.predict(vec_web_sites)
-    # y_pred_train = clf.predict(vec_des_data)
-    # print("Training acc is {0}".format(accuracy_score(des_labels ,y_pred_train )*100))
-    # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=True)*100,a))
+    clf = gnb.fit(vec_des_data, des_labels)
+    y_pred_test = clf.predict(vec_web_sites)
+    y_pred_train = clf.predict(vec_des_data)
+    print("Training acc is {0}".format(accuracy_score(des_labels ,y_pred_train )*100))
+    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=True)*100,a))
 
 ##########################################################
 # Due to data preprocessing not all 649 classes must be used
