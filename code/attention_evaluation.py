@@ -68,7 +68,6 @@ def train_naive_bayes_des():
     vec_des_data = vec.transform(des_data)
     vec_web_sites = vec.transform(web_sites)
     # for a in np.arange(10,20)*0.1:
-    a = 1
     gnb = MultinomialNB(alpha=a)
     clf = gnb.fit(vec_des_data, des_labels)
     y_pred_test = clf.predict(vec_web_sites)
@@ -102,12 +101,13 @@ def train_naive_bayes_des_local():
     print("Training NB data {}".format(len(X_train)))
     print("validation NB data {}".format(len(X_valid)))
     a = 1
-    gnb = MultinomialNB(alpha=a)
-    clf = gnb.fit(X_train_vec, Y_train)
-    y_pred_test = clf.predict(X_valid_vec)
-    y_pred_train = clf.predict(X_train_vec)
-    print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
-    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
+    for a in np.arange(1,20)*0.1:
+        gnb = MultinomialNB(alpha=a)
+        clf = gnb.fit(X_train_vec, Y_train)
+        y_pred_test = clf.predict(X_valid_vec)
+        y_pred_train = clf.predict(X_train_vec)
+        print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
+        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
 
 
 ##########################################################
