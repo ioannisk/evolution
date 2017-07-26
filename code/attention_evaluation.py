@@ -25,7 +25,7 @@ def train_naive_bayes_des():
     print(len(des_df))
     print(len(df_web))
     print(type(list(used_classes)[0]))
-    print(type(des_df["class_num"][0]))
+    print(type(list(des_df["class_num"])[0]))
 
     des_df = des_df[des_df["class_num"].isin(used_classes)]
     df_web = df_web[df_web["class_num"].isin(used_classes)]
