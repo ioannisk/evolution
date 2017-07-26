@@ -13,6 +13,7 @@ TOP_N = 10
 
 def train_naive_bayes_des():
     used_classes = find_only_used_classes()
+    ### change data type for pandas to work
     used_classes = np.asarray(list(used_classes), dtype=np.int64)
 
 
@@ -21,18 +22,18 @@ def train_naive_bayes_des():
     web_sites_n = []
     labels_n = []
     web_des_n = []
-    des_df, df_web = data_pipeline(100)
+    des_df, df_web = data_pipeline()
 
-    print(len(des_df))
-    print(len(df_web))
-    print(type(list(used_classes)[0]))
-    print(type(list(des_df["class_num"])[0]))
+    # print(len(des_df))
+    # print(len(df_web))
+    # print(type(list(used_classes)[0]))
+    # print(type(list(des_df["class_num"])[0]))
 
     des_df = des_df[des_df["class_num"].isin(used_classes)]
     df_web = df_web[df_web["class_num"].isin(used_classes)]
 
-    print(len(des_df))
-    print(len(df_web))
+    # print(len(des_df))
+    # print(len(df_web))
 
 
     des_data = list(des_df["txt"])
@@ -64,17 +65,17 @@ def train_naive_bayes_des():
     # X_valid= vec_web_sites[split:]
     # Y_train = labels[:split]
     # Y_valid = labels[split:]
-    clf = gnb.fit(X_train, Y_train)
-    y_pred_test = clf.predict(X_valid)
-    y_pred_train = clf.predict(X_train)
-    print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )))
-    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
+    # clf = gnb.fit(X_train, Y_train)
+    # y_pred_test = clf.predict(X_valid)
+    # y_pred_train = clf.predict(X_train)
+    # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )))
+    # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
 
-    # clf = gnb.fit(vec_des_data, des_labels)
-    # y_pred_test = clf.predict(vec_web_sites)
-    # y_pred_train = clf.predict(vec_des_data)
-    # print("Training acc is {0}".format(accuracy_score(des_labels ,y_pred_train )))
-    # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=True),a))
+    clf = gnb.fit(vec_des_data, des_labels)
+    y_pred_test = clf.predict(vec_web_sites)
+    y_pred_train = clf.predict(vec_des_data)
+    print("Training acc is {0}".format(accuracy_score(des_labels ,y_pred_train )))
+    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=True),a))
 
 ##########################################################
 # Due to data preprocessing not all 649 classes must be used
