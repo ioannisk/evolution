@@ -163,10 +163,10 @@ def baseline_tfidf():
     descriptions_txt = []
     descriptions_class = []
     used_classes = find_only_used_classes()
-    with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
+    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
         training_corpus = make_training_corpus(file_)
         print(len(training_corpus))
-    with open("/home/ioannis/evolution/data/descriptions_data.txt","rb") as file_:
+    with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
         for line in file_:
             line = line.strip()
             line = line.split('\t')
@@ -176,7 +176,7 @@ def baseline_tfidf():
             descriptions_class.append(line[0])
             training_corpus.append(line[1])
             descriptions_txt.append(line[1])
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","rb") as file_:
+    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
     ## train tf-idf vectorizer
     # tfidf_vec = tf_idf_vectorization(descriptions_txt)
@@ -251,13 +251,13 @@ def baseline_nb():
 
 def decomposable_attention_eval():
     used_classes =  find_only_used_classes()
-    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/my_model_111/prob_predictions.txt", "rb") as file_:
+    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/my_model_111/prob_predictions.txt", "r") as file_:
         predictions = []
         for line in file_:
             line = line.strip()
             predictions.append(float(line))
         print(len(predictions))
-    with open("/home/ioannis/evolution/data/meta_ranking_validation_111.json", "rb") as file_:
+    with open("/home/ioannis/evolution/data/meta_ranking_validation_111.json", "r") as file_:
         companies = set()
         description_class = []
         web_class = []
