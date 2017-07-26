@@ -86,6 +86,7 @@ def train_naive_bayes_des_local():
     X_train_des = []
     training_classes = set()
     validation_classes = set()
+    ids_ = set()
     with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
         for i, b in enumerate(binary_class):
@@ -94,6 +95,7 @@ def train_naive_bayes_des_local():
             X_train.append(web_txt[i])
             Y_train.append(web_class[i])
             training_classes.add(web_class[i])
+            ids_.add(web_id[i])
     with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
         for line in file_:
             line = line.strip()
@@ -116,9 +118,10 @@ def train_naive_bayes_des_local():
             validation_classes.add(web_class[i])
     # training_classes = set()
     # validation_classes = set()
-    print(len(training_classes.intersection(validation_classes)))
-    print(len(training_classes))
-    print(len(validation_classes))
+    print(len(ids_))
+    # print(len(training_classes.intersection(validation_classes)))
+    # print(len(training_classes))
+    # print(len(validation_classes))
     # stop
     vec = tf_idf_vectorization(X_train_des)
     X_train_des_vec = vec.transform(X_train_des)
@@ -128,7 +131,7 @@ def train_naive_bayes_des_local():
     print("validation NB data {}".format(len(X_valid)))
     # a = 1
     for a in np.arange(1,20)*0.1:
-        gnb = MultinomialNB(alpha=a)
+        gnb = MultinomialNB(alpha=a,fit_prior=False)
         # clf = gnb.fit(X_train_des_vec, Y_train_des)
         clf = gnb.fit(X_train_vec, Y_train)
         y_pred_test = clf.predict(X_valid_vec)
