@@ -95,6 +95,15 @@ def train_naive_bayes_des_local():
             X_train.append(web_txt[i])
             Y_train.append(web_class[i])
             training_classes.add(web_class[i])
+            # descriptions_txt.append(line[1])
+    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
+        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
+        for i, b in enumerate(binary_class):
+            if b!="entailment":
+                continue
+            X_valid.append(web_txt[i])
+            Y_valid.append(web_class[i])
+            validation_classes.add(web_class[i])
 
     with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
         for line in file_:
@@ -106,54 +115,37 @@ def train_naive_bayes_des_local():
             Y_train_des.append(line[0])
             X_train_des.append(line[1])
 
-            # descriptions_txt.append(line[1])
-
-
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
-        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
-        for i, b in enumerate(binary_class):
-            if b!="entailment":
-                continue
-            X_valid.append(web_txt[i])
-            Y_valid.append(web_class[i])
-            validation_classes.add(web_class[i])
-
-    # training_classes = set()
-    # validation_classes = set()
-    # print(len(ids_))
-    # print(len(training_classes.intersection(validation_classes)))
-    # print(len(training_classes))
-    # print(len(validation_classes))
-    # stop
-
-
     # X_train = X_train + X_train_des
     # Y_train = Y_train + Y_train_des
     # vec = tf_idf_vectorization(X_train)
     # # X_train_des_vec = vec.transform(X_train_des)
     # X_train_vec = vec.transform(X_train)
     # X_valid_vec = vec.transform(X_valid)
-
-
-
     vec = tf_idf_vectorization(X_train_des)
     X_train_vec = vec.transform(X_train_des)
     Y_train = Y_train_des
     X_valid_vec = vec.transform(X_valid)
+    a = 0.8
+    # for a in np.arange(1,20)*0.1:
+    gnb = MultinomialNB(alpha=a,fit_prior=False)
+    # clf = gnb.fit(X_train_des_vec, Y_train_des)
+    clf = gnb.fit(X_train_vec, Y_train)
+    y_pred_test = clf.predict(X_valid_vec)
+    y_pred_train = clf.predict(X_train_vec)
+    # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
+    # import IPython; IPython.embed()
+    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
+    y_pred_test_proba = clf.predict_proba(X_valid_vec)
+    true_positive = 0
+    for i, proba in enumratey_pred_test_proba:
+        ranked = zip(proba, clf.classes_)
+        ranked = sorted(ranked, reverse=True)
+        proba, classes = zip(*ranked)
+        if Y_valid[i] in classes[:TOP_N]:
+            true_positive +=1
+    return true_positive*100/float(len(Y_valid))
 
 
-    print("Training NB data {}".format(len(X_train)))
-    print("validation NB data {}".format(len(X_valid)))
-    # a = 1
-    for a in np.arange(1,20)*0.1:
-        gnb = MultinomialNB(alpha=a,fit_prior=False)
-        # clf = gnb.fit(X_train_des_vec, Y_train_des)
-        clf = gnb.fit(X_train_vec, Y_train)
-        y_pred_test = clf.predict(X_valid_vec)
-        y_pred_train = clf.predict(X_train_vec)
-        # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
-        # import IPython; IPython.embed()
-        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
 
 
 ##########################################################
@@ -373,11 +365,9 @@ def decomposable_attention_eval():
 
 
 if __name__=="__main__":
-    train_naive_bayes_des_local()
-    # stop
+    accuracy = train_naive_bayes_des_local()
+    print("Naive Bayes baseline in top {} ranks is {}".format(TOP_N, accuracy))
     accuracy = baseline_tfidf()
     print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
-    # accuracy = baseline_nb()
-    print("Naive Bayes baseline in top {} ranks is {}".format(TOP_N, accuracy))
     accuracy = decomposable_attention_eval()
     print("Decomposable attention in top {} ranks is {}".format(TOP_N, accuracy))
