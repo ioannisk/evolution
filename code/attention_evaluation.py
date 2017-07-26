@@ -87,18 +87,20 @@ def train_naive_bayes_des_local():
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            X_train.append(web_txt)
-            Y_train.append(web_class)
+            X_train.append(web_txt[i])
+            Y_train.append(web_class[i])
     with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            X_valid.append(web_txt)
-            Y_valid.append(web_class)
+            X_valid.append(web_txt[i])
+            Y_valid.append(web_class[i])
     vec = tf_idf_vectorization(X_train)
     X_train_vec = vec.transform(X_train)
     X_valid_vec = vec.transform(X_valid)
+    print("Training NB data {}".format(len(X_train)))
+    print("validation NB data {}".format(len(X_valid)))
     a = 1
     gnb = MultinomialNB(alpha=a)
     clf = gnb.fit(vec_des_data, des_labels)
