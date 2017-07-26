@@ -15,55 +15,45 @@ def train_naive_bayes_des():
     used_classes = find_only_used_classes()
     ### change data type for pandas to work
     used_classes = np.asarray(list(used_classes), dtype=np.int64)
-    # des_data_n = []
-    # des_labels_n = []
-    # web_sites_n = []
-    # labels_n = []
-    # web_des_n = []
-
-
-    des_df, df_web = data_pipeline()
+    des_df, df_web = data_pipeline(100)
     des_df = des_df[des_df["class_num"].isin(used_classes)]
     df_web = df_web[df_web["class_num"].isin(used_classes)]
-
     df_web = df_web[df_web["descriptions"] != ""]
     df_web = df_web[df_web["titles"] != ""]
+
+    df_web = df_web[len(df_web["titles"])<=111]
+    df_web = df_web[len(df_web["titles"])<=111]
     print(len(df_web))
 
     des_data = list(des_df["txt"])
-
     des_labels = list(des_df["class_num"])
     web_sites = list(df_web["class_txt"])
     labels = list(df_web["class_num"])
     titles = list(df_web["titles"])
     web_des = list(df_web["descriptions"])
-    # for i, d in enumerate(web_des):
-    #     # skip empty descriptions
-    #     if d=="" or titles[i]=="":
-    #         continue
 
 
-
-
-    vec = tf_idf_vectorization(des_data)
-    vec_des_data = vec.transform(des_data)
-    vec_web_sites = vec.transform(web_sites)
 
 
     # tfidf = False
     # vec_des_data, vec_web_sites, vec = vectorize_corpus(des_data, web_sites,tfidf=tfidf)
     # a=0.3 if tfidf else 0.1
-    a = 0.1
+    a = 0.3
     gnb = MultinomialNB(alpha=a)
-    # print(vec_des_data.shape)
-    # try:
-    #     print(des_labels.shape)
-    # except:
-    #     print(len(des_labels))
-
     # import IPython; IPython.embed()
-    dim =int((vec_web_sites.shape[0]))
+    des_and_titles = []
+    for d, t in zip(web_des, titles):
+        des_and_titles.append(d + " " + t)
+
+    dim =len(des_and_titles)
     split = int(dim*0.95)
+
+    X_train= des_and_titles[:split]
+    X_valid= des_and_titles[split:]
+    Y_train = labels[:split]
+    Y_valid = labels[split:]
+    vec = tf_idf_vectorization(des_data)
+
     X_train= vec_web_sites[:split]
     X_valid= vec_web_sites[split:]
     Y_train = labels[:split]
@@ -71,9 +61,13 @@ def train_naive_bayes_des():
     clf = gnb.fit(X_train, Y_train)
     y_pred_test = clf.predict(X_valid)
     y_pred_train = clf.predict(X_train)
-    print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )))
+    print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
     print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
 
+
+    vec = tf_idf_vectorization(des_data)
+    vec_des_data = vec.transform(des_data)
+    vec_web_sites = vec.transform(web_sites)
     clf = gnb.fit(vec_des_data, des_labels)
     y_pred_test = clf.predict(vec_web_sites)
     y_pred_train = clf.predict(vec_des_data)
