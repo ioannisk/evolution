@@ -99,8 +99,8 @@ def train_naive_bayes_des_local():
             ## ensure only used classes are used for inference
             if line[0] not in used_classes:
                 continue
-            Y_train.append(line[0])
-            X_train.append(line[1])
+            Y_train_des.append(line[0])
+            X_train_des.append(line[1])
             # descriptions_txt.append(line[1])
 
 
@@ -118,19 +118,19 @@ def train_naive_bayes_des_local():
     print(len(training_classes))
     print(len(validation_classes))
     # stop
-    vec = tf_idf_vectorization(X_train)
+    vec = tf_idf_vectorization(X_train_des)
     X_train_vec = vec.transform(X_train)
     X_valid_vec = vec.transform(X_valid)
     print("Training NB data {}".format(len(X_train)))
     print("validation NB data {}".format(len(X_valid)))
-    a = 1
-    # for a in np.arange(1,20)*0.1:
-    gnb = MultinomialNB(alpha=a)
-    clf = gnb.fit(X_train_vec, Y_train)
-    y_pred_test = clf.predict(X_valid_vec)
-    y_pred_train = clf.predict(X_train_vec)
-    print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
-    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
+    # a = 1
+    for a in np.arange(1,20)*0.1:
+        gnb = MultinomialNB(alpha=a)
+        clf = gnb.fit(X_train_des, Y_train_des)
+        y_pred_test = clf.predict(X_valid_vec)
+        y_pred_train = clf.predict(X_train_vec)
+        print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
+        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
 
 
 ##########################################################
