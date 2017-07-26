@@ -20,9 +20,12 @@ def train_naive_bayes_des():
     web_sites_n = []
     labels_n = []
     web_des_n = []
-    des_df, df_web = data_pipeline()
+    des_df, df_web = data_pipeline(100)
+
     print(len(des_df))
     print(len(df_web))
+    print(type(des_df[0]))
+    print(type(des_df["class_num"][0]))
 
     des_df = des_df[des_df["class_num"].isin(used_classes)]
     df_web = df_web[df_web["class_num"].isin(used_classes)]
