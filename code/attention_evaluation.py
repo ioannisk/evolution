@@ -29,7 +29,9 @@ def train_naive_bayes_des():
 
     print(len(df_web))
     for i in df_web["descriptions"]:
-        print(i)
+        if i == "":
+            print("##")
+        # print(i)
     stop
 
     df_web = df_web[df_web["descriptions"] is not ""]
