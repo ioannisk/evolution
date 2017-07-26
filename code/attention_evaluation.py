@@ -22,22 +22,13 @@ def train_naive_bayes_des():
     # web_des_n = []
 
 
-    des_df, df_web = data_pipeline(500)
-    print(len(df_web))
+    des_df, df_web = data_pipeline()
     des_df = des_df[des_df["class_num"].isin(used_classes)]
     df_web = df_web[df_web["class_num"].isin(used_classes)]
 
-    print(len(df_web))
-    for i in df_web["descriptions"]:
-        if i == "":
-            print("##")
-        # print(i)
-
     df_web = df_web[df_web["descriptions"] != ""]
     df_web = df_web[df_web["titles"] != ""]
-
     print(len(df_web))
-    stop
 
     des_data = list(des_df["txt"])
     des_labels = list(des_df["class_num"])
