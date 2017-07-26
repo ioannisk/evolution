@@ -15,7 +15,7 @@ def train_naive_bayes_des():
     used_classes = find_only_used_classes()
     ### change data type for pandas to work
     used_classes = np.asarray(list(used_classes), dtype=np.int64)
-    des_df, df_web = data_pipeline(100)
+    des_df, df_web = data_pipeline()
     des_df = des_df[des_df["class_num"].isin(used_classes)]
     df_web = df_web[df_web["class_num"].isin(used_classes)]
     df_web = df_web[df_web["descriptions"] != ""]
@@ -58,8 +58,8 @@ def train_naive_bayes_des():
     X_valid_vec = vec.transform(X_valid)
 
     clf = gnb.fit(X_train_vec, Y_train)
-    y_pred_test = clf.predict(X_train_vec)
-    y_pred_train = clf.predict(X_valid_vec)
+    y_pred_test = clf.predict(X_valid_vec)
+    y_pred_train = clf.predict(X_train_vec)
     print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
     print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
 
