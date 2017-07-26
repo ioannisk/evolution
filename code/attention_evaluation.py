@@ -137,7 +137,7 @@ def train_naive_bayes_des_local():
     print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
     y_pred_test_proba = clf.predict_proba(X_valid_vec)
     true_positive = 0
-    for i, proba in enumratey_pred_test_proba:
+    for i, proba in enumerate(y_pred_test_proba):
         ranked = zip(proba, clf.classes_)
         ranked = sorted(ranked, reverse=True)
         proba, classes = zip(*ranked)
