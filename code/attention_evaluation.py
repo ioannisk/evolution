@@ -21,8 +21,8 @@ def train_naive_bayes_des():
     df_web = df_web[df_web["descriptions"] != ""]
     df_web = df_web[df_web["titles"] != ""]
 
-    df_web = df_web[len(df_web["titles"])<=111]
-    df_web = df_web[len(df_web["titles"])<=111]
+    df_web = df_web[df_web["titles"].map(len)<=111]
+    df_web = df_web[df_web["titles"].map(len)<=111]
     print(len(df_web))
 
     des_data = list(des_df["txt"])
