@@ -32,7 +32,6 @@ def train_naive_bayes_des():
         if i == "":
             print("##")
         # print(i)
-    stop
 
     df_web = df_web[df_web["descriptions"] != ""]
     df_web = df_web[df_web["titles"] != ""]
