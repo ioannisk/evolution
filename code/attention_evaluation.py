@@ -105,7 +105,7 @@ def train_naive_bayes_des_local():
                 continue
             Y_train_des.append(line[0])
             X_train_des.append(line[1])
-            ids_.add(web_id[i])
+
             # descriptions_txt.append(line[1])
 
 
@@ -117,6 +117,7 @@ def train_naive_bayes_des_local():
             X_valid.append(web_txt[i])
             Y_valid.append(web_class[i])
             validation_classes.add(web_class[i])
+            ids_.add(web_id[i])
     # training_classes = set()
     # validation_classes = set()
     print(len(ids_))
