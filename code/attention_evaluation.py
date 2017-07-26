@@ -31,6 +31,7 @@ def train_naive_bayes_des():
     print(len(df_web))
 
     des_data = list(des_df["txt"])
+
     des_labels = list(des_df["class_num"])
     web_sites = list(df_web["class_txt"])
     labels = list(df_web["class_num"])
@@ -42,8 +43,13 @@ def train_naive_bayes_des():
     #         continue
 
 
-    tfidf = False
-    vec_des_data, vec_web_sites, vec = vectorize_corpus(des_data, web_sites,tfidf=tfidf)
+    vec = tf_idf_vectorization(des_data)
+    vec_des_data = vec.transform(des_data)
+    vec_web_sites = vec.transform(web_sites)
+
+
+    # tfidf = False
+    # vec_des_data, vec_web_sites, vec = vectorize_corpus(des_data, web_sites,tfidf=tfidf)
     a=0.3 if tfidf else 0.1
     gnb = MultinomialNB(alpha=a)
     # print(vec_des_data.shape)
@@ -291,7 +297,7 @@ if __name__=="__main__":
     train_naive_bayes_des()
     # stop
     accuracy = baseline_tfidf()
-    # print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
+    print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
     accuracy = baseline_nb()
     print("Naive Bayes baseline in top {} ranks is {}".format(TOP_N, accuracy))
     # accuracy = decomposable_attention_eval()
