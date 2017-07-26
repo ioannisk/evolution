@@ -13,6 +13,7 @@ TOP_N = 10
 
 def train_naive_bayes_des():
     used_classes = find_only_used_classes()
+    used_classes = np.asarray(list(used_classes), dtype=np.int64)
 
 
     des_data_n = []
