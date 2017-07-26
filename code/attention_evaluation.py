@@ -12,23 +12,28 @@ from utilities import data_pipeline, vectorize_corpus
 TOP_N = 10
 
 def train_naive_bayes_des():
+    used_classes = find_only_used_classes()
+
+
     des_data_n = []
     des_labels_n = []
     web_sites_n = []
     labels_n = []
     web_des_n = []
-
     des_df, df_web = data_pipeline(1000)
+    des_df = des_df[des_df["class_num"].isin(used_classes)]
+    df_web = df_web[df_web["class_num"].isin(used_classes)]
+
     des_data = list(des_df["txt"])
     des_labels = list(des_df["class_num"])
     web_sites = list(df_web["class_txt"])
     labels = list(df_web["class_num"])
     titles = list(df_web["titles"])
-    web_des = list(df_web["descriptions"])
-    for i, d in enumerate(web_des):
-        # skip empty descriptions
-        if d=="" or titles[i]=="":
-            continue
+    # web_des = list(df_web["descriptions"])
+    # for i, d in enumerate(web_des):
+    #     # skip empty descriptions
+    #     if d=="" or titles[i]=="":
+    #         continue
 
 
     tfidf = False
@@ -42,12 +47,12 @@ def train_naive_bayes_des():
     #     print(len(des_labels))
 
     # import IPython; IPython.embed()
-    dim =int((vec_web_sites.shape[0]))
-    split = int(dim*0.95)
-    X_train= vec_web_sites[:split]
-    X_valid= vec_web_sites[split:]
-    Y_train = labels[:split]
-    Y_valid = labels[split:]
+    # dim =int((vec_web_sites.shape[0]))
+    # split = int(dim*0.95)
+    # X_train= vec_web_sites[:split]
+    # X_valid= vec_web_sites[split:]
+    # Y_train = labels[:split]
+    # Y_valid = labels[split:]
     clf = gnb.fit(X_train, Y_train)
     y_pred_test = clf.predict(X_valid)
     y_pred_train = clf.predict(X_train)
