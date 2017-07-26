@@ -152,6 +152,7 @@ def train_naive_bayes_des_local():
         y_pred_test = clf.predict(X_valid_vec)
         y_pred_train = clf.predict(X_train_vec)
         print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
+        import IPython; IPython.embed()
         print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
 
 
