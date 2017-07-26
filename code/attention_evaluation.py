@@ -177,7 +177,7 @@ def find_only_used_classes():
 
 
 def tf_idf_vectorization(corpus):
-    print("tfidf Vectorization")
+    # print("tfidf Vectorization")
     stopWords = stopwords.words('english')
     # vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords, sublinear_tf=False)
     vec = TfidfVectorizer( min_df=1,sublinear_tf=True)
@@ -236,13 +236,13 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     return true_positive*100/float(len(web_class))
 
 def baseline_tfidf():
-    print("Loading data sets")
+    # print("Loading data sets")
     descriptions_txt = []
     descriptions_class = []
     used_classes = find_only_used_classes()
     with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
         training_corpus = make_training_corpus(file_)
-        print(len(training_corpus))
+        # print(len(training_corpus))
     with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
         for line in file_:
             line = line.strip()
@@ -365,9 +365,11 @@ def decomposable_attention_eval():
 
 
 if __name__=="__main__":
-    accuracy = train_naive_bayes_des_local()
-    print("Naive Bayes baseline in top {} ranks is {}".format(TOP_N, accuracy))
-    accuracy = baseline_tfidf()
-    print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
-    accuracy = decomposable_attention_eval()
-    print("Decomposable attention in top {} ranks is {}".format(TOP_N, accuracy))
+    global TOP_N
+    for TOP_N in range(0,10,2):
+        accuracy = train_naive_bayes_des_local()
+        print("Naive Bayes baseline in top {} ranks is {}".format(TOP_N, accuracy))
+        accuracy = baseline_tfidf()
+        print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
+        accuracy = decomposable_attention_eval()
+        print("Decomposable attention in top {} ranks is {}".format(TOP_N, accuracy))
