@@ -117,18 +117,31 @@ def train_naive_bayes_des_local():
             X_valid.append(web_txt[i])
             Y_valid.append(web_class[i])
             validation_classes.add(web_class[i])
-            ids_.add(web_id[i])
+
     # training_classes = set()
     # validation_classes = set()
-    print(len(ids_))
+    # print(len(ids_))
     # print(len(training_classes.intersection(validation_classes)))
     # print(len(training_classes))
     # print(len(validation_classes))
     # stop
-    vec = tf_idf_vectorization(X_train_des)
-    X_train_des_vec = vec.transform(X_train_des)
+
+
+    X_train = X_train + X_train_des
+    Y_train = Y_train + Y_train_des
+    vec = tf_idf_vectorization(X_train)
+    # X_train_des_vec = vec.transform(X_train_des)
     X_train_vec = vec.transform(X_train)
     X_valid_vec = vec.transform(X_valid)
+
+
+
+    # vec = tf_idf_vectorization(X_train)
+    # # X_train_des_vec = vec.transform(X_train_des)
+    # X_train_vec = vec.transform(X_train)
+    # X_valid_vec = vec.transform(X_valid)
+
+
     print("Training NB data {}".format(len(X_train)))
     print("validation NB data {}".format(len(X_valid)))
     # a = 1
