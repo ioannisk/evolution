@@ -129,7 +129,8 @@ def train_naive_bayes_des_local():
     # a = 1
     for a in np.arange(1,20)*0.1:
         gnb = MultinomialNB(alpha=a,fit_prior=False)
-        clf = gnb.fit(X_train_des_vec, Y_train_des)
+        # clf = gnb.fit(X_train_des_vec, Y_train_des)
+        clf = gnb.fit(X_train_vec, Y_train)
         y_pred_test = clf.predict(X_valid_vec)
         y_pred_train = clf.predict(X_train_vec)
         print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
