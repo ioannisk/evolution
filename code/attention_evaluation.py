@@ -95,7 +95,7 @@ def train_naive_bayes_des_local():
             X_train.append(web_txt[i])
             Y_train.append(web_class[i])
             training_classes.add(web_class[i])
-            ids_.add(web_id[i])
+
     with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
         for line in file_:
             line = line.strip()
@@ -105,6 +105,7 @@ def train_naive_bayes_des_local():
                 continue
             Y_train_des.append(line[0])
             X_train_des.append(line[1])
+            ids_.add(web_id[i])
             # descriptions_txt.append(line[1])
 
 
