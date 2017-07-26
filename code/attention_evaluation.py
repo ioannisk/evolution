@@ -9,7 +9,7 @@ from sklearn.metrics import accuracy_score
 from collections import Counter
 from utilities import data_pipeline, vectorize_corpus
 
-TOP_N = 10
+TOP_N = 1
 
 def train_naive_bayes_des():
     used_classes = find_only_used_classes()
@@ -91,6 +91,18 @@ def train_naive_bayes_des_local():
             X_train.append(web_txt[i])
             Y_train.append(web_class[i])
             training_classes.add(web_class[i])
+    with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
+        for line in file_:
+            line = line.strip()
+            line = line.split('\t')
+            ## ensure only used classes are used for inference
+            if line[0] not in used_classes:
+                continue
+            Y_train.append(line[0])
+            X_train.append(line[1])
+            # descriptions_txt.append(line[1])
+
+
     with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
         for i, b in enumerate(binary_class):
