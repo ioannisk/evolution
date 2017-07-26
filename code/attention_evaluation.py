@@ -15,33 +15,27 @@ def train_naive_bayes_des():
     used_classes = find_only_used_classes()
     ### change data type for pandas to work
     used_classes = np.asarray(list(used_classes), dtype=np.int64)
-
-
     des_data_n = []
     des_labels_n = []
     web_sites_n = []
     labels_n = []
     web_des_n = []
     des_df, df_web = data_pipeline()
-
-    # print(len(des_df))
-    # print(len(df_web))
-    # print(type(list(used_classes)[0]))
-    # print(type(list(des_df["class_num"])[0]))
-
     des_df = des_df[des_df["class_num"].isin(used_classes)]
     df_web = df_web[df_web["class_num"].isin(used_classes)]
 
-    # print(len(des_df))
-    # print(len(df_web))
+    df_web = df_web[df_web["descriptions"] is not ""]
+    df_web = df_web[df_web["titles"]is not ""]
 
+    print(len(df_web))
+    stop
 
     des_data = list(des_df["txt"])
     des_labels = list(des_df["class_num"])
     web_sites = list(df_web["class_txt"])
     labels = list(df_web["class_num"])
     titles = list(df_web["titles"])
-    # web_des = list(df_web["descriptions"])
+    web_des = list(df_web["descriptions"])
     # for i, d in enumerate(web_des):
     #     # skip empty descriptions
     #     if d=="" or titles[i]=="":
@@ -74,8 +68,8 @@ def train_naive_bayes_des():
     clf = gnb.fit(vec_des_data, des_labels)
     y_pred_test = clf.predict(vec_web_sites)
     y_pred_train = clf.predict(vec_des_data)
-    print("Training acc is {0}".format(accuracy_score(des_labels ,y_pred_train )))
-    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=True),a))
+    print("Training acc is {0}".format(accuracy_score(des_labels ,y_pred_train )*100))
+    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=True)*100,a))
 
 ##########################################################
 # Due to data preprocessing not all 649 classes must be used
@@ -171,6 +165,7 @@ def baseline_tfidf():
     used_classes = find_only_used_classes()
     with open("/home/ioannis/evolution/data/meta_training_111.json","rb") as file_:
         training_corpus = make_training_corpus(file_)
+        print(len(training_corpus))
     with open("/home/ioannis/evolution/data/descriptions_data.txt","rb") as file_:
         for line in file_:
             line = line.strip()
@@ -294,8 +289,8 @@ def decomposable_attention_eval():
 
 if __name__=="__main__":
     train_naive_bayes_des()
-    stop
-    # accuracy = baseline_tfidf()
+    # stop
+    accuracy = baseline_tfidf()
     # print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
     accuracy = baseline_nb()
     print("Naive Bayes baseline in top {} ranks is {}".format(TOP_N, accuracy))
