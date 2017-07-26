@@ -28,6 +28,9 @@ def train_naive_bayes_des():
     df_web = df_web[df_web["class_num"].isin(used_classes)]
 
     print(len(df_web))
+    for i in df_web["descriptions"]:
+        print i
+    stop
 
     df_web = df_web[df_web["descriptions"] is not ""]
     df_web = df_web[df_web["titles"]is not ""]
