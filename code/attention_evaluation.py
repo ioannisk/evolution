@@ -101,7 +101,7 @@ def train_naive_bayes_des_local():
             validation_classes.add(web_class[i])
     # training_classes = set()
     # validation_classes = set()
-    print(len(training_classes.intesection(validation_classes)))
+    print(len(training_classes.intersection(validation_classes)))
     stop
     vec = tf_idf_vectorization(X_train)
     X_train_vec = vec.transform(X_train)
