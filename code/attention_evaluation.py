@@ -134,7 +134,7 @@ def train_naive_bayes_des_local():
     y_pred_train = clf.predict(X_train_vec)
     # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
     # import IPython; IPython.embed()
-    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
+    # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
     y_pred_test_proba = clf.predict_proba(X_valid_vec)
     true_positive = 0
     for i, proba in enumerate(y_pred_test_proba):
@@ -217,14 +217,14 @@ def load_json_validation_file(file_):
 
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     true_positive = 0
-    print("cosine similarity inference")
+    # print("cosine similarity inference")
     inference = []
-    print("des vectors {}".format(des_tfidf.shape))
-    print("web vectors {}".format(web_tfidf.shape))
+    # print("des vectors {}".format(des_tfidf.shape))
+    # print("web vectors {}".format(web_tfidf.shape))
     # print(len(des_class))
     pairwise_cos_matrix  = cosine_similarity(web_tfidf, des_tfidf)
     # print pairwise_cos_matrix.shape
-    print("pairwise evaluation {}".format(pairwise_cos_matrix.shape))
+    # print("pairwise evaluation {}".format(pairwise_cos_matrix.shape))
     assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[0])
     for i, row in enumerate(pairwise_cos_matrix):
         sim_labels = list(zip(row, des_class))
