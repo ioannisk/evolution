@@ -33,8 +33,6 @@ def train_naive_bayes_des():
     web_des = list(df_web["descriptions"])
 
 
-
-
     # tfidf = False
     # vec_des_data, vec_web_sites, vec = vectorize_corpus(des_data, web_sites,tfidf=tfidf)
     # a=0.3 if tfidf else 0.1
@@ -55,7 +53,8 @@ def train_naive_bayes_des():
     X_train_vec = vec.transform(X_train)
     X_valid_vec = vec.transform(X_valid)
 
-    for a in np.arange(1,11)*0.1:
+
+    for a in np.arange(1,10)*0.01:
         gnb = MultinomialNB(alpha=a)
         clf = gnb.fit(X_train_vec, Y_train)
         y_pred_test = clf.predict(X_valid_vec)
@@ -67,8 +66,7 @@ def train_naive_bayes_des():
     vec = tf_idf_vectorization(des_data)
     vec_des_data = vec.transform(des_data)
     vec_web_sites = vec.transform(web_sites)
-
-    for a in np.arange(1,11)*0.1:
+    for a in np.arange(10,20)*0.1:
         gnb = MultinomialNB(alpha=a)
         clf = gnb.fit(vec_des_data, des_labels)
         y_pred_test = clf.predict(vec_web_sites)
