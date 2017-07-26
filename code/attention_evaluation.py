@@ -128,7 +128,7 @@ def train_naive_bayes_des_local():
     print("validation NB data {}".format(len(X_valid)))
     # a = 1
     for a in np.arange(1,20)*0.1:
-        gnb = MultinomialNB(alpha=a)
+        gnb = MultinomialNB(alpha=a,fit_prior=False)
         clf = gnb.fit(X_train_des_vec, Y_train_des)
         y_pred_test = clf.predict(X_valid_vec)
         y_pred_train = clf.predict(X_train_vec)
