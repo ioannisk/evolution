@@ -54,25 +54,59 @@ def train_naive_bayes_des():
     X_valid_vec = vec.transform(X_valid)
 
 
-    for a in np.arange(1,10)*0.01:
-        gnb = MultinomialNB(alpha=a)
-        clf = gnb.fit(X_train_vec, Y_train)
-        y_pred_test = clf.predict(X_valid_vec)
-        y_pred_train = clf.predict(X_train_vec)
-        print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
-        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
+    # for a in np.arange(1,10)*0.01:
+    a = 0.1
+    gnb = MultinomialNB(alpha=a)
+    clf = gnb.fit(X_train_vec, Y_train)
+    y_pred_test = clf.predict(X_valid_vec)
+    y_pred_train = clf.predict(X_train_vec)
+    print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
+    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
 
 
     vec = tf_idf_vectorization(des_data)
     vec_des_data = vec.transform(des_data)
     vec_web_sites = vec.transform(web_sites)
-    for a in np.arange(10,20)*0.1:
-        gnb = MultinomialNB(alpha=a)
-        clf = gnb.fit(vec_des_data, des_labels)
-        y_pred_test = clf.predict(vec_web_sites)
-        y_pred_train = clf.predict(vec_des_data)
-        print("Training acc is {0}".format(accuracy_score(des_labels ,y_pred_train )*100))
-        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=True)*100,a))
+    # for a in np.arange(10,20)*0.1:
+    a = 1
+    gnb = MultinomialNB(alpha=a)
+    clf = gnb.fit(vec_des_data, des_labels)
+    y_pred_test = clf.predict(vec_web_sites)
+    y_pred_train = clf.predict(vec_des_data)
+    print("Training acc is {0}".format(accuracy_score(des_labels ,y_pred_train )*100))
+    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=True)*100,a))
+
+
+def train_naive_bayes_des_local():
+    X_train =[]
+    X_valid =[]
+    Y_train =[]
+    Y_valid =[]
+    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
+        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
+        for i, b in enumerate(binary_class):
+            if b!="entailment":
+                continue
+            X_train.append(web_txt)
+            Y_train.append(web_class)
+    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
+        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
+        for i, b in enumerate(binary_class):
+            if b!="entailment":
+                continue
+            X_valid.append(web_txt)
+            Y_valid.append(web_class)
+    vec = tf_idf_vectorization(X_train)
+    X_train_vec = vec.transform(X_train)
+    X_valid_vec = vec.transform(X_valid)
+    a = 1
+    gnb = MultinomialNB(alpha=a)
+    clf = gnb.fit(vec_des_data, des_labels)
+    y_pred_test = clf.predict(vec_web_sites)
+    y_pred_train = clf.predict(vec_des_data)
+    print("Training acc is {0}".format(accuracy_score(des_labels ,y_pred_train )*100))
+    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=True)*100,a))
+
 
 ##########################################################
 # Due to data preprocessing not all 649 classes must be used
@@ -291,11 +325,11 @@ def decomposable_attention_eval():
 
 
 if __name__=="__main__":
-    train_naive_bayes_des()
+    train_naive_bayes_des_local()
     # stop
     accuracy = baseline_tfidf()
     print("Tf-idf baseline in top {} ranks is {}".format(TOP_N, accuracy))
-    accuracy = baseline_nb()
+    # accuracy = baseline_nb()
     print("Naive Bayes baseline in top {} ranks is {}".format(TOP_N, accuracy))
-    # accuracy = decomposable_attention_eval()
-    # print("Decomposable attention in top {} ranks is {}".format(TOP_N, accuracy))
+    accuracy = decomposable_attention_eval()
+    print("Decomposable attention in top {} ranks is {}".format(TOP_N, accuracy))
