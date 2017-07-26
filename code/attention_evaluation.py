@@ -52,15 +52,14 @@ def train_naive_bayes_des():
     X_valid= des_and_titles[split:]
     Y_train = labels[:split]
     Y_valid = labels[split:]
-    vec = tf_idf_vectorization(des_data)
 
-    X_train= vec_web_sites[:split]
-    X_valid= vec_web_sites[split:]
-    Y_train = labels[:split]
-    Y_valid = labels[split:]
-    clf = gnb.fit(X_train, Y_train)
-    y_pred_test = clf.predict(X_valid)
-    y_pred_train = clf.predict(X_train)
+    vec = tf_idf_vectorization(X_train)
+    X_train_vec = vec.transform(X_train)
+    X_valid_vec = vec.transform(X_valid)
+
+    clf = gnb.fit(X_train_vec, Y_train)
+    y_pred_test = clf.predict(X_train_vec)
+    y_pred_train = clf.predict(X_valid_vec)
     print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
     print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
 
