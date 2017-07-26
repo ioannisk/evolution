@@ -77,6 +77,7 @@ def train_naive_bayes_des():
 
 
 def train_naive_bayes_des_local():
+    used_classes = find_only_used_classes()
     X_train =[]
     X_valid =[]
     Y_train =[]
