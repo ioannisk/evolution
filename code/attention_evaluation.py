@@ -82,6 +82,8 @@ def train_naive_bayes_des_local():
     X_valid =[]
     Y_train =[]
     Y_valid =[]
+    Y_train_des = []
+    X_train_des = []
     training_classes = set()
     validation_classes = set()
     with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
