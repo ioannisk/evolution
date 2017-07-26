@@ -15,14 +15,19 @@ def train_naive_bayes_des():
     used_classes = find_only_used_classes()
     ### change data type for pandas to work
     used_classes = np.asarray(list(used_classes), dtype=np.int64)
-    des_data_n = []
-    des_labels_n = []
-    web_sites_n = []
-    labels_n = []
-    web_des_n = []
-    des_df, df_web = data_pipeline()
+    # des_data_n = []
+    # des_labels_n = []
+    # web_sites_n = []
+    # labels_n = []
+    # web_des_n = []
+
+
+    des_df, df_web = data_pipeline(500)
+    print(len(df_web))
     des_df = des_df[des_df["class_num"].isin(used_classes)]
     df_web = df_web[df_web["class_num"].isin(used_classes)]
+
+    print(len(df_web))
 
     df_web = df_web[df_web["descriptions"] is not ""]
     df_web = df_web[df_web["titles"]is not ""]
