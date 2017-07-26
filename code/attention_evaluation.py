@@ -23,7 +23,7 @@ def train_naive_bayes_des():
 
     df_web = df_web[df_web["titles"].map(len)<=111]
     df_web = df_web[df_web["titles"].map(len)<=111]
-    print(len(df_web))
+    # print(len(df_web))
 
     des_data = list(des_df["txt"])
     des_labels = list(des_df["class_num"])
@@ -333,7 +333,7 @@ def decomposable_attention_eval():
         for line in file_:
             line = line.strip()
             predictions.append(float(line))
-        print(len(predictions))
+        # print(len(predictions))
     with open("/home/ioannis/evolution/data/meta_ranking_validation_111.json", "r") as file_:
         companies = set()
         description_class = []
@@ -366,7 +366,7 @@ def decomposable_attention_eval():
 
 if __name__=="__main__":
     global TOP_N
-    for TOP_N in range(0,10,2):
+    for TOP_N in range(1,10,2):
         accuracy = train_naive_bayes_des_local()
         print("Naive Bayes baseline in top {} ranks is {}".format(TOP_N, accuracy))
         accuracy = baseline_tfidf()
