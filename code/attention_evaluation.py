@@ -38,8 +38,6 @@ def train_naive_bayes_des():
     # tfidf = False
     # vec_des_data, vec_web_sites, vec = vectorize_corpus(des_data, web_sites,tfidf=tfidf)
     # a=0.3 if tfidf else 0.1
-    a = 0.3
-    gnb = MultinomialNB(alpha=a)
     # import IPython; IPython.embed()
     des_and_titles = []
     for d, t in zip(web_des, titles):
@@ -57,21 +55,26 @@ def train_naive_bayes_des():
     X_train_vec = vec.transform(X_train)
     X_valid_vec = vec.transform(X_valid)
 
-    clf = gnb.fit(X_train_vec, Y_train)
-    y_pred_test = clf.predict(X_valid_vec)
-    y_pred_train = clf.predict(X_train_vec)
-    print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
-    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
+    for a in np.arange(1,11)*0.1:
+        gnb = MultinomialNB(alpha=a)
+        clf = gnb.fit(X_train_vec, Y_train)
+        y_pred_test = clf.predict(X_valid_vec)
+        y_pred_train = clf.predict(X_train_vec)
+        print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
+        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
 
 
     vec = tf_idf_vectorization(des_data)
     vec_des_data = vec.transform(des_data)
     vec_web_sites = vec.transform(web_sites)
-    clf = gnb.fit(vec_des_data, des_labels)
-    y_pred_test = clf.predict(vec_web_sites)
-    y_pred_train = clf.predict(vec_des_data)
-    print("Training acc is {0}".format(accuracy_score(des_labels ,y_pred_train )*100))
-    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=True)*100,a))
+
+    for a in np.arange(1,11)*0.1:
+        gnb = MultinomialNB(alpha=a)
+        clf = gnb.fit(vec_des_data, des_labels)
+        y_pred_test = clf.predict(vec_web_sites)
+        y_pred_train = clf.predict(vec_des_data)
+        print("Training acc is {0}".format(accuracy_score(des_labels ,y_pred_train )*100))
+        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=True)*100,a))
 
 ##########################################################
 # Due to data preprocessing not all 649 classes must be used
