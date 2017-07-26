@@ -81,6 +81,8 @@ def train_naive_bayes_des_local():
     X_valid =[]
     Y_train =[]
     Y_valid =[]
+    training_classes = set()
+    validation_classes = set()
     with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
         for i, b in enumerate(binary_class):
@@ -88,6 +90,7 @@ def train_naive_bayes_des_local():
                 continue
             X_train.append(web_txt[i])
             Y_train.append(web_class[i])
+            training_classes.add(web_class[i])
     with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
         for i, b in enumerate(binary_class):
@@ -95,19 +98,24 @@ def train_naive_bayes_des_local():
                 continue
             X_valid.append(web_txt[i])
             Y_valid.append(web_class[i])
+            validation_classes.add(web_class[i])
+    # training_classes = set()
+    # validation_classes = set()
+    print(len(training_classes.intesection(validation_classes)))
+    stop
     vec = tf_idf_vectorization(X_train)
     X_train_vec = vec.transform(X_train)
     X_valid_vec = vec.transform(X_valid)
     print("Training NB data {}".format(len(X_train)))
     print("validation NB data {}".format(len(X_valid)))
     a = 1
-    for a in np.arange(1,20)*0.1:
-        gnb = MultinomialNB(alpha=a)
-        clf = gnb.fit(X_train_vec, Y_train)
-        y_pred_test = clf.predict(X_valid_vec)
-        y_pred_train = clf.predict(X_train_vec)
-        print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
-        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
+    # for a in np.arange(1,20)*0.1:
+    gnb = MultinomialNB(alpha=a)
+    clf = gnb.fit(X_train_vec, Y_train)
+    y_pred_test = clf.predict(X_valid_vec)
+    y_pred_train = clf.predict(X_train_vec)
+    print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
+    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
 
 
 ##########################################################
