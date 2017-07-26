@@ -121,6 +121,7 @@ def train_naive_bayes_des_local():
     print(len(validation_classes))
     # stop
     vec = tf_idf_vectorization(X_train_des)
+    X_train_des_vec = vec.transform(X_train_des)
     X_train_vec = vec.transform(X_train)
     X_valid_vec = vec.transform(X_valid)
     print("Training NB data {}".format(len(X_train)))
@@ -128,7 +129,7 @@ def train_naive_bayes_des_local():
     # a = 1
     for a in np.arange(1,20)*0.1:
         gnb = MultinomialNB(alpha=a)
-        clf = gnb.fit(X_train_des, Y_train_des)
+        clf = gnb.fit(X_train_des_vec, Y_train_des)
         y_pred_test = clf.predict(X_valid_vec)
         y_pred_train = clf.predict(X_train_vec)
         print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
