@@ -34,8 +34,8 @@ def train_naive_bayes_des():
         # print(i)
     stop
 
-    df_web = df_web[df_web["descriptions"] is not ""]
-    df_web = df_web[df_web["titles"]is not ""]
+    df_web = df_web[df_web["descriptions"] != ""]
+    df_web = df_web[df_web["titles"] != ""]
 
     print(len(df_web))
     stop
