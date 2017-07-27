@@ -60,10 +60,24 @@ def make_N_folds_classes(class_descriptions, companies_descriptions, N=5):
     for id_ in companies_descriptions:
         class_counts[companies_descriptions[id_]["class_num"]]+=1
     ranked = class_counts.most_common()
-    print(ranked)
+    ## [] instead of 0
+    folds = [0 for i in range(N)]
+    app_fold_volume = len(companies_descriptions)/N
+
+    fold_index = 0
+    for class_num, counts in ranked:
+        if folds[fold_index] < app_fold_volume:
+            folds[fold_index] += counts
+
+    print(folds)
+
+
+
+
+
+
+
     stop
-
-
 
     folds = []
     folds_counts = Counter()
