@@ -4,7 +4,7 @@ import random
 import time
 import os
 
-MAX_LEN=111
+MAX_LEN=1e10
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
 
