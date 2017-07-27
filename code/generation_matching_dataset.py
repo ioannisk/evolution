@@ -79,8 +79,8 @@ def update_index(fold_index, folds, folds_volume):
     fold_index +=1
     if fold_index==N:
         fold_index = 0
-        # folds = folds[::-1]
-        # folds_volume = folds_volume[::-1]
+        folds = folds[::-1]
+        folds_volume = folds_volume[::-1]
     return fold_index, folds, folds_volume
 
 
@@ -121,7 +121,6 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     """
     # Count and order classes according to datapoints
     class_counts = Counter()
-
     for id_ in companies_descriptions:
         class_counts[companies_descriptions[id_]["class_num"]]+=1
     # Rank according to least common count
@@ -130,7 +129,6 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     folds = [[] for i in range(N)]
     # Maybe allow +5% in volyme if probelms
     app_fold_volume = len(companies_descriptions)/N
-    print(app_fold_volume)
     fold_index = 0
     for class_num, counts in ranked:
         folds, folds_volume, fold_index = allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_volume)
