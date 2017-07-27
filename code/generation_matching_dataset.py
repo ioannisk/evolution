@@ -58,8 +58,7 @@ def make_N_folds_classes(class_descriptions, companies_descriptions, N=5):
     """
     folds = []
     folds_counts = Counter()
-    classes = class_descriptions.keys()
-    print(classes)
+    classes = list(class_descriptions.keys())
     split = int(len(classes)/N)
     folds = [classes[i*split:i*split+split] for i in range(N)]
     for id_ in class_descriptions:
