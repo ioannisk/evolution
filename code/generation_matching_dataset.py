@@ -24,6 +24,7 @@ def read_meta():
     with open("../data/web_site_meta.txt", "r") as file_:
         for line in file_:
             line = line.strip()
+            print(line)
             id_, class_num , txt = line.split('\t')
 
 if __name__=="__main__":
