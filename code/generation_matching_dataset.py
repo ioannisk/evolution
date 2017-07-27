@@ -95,10 +95,14 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     for class_num, counts in ranked:
         folds, folds_volume, fold_index = allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_volume)
     print(folds_volume)
+    print([len(i) for i in folds])
     print(sum(folds_volume))
 
 
 
+#
+# Not tested and most probably not working atm
+#
 def make_N_folds_classes_equal_classes(class_descriptions, companies_descriptions):
     """ Make N datasets such that there is no
     class overlap between training and testing.
