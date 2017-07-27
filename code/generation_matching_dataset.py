@@ -60,7 +60,7 @@ def make_N_folds_classes(class_descriptions, companies_descriptions, N=5):
     for id_ in companies_descriptions:
         class_counts[companies_descriptions[id_]["class_num"]]+=1
     ranked = class_counts.most_common()
-    print ranked
+    print(ranked)
     stop
 
 
