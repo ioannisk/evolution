@@ -33,7 +33,10 @@ def read_meta():
 if __name__=="__main__":
     b = read_descriptions()
     a = read_meta()
-    print(set(b.keys()) == a )
+    b = set(b.keys())
+    print(len(b))
+    print(len(a))
+    print( b == a )
 
 
 # web_class = {}
