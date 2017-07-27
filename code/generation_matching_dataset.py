@@ -68,7 +68,9 @@ def make_N_folds_classes(class_descriptions, companies_descriptions, N=5):
     for class_num, counts in ranked:
         if folds[fold_index] < app_fold_volume:
             folds[fold_index] += counts
-
+        fold_index +=1
+        if fold_index ==N:
+            fold_index
     print(folds)
 
 
