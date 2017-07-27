@@ -73,6 +73,7 @@ def make_N_folds_classes(class_descriptions, companies_descriptions, N=5):
         if fold_index ==N:
             fold_index = 0
     print(folds)
+    print(sum(folds))
 
 
 
