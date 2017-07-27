@@ -11,7 +11,7 @@ MAX_WEB_LEN=MAX_LEN
 
 def read_descriptions():
     class_descriptions = {}
-    with open("../data/descriptions_data.txt","r") as file_:
+    with open("../data/descriptions_data_1.txt","r") as file_:
         for line in file_:
             line = line.strip()
             class_num , txt = line.split('\t')
@@ -21,15 +21,19 @@ def read_descriptions():
 
 
 def read_meta():
-    with open("../data/web_site_meta.txt", "r") as file_:
+    a = set()
+    with open("../data/web_site_meta_1.txt", "r") as file_:
         for line in file_:
             line = line.strip()
-            print(line)
             id_, class_num , txt = line.split('\t')
+            a.add(class_num)
+    return a
+            # if class_num not in set()
 
 if __name__=="__main__":
-    read_descriptions()
-    read_meta()
+    b = read_descriptions()
+    a = read_meta()
+    print(set(b.keys()) == a )
 
 
 # web_class = {}
