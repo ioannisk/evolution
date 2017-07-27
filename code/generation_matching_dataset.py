@@ -21,9 +21,10 @@ def read_descriptions():
 
 
 def read_meta():
-    for line in file_:
-        line = line.strip()
-        id_, class_num , txt = line.split('\t')
+    with open("../data/web_site_meta.txt", "r") as file_:
+        for line in file_:
+            line = line.strip()
+            id_, class_num , txt = line.split('\t')
 
 if __name__=="__main__":
     read_descriptions()
