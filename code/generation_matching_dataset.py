@@ -90,8 +90,8 @@ def update_index(fold_index, folds, folds_volume):
     go back to 0
     """
     fold_index_new =random.randint(0,5)
-    while fold_index ==fold_index:
-        fold_index_new =random.randint(0,5)
+    # while fold_index ==fold_index:
+    #     fold_index_new =random.randint(0,5)
     # if fold_index==N:
     #     fold_index = 0
     #     # folds = folds[::-1]
