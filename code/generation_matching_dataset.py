@@ -125,12 +125,13 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     for id_ in companies_descriptions:
         class_counts[companies_descriptions[id_]["class_num"]]+=1
     # Rank according to least common count
+    # [::-1]
     ranked = class_counts.most_common()
     folds_volume = [0 for i in range(N)]
     folds = [[] for i in range(N)]
-    # + (len(companies_descriptions)/N)*0.1
+    #
     # + (len(companies_descriptions)/N)*0.05
-    app_fold_volume = len(companies_descriptions)/N
+    app_fold_volume = len(companies_descriptions)/N+ (len(companies_descriptions)/N)*0.1
     print(app_fold_volume)
     fold_index = 0
     # ccc = 0
