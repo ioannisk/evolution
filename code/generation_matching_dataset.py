@@ -79,8 +79,8 @@ def update_index(fold_index, folds, folds_volume):
     fold_index +=1
     if fold_index==N:
         fold_index = 0
-        folds = folds[::-1]
-        folds_volume = folds_volume[::-1]
+        # folds = folds[::-1]
+        # folds_volume = folds_volume[::-1]
     return fold_index, folds, folds_volume
 
 def allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_volume):
