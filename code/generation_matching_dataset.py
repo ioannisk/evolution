@@ -94,8 +94,8 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     fold_index = 0
     for class_num, counts in ranked:
         folds, folds_volume, fold_index = allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_volume)
-    print(folds)
-    print(sum(folds))
+    print(folds_volume)
+    print(sum(folds_volume))
 
 
 
