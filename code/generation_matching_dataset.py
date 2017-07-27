@@ -10,13 +10,13 @@ MAX_WEB_LEN=MAX_LEN
 
 
 def read_descriptions():
-    des = {}
+    class_descriptions = {}
     with open("../data/descriptions_data.txt","r") as file_:
         for line in file_:
             line = line.strip()
             class_num , txt = line.split('\t')
             if len(txt.split()) <=MAX_DES_LEN:
-                des[class_num] = txt
+                class_descriptions[class_num] = txt
     return class_descriptions
 
 
