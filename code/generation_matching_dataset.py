@@ -56,21 +56,25 @@ def make_N_folds_classes(class_descriptions, companies_descriptions, N=5):
     With some additional logic for dataset balance,
     so we can make sure that the splits have ~= #points
     """
-    for kk in range(10):
-        folds = []
-        folds_counts = Counter()
-        classes = list(class_descriptions.keys())
-        split = int(len(classes)/N)
-        folds = [classes[i*split:i*split+split] for i in range(N)]
-        for id_ in companies_descriptions:
-            for i, fold in enumerate(folds):
-                if companies_descriptions[id_]["class_num"] in fold:
-                    folds_counts[i] +=1
-        print(folds_counts)
-                # fold
+    class_counts = Counter()
+    for id_ in companies_descriptions:
+        class_counts[companies_descriptions[id_]["class_num"]]+=1
+    ranked = class_counts.most_common()
+    print ranked
+    stop
 
 
 
+    folds = []
+    folds_counts = Counter()
+    classes = list(class_descriptions.keys())
+    split = int(len(classes)/N)
+    folds = [classes[i*split:i*split+split] for i in range(N)]
+    for id_ in companies_descriptions:
+        for i, fold in enumerate(folds):
+            if companies_descriptions[id_]["class_num"] in fold:
+                folds_counts[i] +=1
+    print(folds_counts)
 
 def write_fold():
     path = "../data/folds"
