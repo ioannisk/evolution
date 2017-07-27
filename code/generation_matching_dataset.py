@@ -16,6 +16,10 @@ def web_des_intersection(class_descriptions, cmp_des):
     print(len(des_set))
     print(len(web_set))
     intersection =  des_set.intersection(web_set)
+    print("#####")
+    print(len(des_set))
+    print(len(web_set))
+
     print(len(class_descriptions))
     print(len(cmp_des))
     class_descriptions = {key:class_descriptions[key] for key in class_descriptions if key in intersection}
