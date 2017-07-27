@@ -63,7 +63,7 @@ def make_N_folds_classes(class_descriptions, companies_descriptions, N=5):
     folds = [classes[i*split:i*split+split] for i in range(N)]
     for id_ in class_descriptions:
         for i, fold in enumerate(folds):
-            if class_descriptions["class_num"] in fold:
+            if class_descriptions[id_]["class_num"] in fold:
                 folds_counts[i] +=1
     print(folds_counts)
                 # fold
