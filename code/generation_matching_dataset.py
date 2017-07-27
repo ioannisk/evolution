@@ -5,7 +5,7 @@ import time
 import os
 from collections import Counter
 
-N = 5
+N = 6
 MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
