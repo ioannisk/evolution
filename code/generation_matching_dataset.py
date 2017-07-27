@@ -79,7 +79,7 @@ if __name__=="__main__":
     class_descriptions = read_descriptions()
     companies_descriptions = read_meta()
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
-    make_N_folds_classes(class_descriptions, companies_descriptions, N=6)
+    make_N_folds_classes(class_descriptions, companies_descriptions, N=5)
 
 
 
