@@ -89,7 +89,7 @@ def update_index(fold_index, folds, folds_volume):
     but if index >= N it needs to
     go back to 0
     """
-    fold_index_new =random.randint(0,5)
+    fold_index_new =random.randint(0,N-1)
     # while fold_index ==fold_index:
     #     fold_index_new =random.randint(0,5)
     # if fold_index==N:
@@ -104,7 +104,7 @@ def allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_vo
     """ Recursive class bin allocator
     returns: N bin with the same amount of data points
     """
-    print("index: {}".format(fold_index))
+    # print("index: {}".format(fold_index))
     if folds_volume[fold_index] < app_fold_volume:
         folds[fold_index].append(class_num)
         folds_volume[fold_index] += counts
@@ -132,10 +132,10 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     app_fold_volume = len(companies_descriptions)/N
     print(app_fold_volume)
     fold_index = 0
-    ccc = 0
+    # ccc = 0
     for class_num, counts in ranked:
-        print(ccc)
-        ccc +=1
+        # print(ccc)
+        # ccc +=1
         folds, folds_volume, fold_index = allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_volume)
     print(folds_volume)
     print(sum(folds_volume))
