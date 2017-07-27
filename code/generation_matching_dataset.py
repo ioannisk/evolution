@@ -70,15 +70,18 @@ def web_des_intersection(class_descriptions, cmp_des):
 #                 folds_counts[i] +=1
 #     print(folds_counts)
 
-def update_index(index):
+
+def update_index(fold_index, folds, folds_volume):
     """ index needs to updated
     but if index >= N it needs to
     go back to 0
     """
-    index +=1
-    if index==N:
-        index = 0
-    return index
+    fold_index +=1
+    if fold_index==N:
+        fold_index = 0
+        folds = folds[::-1]
+        folds_volume = folds_volume[::-1]
+    return fold_index, folds, folds_volume
 
 def allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_volume):
     """ Recursive class bin allocator
@@ -88,9 +91,9 @@ def allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_vo
         folds[fold_index].append(class_num)
         folds_volume[fold_index] += counts
     else:
-        fold_index = update_index(fold_index)
+        fold_index, folds, folds_volume = update_index(fold_index, folds, folds_volume)
         allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_volume)
-    fold_index = update_index(fold_index)
+    fold_index, folds, folds_volume = update_index(fold_index, folds, folds_volume)
     return folds, folds_volume, fold_index
 
 def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions):
@@ -108,7 +111,7 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     folds_volume = [0 for i in range(N)]
     folds = [[] for i in range(N)]
     # + (len(companies_descriptions)/N)*0.1
-    app_fold_volume = len(companies_descriptions)/N + (len(companies_descriptions)/N)*0.05
+    app_fold_volume = len(companies_descriptions)/N
     print(app_fold_volume)
     fold_index = 0
     for class_num, counts in ranked:
