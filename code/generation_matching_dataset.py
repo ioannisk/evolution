@@ -79,8 +79,8 @@ def update_index(fold_index, folds, folds_volume):
     fold_index +=1
     if fold_index==N:
         fold_index = 0
-        # folds = folds[::-1]
-        # folds_volume = folds_volume[::-1]
+        folds = folds[::-1]
+        folds_volume = folds_volume[::-1]
     return fold_index, folds, folds_volume
 
 
