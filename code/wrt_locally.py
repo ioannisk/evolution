@@ -14,7 +14,7 @@ def wrt_dataframes():
     with open("../data/descriptions_data_1.txt","w") as file_:
         for txt, class_num in zip(des_df["txt"], des_df["class_num"]):
             file_.write("{0}\t{1}\n".format(class_num, txt))
-    stop
+    # stop
     with open("../data/web_site_data_1.txt", "w") as file_:
         for txt, class_num, id_ in zip(df_web["class_txt"], df_web["class_num"],df_web["company_id"]):
             if txt is "":
