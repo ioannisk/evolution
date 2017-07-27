@@ -104,6 +104,7 @@ def allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_vo
     """ Recursive class bin allocator
     returns: N bin with the same amount of data points
     """
+    print("index: {}".format(fold_index))
     if folds_volume[fold_index] < app_fold_volume:
         folds[fold_index].append(class_num)
         folds_volume[fold_index] += counts
