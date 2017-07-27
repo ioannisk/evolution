@@ -51,56 +51,59 @@ def web_des_intersection(class_descriptions, cmp_des):
     cmp_des = {key:cmp_des[key] for key in cmp_des if cmp_des[key]["class_num"] in intersection}
     return class_descriptions, cmp_des
 
-
 def update_index(index):
+    """ index needs to updated
+    but if index >= N it needs to
+    go back to 0
+    """
     index +=1
     if index==N:
         index = 0
     return index
 
-
-def allocate_bin(folds, class_num, counts, fold_index, app_fold_volume):
-    if folds[fold_index] < app_fold_volume:
-        folds[fold_index] += counts
+def allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_volume):
+    """ Recursive class bin allocator
+    returns: N bin with the same amount of data points
+    """
+    if folds_volume[fold_index] < app_fold_volume:
+        folds[fold_index].append(class_num)
+        folds_volume[fold_index] += counts
     else:
         fold_index = update_index(fold_index)
-        allocate_bin(folds, class_num, counts, fold_index, app_fold_volume)
+        allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_volume)
     fold_index = update_index(fold_index)
-    return folds, fold_index
+    return folds, folds_volume, fold_index
 
-
-
-
-def make_N_folds_classes(class_descriptions, companies_descriptions):
+def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions):
     """ Make N datasets such that there is no
     class overlap between training and testing.
-    With some additional logic for dataset balance,
-    so we can make sure that the splits have ~= #points
+    We need to make sure that the splits have ~= #points
     """
+    # Count and order classes according to datapoints
     class_counts = Counter()
     print(len(companies_descriptions))
     for id_ in companies_descriptions:
         class_counts[companies_descriptions[id_]["class_num"]]+=1
     ranked = class_counts.most_common()
-    ## [] instead of 0
-    folds = [0 for i in range(N)]
+    #
+    folds_volume = [0 for i in range(N)]
+    folds = [[] for i in range(N)]
     # + (len(companies_descriptions)/N)*0.1
     app_fold_volume = len(companies_descriptions)/N
     print(app_fold_volume)
     fold_index = 0
     for class_num, counts in ranked:
-        folds, fold_index = allocate_bin(folds, class_num, counts, fold_index, app_fold_volume)
+        folds, folds_volume, fold_index = allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_volume)
     print(folds)
     print(sum(folds))
 
 
 
-
-
-
-
-    stop
-
+def make_N_folds_classes_equal_classes(class_descriptions, companies_descriptions):
+    """ Make N datasets such that there is no
+    class overlap between training and testing.
+    We need to make sure that the splits have ~= #classes
+    """
     folds = []
     folds_counts = Counter()
     classes = list(class_descriptions.keys())
