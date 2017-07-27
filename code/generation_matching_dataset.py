@@ -71,32 +71,32 @@ def web_des_intersection(class_descriptions, cmp_des):
 #     print(folds_counts)
 
 
-# def update_index(fold_index, folds, folds_volume):
-#     """ index needs to updated
-#     but if index >= N it needs to
-#     go back to 0
-#     """
-#     fold_index +=1
-#     if fold_index==N:
-#         fold_index = 0
-#         # folds = folds[::-1]
-#         # folds_volume = folds_volume[::-1]
-#     return fold_index, folds, folds_volume
-
-
 def update_index(fold_index, folds, folds_volume):
     """ index needs to updated
     but if index >= N it needs to
     go back to 0
     """
-    fold_index_new =random.randint(0,N-1)
-    # while fold_index ==fold_index:
-    #     fold_index_new =random.randint(0,5)
-    # if fold_index==N:
-    #     fold_index = 0
-    #     # folds = folds[::-1]
+    fold_index +=1
+    if fold_index==N:
+        fold_index = 0
+        # folds = folds[::-1]
         # folds_volume = folds_volume[::-1]
-    return fold_index_new, folds, folds_volume
+    return fold_index, folds, folds_volume
+
+
+# def update_index(fold_index, folds, folds_volume):
+#     """ index needs to updated
+#     but if index >= N it needs to
+#     go back to 0
+#     """
+#     fold_index_new =random.randint(0,N-1)
+#     # while fold_index ==fold_index:
+#     #     fold_index_new =random.randint(0,5)
+#     # if fold_index==N:
+#     #     fold_index = 0
+#     #     # folds = folds[::-1]
+#         # folds_volume = folds_volume[::-1]
+#     return fold_index_new, folds, folds_volume
 
 
 
