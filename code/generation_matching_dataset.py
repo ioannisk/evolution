@@ -51,6 +51,25 @@ def web_des_intersection(class_descriptions, cmp_des):
     cmp_des = {key:cmp_des[key] for key in cmp_des if cmp_des[key]["class_num"] in intersection}
     return class_descriptions, cmp_des
 
+#
+# Not tested and most probably not working atm
+#
+# def make_N_folds_classes_equal_classes(class_descriptions, companies_descriptions):
+#     """ Make N datasets such that there is no
+#     class overlap between training and testing.
+#     We need to make sure that the splits have ~= #classes
+#     """
+#     folds = []
+#     folds_counts = Counter()
+#     classes = list(class_descriptions.keys())
+#     split = int(len(classes)/N)
+#     folds = [classes[i*split:i*split+split] for i in range(N)]
+#     for id_ in companies_descriptions:
+#         for i, fold in enumerate(folds):
+#             if companies_descriptions[id_]["class_num"] in fold:
+#                 folds_counts[i] +=1
+#     print(folds_counts)
+
 def update_index(index):
     """ index needs to updated
     but if index >= N it needs to
@@ -89,7 +108,7 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     folds_volume = [0 for i in range(N)]
     folds = [[] for i in range(N)]
     # + (len(companies_descriptions)/N)*0.1
-    app_fold_volume = len(companies_descriptions)/N
+    app_fold_volume = len(companies_descriptions)/N + (len(companies_descriptions)/N)*0.05
     print(app_fold_volume)
     fold_index = 0
     for class_num, counts in ranked:
@@ -99,27 +118,6 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     print([len(i) for i in folds])
     print(sum([len(i) for i in folds]))
 
-
-
-
-#
-# Not tested and most probably not working atm
-#
-def make_N_folds_classes_equal_classes(class_descriptions, companies_descriptions):
-    """ Make N datasets such that there is no
-    class overlap between training and testing.
-    We need to make sure that the splits have ~= #classes
-    """
-    folds = []
-    folds_counts = Counter()
-    classes = list(class_descriptions.keys())
-    split = int(len(classes)/N)
-    folds = [classes[i*split:i*split+split] for i in range(N)]
-    for id_ in companies_descriptions:
-        for i, fold in enumerate(folds):
-            if companies_descriptions[id_]["class_num"] in fold:
-                folds_counts[i] +=1
-    print(folds_counts)
 
 def write_fold():
     path = "../data/folds"
