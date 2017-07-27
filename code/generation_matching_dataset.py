@@ -70,7 +70,7 @@ def make_N_folds_classes(class_descriptions, companies_descriptions, N=5):
             folds[fold_index] += counts
         fold_index +=1
         if fold_index ==N:
-            fold_index
+            fold_index = 0
     print(folds)
 
 
