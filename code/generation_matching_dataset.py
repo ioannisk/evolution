@@ -79,8 +79,8 @@ def update_index(fold_index, folds, folds_volume):
     fold_index +=1
     if fold_index==N:
         fold_index = 0
-        folds = folds[::-1]
-        folds_volume = folds_volume[::-1]
+        # folds = folds[::-1]
+        # folds_volume = folds_volume[::-1]
     return fold_index, folds, folds_volume
 
 
@@ -129,7 +129,7 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     folds_volume = [0 for i in range(N)]
     folds = [[] for i in range(N)]
     # + (len(companies_descriptions)/N)*0.1
-    app_fold_volume = len(companies_descriptions)/N
+    app_fold_volume = len(companies_descriptions)/N+ (len(companies_descriptions)/N)*0.05
     print(app_fold_volume)
     fold_index = 0
     # ccc = 0
