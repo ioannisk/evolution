@@ -63,7 +63,7 @@ def make_N_folds_classes(class_descriptions, companies_descriptions, N=5):
     ranked = class_counts.most_common()
     ## [] instead of 0
     folds = [0 for i in range(N)]
-    app_fold_volume = len(companies_descriptions)/N
+    app_fold_volume = len(companies_descriptions)/N + (len(companies_descriptions)/N)*0.1
 
     fold_index = 0
     for class_num, counts in ranked:
