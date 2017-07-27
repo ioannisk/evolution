@@ -50,7 +50,7 @@ def web_des_intersection(class_descriptions, cmp_des):
     cmp_des = {key:cmp_des[key] for key in cmp_des if cmp_des[key]["class_num"] in intersection}
     return class_descriptions, cmp_des
 
-def make_N_folds_classes(class_descriptions, companies_descriptions, N=6):
+def make_N_folds_classes(class_descriptions, companies_descriptions, N=5):
     """ Make N datasets such that there is no
     class overlap between training and testing.
     With some additional logic for dataset balance,
@@ -79,7 +79,7 @@ if __name__=="__main__":
     class_descriptions = read_descriptions()
     companies_descriptions = read_meta()
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
-    make_N_folds_classes(class_descriptions, companies_descriptions, N=5)
+    make_N_folds_classes(class_descriptions, companies_descriptions, N=6)
 
 
 
