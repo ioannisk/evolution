@@ -5,6 +5,7 @@ import time
 import os
 from collections import Counter
 
+N = 5
 MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
@@ -50,7 +51,27 @@ def web_des_intersection(class_descriptions, cmp_des):
     cmp_des = {key:cmp_des[key] for key in cmp_des if cmp_des[key]["class_num"] in intersection}
     return class_descriptions, cmp_des
 
-def make_N_folds_classes(class_descriptions, companies_descriptions, N=5):
+
+def update_index(index):
+    index +=1
+    if index==N:
+        index = 0
+    return index
+
+
+def allocate_bin(folds, class_num, counts, fold_index, app_fold_volume):
+    if folds[fold_index] < app_fold_volume:
+        folds[fold_index] += counts
+    else:
+        fold_index = update_index(fold_index)
+        allocate_bin(folds, class_num, counts, fold_index, app_fold_volume)
+    fold_index = update_index(fold_index)
+    return folds, fold_index
+
+
+
+
+def make_N_folds_classes(class_descriptions, companies_descriptions):
     """ Make N datasets such that there is no
     class overlap between training and testing.
     With some additional logic for dataset balance,
@@ -64,14 +85,10 @@ def make_N_folds_classes(class_descriptions, companies_descriptions, N=5):
     ## [] instead of 0
     folds = [0 for i in range(N)]
     app_fold_volume = len(companies_descriptions)/N + (len(companies_descriptions)/N)*0.1
-
+    print(app_fold_volume)
     fold_index = 0
     for class_num, counts in ranked:
-        if folds[fold_index] < app_fold_volume:
-            folds[fold_index] += counts
-        fold_index +=1
-        if fold_index ==N:
-            fold_index = 0
+        folds, fold_index = allocate_bin(folds, class_num, counts, fold_index, app_fold_volume)
     print(folds)
     print(sum(folds))
 
@@ -99,10 +116,11 @@ def write_fold():
 
 
 if __name__=="__main__":
+
     class_descriptions = read_descriptions()
     companies_descriptions = read_meta()
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
-    make_N_folds_classes(class_descriptions, companies_descriptions, N=5)
+    make_N_folds_classes(class_descriptions, companies_descriptions, N=N)
 
 
 
