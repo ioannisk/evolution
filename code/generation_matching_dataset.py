@@ -121,27 +121,26 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     """
     # Count and order classes according to datapoints
     class_counts = Counter()
-    print(len(companies_descriptions))
+
     for id_ in companies_descriptions:
         class_counts[companies_descriptions[id_]["class_num"]]+=1
     # Rank according to least common count
     ranked = class_counts.most_common()[::-1]
     folds_volume = [0 for i in range(N)]
     folds = [[] for i in range(N)]
-    #
-    # + (len(companies_descriptions)/N)*0.05
+    # Maybe allow +5% in volyme if probelms
     app_fold_volume = len(companies_descriptions)/N
     print(app_fold_volume)
     fold_index = 0
-    # ccc = 0
     for class_num, counts in ranked:
-        # print(ccc)
-        # ccc +=1
         folds, folds_volume, fold_index = allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_volume)
-    print(folds_volume)
-    print(sum(folds_volume))
-    print([len(i) for i in folds])
-    print(sum([len(i) for i in folds]))
+    # make sure all training data is used
+    assert (len(companies_descriptions))==(sum(folds_volume))
+    # make sure all classes are used
+    assert sum([len(i) for i in folds]) == len(class_descriptions.keys())
+    print("Folds have volume of {}".format(folds_volume))
+    print("Folds have #classes of {}".format([len(i) for i in folds]))
+
 
 
 def write_fold():
