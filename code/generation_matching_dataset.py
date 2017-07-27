@@ -8,11 +8,22 @@ MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
 
-def web_des_intersection(class_descriptions, companies_descriptions):
+
+def web_des_intersection(class_descriptions, cmp_des):
+
     des_set = set(class_descriptions.keys())
-    web_set = set([companies_descriptions[key]["class_num"] for key in companies_descriptions])
+    web_set = set([cmp_des[key]["class_num"] for key in cmp_des])
     print(len(des_set))
     print(len(web_set))
+    intersection =  des_set.intersection(web_set)
+    print(len(class_descriptions))
+    print(len(cmp_des))
+    class_descriptions = {key:class_descriptions[key] for key in class_descriptions if key in intersection}
+    cmp_des = {key:cmp_des[key] for key in cmp_des if cmp_des[key]["class_num"] in intersection}
+    print(len(class_descriptions))
+    print(len(cmp_des))
+
+
 
 
 def read_descriptions():
@@ -28,11 +39,14 @@ def read_descriptions():
 
 def read_meta():
     companies_descriptions = {}
+    a= set()
     with open("../data/web_site_meta_1.txt", "r") as file_:
         for line in file_:
             line = line.strip()
             id_, class_num , txt = line.split('\t')
             companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
+            a.add(class_num)
+    print(len(a))
     return companies_descriptions
 
 
