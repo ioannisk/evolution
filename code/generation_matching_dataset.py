@@ -3,7 +3,7 @@ import json
 import random
 import time
 import os
-from collection import Counter
+from collections import Counter
 
 MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
