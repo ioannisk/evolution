@@ -138,7 +138,7 @@ def make_data_from_folds(folds):
         mask[i] = 0
         training = (folds[mask])
         training = np.concatenate(training)
-        data.append((list(training),list(validation)))
+        data.append((training,validation))
     return data
 
 
@@ -172,8 +172,9 @@ if __name__=="__main__":
     companies_descriptions = read_meta()
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
     folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
-    data = make_data_from_folds([[1],[2],[3],[4],[5]])
-    print(data)
+    data = make_data_from_folds(folds)
+    for i, j in folds:
+        print(len(i), len(j))
 
 
 
