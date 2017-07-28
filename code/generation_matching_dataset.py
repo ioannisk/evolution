@@ -8,7 +8,7 @@ import numpy as np
 
 # Not actually 20 folds
 # 2k in each bucket is convenient number for testing quickly
-N = 5
+N = 20
 MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
