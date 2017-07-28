@@ -126,27 +126,53 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     print("Folds have #classes of {}".format([len(i) for i in folds]))
     return folds
 
-def make_data_from_folds(folds):
-    """ Return N training, validation
-    pairs from raw folds
+def merge_folds(class_folds):
+    """ Return N training, validation pairs from raw folds
+    return: list of tuples (trainig, validation) for each fold
     """
     data = []
-    folds = np.array(folds)
-    for i, validation in enumerate(folds):
-        mask = np.ones(len(folds), dtype=bool)
+    class_folds = np.array(class_folds)
+    for i, validation in enumerate(class_folds):
+        mask = np.ones(len(class_folds), dtype=bool)
         mask[i] = 0
-        training = (folds[mask])
+        training = (class_folds[mask])
         training = np.concatenate(training)
         data.append((training,validation))
     return data
 
 
 
-def make_training_pairs(folds):
+
+
+def positive_pairs():
+
+
+def negative_pairs():
+
+def make_pairs(fold_classes):
+    """ Match the document with the
+    des class if match or a random
+    des class if not match. Then shuffle
+    so MLP can learn.
+    """
+    print(fold_classes)
+    positive_pairs(fold_classes)
+    negative_pairs(fold_classes)
+
+
+#
+# MAYBE!!!!!!! data leak in negations is a very smart idea
+# It is not a mistake rather than an advantage of this classifier
+# We know what some websites are not, not necessarily what they are
+#
+def make_training_dataset(class_folds):
     """ This function makes binary pairs
     so the decomposable attention can be trainined
     and evaluated in 2 classes (match, doesnt match)
     """
+    for training, validation in class_folds:
+        make_pairs(training)
+        make_pairs(validation)
 
 
 
@@ -155,7 +181,8 @@ def make_training_pairs(folds):
 
 
 
-# def make_evaluation_pairs:
+
+def make_evaluation_pairs:
     """ This function makes as many pairs for a
     company as classes. This data is used for the final
     evaluation against all classes
@@ -171,9 +198,10 @@ if __name__=="__main__":
     companies_descriptions = read_meta()
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
     folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
-    data = make_data_from_folds(folds)
-    for i, j in data:
-        print(len(i), len(j))
+    class_folds = merge_folds(folds)
+    make_training_dataset(class_folds, class_descriptions, companies_descriptions)
+    # for i, j in data:
+    #     print(len(i), len(j))
 
 
 
