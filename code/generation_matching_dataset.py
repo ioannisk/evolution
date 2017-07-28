@@ -8,7 +8,7 @@ import numpy as np
 
 # Not actually 20 folds
 # 2k in each bucket is convenient number for testing quickly
-N = 20
+N = 5
 MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
@@ -170,6 +170,9 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
             sample_class = allowed_samples[random.randint(0, len(allowed_samples) - 1)]
             class_des = class_descriptions[sample_class]
             negative.append((class_des, company_des))
+    ## shuffle data for learning purposes
+    print(len(negative))
+    print(len(positive))
 
 
 
