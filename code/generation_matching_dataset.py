@@ -220,7 +220,7 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
             for pair in training_pairs:
                 write_json_line(pair, file_)
         with open(path+"validation.json", "w") as file_:
-            for pair in training_pairs:
+            for pair in validation_pairs:
                 write_json_line(pair, file_)
 # def make_evaluation_pairs:
 #     """ This function makes as many pairs for a
