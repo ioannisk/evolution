@@ -171,7 +171,7 @@ if __name__=="__main__":
     companies_descriptions = read_meta()
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
     folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
-    data = make_data_from_folds([1,2,3,4,5])
+    data = make_data_from_folds([[1],[2],[3],[4],[5]])
     print(data)
 
 
