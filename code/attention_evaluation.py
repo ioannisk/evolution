@@ -328,7 +328,7 @@ def baseline_nb():
 
 def decomposable_attention_eval():
     used_classes =  find_only_used_classes()
-    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/my_model_111/prob_predictions.txt", "r") as file_:
+    with open("/home/ioannis/models/my_model_111/prob_predictions.txt", "r") as file_:
         predictions = []
         for line in file_:
             line = line.strip()

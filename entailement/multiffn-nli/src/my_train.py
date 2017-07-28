@@ -39,6 +39,9 @@
 # python interactive-eval.py my_model/ ~/data/glove/glove.840B.300d.txt -i -a
 # python interactive-eval.py my_model/ ~/data/glove/fast_glove.txt -i -a
 
+########################################################################################
+########################################################################################
+
 
 
 from __future__ import division, print_function

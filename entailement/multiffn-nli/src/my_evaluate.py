@@ -44,6 +44,10 @@ if __name__ == '__main__':
     parser.add_argument('-e',
                         help='Print pairs and labels that got a wrong answer',
                         action='store_true', dest='errors')
+    parser.add_argument('-save',
+                        help='If give the predictions are stored',
+                        action='save_predictions', dest='save_predictions')
+
     args = parser.parse_args()
 
     utils.config_logger(verbose=args.verbose)
@@ -68,10 +72,11 @@ if __name__ == '__main__':
     formated_probabilities = [prob_tuple for batch in probabilities for prob_tuple in batch ]
     if args.errors:
         print_errors(pairs, answers, label_dict, formated_probabilities)
-    with open(args.model+"prob_predictions.txt", "wb") as file_:
-        # formated probabilities returs tuple with prob for con and entailement
-        for prob_tuple in formated_probabilities:
-            file_.write("{}\n".format(prob_tuple[label_dict['entailment']]))
+    if args.save_predictions:
+        with open(args.model+"prob_predictions.txt", "wb") as file_:
+            # formated probabilities returs tuple with prob for con and entailement
+            for prob_tuple in formated_probabilities:
+                file_.write("{}\n".format(prob_tuple[label_dict['entailment']]))
     # for i, a in enumerate(answers):
         # print (a, formated_probabilities[i][label_dict['entailment']])
     print('Loss: %f' % loss)
