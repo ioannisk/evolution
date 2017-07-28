@@ -13,6 +13,11 @@ MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
 
+def write_json_line(json_ ,file_):
+    json.dump(json_ , file_)
+    file_.write('\n')
+
+
 def read_descriptions():
     """Read the meta data file
     input: des txt file produced from wrt_locally.py
@@ -210,10 +215,12 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
             os.mkdir(path)
         except:
             pass
-        with open(path+"training.json")
-
-
-
+        with open(path+"training.json", "w") as file_:
+            for pair in training_pairs:
+                write_json_line(pair, file_)
+        with open(path+"validation.json", "w") as file_:
+            for pair in training_pairs:
+                write_json_line(pair, file_)
 # def make_evaluation_pairs:
 #     """ This function makes as many pairs for a
 #     company as classes. This data is used for the final
