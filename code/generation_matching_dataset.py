@@ -33,15 +33,13 @@ def read_meta():
     output: {id: {"class_num":, "txt": } }
     """
     companies_descriptions = {}
-    classes_companies = defaultdict(list)
     with open("../data/web_site_meta_1.txt", "r") as file_:
         for line in file_:
             line = line.strip()
             id_, class_num , txt = line.split('\t')
             if len(txt.split()) <= MAX_WEB_LEN:
                 companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
-                classes_companies[class_num].append(id_)
-    return companies_descriptions,classes_companies
+    return companies_descriptions
 
 def web_des_intersection(class_descriptions, cmp_des):
     """Because of lenght restrictions
@@ -198,11 +196,14 @@ def write_fold():
 
 if __name__=="__main__":
     class_descriptions = read_descriptions()
-    companies_descriptions, classes_companies= read_meta()
-    print(len(class_descriptions))
-    print(len(classes_companies))
-
+    companies_descriptions= read_meta()
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
+    #invert companies descriptions dictionairy
+    classes_companies = defaultdict(list)
+    for id_ in companies_descriptions:
+        classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
+    print(len(classes_companies))
+    print(len(class_descriptions))
     folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     class_folds = merge_folds(folds)
     make_training_dataset(class_folds, class_descriptions, companies_descriptions)
