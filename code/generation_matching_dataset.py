@@ -162,7 +162,7 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     #       2. random sample a wrong classs given a company (all companies are used)
     # for now implement 2
     for class_ in fold_classes:
-        allowed_samples = fold_classes
+        allowed_samples = list(fold_classes)
         allowed_samples.remove(class_)
         companies = classes_companies[class_]
         for company in companies:
