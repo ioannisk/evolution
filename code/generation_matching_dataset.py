@@ -180,7 +180,7 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     data = positive + negative
     random.shuffle(data)
     for i in data:
-        print(data["class"])
+        print(i["class"])
 
 
 
