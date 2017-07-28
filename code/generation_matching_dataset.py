@@ -179,16 +179,7 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     ## shuffle data for learning purpose
     data = positive + negative
     random.shuffle(data)
-    for i in data:
-        print(i["class"])
-
-
-
-
-
-
-
-
+    return data
 
 #
 # MAYBE!!!!!!! data leak in negations is a very smart idea
@@ -201,9 +192,9 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
     and evaluated in 2 classes (match, doesnt match)
     and writes the data on disk
     """
-    for training, validation in class_folds:
-        make_pairs(training,class_descriptions, companies_descriptions,classes_companies)
-        make_pairs(validation,class_descriptions, companies_descriptions,classes_companies)
+    for i, (training, validation) in enumerate(class_folds):
+        training_pairs = make_pairs(training,class_descriptions, companies_descriptions,classes_companies)
+        validation_pairs = make_pairs(validation,class_descriptions, companies_descriptions,classes_companies)
 
 
 
