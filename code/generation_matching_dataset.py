@@ -193,6 +193,10 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
     and writes the data on disk
     """
     data_path = "../data/folds/"
+    try:
+        os.mkdir(data_path)
+    except:
+        pass
     for i, (training, validation) in enumerate(class_folds):
         training_pairs = make_pairs(training,class_descriptions, companies_descriptions,classes_companies)
         validation_pairs = make_pairs(validation,class_descriptions, companies_descriptions,classes_companies)
