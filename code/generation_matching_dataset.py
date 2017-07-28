@@ -144,10 +144,10 @@ def merge_folds(class_folds):
 
 
 
-def positive_pairs():
+# def positive_pairs():
 
 
-def negative_pairs():
+# def negative_pairs():
 
 def make_pairs(fold_classes):
     """ Match the document with the
@@ -156,8 +156,8 @@ def make_pairs(fold_classes):
     so MLP can learn.
     """
     print(fold_classes)
-    positive_pairs(fold_classes)
-    negative_pairs(fold_classes)
+    # positive_pairs(fold_classes)
+    # negative_pairs(fold_classes)
 
 
 #
