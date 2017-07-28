@@ -3,7 +3,7 @@ import json
 import random
 import time
 import os
-from collections import Counter
+from collections import Counter, defaultdict
 import numpy as np
 
 # Not actually 20 folds
@@ -33,13 +33,15 @@ def read_meta():
     output: {id: {"class_num":, "txt": } }
     """
     companies_descriptions = {}
+    classes_companies = defaultdict(list)
     with open("../data/web_site_meta_1.txt", "r") as file_:
         for line in file_:
             line = line.strip()
             id_, class_num , txt = line.split('\t')
             if len(txt.split()) <= MAX_WEB_LEN:
                 companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
-    return companies_descriptions
+                classes_companies[class_num].append(id_)
+    return companies_descriptions,classes_companies
 
 def web_des_intersection(class_descriptions, cmp_des):
     """Because of lenght restrictions
@@ -196,7 +198,10 @@ def write_fold():
 
 if __name__=="__main__":
     class_descriptions = read_descriptions()
-    companies_descriptions = read_meta()
+    companies_descriptions, classes_companies= read_meta()
+    print(len(class_descriptions))
+    print(len(classes_companies))
+
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
     folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     class_folds = merge_folds(folds)
