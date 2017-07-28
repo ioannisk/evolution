@@ -182,11 +182,11 @@ def make_training_dataset(class_folds):
 
 
 
-def make_evaluation_pairs:
-    """ This function makes as many pairs for a
-    company as classes. This data is used for the final
-    evaluation against all classes
-    """
+# def make_evaluation_pairs:
+#     """ This function makes as many pairs for a
+#     company as classes. This data is used for the final
+#     evaluation against all classes
+#     """
 
 
 def write_fold():
