@@ -196,7 +196,7 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
     for i, (training, validation) in enumerate(class_folds):
         training_pairs = make_pairs(training,class_descriptions, companies_descriptions,classes_companies)
         validation_pairs = make_pairs(validation,class_descriptions, companies_descriptions,classes_companies)
-        path = data_path + "fold{}/".format(i)
+        path = data_path + "fold{}".format(i)
         os.mkdir(data_path)
         # with open(data_path+)
 
