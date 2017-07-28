@@ -141,24 +141,16 @@ def merge_folds(class_folds):
     return data
 
 
-
-
-
-# def positive_pairs():
-
-
-# def negative_pairs():
-
-def make_pairs(fold_classes):
+def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_companies):
     """ Match the document with the
     des class if match or a random
     des class if not match. Then shuffle
     so MLP can learn.
     """
-    print(fold_classes)
-    stop
-    # positive_pairs(fold_classes)
-    # negative_pairs(fold_classes)
+    for class_ in fold_classes:
+        companies = classes_companies[class_]
+
+
 
 
 #
@@ -166,19 +158,14 @@ def make_pairs(fold_classes):
 # It is not a mistake rather than an advantage of this classifier
 # We know what some websites are not, not necessarily what they are
 #
-def make_training_dataset(class_folds, class_descriptions, companies_descriptions):
+def make_training_dataset(class_folds, class_descriptions, companies_descriptions,classes_companies):
     """ This function makes binary pairs
     so the decomposable attention can be trainined
     and evaluated in 2 classes (match, doesnt match)
     """
     for training, validation in class_folds:
-        make_pairs(training)
-        make_pairs(validation)
-
-
-
-
-
+        make_pairs(training,class_descriptions, companies_descriptions,classes_companies)
+        make_pairs(validation,class_descriptions, companies_descriptions,classes_companies)
 
 
 
@@ -193,7 +180,6 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
 def write_fold():
     path = "../data/folds"
 
-
 if __name__=="__main__":
     class_descriptions = read_descriptions()
     companies_descriptions= read_meta()
@@ -202,11 +188,9 @@ if __name__=="__main__":
     classes_companies = defaultdict(list)
     for id_ in companies_descriptions:
         classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
-    print(len(classes_companies))
-    print(len(class_descriptions))
     folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     class_folds = merge_folds(folds)
-    make_training_dataset(class_folds, class_descriptions, companies_descriptions)
+    make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
     # for i, j in data:
     #     print(len(i), len(j))
 
