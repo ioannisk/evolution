@@ -8,7 +8,7 @@ import numpy as np
 
 # Not actually 20 folds
 # 2k in each bucket is convenient number for testing quickly
-N = 5
+N = 20
 MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
@@ -131,7 +131,7 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     print("Folds have volume of {}".format(folds_volume))
     print("Folds have #classes of {}".format([len(i) for i in folds]))
     data_path = "../data/folds/"
-    with open(data_path+"folds_volumes.txt","w") as file_:
+    with open(data_path+"volumes_data.txt","w") as file_:
         file_.write("Folds have volume of {}\n".format(folds_volume))
         file_.write("Folds have #classes of {}\n".format([len(i) for i in folds]))
     return folds
