@@ -5,7 +5,7 @@ import time
 import os
 from collections import Counter
 
-N = 5
+N = 10
 MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
@@ -79,26 +79,9 @@ def update_index(fold_index, folds, folds_volume):
     fold_index +=1
     if fold_index==N:
         fold_index = 0
-        folds = folds[::-1]
-        folds_volume = folds_volume[::-1]
+        # folds = folds[::-1]
+        # folds_volume = folds_volume[::-1]
     return fold_index, folds, folds_volume
-
-
-# def update_index(fold_index, folds, folds_volume):
-#     """ index needs to updated
-#     but if index >= N it needs to
-#     go back to 0
-#     """
-#     fold_index_new =random.randint(0,N-1)
-#     # while fold_index ==fold_index:
-#     #     fold_index_new =random.randint(0,5)
-#     # if fold_index==N:
-#     #     fold_index = 0
-#     #     # folds = folds[::-1]
-#         # folds_volume = folds_volume[::-1]
-#     return fold_index_new, folds, folds_volume
-
-
 
 def allocate_bin(folds, folds_volume, class_num, counts, fold_index, app_fold_volume):
     """ Recursive class bin allocator
@@ -138,7 +121,23 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     assert sum([len(i) for i in folds]) == len(class_descriptions.keys())
     print("Folds have volume of {}".format(folds_volume))
     print("Folds have #classes of {}".format([len(i) for i in folds]))
+    return folds
 
+def make_training_pairs():
+    """ This function makes binary pairs
+    so the decomposable attention can be trainined
+    and evaluated in 2 classes (match, doesnt match)
+    """
+
+
+
+
+
+# def make_evaluation_pairs:
+    """ This function makes as many pairs for a
+    company as classes. This data is used for the final
+    evaluation against all classes
+    """
 
 
 def write_fold():
@@ -150,7 +149,7 @@ if __name__=="__main__":
     class_descriptions = read_descriptions()
     companies_descriptions = read_meta()
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
-    make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
+    folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
 
 
 
