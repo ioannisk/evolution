@@ -137,6 +137,7 @@ def make_data_from_folds(folds):
         mask = np.ones(len(folds), dtype=bool)
         mask[i] = 0
         training = list(folds[mask])
+        training = np.concatenate(training)
         data.append((training,validation))
     return data
 
