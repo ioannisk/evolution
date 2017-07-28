@@ -147,11 +147,15 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     des class if not match. Then shuffle
     so MLP can learn.
     """
-    sum_= 0
+    positive = []
+    negative = []
     for class_ in fold_classes:
         companies = classes_companies[class_]
-        sum_ += len(companies)
-    print(sum_)
+        class_des = class_descriptions[class_]
+        for company in companies:
+            company_des = companies_descriptions[company]["txt"]
+            positive.append((class_des,company_des))
+
 
 
 
