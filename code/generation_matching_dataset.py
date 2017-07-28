@@ -13,6 +13,11 @@ MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
 
+
+### USE for globbal variables
+class_descriptions = None
+companies_descriptions = None
+
 def read_descriptions():
     """Read the meta data file
     input: des txt file produced from wrt_locally.py
@@ -41,18 +46,19 @@ def read_meta():
                 companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
     return companies_descriptions
 
-def web_des_intersection(class_descriptions, cmp_des):
+def web_des_intersection():
     """Because of lenght restrictions
     the class_num set of web and des might not overlap.
     This function ensures that the training data will have a
     perfect overlap
     """
     des_set = set(class_descriptions.keys())
-    web_set = set([cmp_des[key]["class_num"] for key in cmp_des])
+    web_set = set([companies_descriptions[key]["class_num"] for key in companies_descriptions])
     intersection =  des_set.intersection(web_set)
     class_descriptions = {key:class_descriptions[key] for key in class_descriptions if key in intersection}
-    cmp_des = {key:cmp_des[key] for key in cmp_des if cmp_des[key]["class_num"] in intersection}
-    return class_descriptions, cmp_des
+    companies_descriptions = {key:companies_descriptions[key] for key in companies_descriptions
+                                if companies_descriptions[key]["class_num"] in intersection}
+    return class_descriptions, companies_descriptions
 
 #
 # Not tested and most probably not working atm
@@ -194,12 +200,14 @@ def write_fold():
 
 
 if __name__=="__main__":
+    global class_descriptions
+    global companies_descriptions
     class_descriptions = read_descriptions()
     companies_descriptions = read_meta()
-    class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
+    class_descriptions, companies_descriptions = web_des_intersection()
     folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     class_folds = merge_folds(folds)
-    make_training_dataset(class_folds, class_descriptions, companies_descriptions)
+    make_training_dataset(class_folds)
     # for i, j in data:
     #     print(len(i), len(j))
 
