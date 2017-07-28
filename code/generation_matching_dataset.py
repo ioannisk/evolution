@@ -132,8 +132,8 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     print("Folds have #classes of {}".format([len(i) for i in folds]))
     data_path = "../data/folds/"
     with open(data_path+"volumes_data.txt","w") as file_:
-        file_.write("Folds have volume of {}\n".format(zip(folds_volume, range(len(folds_volume)))))
-        file_.write("Folds have #classes of {}\n".format(zip([len(i) for i in folds],range(len(folds_volume)))))
+        file_.write("Folds have volume of {}\n".format(list(zip(folds_volume, range(len(folds_volume))))))
+        file_.write("Folds have #classes of {}\n".format(list(zip([len(i) for i in folds],range(len(folds_volume))))))
     return folds
 
 def merge_folds(class_folds):
