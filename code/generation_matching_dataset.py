@@ -8,7 +8,7 @@ import numpy as np
 
 # Not actually 20 folds
 # 2k in each bucket is convenient number for testing quickly
-N = 5
+N = 20
 MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
@@ -149,12 +149,30 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     """
     positive = []
     negative = []
+    ## positive pairs
     for class_ in fold_classes:
         companies = classes_companies[class_]
         class_des = class_descriptions[class_]
         for company in companies:
             company_des = companies_descriptions[company]["txt"]
             positive.append((class_des,company_des))
+    ## negative pairs
+    # 2 design choices
+    #       1. random sample a wrong company given a class
+    #       2. random sample a wrong classs given a company (all companies are used)
+    # for now implement 2
+    for class_ in fold_classes:
+        allowed_samples = fold_classes
+        allowed_samples.remove(class_)
+        companies = classes_companies[class_]
+        for company in companies:
+            company_des = companies_descriptions[company]["txt"]
+            sample_class = allowed_samples[random.randint(0, len(allowed_samples) - 1)]
+            class_des = class_descriptions[sample_class]
+            negative.append((class_des, company_des))
+
+
+
 
 
 
