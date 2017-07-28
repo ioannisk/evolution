@@ -156,6 +156,7 @@ def make_pairs(fold_classes):
     so MLP can learn.
     """
     print(fold_classes)
+    stop
     # positive_pairs(fold_classes)
     # negative_pairs(fold_classes)
 
