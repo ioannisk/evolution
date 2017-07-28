@@ -126,18 +126,28 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     print("Folds have #classes of {}".format([len(i) for i in folds]))
     return folds
 
+def make_data_from_folds(folds):
+    """ Return N training, validation
+    pairs from raw folds
+    """
+    data = []
+    folds = np.array(folds)
+    print(folds)
+    for i, validation in enumerate(folds):
+        mask = np.ones(len(folds), dtype=bool)
+        mask[i] = 0
+        training = folds[mask]
+        data.append((training,validation))
+    return data
+
+
+
 def make_training_pairs(folds):
     """ This function makes binary pairs
     so the decomposable attention can be trainined
     and evaluated in 2 classes (match, doesnt match)
     """
-    folds = np.array(folds)
-    print(folds)
-    for i, valid in enumerate(folds):
-        mask = np.ones(len(folds), dtype=bool)
-        mask[i] = 0
-        training = folds[mask]
-        print(valid, training)
+
 
 
 
@@ -161,7 +171,8 @@ if __name__=="__main__":
     companies_descriptions = read_meta()
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
     folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
-    make_training_pairs([1,2,3,4,5])
+    data = make_data_from_folds([1,2,3,4,5])
+    print(data)
 
 
 
