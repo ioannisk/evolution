@@ -122,8 +122,13 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     assert (len(companies_descriptions))==(sum(folds_volume))
     # make sure all classes are used
     assert sum([len(i) for i in folds]) == len(class_descriptions.keys())
+
     print("Folds have volume of {}".format(folds_volume))
     print("Folds have #classes of {}".format([len(i) for i in folds]))
+    data_path = "../data/folds/"
+    with open(data_path+"folds_volumes.txt","w") as file_:
+        file_.write("Folds have volume of {}\n".format(folds_volume))
+        file_.write("Folds have #classes of {}\n".format([len(i) for i in folds]))
     return folds
 
 def merge_folds(class_folds):
@@ -205,9 +210,7 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
             os.mkdir(path)
         except:
             pass
-
-
-        # with open(data_path+)
+        with open(path+"training.json")
 
 
 
