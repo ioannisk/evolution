@@ -176,7 +176,12 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
             json_buffer = {'des':class_des, 'web':company_des, 'class':"contradiction",
             'des_class':sample_class, 'web_class':company_class, 'web_id':company}
             negative.append(json_buffer)
-    ## shuffle data for learning purposes
+    ## shuffle data for learning purpose
+    data = positive + negative
+    random.shuffle(data)
+    for i in data:
+        print(data["class"])
+
 
 
 
@@ -194,6 +199,7 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
     """ This function makes binary pairs
     so the decomposable attention can be trainined
     and evaluated in 2 classes (match, doesnt match)
+    and writes the data on disk
     """
     for training, validation in class_folds:
         make_pairs(training,class_descriptions, companies_descriptions,classes_companies)
