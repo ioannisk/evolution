@@ -8,7 +8,7 @@ import numpy as np
 
 # Not actually 20 folds
 # 2k in each bucket is convenient number for testing quickly
-N = 20
+N = 5
 MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
@@ -147,8 +147,11 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     des class if not match. Then shuffle
     so MLP can learn.
     """
+    sum_= 0
     for class_ in fold_classes:
         companies = classes_companies[class_]
+        sum_ += len(companies)
+    print(sum_)
 
 
 
