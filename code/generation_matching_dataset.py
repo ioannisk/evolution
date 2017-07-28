@@ -200,10 +200,10 @@ def write_fold():
 
 
 if __name__=="__main__":
-    global class_descriptions
-    global companies_descriptions
     class_descriptions = read_descriptions()
     companies_descriptions = read_meta()
+    global class_descriptions
+    global companies_descriptions
     class_descriptions, companies_descriptions = web_des_intersection()
     folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     class_folds = merge_folds(folds)
