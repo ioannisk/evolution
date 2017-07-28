@@ -155,7 +155,10 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
         class_des = class_descriptions[class_]
         for company in companies:
             company_des = companies_descriptions[company]["txt"]
-            positive.append((class_des,company_des))
+            company_class = companies_descriptions[company]["class_num"]
+            json_buffer = {'des':class_des, 'web':company_des, 'class':"entailment",
+            'des_class':class_, 'web_class':company_class, 'web_id':company}
+            positive.append(json_buffer)
     ## negative pairs
     # 2 design choices
     #       1. random sample a wrong company given a class
@@ -167,12 +170,13 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
         companies = classes_companies[class_]
         for company in companies:
             company_des = companies_descriptions[company]["txt"]
+            company_class = companies_descriptions[company]["class_num"]
             sample_class = allowed_samples[random.randint(0, len(allowed_samples) - 1)]
             class_des = class_descriptions[sample_class]
-            negative.append((class_des, company_des))
+            json_buffer = {'des':class_des, 'web':company_des, 'class':"contradiction",
+            'des_class':sample_class, 'web_class':company_class, 'web_id':company}
+            negative.append(json_buffer)
     ## shuffle data for learning purposes
-    print(len(negative))
-    print(len(positive))
 
 
 
