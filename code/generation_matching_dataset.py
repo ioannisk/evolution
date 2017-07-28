@@ -4,8 +4,11 @@ import random
 import time
 import os
 from collections import Counter
+import numpy as np
 
-N = 20
+# Not actually 20 folds
+# 2k in each bucket is convenient number for testing quickly
+N = 5
 MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
@@ -123,11 +126,20 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     print("Folds have #classes of {}".format([len(i) for i in folds]))
     return folds
 
-def make_training_pairs():
+def make_training_pairs(folds):
     """ This function makes binary pairs
     so the decomposable attention can be trainined
     and evaluated in 2 classes (match, doesnt match)
     """
+    folds = np.array(folds)
+    print(folds)
+    for i, valid in enumerate(folds):
+        mask = np.ones(len(folds), dtype=bool)
+        mask[i] = 0
+        training = folds[mask]
+        print(valid, training)
+
+
 
 
 
@@ -145,11 +157,11 @@ def write_fold():
 
 
 if __name__=="__main__":
-
     class_descriptions = read_descriptions()
     companies_descriptions = read_meta()
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
     folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
+    make_training_pairs(folds)
 
 
 
