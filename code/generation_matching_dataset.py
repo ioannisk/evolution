@@ -132,7 +132,6 @@ def make_data_from_folds(folds):
     """
     data = []
     folds = np.array(folds)
-    print(folds)
     for i, validation in enumerate(folds):
         mask = np.ones(len(folds), dtype=bool)
         mask[i] = 0
@@ -173,7 +172,7 @@ if __name__=="__main__":
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
     folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     data = make_data_from_folds(folds)
-    for i, j in folds:
+    for i, j in data:
         print(len(i), len(j))
 
 
