@@ -209,8 +209,6 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
 #     """
 
 
-def write_fold():
-
 
 if __name__=="__main__":
     class_descriptions = read_descriptions()
