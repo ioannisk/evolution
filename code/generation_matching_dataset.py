@@ -254,7 +254,7 @@ def make_evaluation_pairs(class_descriptions):
                     for class_num in class_descriptions:
                         class_buffer ='entailment' if class_num ==true_cl else 'contradiction'
                         json_buffer={'des':class_descriptions[class_num] , 'web':website_txt , 'class':class_buffer, 'web_id':id_, 'web_class':web_class[i], 'des_class':class_num}
-                        write_json_line(json_buffer,ranking_file)
+                        write_json_line(json_buffer,ranking_validation)
 
 
 
