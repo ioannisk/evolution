@@ -46,7 +46,7 @@ if __name__ == '__main__':
                         action='store_true', dest='errors')
     parser.add_argument('-save',
                         help='If directory is given the predictions are stored',
-                        , dest="save_predictions")
+                        dest="save_predictions")
 
     args = parser.parse_args()
 
