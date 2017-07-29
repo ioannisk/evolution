@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
 from collections import Counter
-from generation_matching import read_descriptions, read_meta, web_des_intersection
+from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 
 TOP_N = 1
 
