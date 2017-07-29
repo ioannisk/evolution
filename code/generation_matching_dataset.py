@@ -4,6 +4,7 @@ import random
 import time
 import os
 from collections import Counter, defaultdict
+from attention_evaluation import load_json_validation_file
 import numpy as np
 
 # Not actually 20 folds
@@ -231,13 +232,17 @@ def make_evaluation_pairs():
     data_path = "../data/folds/"
     folds = os.listdir(data_path)
     for fold in folds:
-        if os.path.isdir(data_path+fold):
-            fold_path = data_path+fold
-            json_files =os.listdir(fold_path)
-            for file_ in json_files:
-                if file_=="validation.json":
-                    file_path = data_path+fold+"/"+file_
-                    print(file_path)
+        if not os.path.isdir(data_path+fold):
+            continue
+        fold_path = data_path+fold
+        json_files =os.listdir(fold_path)
+        for file_ in json_files:
+            if file_!="validation.json":
+                continue
+            file_path = data_path+fold+"/"+file_
+            print(file_path)
+            # with open(file_path,'r') as validation_file:
+            #     load_json_validation_file
 
 
 
