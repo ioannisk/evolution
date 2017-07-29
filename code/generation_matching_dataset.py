@@ -232,10 +232,12 @@ def make_evaluation_pairs():
     folds = os.listdir(data_path)
     for fold in folds:
         if os.path.isdir(data_path+fold):
-            json_files =os.listdir(data_path+fold)
+            fold_path = data_path+fold
+            json_files =os.listdir(fold_path)
             for file_ in json_files:
                 if file_=="validation.json":
-                    print(data_path+fold+"/"+file_)
+                    file_path = data_path+fold+"/"+file_
+                    print(file_path)
 
 
 
