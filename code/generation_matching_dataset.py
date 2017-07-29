@@ -229,7 +229,7 @@ def make_evaluation_pairs():
     evaluation against all classes
     """
     data_path = "../data/folds/"
-    list_ = os.listdir(directory)
+    list_ = os.listdir(data_path)
     print(list_)
 
 
