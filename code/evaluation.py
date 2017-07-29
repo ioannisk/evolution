@@ -229,4 +229,4 @@ if __name__=="__main__":
         accuracy = baseline_tfidf(fold)
         print("    Tf-idf baseline is {}".format(accuracy))
         accuracy = decomposable_attention_eval(fold)
-        print("    Decomposable attention is {}".format(TOP_N, accuracy))
+        print("    Decomposable attention is {}".format( accuracy))
