@@ -232,7 +232,7 @@ def make_evaluation_pairs():
     list_ = os.listdir(data_path)
     for i in list_:
         if os.path.isdir(data_path+i):
-            j = ("{} ".format(data_path)).join(os.listdir(i))
+            j = ("{} ".format(data_path)).join(i)
             print(j)
 
 
