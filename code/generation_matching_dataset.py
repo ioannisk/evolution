@@ -224,6 +224,9 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
             for pair in validation_pairs:
                 write_json_line(pair, file_)
 
+
+
+
 def make_evaluation_pairs():
     """ This function makes as many pairs for a
     company as classes. This data is used for the final
@@ -240,9 +243,9 @@ def make_evaluation_pairs():
             if file_!="validation.json":
                 continue
             file_path = data_path+fold+"/"+file_
-            print(file_path)
-            # with open(file_path,'r') as validation_file:
-            #     load_json_validation_file
+            with open(file_path, 'r') as validation_file:
+                # This function returns only entailements
+                des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(validation_file)
 
 
 
@@ -250,9 +253,9 @@ def make_evaluation_pairs():
 
 
 if __name__=="__main__":
-    # class_descriptions = read_descriptions()
-    # companies_descriptions= read_meta()
-    # class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
+    class_descriptions = read_descriptions()
+    companies_descriptions= read_meta()
+    class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
     # #invert companies descriptions dictionairy
     # classes_companies = defaultdict(list)
     # for id_ in companies_descriptions:
@@ -260,5 +263,6 @@ if __name__=="__main__":
     # folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     # class_folds = merge_folds(folds)
     # make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
+    print(len(class_descriptions))
     make_evaluation_pairs()
 
