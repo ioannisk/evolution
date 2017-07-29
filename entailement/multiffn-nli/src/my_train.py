@@ -6,6 +6,7 @@
 
 ######## FOLDS TRAINING ########
 ##################################
+## not enough training
 # python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds/fold0/training.json /home/ioannis/evolution/data/folds/fold0/validation.json folds/model0 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.005 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
 # python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds/fold1/training.json /home/ioannis/evolution/data/folds/fold1/validation.json folds/model1 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.005 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
 # python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds/fold2/training.json /home/ioannis/evolution/data/folds/fold2/validation.json folds/model2 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.005 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
