@@ -205,10 +205,6 @@ def decomposable_attention_eval(fold):
             companies.add(line['web_id'])
     true_positive = 0
     step = len(used_classes)
-    i = 0
-    print(web_class[i:i+step])
-    print(print(web_class[i:i+step+1]))
-    stop
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
         list_web = web_class[i:i+step]
