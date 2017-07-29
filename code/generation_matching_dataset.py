@@ -237,6 +237,7 @@ def make_evaluation_pairs(class_descriptions):
     for fold in folds:
         if not os.path.isdir(data_path+fold):
             continue
+        print("Writing:  {}".format(fold))
         fold_path = data_path+fold
         json_files =os.listdir(fold_path)
         for file_ in json_files:
@@ -275,5 +276,5 @@ if __name__=="__main__":
     # folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     # class_folds = merge_folds(folds)
     # make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
-    make_evaluation_pairs(class_descriptions)
+    # make_evaluation_pairs(class_descriptions)
 

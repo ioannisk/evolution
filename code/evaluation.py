@@ -11,72 +11,10 @@ from utilities import data_pipeline, vectorize_corpus
 
 TOP_N = 1
 
-def train_naive_bayes_des():
-    used_classes = find_only_used_classes()
-    ### change data type for pandas to work
-    used_classes = np.asarray(list(used_classes), dtype=np.int64)
-    des_df, df_web = data_pipeline()
-    des_df = des_df[des_df["class_num"].isin(used_classes)]
-    df_web = df_web[df_web["class_num"].isin(used_classes)]
-    df_web = df_web[df_web["descriptions"] != ""]
-    df_web = df_web[df_web["titles"] != ""]
 
-    df_web = df_web[df_web["titles"].map(len)<=111]
-    df_web = df_web[df_web["titles"].map(len)<=111]
-    # print(len(df_web))
+folds = [14,15,16]
 
-    des_data = list(des_df["txt"])
-    des_labels = list(des_df["class_num"])
-    web_sites = list(df_web["class_txt"])
-    labels = list(df_web["class_num"])
-    titles = list(df_web["titles"])
-    web_des = list(df_web["descriptions"])
-
-
-    # tfidf = False
-    # vec_des_data, vec_web_sites, vec = vectorize_corpus(des_data, web_sites,tfidf=tfidf)
-    # a=0.3 if tfidf else 0.1
-    # import IPython; IPython.embed()
-    des_and_titles = []
-    for d, t in zip(web_des, titles):
-        des_and_titles.append(d + " " + t)
-
-    dim =len(des_and_titles)
-    split = int(dim*0.95)
-
-    X_train= des_and_titles[:split]
-    X_valid= des_and_titles[split:]
-    Y_train = labels[:split]
-    Y_valid = labels[split:]
-
-    vec = tf_idf_vectorization(X_train)
-    X_train_vec = vec.transform(X_train)
-    X_valid_vec = vec.transform(X_valid)
-
-
-    # for a in np.arange(1,10)*0.01:
-    a = 0.1
-    gnb = MultinomialNB(alpha=a)
-    clf = gnb.fit(X_train_vec, Y_train)
-    y_pred_test = clf.predict(X_valid_vec)
-    y_pred_train = clf.predict(X_train_vec)
-    print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
-    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
-
-
-    vec = tf_idf_vectorization(des_data)
-    vec_des_data = vec.transform(des_data)
-    vec_web_sites = vec.transform(web_sites)
-    # for a in np.arange(10,20)*0.1:
-    gnb = MultinomialNB(alpha=a)
-    clf = gnb.fit(vec_des_data, des_labels)
-    y_pred_test = clf.predict(vec_web_sites)
-    y_pred_train = clf.predict(vec_des_data)
-    print("Training acc is {0}".format(accuracy_score(des_labels ,y_pred_train )*100))
-    print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( labels,y_pred_test, normalize=True)*100,a))
-
-
-def train_naive_bayes_des_local():
+def train_naive_bayes_des_local(fold):
     used_classes = find_only_used_classes()
     X_train =[]
     X_valid =[]
@@ -87,7 +25,7 @@ def train_naive_bayes_des_local():
     training_classes = set()
     validation_classes = set()
     ids_ = set()
-    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
+    with open("/home/ioannis/evolution/data/folds/fold{}/training.json".format(fold),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
         for i, b in enumerate(binary_class):
             if b!="entailment":
@@ -96,7 +34,7 @@ def train_naive_bayes_des_local():
             Y_train.append(web_class[i])
             training_classes.add(web_class[i])
             # descriptions_txt.append(line[1])
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
+    with open("/home/ioannis/evolution/data/folds/fold{}/validation.json".format(fold),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
         for i, b in enumerate(binary_class):
             if b!="entailment":
@@ -104,6 +42,9 @@ def train_naive_bayes_des_local():
             X_valid.append(web_txt[i])
             Y_valid.append(web_class[i])
             validation_classes.add(web_class[i])
+    all_classes = training_classes.union(validation_classes)
+    print(len(all_classes))
+    stop
 
     with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
         for line in file_:
@@ -368,7 +309,7 @@ if __name__=="__main__":
     global TOP_N
     for TOP_N in range(1,10,2):
         print("TOP {} ranks".format(TOP_N))
-        accuracy = train_naive_bayes_des_local()
+        accuracy = train_naive_bayes_des_local(14)
         print("    Naive Bayes baseline is {}".format(TOP_N, accuracy))
         accuracy = baseline_tfidf()
         print("    Tf-idf baseline is {}".format(TOP_N, accuracy))

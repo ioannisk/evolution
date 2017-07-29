@@ -4,15 +4,21 @@
 #(1902, 14), (1931, 15), (1959, 16), (1986, 17), (2015, 18), (2052, 19)
 
 
-
+######## FOLDS TRAINING ########
 # python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds/fold14/training.json /home/ioannis/evolution/data/folds/fold14/validation.json folds/model14 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.005 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
 # python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds/fold15/training.json /home/ioannis/evolution/data/folds/fold15/validation.json folds/model15 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.005 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
 # python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds/fold16/training.json /home/ioannis/evolution/data/folds/fold16/validation.json folds/model16 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.005 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
 
 
+######## FOLDS EVALUATION ########
+# python my_evaluate.py folds/model14 /home/ioannis/evolution/data/folds/fold14/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
+# python my_evaluate.py folds/model15 /home/ioannis/evolution/data/folds/fold15/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
+# python my_evaluate.py folds/model16 /home/ioannis/evolution/data/folds/fold16/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
 
-
-
+######## FOLDS RANKING PROBABILISTIC OUTPUT ########
+# python my_evaluate.py folds/model14 /home/ioannis/evolution/data/folds/fold14/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
+# python my_evaluate.py folds/model15 /home/ioannis/evolution/data/folds/fold15/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
+# python my_evaluate.py folds/model16 /home/ioannis/evolution/data/folds/fold16/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
 
 
 ########################################################################################
