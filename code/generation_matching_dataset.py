@@ -229,11 +229,12 @@ def make_evaluation_pairs():
     evaluation against all classes
     """
     data_path = "../data/folds/"
-    list_ = os.listdir(data_path)
-    for i in list_:
-        if os.path.isdir(data_path+i):
-            j = ("{} ".format(data_path)).join(i)
-            print(j)
+    folds = os.listdir(data_path)
+    for fold in folds:
+        if os.path.isdir(data_path+fold):
+            json_files =os.listdir(data_path+fold)
+            print(json_files)
+
 
 
 
