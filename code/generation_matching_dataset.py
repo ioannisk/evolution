@@ -230,7 +230,9 @@ def make_evaluation_pairs():
     """
     data_path = "../data/folds/"
     list_ = os.listdir(data_path)
-    print(list_)
+    for i in list_:
+        j = os.listdir(i)
+        print(j)
 
 
 
