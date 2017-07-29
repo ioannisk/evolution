@@ -1,5 +1,26 @@
 # -*- coding: utf-8 -*-
 
+#20 fold stats
+#(1902, 14), (1931, 15), (1959, 16), (1986, 17), (2015, 18), (2052, 19)
+
+
+
+# python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds/fold14/training.json /home/ioannis/evolution/data/folds/fold14/validation.json folds/fold14/model_14 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.005 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
+
+
+
+
+
+
+
+########################################################################################
+########################################################################################
+########################################################################################
+########################################################################################
+########################################################################################
+########################################################################################
+
+
 
 # nohup python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/training_pairs.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad &
 # nohup python -u my_train.py ~/data/glove/glove.840B.300d.txt /home/ioannis/evolution/data/training_pairs.json /home/ioannis/evolution/data/validation_pairs.json my_model mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad &> nohup2.out&
@@ -39,8 +60,6 @@
 # python interactive-eval.py my_model/ ~/data/glove/glove.840B.300d.txt -i -a
 # python interactive-eval.py my_model/ ~/data/glove/fast_glove.txt -i -a
 
-########################################################################################
-########################################################################################
 
 
 
