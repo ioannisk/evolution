@@ -231,6 +231,8 @@ def make_evaluation_pairs():
     data_path = "../data/folds/"
     list_ = os.listdir(data_path)
     for i in list_:
+        print(i)
+        print(os.path.isdir(i))
         if os.path.isdir(i):
             # continue
             j = os.listdir(i)
