@@ -222,27 +222,29 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
         with open(path+"validation.json", "w") as file_:
             for pair in validation_pairs:
                 write_json_line(pair, file_)
-# def make_evaluation_pairs:
-#     """ This function makes as many pairs for a
-#     company as classes. This data is used for the final
-#     evaluation against all classes
-#     """
+
+def make_evaluation_pairs():
+    """ This function makes as many pairs for a
+    company as classes. This data is used for the final
+    evaluation against all classes
+    """
+    data_path = "../data/folds/"
+    list_ = os.listdir(directory)
+    print(list_)
+
 
 
 
 if __name__=="__main__":
-    class_descriptions = read_descriptions()
-    companies_descriptions= read_meta()
-    class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
-    #invert companies descriptions dictionairy
-    classes_companies = defaultdict(list)
-    for id_ in companies_descriptions:
-        classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
-    folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
-    class_folds = merge_folds(folds)
-    make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
-    # for i, j in data:
-    #     print(len(i), len(j))
-
-
+    # class_descriptions = read_descriptions()
+    # companies_descriptions= read_meta()
+    # class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
+    # #invert companies descriptions dictionairy
+    # classes_companies = defaultdict(list)
+    # for id_ in companies_descriptions:
+    #     classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
+    # folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
+    # class_folds = merge_folds(folds)
+    # make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
+    make_evaluation_pairs()
 
