@@ -247,9 +247,16 @@ def make_evaluation_pairs(class_descriptions):
                 # This function returns only entailements
                 des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(validation_file)
             ranking_file=data_path+fold+"/ranking_validation.json"
-            print(file_path)
-            print(len(des_txt))
-            # with open(ranking_file, 'w') as ranking_validation:
+            with open(ranking_file, 'w') as ranking_validation:
+                for i, website_txt in enumerate(web_txt):
+                    id_ = web_id[i]
+                    true_cl = des_class[i]
+                    for class_num in class_descriptions:
+                        class_buffer ='entailment' if class_num ==true_cl else 'contradiction'
+                        json_buffer={'des':class_descriptions[class_num] , 'web':website_txt , 'class':class_buffer, 'web_id':id_, 'web_class':web_class[i], 'des_class':class_num}
+                        write_json_line(json_buffer,ranking_file)
+
+
 
 
 
