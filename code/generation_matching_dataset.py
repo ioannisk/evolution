@@ -247,6 +247,7 @@ def make_evaluation_pairs(class_descriptions):
                 # This function returns only entailements
                 des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(validation_file)
             ranking_file=data_path+fold+"/ranking_validation.json"
+            print(file_path)
             print(len(des_txt))
             # with open(ranking_file, 'w') as ranking_validation:
 
