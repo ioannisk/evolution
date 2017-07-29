@@ -225,8 +225,8 @@ if __name__=="__main__":
     for fold in folds:
         print("FOLD {} ranks".format(fold))
         accuracy = train_naive_bayes_des_local(fold)
-        print("    Naive Bayes baseline is {}".format(TOP_N, accuracy))
+        print("    Naive Bayes baseline is {}".format(accuracy))
         accuracy = baseline_tfidf(fold)
-        print("    Tf-idf baseline is {}".format(TOP_N, accuracy))
+        print("    Tf-idf baseline is {}".format(accuracy))
         accuracy = decomposable_attention_eval(fold)
         print("    Decomposable attention is {}".format(TOP_N, accuracy))
