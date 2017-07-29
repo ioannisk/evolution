@@ -216,7 +216,8 @@ def decomposable_attention_eval(fold):
         list_des = list(list_des)
         # ensure only used classes are taken into consideration
         used_list_des = [jj for jj in list_des if jj in used_classes]
-        print(used_list_des[:TOP_N])
+        # print(used_list_des[:TOP_N])
+        used_list_des.remove('82990')
         if list_web[0] in used_list_des[:TOP_N]:
             true_positive +=1
     return true_positive*100/float(len(companies))
