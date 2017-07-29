@@ -185,7 +185,7 @@ def baseline_tfidf(fold):
 
 
 def decomposable_attention_eval(fold):
-    with open("/home/ioannis/evolution/data/folds/fold{}/training.json".format(fold), "r") as file_:
+    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/folds/model{}/prob_predictions.txt".format(fold), "r") as file_:
         predictions = []
         for line in file_:
             line = line.strip()
