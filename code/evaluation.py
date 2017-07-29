@@ -9,18 +9,18 @@ from sklearn.metrics import accuracy_score
 from collections import Counter
 from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 
-TOP_N = 1
+TOP_N = 3
 
 
 folds = [14,15,16]
 class_descriptions = read_descriptions()
 companies_descriptions= read_meta()
 class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
-set_used_class_descriptions = set(class_descriptions.keys())
+used_classes = set(class_descriptions.keys())
 
 
 def train_naive_bayes_des_local(fold):
-    used_classes = find_only_used_classes()
+    # used_classes = find_only_used_classes()
     X_train =[]
     X_valid =[]
     Y_train =[]
@@ -35,26 +35,26 @@ def train_naive_bayes_des_local(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            if des_class[i] not in set_used_class_descriptions:
+            if des_class[i] not in used_classes:
                 continue
             X_train.append(web_txt[i])
             Y_train.append(web_class[i])
-            training_classes.add(web_class[i])
+            # training_classes.add(web_class[i])
             # descriptions_txt.append(line[1])
     with open("/home/ioannis/evolution/data/folds/fold{}/validation.json".format(fold),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            if des_class[i] not in set_used_class_descriptions:
+            if des_class[i] not in used_classes:
                 continue
             X_valid.append(web_txt[i])
             Y_valid.append(web_class[i])
-            validation_classes.add(web_class[i])
-    all_classes = training_classes.union(validation_classes)
-    print(len(all_classes))
+            # validation_classes.add(web_class[i])
+    # all_classes = training_classes.union(validation_classes)
+    # print(len(all_classes))
 
-    stop
+    # stop
     with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
         for line in file_:
             line = line.strip()
@@ -94,36 +94,6 @@ def train_naive_bayes_des_local(fold):
         if Y_valid[i] in classes[:TOP_N]:
             true_positive +=1
     return true_positive*100/float(len(Y_valid))
-
-
-
-
-##########################################################
-# Due to data preprocessing not all 649 classes must be used
-##########################################################
-def find_only_used_classes():
-    used_classes = set()
-    count_dic = Counter()
-    sum_all = 0.0
-    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
-        for line in file_:
-            line = line.strip()
-            line = json.loads(line)
-            used_classes.add(line["web_class"])
-            count_dic[line["web_class"]] +=1
-            sum_all +=1
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
-        for line in file_:
-            line = line.strip()
-            line = json.loads(line)
-            used_classes.add(line["web_class"])
-            count_dic[line["web_class"]] +=1
-            sum_all +=1
-    cmon = count_dic.most_common()
-    # for i,j in cmon:
-    #     print (i, j*100/sum_all)
-    return used_classes
-
 
 
 def tf_idf_vectorization(corpus):
@@ -185,12 +155,11 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
             true_positive +=1
     return true_positive*100/float(len(web_class))
 
-def baseline_tfidf():
+def baseline_tfidf(fold):
     # print("Loading data sets")
     descriptions_txt = []
     descriptions_class = []
-    used_classes = find_only_used_classes()
-    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
+    with open("/home/ioannis/evolution/data/folds/fold{}/training.json".format(fold),"r") as file_:
         training_corpus = make_training_corpus(file_)
         # print(len(training_corpus))
     with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
@@ -203,7 +172,7 @@ def baseline_tfidf():
             descriptions_class.append(line[0])
             training_corpus.append(line[1])
             descriptions_txt.append(line[1])
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
+    with open("/home/ioannis/evolution/data/folds/fold{}/validation.json".format(fold),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
     ## train tf-idf vectorizer
     # tfidf_vec = tf_idf_vectorization(descriptions_txt)
@@ -214,77 +183,15 @@ def baseline_tfidf():
     accuracy = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
     return accuracy
 
-def baseline_nb():
-    x_train = []
-    y_train = []
-    x_valid = []
-    y_valid = []
-    descriptions_class = []
-    descriptions_txt = []
-    used_classes = find_only_used_classes()
-    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
-        for line in file_:
-            line = line.strip()
-            line = json.loads(line)
-            binary_class = line["class"]
-            if binary_class!= "entailment":
-                continue
-            des_txt = line["des"]
-            web_txt = line["web"]
-            des_class = line["des_class"]
-            web_class = line["web_class"]
-            web_id = line["web_id"]
-            x_train.append(web_txt)
-            y_train.append(web_class)
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
-        for line in file_:
-            line = line.strip()
-            line = json.loads(line)
-            binary_class = line["class"]
-            if binary_class!= "entailment":
-                continue
-            des_txt = line["des"]
-            web_txt = line["web"]
-            des_class = line["des_class"]
-            web_class = line["web_class"]
-            web_id = line["web_id"]
-            x_valid.append(web_txt)
-            y_valid.append(web_class)
-    with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
-        for line in file_:
-            line = line.strip()
-            line = line.split('\t')
-            ## ensure only used classes are used for inference
-            if line[0] not in used_classes:
-                continue
-            x_train.append(line[1])
-            y_train.append(line[0])
-            descriptions_class.append(line[0])
-            descriptions_txt.append(line[1])
 
-    vec = tf_idf_vectorization(descriptions_txt)
-    tfidf_train = vec.transform(descriptions_txt)
-    tfidf_valid = vec.transform(x_valid)
-
-    # for a in (np.arange(1,11)*0.1):
-    #     gnb = MultinomialNB(alpha=a)
-    #     # print("training nb with alpha {}".format(a))
-    #     clf = gnb.fit(tfidf_train, descriptions_class)
-    #     y_pred_test = clf.predict(tfidf_valid)
-    #     print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( y_valid,y_pred_test, normalize=True)*100,a))
-
-    # naive_bayes_optimizer()
-
-
-def decomposable_attention_eval():
-    used_classes =  find_only_used_classes()
-    with open("/home/ioannis/models/my_model_111/prob_predictions.txt", "r") as file_:
+def decomposable_attention_eval(fold):
+    with open("/home/ioannis/evolution/data/folds/fold{}/training.json".format(fold), "r") as file_:
         predictions = []
         for line in file_:
             line = line.strip()
             predictions.append(float(line))
         # print(len(predictions))
-    with open("/home/ioannis/evolution/data/meta_ranking_validation_111.json", "r") as file_:
+    with open("/home/ioannis/evolution/data/folds/fold{}/validation.json".format(fold), "r") as file_:
         companies = set()
         description_class = []
         web_class = []
@@ -297,7 +204,7 @@ def decomposable_attention_eval():
             description_class.append(line['des_class'])
             companies.add(line['web_id'])
     true_positive = 0
-    step = 649
+    step = len(used_classes)
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
         list_web = web_class[i:i+step]
@@ -315,13 +222,11 @@ def decomposable_attention_eval():
 
 
 if __name__=="__main__":
-
-    global TOP_N
-    for TOP_N in range(1,10,2):
-        print("TOP {} ranks".format(TOP_N))
-        accuracy = train_naive_bayes_des_local(14)
+    for fold in folds:
+        print("FOLD {} ranks".format(fold))
+        accuracy = train_naive_bayes_des_local(fold)
         print("    Naive Bayes baseline is {}".format(TOP_N, accuracy))
-        accuracy = baseline_tfidf()
+        accuracy = baseline_tfidf(fold)
         print("    Tf-idf baseline is {}".format(TOP_N, accuracy))
-        accuracy = decomposable_attention_eval()
+        accuracy = decomposable_attention_eval(fold)
         print("    Decomposable attention is {}".format(TOP_N, accuracy))
