@@ -9,12 +9,11 @@ from sklearn.metrics import accuracy_score
 from collections import Counter
 from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 
-TOP_N = 1
+TOP_N = 10
 
 
 # folds = [0,1,2,14,15,16]
-# folds = [14,15,16]
-folds = [16]
+folds = [14,15,16]
 class_descriptions = read_descriptions()
 companies_descriptions= read_meta()
 class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
@@ -217,8 +216,8 @@ def decomposable_attention_eval(fold):
         # ensure only used classes are taken into consideration
         used_list_des = [jj for jj in list_des if jj in used_classes]
         # print(used_list_des[:TOP_N])
-        used_list_des.remove('87200')
-        used_list_des.remove('82990')
+        # used_list_des.remove('87200')
+        # used_list_des.remove('82990')
         if list_web[0] in used_list_des[:TOP_N]:
             true_positive +=1
     return true_positive*100/float(len(companies))
