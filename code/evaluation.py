@@ -9,7 +9,7 @@ from sklearn.metrics import accuracy_score
 from collections import Counter
 from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 
-TOP_N = 3
+TOP_N = 1
 
 
 folds = [14,15,16]
