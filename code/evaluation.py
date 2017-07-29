@@ -12,7 +12,8 @@ from generation_matching_dataset import read_descriptions, read_meta, web_des_in
 TOP_N = 10
 
 
-folds = [0,1,2,14,15,16]
+# folds = [0,1,2,14,15,16]
+folds = [3]
 # folds = [14,15,16]
 class_descriptions = read_descriptions()
 companies_descriptions= read_meta()
@@ -227,7 +228,8 @@ def decomposable_attention_eval(fold):
 
 if __name__=="__main__":
     global TOP_N
-    for TOP_N in [1,3,5,7,9,11]:
+    # for TOP_N in [1,3,5,7,9,11]:
+    for TOP_N in [3]:
         print("TOP N {}".format(TOP_N))
         nb_avrg = 0
         tfidf_avrg = 0
