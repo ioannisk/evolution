@@ -9,10 +9,10 @@ from sklearn.metrics import accuracy_score
 from collections import Counter
 from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 
-TOP_N = 2
+TOP_N = 10
 
 
-folds = [14,15,16]
+folds = [0,1,2,14,15,16]
 class_descriptions = read_descriptions()
 companies_descriptions= read_meta()
 class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
