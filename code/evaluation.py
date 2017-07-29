@@ -7,12 +7,17 @@ import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
 from collections import Counter
-from utilities import data_pipeline, vectorize_corpus
+from generation_matching import read_descriptions, read_meta, web_des_intersection
 
 TOP_N = 1
 
 
 folds = [14,15,16]
+class_descriptions = read_descriptions()
+companies_descriptions= read_meta()
+class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
+set_used_class_descriptions = set(class_descriptions.keys())
+
 
 def train_naive_bayes_des_local(fold):
     used_classes = find_only_used_classes()
@@ -30,6 +35,8 @@ def train_naive_bayes_des_local(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
+            if des_class[i] not in set_used_class_descriptions:
+                continue
             X_train.append(web_txt[i])
             Y_train.append(web_class[i])
             training_classes.add(web_class[i])
@@ -39,13 +46,15 @@ def train_naive_bayes_des_local(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
+            if des_class[i] not in set_used_class_descriptions:
+                continue
             X_valid.append(web_txt[i])
             Y_valid.append(web_class[i])
             validation_classes.add(web_class[i])
     all_classes = training_classes.union(validation_classes)
     print(len(all_classes))
-    stop
 
+    stop
     with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
         for line in file_:
             line = line.strip()
@@ -306,6 +315,7 @@ def decomposable_attention_eval():
 
 
 if __name__=="__main__":
+
     global TOP_N
     for TOP_N in range(1,10,2):
         print("TOP {} ranks".format(TOP_N))
