@@ -241,7 +241,7 @@ if __name__=="__main__":
         att_avrg += accuracy
         print("    Decomposable attention is {}".format( accuracy))
     print("###############")
-    print("Naive Bayes avrg {}".format(nb_avrg))
-    print("TfIdf avrg {}".format(tfidf_avrg))
-    print("Decomposable Attention avrg {}".format(att_avrg))
+    print("Naive Bayes avrg {}".format(nb_avrg/len(folds)))
+    print("TfIdf avrg {}".format(tfidf_avrg/len(folds)))
+    print("Decomposable Attention avrg {}".format(att_avrg/len(folds)))
     print("###############")
