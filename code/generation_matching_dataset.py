@@ -227,7 +227,7 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
 
 
 
-def make_evaluation_pairs():
+def make_evaluation_pairs(class_descriptions):
     """ This function makes as many pairs for a
     company as classes. This data is used for the final
     evaluation against all classes
@@ -246,6 +246,10 @@ def make_evaluation_pairs():
             with open(file_path, 'r') as validation_file:
                 # This function returns only entailements
                 des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(validation_file)
+            ranking_file=data_path+fold+"/ranking_validation.json"
+            print(len(des_txt))
+            # with open(ranking_file, 'w') as ranking_validation:
+
 
 
 
@@ -263,6 +267,5 @@ if __name__=="__main__":
     # folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     # class_folds = merge_folds(folds)
     # make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
-    print(len(class_descriptions))
-    make_evaluation_pairs()
+    make_evaluation_pairs(class_descriptions)
 
