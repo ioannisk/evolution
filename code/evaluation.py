@@ -191,7 +191,7 @@ def decomposable_attention_eval(fold):
             line = line.strip()
             predictions.append(float(line))
         # print(len(predictions))
-    with open("/home/ioannis/evolution/data/folds/fold{}/validation.json".format(fold), "r") as file_:
+    with open("/home/ioannis/evolution/data/folds/fold{}/ranking_validation.json".format(fold), "r") as file_:
         companies = set()
         description_class = []
         web_class = []
