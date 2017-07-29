@@ -73,7 +73,7 @@ if __name__ == '__main__':
     if args.errors:
         print_errors(pairs, answers, label_dict, formated_probabilities)
     if args.save_predictions:
-        with open(args.model+"prob_predictions_1.txt", "wb") as file_:
+        with open(args.model+args.save_predictions, "wb") as file_:
             # formated probabilities returs tuple with prob for con and entailement
             for prob_tuple in formated_probabilities:
                 file_.write("{}\n".format(prob_tuple[label_dict['entailment']]))
