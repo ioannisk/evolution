@@ -12,9 +12,12 @@ from generation_matching_dataset import read_descriptions, read_meta, web_des_in
 RANKS = [1,3,5,7,9,11,13,15]
 
 
-folds = [0,1,2,3,4,5,14,15,16]
+#
+# Comparison on folds 2, 4, 0
+#
+# folds = [0,1,2,3,4,5,14,15,16]
 # folds = [3]
-# folds = [14,15,16]
+folds = [0,2,4]
 class_descriptions = read_descriptions()
 companies_descriptions= read_meta()
 class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
@@ -32,7 +35,10 @@ for key in classes_companies:
     if counts[key] <= less_than:
         rare_classes_set.add(key)
 
-
+#
+# Decomposable attention doesnt change
+# but all other models do for the best, mayve that is a good thing
+#
 def remove_rare_classes(ranked_list, ):
     for rare_class in rare_classes_set:
         ranked_list.remove(rare_class)
@@ -114,7 +120,7 @@ def train_naive_bayes_des_local(fold):
         ranked = sorted(ranked, reverse=True)
         proba, classes = zip(*ranked)
         classes = list(classes)
-        classes = remove_rare_classes(classes)
+        # classes = remove_rare_classes(classes)
         for j, TOP_N in enumerate(RANKS):
             if Y_valid[i] in classes[:TOP_N]:
                 true_positive[j] +=1
@@ -176,7 +182,7 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
         ranked = sorted(sim_labels, reverse=True)
         similarities, classes = zip(*ranked)
         classes = list(classes)
-        classes = remove_rare_classes(classes)
+        # classes = remove_rare_classes(classes)
         for j, TOP_N in enumerate(RANKS):
             if web_class[i] in classes[:TOP_N]:
                 true_positive[j] +=1
@@ -244,7 +250,7 @@ def decomposable_attention_eval(fold):
         # print(used_list_des[:TOP_N])
         # used_list_des.remove('87200')
         # used_list_des.remove('82990')
-        used_list_des = remove_rare_classes(used_list_des)
+        # used_list_des = remove_rare_classes(used_list_des)
         for j, TOP_N in enumerate(RANKS):
             if list_web[0] in used_list_des[:TOP_N]:
                 true_positive[j] +=1
@@ -253,11 +259,7 @@ def decomposable_attention_eval(fold):
 
 
 
-if __name__=="__main__":
-    # global TOP_N
-    # for TOP_N in [1,3,5,7,9,11]:
-    # for TOP_N in [3]:
-    # print("TOP N {}".format(TOP_N))
+def all_fold_stats():
     nb_avrg = np.zeros(len(RANKS))
     tfidf_avrg = np.zeros(len(RANKS))
     att_avrg = np.zeros(len(RANKS))
@@ -278,3 +280,39 @@ if __name__=="__main__":
         print("    Naive Bayes avrg {}".format(nb_avrg[i]/len(folds)))
         print("    TfIdf avrg {}".format(tfidf_avrg[i]/len(folds)))
         print("    Decomposable Attention avrg {}".format(att_avrg[i]/len(folds)))
+
+def print_each_fold_stats(accuracy, message):
+    print("Algorithm: {}".format(message))
+    for acc, ra in zip(accuracy, RANKS):
+        print("Rank {} accuracy {}".format(ra, acc))
+
+def each_fold_stats():
+    nb_avrg = np.zeros(len(RANKS))
+    tfidf_avrg = np.zeros(len(RANKS))
+    att_avrg = np.zeros(len(RANKS))
+    for fold in folds:
+        print("###### FOLD {} ######".format(fold))
+        # print("FOLD {} ranks".format(fold))
+        accuracy = train_naive_bayes_des_local(fold)
+        print_each_fold_stats(accuracy, "Naive Bayes")
+        nb_avrg += accuracy
+        # print("    Naive Bayes baseline is {}".format(accuracy))
+        accuracy = baseline_tfidf(fold)
+        print_each_fold_stats(accuracy, "Tf IDF")
+        tfidf_avrg +=accuracy
+        # print("    Tf-idf baseline is {}".format(accuracy))
+        accuracy = decomposable_attention_eval(fold, "Decomposable Attention")
+        print_each_fold_stats(accuracy)
+        att_avrg += accuracy
+        # print("    Decomposable attention is {}".format( accuracy))
+    for i, TOP_N in enumerate(RANKS):
+        print("RANK {} accuracy".format(TOP_N))
+        print("    Naive Bayes avrg {}".format(nb_avrg[i]/len(folds)))
+        print("    TfIdf avrg {}".format(tfidf_avrg[i]/len(folds)))
+        print("    Decomposable Attention avrg {}".format(att_avrg[i]/len(folds)))
+
+
+if __name__=="__main__":
+    # all_fold_stats()
+    each_fold_stats()
+
