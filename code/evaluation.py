@@ -11,7 +11,7 @@ from generation_matching_dataset import read_descriptions, read_meta, web_des_in
 
 RANKS = [1,2,3,4,5,6,7,8,9,10,15,20]
 choosen_fold = "folds"
-data_path = "/home/ioannis/evolution/data/{}/".format()
+data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
 #
 # Comparison on folds 2, 4, 0
