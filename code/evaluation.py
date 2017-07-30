@@ -15,9 +15,9 @@ RANKS = [1,3,5,7,9,11,13,15]
 #
 # Comparison on folds 2, 4, 0
 #
-# folds = [0,1,2,3,4,5,14,15,16]
+folds = [0,1,2,3,4,5,14,15,16]
 # folds = [3]
-folds = [0,2,4]
+# folds = [0,2,4]
 class_descriptions = read_descriptions()
 companies_descriptions= read_meta()
 class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
@@ -313,6 +313,6 @@ def each_fold_stats():
 
 
 if __name__=="__main__":
-    # all_fold_stats()
-    each_fold_stats()
+    all_fold_stats()
+    # each_fold_stats()
 
