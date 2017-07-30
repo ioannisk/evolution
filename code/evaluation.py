@@ -290,7 +290,7 @@ def print_each_fold_stats(accuracy, message):
 def print_nice_table(list1, list2, list3):
     print("Naive Bayes | Tf-IDF | Attention")
     for i,j in enumerate(list1):
-        print("    {:3f}      |   {:3f}   |     {:3f}     ".format(j, list2[i], list3[i]))
+        print("    {:.3f}      |   {:.3f}   |     {:.3f}     ".format(j, list2[i], list3[i]))
 
 
 
