@@ -287,6 +287,13 @@ def print_each_fold_stats(accuracy, message):
     for acc, ra in zip(accuracy, RANKS):
         print("Rank {} accuracy {}".format(ra, acc))
 
+def print_nice_table(list1, list2, list3):
+    print("Naive Bayes | Tf-IDF | Attention")
+    for i,j in enumerate(list1):
+        print("    {}      |   {}   |     {}     ".format(i, list2[i], list3[i]))
+
+
+
 def each_fold_stats():
     nb_avrg = np.zeros(len(RANKS))
     tfidf_avrg = np.zeros(len(RANKS))
@@ -294,17 +301,18 @@ def each_fold_stats():
     for fold in folds:
         print("###### FOLD {} ######".format(fold))
 
-        accuracy = train_naive_bayes_des_local(fold)
-        print_each_fold_stats(accuracy, "Naive Bayes")
-        nb_avrg += accuracy
+        nb_accuracy = train_naive_bayes_des_local(fold)
+        print_each_fold_stats(nb_accuracy, "Naive Bayes")
+        nb_avrg += nb_accuracy
 
-        accuracy = baseline_tfidf(fold)
-        print_each_fold_stats(accuracy, "Tf IDF")
-        tfidf_avrg +=accuracy
+        tf_accuracy = baseline_tfidf(fold)
+        # print_each_fold_stats(tf_accuracy, "Tf IDF")
+        tfidf_avrg +=tf_accuracy
 
-        accuracy = decomposable_attention_eval(fold)
-        print_each_fold_stats(accuracy, "Decomposable Attention")
-        att_avrg += accuracy
+        att_accuracy = decomposable_attention_eval(fold)
+        # print_each_fold_stats(att_accuracy, "Decomposable Attention")
+        att_avrg += att_accuracy
+        print_nice_table(nb_accuracy, tf_accuracy, att_accuracy)
         # print("    Decomposable attention is {}".format( accuracy))
     for i, TOP_N in enumerate(RANKS):
         print("RANK {} accuracy".format(TOP_N))
