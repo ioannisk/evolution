@@ -7,7 +7,7 @@
 
 
 ###### Binary training on SNLI ######
-# python train.py ~/data/glove/glove-840B.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl binary_snli mlp --lower -e 30 -u 300 -d 0.8 --l2 0 -b 32 -r 0.05 --vocab ~/data/glove/glove-840B-vocabulary.txt
+# python train.py ~/data/glove/glove-840B.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl binary_snli mlp --lower -e 30 -u 300 -d 0.8 --report 200 -b 32 -r 0.05 --vocab ~/data/glove/glove-840B-vocabulary.txt
 
 
 ####### Evaluate  #####################
