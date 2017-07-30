@@ -10,7 +10,7 @@ from collections import Counter,defaultdict
 from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 
 RANKS = [1,3,5,7,9,11,13,15]
-
+data_path = "/home/ioannis/evolution/data/folds/"
 
 #
 # Comparison on folds 2, 4, 0
@@ -18,7 +18,6 @@ RANKS = [1,3,5,7,9,11,13,15]
 # folds = [0,1,2,3,4,5,14,15,16]
 # folds = [6]
 folds = [0,2,4]
-# folds = [8,7,9]
 class_descriptions = read_descriptions()
 companies_descriptions= read_meta()
 class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
@@ -59,7 +58,7 @@ def train_naive_bayes_des_local(fold):
     training_classes = set()
     validation_classes = set()
     ids_ = set()
-    with open("/home/ioannis/evolution/data/folds/fold{}/training.json".format(fold),"r") as file_:
+    with open(data_path+"fold{}/training.json".format(fold),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
         for i, b in enumerate(binary_class):
             if b!="entailment":
@@ -70,7 +69,7 @@ def train_naive_bayes_des_local(fold):
             Y_train.append(web_class[i])
             # training_classes.add(web_class[i])
             # descriptions_txt.append(line[1])
-    with open("/home/ioannis/evolution/data/folds/fold{}/validation.json".format(fold),"r") as file_:
+    with open(data_path+"fold{}/validation.json".format(fold),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
         for i, b in enumerate(binary_class):
             if b!="entailment":
@@ -193,7 +192,7 @@ def baseline_tfidf(fold):
     # print("Loading data sets")
     descriptions_txt = []
     descriptions_class = []
-    with open("/home/ioannis/evolution/data/folds/fold{}/training.json".format(fold),"r") as file_:
+    with open(data_path+"fold{}/training.json".format(fold),"r") as file_:
         training_corpus = make_training_corpus(file_)
         # print(len(training_corpus))
     with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
@@ -206,7 +205,7 @@ def baseline_tfidf(fold):
             descriptions_class.append(line[0])
             training_corpus.append(line[1])
             descriptions_txt.append(line[1])
-    with open("/home/ioannis/evolution/data/folds/fold{}/validation.json".format(fold),"r") as file_:
+    with open(data_path+"fold{}/validation.json".format(fold),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
     ## train tf-idf vectorizer
     # tfidf_vec = tf_idf_vectorization(descriptions_txt)
@@ -225,7 +224,7 @@ def decomposable_attention_eval(fold):
             line = line.strip()
             predictions.append(float(line))
         # print(len(predictions))
-    with open("/home/ioannis/evolution/data/folds/fold{}/ranking_validation.json".format(fold), "r") as file_:
+    with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
         companies = set()
         description_class = []
         web_class = []

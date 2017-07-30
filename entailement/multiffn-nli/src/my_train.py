@@ -98,6 +98,10 @@
 
 
 
+# python my_evaluate.py folds5/model0 /home/ioannis/evolution/data/folds5/fold0/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
+# python my_evaluate.py folds5/model1 /home/ioannis/evolution/data/folds5/fold1/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
+# python my_evaluate.py folds5/model2 /home/ioannis/evolution/data/folds5/fold2/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
+# python my_evaluate.py folds5/model3 /home/ioannis/evolution/data/folds5/fold3/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
 
 
 
