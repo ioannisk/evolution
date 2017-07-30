@@ -21,6 +21,24 @@ class_descriptions, companies_descriptions = web_des_intersection(class_descript
 used_classes = set(class_descriptions.keys())
 
 
+def remove_rare_classes(ranke_list, less_than=10):
+    rare_classes_set = set()
+    classes_companies = defaultdict(list)
+    for id_ in companies_descriptions:
+        classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
+    counts = {}
+    for key in classes_companies:
+        counts[key] =len(classes_companies[key])
+    for key in classes_companies:
+        if counts[key] <= less_than:
+            rare_classes_set.add(key)
+    for rare_class in rare_classes_set:
+        ranked_list.remove(rare_class)
+    return ranked_list
+    # return rare_classes_set
+
+
+
 def train_naive_bayes_des_local(fold):
     # used_classes = find_only_used_classes()
     X_train =[]
@@ -93,6 +111,7 @@ def train_naive_bayes_des_local(fold):
         ranked = zip(proba, clf.classes_)
         ranked = sorted(ranked, reverse=True)
         proba, classes = zip(*ranked)
+        classes = remove_rare_classes(classes)
         for j, TOP_N in enumerate(RANKS):
             if Y_valid[i] in classes[:TOP_N]:
                 true_positive[j] +=1
@@ -154,6 +173,7 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
         ranked = sorted(sim_labels, reverse=True)
         similarities, classes = zip(*ranked)
         classes = list(classes)
+        classes = remove_rare_classes(classes)
         for j, TOP_N in enumerate(RANKS):
             if web_class[i] in classes[:TOP_N]:
                 true_positive[j] +=1
@@ -221,6 +241,7 @@ def decomposable_attention_eval(fold):
         # print(used_list_des[:TOP_N])
         # used_list_des.remove('87200')
         # used_list_des.remove('82990')
+        used_list_des = remove_rare_classes(used_list_des)
         for j, TOP_N in enumerate(RANKS):
             if list_web[0] in used_list_des[:TOP_N]:
                 true_positive[j] +=1
