@@ -13,6 +13,7 @@ N = 20
 MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
+data_path = "../data/folds/"
 
 def write_json_line(json_ ,file_):
     json.dump(json_ , file_)
@@ -131,7 +132,6 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
 
     print("Folds have volume of {}".format(folds_volume))
     print("Folds have #classes of {}".format([len(i) for i in folds]))
-    data_path = "../data/folds/"
     with open(data_path+"volumes_data.txt","w") as file_:
         file_.write("Folds have volume of {}\n".format(list(zip(folds_volume, range(len(folds_volume))))))
         file_.write("Folds have #classes of {}\n".format(list(zip([len(i) for i in folds],range(len(folds_volume))))))
@@ -203,11 +203,11 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
     and evaluated in 2 classes (match, doesnt match)
     and writes the data on disk
     """
-    data_path = "../data/folds/"
-    try:
-        os.mkdir(data_path)
-    except:
-        pass
+
+    # try:
+    os.mkdir(data_path)
+    # except:
+    #     pass
     for i, (training, validation) in enumerate(class_folds):
         print("Writting fold {}".format(i))
         training_pairs = make_pairs(training,class_descriptions, companies_descriptions,classes_companies)
