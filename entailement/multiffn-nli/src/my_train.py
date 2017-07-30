@@ -44,6 +44,9 @@
 
 ######## FOLDS EVALUATION ########
 ##################################
+# python my_evaluate.py binary_snli_2 /home/ioannis/evolution/data/folds/fold0/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
+
+
 # python my_evaluate.py folds/model0 /home/ioannis/evolution/data/folds/fold0/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
 # python my_evaluate.py folds/model1 /home/ioannis/evolution/data/folds/fold1/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
 # python my_evaluate.py folds/model2 /home/ioannis/evolution/data/folds/fold2/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
@@ -63,6 +66,7 @@
 ####################################################
 #python interactive-eval.py folds/model0 ~/data/glove/glove-840B.npy -i -a --vocab ~/data/glove/glove-840B-vocabulary.txt
 
+# python my_evaluate.py binary_snli_2 /home/ioannis/evolution/data/folds/fold0/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_lr.txt
 
 # python my_evaluate.py folds/model0 /home/ioannis/evolution/data/folds/fold0/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_lr.txt
 # python my_evaluate.py folds/model1 /home/ioannis/evolution/data/folds/fold1/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_lr.txt
