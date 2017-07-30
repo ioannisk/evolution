@@ -8,6 +8,7 @@
 ##################################
 ##################################
 ##################################
+
 ######## 20 FOLDS TRAINING ########
 # old data in 0,2,4 folds
 ##################################
@@ -60,6 +61,9 @@
 
 ######## FOLDS RANKING PROBABILISTIC OUTPUT ########
 ####################################################
+#python interactive-eval.py folds/model0 ~/data/glove/glove-840B.npy -i -a --vocab ~/data/glove/glove-840B-vocabulary.txt
+
+
 # python my_evaluate.py folds/model0 /home/ioannis/evolution/data/folds/fold0/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_lr.txt
 # python my_evaluate.py folds/model1 /home/ioannis/evolution/data/folds/fold1/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_lr.txt
 # python my_evaluate.py folds/model2 /home/ioannis/evolution/data/folds/fold2/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_lr.txt
@@ -163,8 +167,9 @@
 # python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/meta_training_110.json /home/ioannis/evolution/data/meta_validation_110.json my_model mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
 
 ####### INFERENCE #######
-# python interactive-eval.py my_model/ ~/data/glove/glove.840B.300d.txt -i -a
-# python interactive-eval.py my_model/ ~/data/glove/fast_glove.txt -i -a
+
+# python interactive-eval.py ~/models/snli_trained/ ~/data/glove/glove-840B.npy --vocab ~/data/glove/glove-840B-vocabulary.txt -i -a
+
 
 
 
