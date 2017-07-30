@@ -238,6 +238,7 @@ if __name__=="__main__":
     tfidf_avrg = np.zeros(len(RANKS))
     att_avrg = np.zeros(len(RANKS))
     for fold in folds:
+        print("loading fold {}".format(fold))
         # print("FOLD {} ranks".format(fold))
         accuracy = train_naive_bayes_des_local(fold)
         nb_avrg += accuracy
