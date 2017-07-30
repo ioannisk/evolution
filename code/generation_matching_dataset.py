@@ -113,6 +113,7 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
     We need to make sure that the splits have ~= #points
     """
     # Count and order classes according to datapoints
+    os.mkdir(data_path)
     class_counts = Counter()
     for id_ in companies_descriptions:
         class_counts[companies_descriptions[id_]["class_num"]]+=1
@@ -205,7 +206,7 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
     """
 
     # try:
-    os.mkdir(data_path)
+    # os.mkdir(data_path)
     # except:
     #     pass
     for i, (training, validation) in enumerate(class_folds):
