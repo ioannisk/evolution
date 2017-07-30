@@ -9,7 +9,7 @@ from sklearn.metrics import accuracy_score
 from collections import Counter
 from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 
-TOP_N = 10
+RANKS = [1,3,5,7,9,11,13,15]
 
 
 folds = [0,1,2,3,4,5,14,15,16]
@@ -88,13 +88,14 @@ def train_naive_bayes_des_local(fold):
     # import IPython; IPython.embed()
     # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
     y_pred_test_proba = clf.predict_proba(X_valid_vec)
-    true_positive = 0
+    true_positive = np.zeros(len(RANKS))
     for i, proba in enumerate(y_pred_test_proba):
         ranked = zip(proba, clf.classes_)
         ranked = sorted(ranked, reverse=True)
         proba, classes = zip(*ranked)
-        if Y_valid[i] in classes[:TOP_N]:
-            true_positive +=1
+        for TOP_N in RANKS:
+            if j, Y_valid[i] in enumerate(classes[:TOP_N]):
+                true_positive[j] +=1
     return true_positive*100/float(len(Y_valid))
 
 
@@ -227,26 +228,28 @@ def decomposable_attention_eval(fold):
 
 
 if __name__=="__main__":
-    global TOP_N
-    for TOP_N in [1,3,5,7,9,11]:
+    # global TOP_N
+    # for TOP_N in [1,3,5,7,9,11]:
     # for TOP_N in [3]:
-        print("TOP N {}".format(TOP_N))
-        nb_avrg = 0
-        tfidf_avrg = 0
-        att_avrg = 0
-        for fold in folds:
-            print("FOLD {} ranks".format(fold))
-            accuracy = train_naive_bayes_des_local(fold)
-            nb_avrg +=accuracy
-            print("    Naive Bayes baseline is {}".format(accuracy))
-            accuracy = baseline_tfidf(fold)
-            tfidf_avrg +=accuracy
-            print("    Tf-idf baseline is {}".format(accuracy))
-            accuracy = decomposable_attention_eval(fold)
-            att_avrg += accuracy
-            print("    Decomposable attention is {}".format( accuracy))
-        print("###############")
-        print("Naive Bayes avrg {}".format(nb_avrg/len(folds)))
-        print("TfIdf avrg {}".format(tfidf_avrg/len(folds)))
-        print("Decomposable Attention avrg {}".format(att_avrg/len(folds)))
-        print("###############")
+    # print("TOP N {}".format(TOP_N))
+    nb_avrg = 0
+    tfidf_avrg = 0
+    att_avrg = 0
+    for fold in folds:
+        print("FOLD {} ranks".format(fold))
+        accuracy = train_naive_bayes_des_local(fold)
+        print accuracy
+        stop
+        # nb_avrg +=accuracy
+        print("    Naive Bayes baseline is {}".format(accuracy))
+        accuracy = baseline_tfidf(fold)
+        tfidf_avrg +=accuracy
+        print("    Tf-idf baseline is {}".format(accuracy))
+        accuracy = decomposable_attention_eval(fold)
+        att_avrg += accuracy
+        print("    Decomposable attention is {}".format( accuracy))
+    print("###############")
+    print("Naive Bayes avrg {}".format(nb_avrg/len(folds)))
+    print("TfIdf avrg {}".format(tfidf_avrg/len(folds)))
+    print("Decomposable Attention avrg {}".format(att_avrg/len(folds)))
+    print("###############")
