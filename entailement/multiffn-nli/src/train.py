@@ -5,8 +5,8 @@
 
 
 
-####### FAST DEPLOYMENT #####################
-# python train.py ~/data/glove/fast_glove.txt ~/data/snli_1.0/train_fast.json ~/data/snli_1.0/snli_1.0_dev.jsonl test_models mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad
+####### Evaluate  #####################
+# python evaluate.py ~/models/snli_trained/ ~/data/snli_1.0/snli_1.0_dev.jsonl ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
 
 ###### INFERENCE ########################
 # python interactive-eval.py ~/models/snli_trained/ ~/data/glove/glove.840B.300d.txt -i -a
