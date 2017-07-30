@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
-from collections import Counter
+from collections import Counter,defaultdict
 from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 
 RANKS = [1,3,5,7,9,11,13,15]
