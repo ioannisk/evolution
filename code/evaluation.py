@@ -231,7 +231,7 @@ if __name__=="__main__":
     # global TOP_N
     # for TOP_N in [1,3,5,7,9,11]:
     # for TOP_N in [3]:
-    print("TOP N {}".format(TOP_N))
+    # print("TOP N {}".format(TOP_N))
     nb_avrg = 0
     tfidf_avrg = 0
     att_avrg = 0
