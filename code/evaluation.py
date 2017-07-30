@@ -20,18 +20,19 @@ companies_descriptions= read_meta()
 class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
 used_classes = set(class_descriptions.keys())
 
+rare_classes_set = set()
+classes_companies = defaultdict(list)
+for id_ in companies_descriptions:
+    classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
+counts = {}
+for key in classes_companies:
+    counts[key] =len(classes_companies[key])
+for key in classes_companies:
+    if counts[key] <= less_than:
+        rare_classes_set.add(key)
+
 
 def remove_rare_classes(ranked_list, less_than=10):
-    rare_classes_set = set()
-    classes_companies = defaultdict(list)
-    for id_ in companies_descriptions:
-        classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
-    counts = {}
-    for key in classes_companies:
-        counts[key] =len(classes_companies[key])
-    for key in classes_companies:
-        if counts[key] <= less_than:
-            rare_classes_set.add(key)
     for rare_class in rare_classes_set:
         ranked_list.remove(rare_class)
     return ranked_list
