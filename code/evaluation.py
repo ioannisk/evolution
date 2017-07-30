@@ -17,7 +17,7 @@ data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 # Comparison on folds 2, 4, 0
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
-folds = [0,1,2]
+folds = [0,1,2,3]
 # folds = [6]
 # folds = [0,2,4]
 class_descriptions = read_descriptions()
