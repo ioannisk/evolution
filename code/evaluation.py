@@ -21,7 +21,7 @@ class_descriptions, companies_descriptions = web_des_intersection(class_descript
 used_classes = set(class_descriptions.keys())
 
 
-def remove_rare_classes(ranke_list, less_than=10):
+def remove_rare_classes(ranked_list, less_than=10):
     rare_classes_set = set()
     classes_companies = defaultdict(list)
     for id_ in companies_descriptions:
