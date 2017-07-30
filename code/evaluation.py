@@ -305,11 +305,11 @@ def each_fold_stats():
         print_each_fold_stats(accuracy, "Decomposable Attention")
         att_avrg += accuracy
         # print("    Decomposable attention is {}".format( accuracy))
-    for i, TOP_N in enumerate(RANKS):
-        print("RANK {} accuracy".format(TOP_N))
-        print("    Naive Bayes avrg {}".format(nb_avrg[i]/len(folds)))
-        print("    TfIdf avrg {}".format(tfidf_avrg[i]/len(folds)))
-        print("    Decomposable Attention avrg {}".format(att_avrg[i]/len(folds)))
+    # for i, TOP_N in enumerate(RANKS):
+    #     print("RANK {} accuracy".format(TOP_N))
+    #     print("    Naive Bayes avrg {}".format(nb_avrg[i]/len(folds)))
+    #     print("    TfIdf avrg {}".format(tfidf_avrg[i]/len(folds)))
+    #     print("    Decomposable Attention avrg {}".format(att_avrg[i]/len(folds)))
 
 
 if __name__=="__main__":
