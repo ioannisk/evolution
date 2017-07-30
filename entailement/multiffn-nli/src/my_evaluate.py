@@ -67,7 +67,7 @@ if __name__ == '__main__':
     pairs = my_ioutils.read_corpus(args.dataset, params['lowercase'],
                                 params['language'])
     dataset = utils.create_dataset(pairs, word_dict, label_dict)
-    loss, acc, answers, probabilities = model.evaluate(sess, dataset, True, 64, testing_mode=True)
+    loss, acc, answers, probabilities = model.evaluate(sess, dataset, True, 128, testing_mode=True)
     # IPython.embed()
     formated_probabilities = [prob_tuple for batch in probabilities for prob_tuple in batch ]
     if args.errors:
