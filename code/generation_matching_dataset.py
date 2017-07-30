@@ -270,9 +270,14 @@ if __name__=="__main__":
     companies_descriptions= read_meta()
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
     # #invert companies descriptions dictionairy
-    # classes_companies = defaultdict(list)
-    # for id_ in companies_descriptions:
-    #     classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
+    classes_companies = defaultdict(list)
+    for id_ in companies_descriptions:
+        classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
+    counts = []
+    for key in classes_companies:
+        counts.append(classes_companies[key])
+    counts  = sorted(counts, reverse=True)
+    print(counts)
     # folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     # class_folds = merge_folds(folds)
     # make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
