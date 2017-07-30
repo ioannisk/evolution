@@ -17,8 +17,8 @@ RANKS = [1,3,5,7,9,11,13,15]
 #
 # folds = [0,1,2,3,4,5,14,15,16]
 # folds = [6]
-# folds = [0,2,4]
-folds = [8,7,9]
+folds = [0,2,4]
+# folds = [8,7,9]
 class_descriptions = read_descriptions()
 companies_descriptions= read_meta()
 class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
@@ -219,7 +219,7 @@ def baseline_tfidf(fold):
 
 
 def decomposable_attention_eval(fold):
-    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/folds/model{}/prob_predictions_lr.txt".format(fold), "r") as file_:
+    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/folds/model{}/prob_predictions.txt".format(fold), "r") as file_:
         predictions = []
         for line in file_:
             line = line.strip()
