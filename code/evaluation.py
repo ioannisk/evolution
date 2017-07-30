@@ -10,7 +10,8 @@ from collections import Counter,defaultdict
 from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 
 RANKS = [1,3,5,7,9,11,13,15]
-data_path = "/home/ioannis/evolution/data/folds/"
+choosen_fold = "folds"
+data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
 #
 # Comparison on folds 2, 4, 0
@@ -218,7 +219,7 @@ def baseline_tfidf(fold):
 
 
 def decomposable_attention_eval(fold):
-    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/folds/model{}/prob_predictions.txt".format(fold), "r") as file_:
+    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/{}/model{}/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
         predictions = []
         for line in file_:
             line = line.strip()
