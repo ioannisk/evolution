@@ -9,11 +9,11 @@ import numpy as np
 
 # Not actually 20 folds
 # 2k in each bucket is convenient number for testing quickly
-N = 20
+N = 5
 MAX_LEN=111
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
-data_path = "../data/folds/"
+data_path = "../data/folds{}/".format(N)
 
 def write_json_line(json_ ,file_):
     json.dump(json_ , file_)
@@ -232,7 +232,6 @@ def make_evaluation_pairs(class_descriptions):
     company as classes. This data is used for the final
     evaluation against all classes
     """
-    data_path = "../data/folds/"
     folds = os.listdir(data_path)
     for fold in folds:
         if not os.path.isdir(data_path+fold):
@@ -273,13 +272,8 @@ if __name__=="__main__":
     classes_companies = defaultdict(list)
     for id_ in companies_descriptions:
         classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
-    counts = []
-    for key in classes_companies:
-        counts.append(len(classes_companies[key]))
-    counts  = sorted(counts, reverse=True)
-    print(counts)
-    # folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
-    # class_folds = merge_folds(folds)
-    # make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
-    # make_evaluation_pairs(class_descriptions)
+    folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
+    class_folds = merge_folds(folds)
+    make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
+    make_evaluation_pairs(class_descriptions)
 

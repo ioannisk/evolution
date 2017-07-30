@@ -16,8 +16,8 @@ RANKS = [1,3,5,7,9,11,13,15]
 # Comparison on folds 2, 4, 0
 #
 # folds = [0,1,2,3,4,5,14,15,16]
-folds = [6]
-# folds = [0,2,4]
+# folds = [6]
+folds = [0,8,2,7,4,9]
 class_descriptions = read_descriptions()
 companies_descriptions= read_meta()
 class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
