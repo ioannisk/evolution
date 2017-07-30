@@ -9,16 +9,16 @@ from sklearn.metrics import accuracy_score
 from collections import Counter,defaultdict
 from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 
-RANKS = [1,3,5,7,9,11,13,15]
+RANKS = [1,2,3,4,5,6,7,8,9,10,15,20]
 choosen_fold = "folds"
-data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
+data_path = "/home/ioannis/evolution/data/{}/".format()
 
 #
 # Comparison on folds 2, 4, 0
 #
-# folds = [0,1,2,3,4,5,14,15,16]
+folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [6]
-folds = [0,2,4]
+# folds = [0,2,4]
 class_descriptions = read_descriptions()
 companies_descriptions= read_meta()
 class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
@@ -294,23 +294,23 @@ def each_fold_stats():
     for fold in folds:
         print("###### FOLD {} ######".format(fold))
 
-        # accuracy = train_naive_bayes_des_local(fold)
-        # print_each_fold_stats(accuracy, "Naive Bayes")
-        # nb_avrg += accuracy
+        accuracy = train_naive_bayes_des_local(fold)
+        print_each_fold_stats(accuracy, "Naive Bayes")
+        nb_avrg += accuracy
 
-        # accuracy = baseline_tfidf(fold)
-        # print_each_fold_stats(accuracy, "Tf IDF")
-        # tfidf_avrg +=accuracy
+        accuracy = baseline_tfidf(fold)
+        print_each_fold_stats(accuracy, "Tf IDF")
+        tfidf_avrg +=accuracy
 
         accuracy = decomposable_attention_eval(fold)
         print_each_fold_stats(accuracy, "Decomposable Attention")
         att_avrg += accuracy
         # print("    Decomposable attention is {}".format( accuracy))
-    # for i, TOP_N in enumerate(RANKS):
-    #     print("RANK {} accuracy".format(TOP_N))
-    #     print("    Naive Bayes avrg {}".format(nb_avrg[i]/len(folds)))
-    #     print("    TfIdf avrg {}".format(tfidf_avrg[i]/len(folds)))
-    #     print("    Decomposable Attention avrg {}".format(att_avrg[i]/len(folds)))
+    for i, TOP_N in enumerate(RANKS):
+        print("RANK {} accuracy".format(TOP_N))
+        print("    Naive Bayes avrg {}".format(nb_avrg[i]/len(folds)))
+        print("    TfIdf avrg {}".format(tfidf_avrg[i]/len(folds)))
+        print("    Decomposable Attention avrg {}".format(att_avrg[i]/len(folds)))
 
 
 if __name__=="__main__":
