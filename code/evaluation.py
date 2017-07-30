@@ -9,7 +9,7 @@ from sklearn.metrics import accuracy_score
 from collections import Counter
 from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 
-RANKS = [1,,3,5,7,9,11,13,15]
+RANKS = [1,3,5,7,9,11,13,15]
 
 
 folds = [0,1,2,3,4,5,14,15,16]
