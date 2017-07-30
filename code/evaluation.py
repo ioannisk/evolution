@@ -235,16 +235,16 @@ if __name__=="__main__":
         tfidf_avrg = 0
         att_avrg = 0
         for fold in folds:
-            # print("FOLD {} ranks".format(fold))
+            print("FOLD {} ranks".format(fold))
             accuracy = train_naive_bayes_des_local(fold)
             nb_avrg +=accuracy
-            # print("    Naive Bayes baseline is {}".format(accuracy))
+            print("    Naive Bayes baseline is {}".format(accuracy))
             accuracy = baseline_tfidf(fold)
             tfidf_avrg +=accuracy
-            # print("    Tf-idf baseline is {}".format(accuracy))
+            print("    Tf-idf baseline is {}".format(accuracy))
             accuracy = decomposable_attention_eval(fold)
             att_avrg += accuracy
-            # print("    Decomposable attention is {}".format( accuracy))
+            print("    Decomposable attention is {}".format( accuracy))
         print("###############")
         print("Naive Bayes avrg {}".format(nb_avrg/len(folds)))
         print("TfIdf avrg {}".format(tfidf_avrg/len(folds)))
