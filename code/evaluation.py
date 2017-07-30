@@ -111,6 +111,7 @@ def train_naive_bayes_des_local(fold):
         ranked = zip(proba, clf.classes_)
         ranked = sorted(ranked, reverse=True)
         proba, classes = zip(*ranked)
+        classes = list(classes)
         classes = remove_rare_classes(classes)
         for j, TOP_N in enumerate(RANKS):
             if Y_valid[i] in classes[:TOP_N]:
