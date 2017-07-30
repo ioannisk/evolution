@@ -301,8 +301,8 @@ def each_fold_stats():
         print_each_fold_stats(accuracy, "Tf IDF")
         tfidf_avrg +=accuracy
         # print("    Tf-idf baseline is {}".format(accuracy))
-        accuracy = decomposable_attention_eval(fold, "Decomposable Attention")
-        print_each_fold_stats(accuracy)
+        accuracy = decomposable_attention_eval(fold)
+        print_each_fold_stats(accuracy, "Decomposable Attention")
         att_avrg += accuracy
         # print("    Decomposable attention is {}".format( accuracy))
     for i, TOP_N in enumerate(RANKS):
