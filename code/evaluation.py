@@ -302,7 +302,7 @@ def each_fold_stats():
         print("###### FOLD {} ######".format(fold))
 
         nb_accuracy = train_naive_bayes_des_local(fold)
-        print_each_fold_stats(nb_accuracy, "Naive Bayes")
+        # print_each_fold_stats(nb_accuracy, "Naive Bayes")
         nb_avrg += nb_accuracy
 
         tf_accuracy = baseline_tfidf(fold)
