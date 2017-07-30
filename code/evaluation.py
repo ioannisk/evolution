@@ -293,13 +293,13 @@ def each_fold_stats():
     for fold in folds:
         print("###### FOLD {} ######".format(fold))
 
-        # accuracy = train_naive_bayes_des_local(fold)
-        # print_each_fold_stats(accuracy, "Naive Bayes")
-        # nb_avrg += accuracy
+        accuracy = train_naive_bayes_des_local(fold)
+        print_each_fold_stats(accuracy, "Naive Bayes")
+        nb_avrg += accuracy
 
-        # accuracy = baseline_tfidf(fold)
-        # print_each_fold_stats(accuracy, "Tf IDF")
-        # tfidf_avrg +=accuracy
+        accuracy = baseline_tfidf(fold)
+        print_each_fold_stats(accuracy, "Tf IDF")
+        tfidf_avrg +=accuracy
 
         accuracy = decomposable_attention_eval(fold)
         print_each_fold_stats(accuracy, "Decomposable Attention")
