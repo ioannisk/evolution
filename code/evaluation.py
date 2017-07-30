@@ -292,15 +292,15 @@ def each_fold_stats():
     att_avrg = np.zeros(len(RANKS))
     for fold in folds:
         print("###### FOLD {} ######".format(fold))
-        # print("FOLD {} ranks".format(fold))
-        accuracy = train_naive_bayes_des_local(fold)
-        print_each_fold_stats(accuracy, "Naive Bayes")
-        nb_avrg += accuracy
-        # print("    Naive Bayes baseline is {}".format(accuracy))
-        accuracy = baseline_tfidf(fold)
-        print_each_fold_stats(accuracy, "Tf IDF")
-        tfidf_avrg +=accuracy
-        # print("    Tf-idf baseline is {}".format(accuracy))
+
+        # accuracy = train_naive_bayes_des_local(fold)
+        # print_each_fold_stats(accuracy, "Naive Bayes")
+        # nb_avrg += accuracy
+
+        # accuracy = baseline_tfidf(fold)
+        # print_each_fold_stats(accuracy, "Tf IDF")
+        # tfidf_avrg +=accuracy
+
         accuracy = decomposable_attention_eval(fold)
         print_each_fold_stats(accuracy, "Decomposable Attention")
         att_avrg += accuracy
