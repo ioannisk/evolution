@@ -2,18 +2,15 @@
 
 #20 fold stats
 #(1902, 14), (1931, 15), (1959, 16), (1986, 17), (2015, 18), (2052, 19)
-
-
-######## FOLDS TRAINING ########
+##################################
+##################################
+##################################
+##################################
+##################################
+##################################
+######## 20 FOLDS TRAINING ########
 # old data in 0,2,4 folds
 ##################################
-## not enough training
-
-# python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds/fold0/training.json /home/ioannis/evolution/data/folds/fold0/validation.json folds/model0 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
-# python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds/fold2/training.json /home/ioannis/evolution/data/folds/fold2/validation.json folds/model2 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
-# python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds/fold4/training.json /home/ioannis/evolution/data/folds/fold4/validation.json folds/model4 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
-
-
 
 ############### experiment with these folds ##############
 # python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds/fold0/training.json /home/ioannis/evolution/data/folds/fold0/validation.json folds/model8 mlp --lower -e 30 -u 300 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
@@ -85,6 +82,45 @@
 ########################################################################################
 ########################################################################################
 ########################################################################################
+
+
+
+
+
+####### FOLDS 5 ##############
+
+
+# python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds5/fold0/training.json /home/ioannis/evolution/data/folds5/fold0/validation.json folds5/model0 mlp --lower -e 30 -u 300 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
+# python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds5/fold1/training.json /home/ioannis/evolution/data/folds5/fold1/validation.json folds5/model1 mlp --lower -e 30 -u 300 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
+# python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds5/fold2/training.json /home/ioannis/evolution/data/folds5/fold2/validation.json folds5/model2 mlp --lower -e 30 -u 300 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
+# python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds5/fold3/training.json /home/ioannis/evolution/data/folds5/fold3/validation.json folds5/model3 mlp --lower -e 30 -u 300 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
+# python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds5/fold4/training.json /home/ioannis/evolution/data/folds5/fold4/validation.json folds5/model4 mlp --lower -e 30 -u 300 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+########################################################################################
+########################################################################################
+########################################################################################
+########################################################################################
+########################################################################################
+########################################################################################
+
+
 
 
 
