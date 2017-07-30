@@ -275,7 +275,7 @@ if __name__=="__main__":
         classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
     counts = []
     for key in classes_companies:
-        counts.append(classes_companies[key])
+        counts.append(len(classes_companies[key]))
     counts  = sorted(counts, reverse=True)
     print(counts)
     # folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
