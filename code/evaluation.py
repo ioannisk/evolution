@@ -139,7 +139,6 @@ def load_json_validation_file(file_):
     return des_txt, web_txt, binary_class, des_class, web_class, web_id
 
 def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
-    true_positive = 0
     # print("cosine similarity inference")
     inference = []
     # print("des vectors {}".format(des_tfidf.shape))
@@ -149,13 +148,15 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     # print pairwise_cos_matrix.shape
     # print("pairwise evaluation {}".format(pairwise_cos_matrix.shape))
     assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[0])
+    true_positive = np.zeros(len(RANKS))
     for i, row in enumerate(pairwise_cos_matrix):
         sim_labels = list(zip(row, des_class))
         ranked = sorted(sim_labels, reverse=True)
         similarities, classes = zip(*ranked)
         classes = list(classes)
-        if web_class[i] in classes[:TOP_N]:
-            true_positive +=1
+        for j, TOP_N in enumerate(RANKS):
+            if web_class[i] in classes[:TOP_N]:
+                true_positive[j] +=1
     return true_positive*100/float(len(web_class))
 
 def baseline_tfidf(fold):
@@ -206,7 +207,7 @@ def decomposable_attention_eval(fold):
             web_class.append(line['web_class'])
             description_class.append(line['des_class'])
             companies.add(line['web_id'])
-    true_positive = 0
+    true_positive = np.zeros(len(RANKS))
     step = len(used_classes)
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
@@ -220,8 +221,9 @@ def decomposable_attention_eval(fold):
         # print(used_list_des[:TOP_N])
         # used_list_des.remove('87200')
         # used_list_des.remove('82990')
-        if list_web[0] in used_list_des[:TOP_N]:
-            true_positive +=1
+        for j, TOP_N in enumerate(RANKS):
+            if list_web[0] in used_list_des[:TOP_N]:
+                true_positive[j] +=1
     return true_positive*100/float(len(companies))
 
 
@@ -232,24 +234,22 @@ if __name__=="__main__":
     # for TOP_N in [1,3,5,7,9,11]:
     # for TOP_N in [3]:
     # print("TOP N {}".format(TOP_N))
-    nb_avrg = 0
-    tfidf_avrg = 0
-    att_avrg = 0
+    nb_avrg = np.zeros(len(RANKS))
+    tfidf_avrg = np.zeros(len(RANKS))
+    att_avrg = np.zeros(len(RANKS))
     for fold in folds:
-        print("FOLD {} ranks".format(fold))
+        # print("FOLD {} ranks".format(fold))
         accuracy = train_naive_bayes_des_local(fold)
-        print(accuracy)
-        stop
-        # nb_avrg +=accuracy
-        print("    Naive Bayes baseline is {}".format(accuracy))
+        nb_avrg += accuracy
+        # print("    Naive Bayes baseline is {}".format(accuracy))
         accuracy = baseline_tfidf(fold)
         tfidf_avrg +=accuracy
-        print("    Tf-idf baseline is {}".format(accuracy))
+        # print("    Tf-idf baseline is {}".format(accuracy))
         accuracy = decomposable_attention_eval(fold)
         att_avrg += accuracy
-        print("    Decomposable attention is {}".format( accuracy))
-    print("###############")
-    print("Naive Bayes avrg {}".format(nb_avrg/len(folds)))
-    print("TfIdf avrg {}".format(tfidf_avrg/len(folds)))
-    print("Decomposable Attention avrg {}".format(att_avrg/len(folds)))
-    print("###############")
+        # print("    Decomposable attention is {}".format( accuracy))
+    for i, TOP_N in enumerate(RANKS):
+        print("RANK {} accuracy".format(TOP_N))
+        print("    Naive Bayes avrg {}".format(nb_avrg[i]/len(folds)))
+        print("    TfIdf avrg {}".format(tfidf_avrg[i]/len(folds)))
+        print("    Decomposable Attention avrg {}".format(att_avrg[i]/len(folds)))
