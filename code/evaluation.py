@@ -267,20 +267,20 @@ def all_fold_stats():
     for fold in folds:
         print("loading fold {}".format(fold))
         # print("FOLD {} ranks".format(fold))
-        accuracy = train_naive_bayes_des_local(fold)
-        nb_avrg += accuracy
+        # accuracy = train_naive_bayes_des_local(fold)
+        # nb_avrg += accuracy
         # print("    Naive Bayes baseline is {}".format(accuracy))
-        accuracy = baseline_tfidf(fold)
-        tfidf_avrg +=accuracy
+        # accuracy = baseline_tfidf(fold)
+        # tfidf_avrg +=accuracy
         # print("    Tf-idf baseline is {}".format(accuracy))
         accuracy = decomposable_attention_eval(fold)
         att_avrg += accuracy
         # print("    Decomposable attention is {}".format( accuracy))
-    for i, TOP_N in enumerate(RANKS):
-        print("RANK {} accuracy".format(TOP_N))
-        print("    Naive Bayes avrg {}".format(nb_avrg[i]/len(folds)))
-        print("    TfIdf avrg {}".format(tfidf_avrg[i]/len(folds)))
-        print("    Decomposable Attention avrg {}".format(att_avrg[i]/len(folds)))
+    # for i, TOP_N in enumerate(RANKS):
+    #     print("RANK {} accuracy".format(TOP_N))
+    #     print("    Naive Bayes avrg {}".format(nb_avrg[i]/len(folds)))
+    #     print("    TfIdf avrg {}".format(tfidf_avrg[i]/len(folds)))
+    #     print("    Decomposable Attention avrg {}".format(att_avrg[i]/len(folds)))
 
 def print_each_fold_stats(accuracy, message):
     print("Algorithm: {}".format(message))
