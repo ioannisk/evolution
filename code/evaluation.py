@@ -133,7 +133,7 @@ def train_naive_bayes_des_local(fold):
     return true_positive*100/float(len(Y_valid))
 
 def count_vectorization(corpus):
-    vec = CountVectorizer( min_df=1,sublinear_tf=True)
+    vec = CountVectorizer( min_df=1)
     vec.fit(corpus)
     return vec
 
