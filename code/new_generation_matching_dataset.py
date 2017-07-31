@@ -161,7 +161,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     while we also keep some companies out from the seen classes so we can test SL learning
     """
     all_classes = list(class_descriptions.keys())
-    class_validation_N = 15
+    class_validation_N = 10
     companies_validation = 5000
     splits = 3
     folds = []
@@ -175,7 +175,6 @@ def training_validation_split(class_descriptions,companies_descriptions):
     for id_ in companies_descriptions:
         class_counts[companies_descriptions[id_]["class_num"]]+=1
     # Rank according to least common count
-    print(folds)
     for fold in folds:
         fold_sum = 0
         for class_ in fold:
