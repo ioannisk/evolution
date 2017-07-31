@@ -16,9 +16,9 @@ data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 #
 # Comparison on folds 2, 4, 0
 #
-# folds = [0,1,2,3,4,5,6,14,15,16]
+folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0]
-folds = [14]
+# folds = [14]
 # folds = [0,2,4]
 class_descriptions = read_descriptions()
 companies_descriptions= read_meta()
@@ -65,8 +65,8 @@ def train_naive_bayes_des_local(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            if des_class[i] not in used_classes:
-                continue
+            # if des_class[i] not in used_classes:
+            #     continue
             X_train.append(web_txt[i])
             Y_train.append(web_class[i])
             # training_classes.add(web_class[i])
@@ -76,8 +76,8 @@ def train_naive_bayes_des_local(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            if des_class[i] not in used_classes:
-                continue
+            # if des_class[i] not in used_classes:
+            #     continue
             X_valid.append(web_txt[i])
             Y_valid.append(web_class[i])
             # validation_classes.add(web_class[i])
