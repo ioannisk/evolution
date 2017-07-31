@@ -13,7 +13,9 @@ N = 5
 MAX_LEN= 120
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
-data_path = "../data/new_folds{}/".format(N)
+data_path = "../data/1rfolds{}/".format(N)
+data_path = "../data/10rfolds{}/".format(N)
+data_path = "../data/100rfolds{}/".format(N)
 
 def clean_up_txt(page_txt):
     page_txt = page_txt.lower()
@@ -153,6 +155,26 @@ def make_N_folds_classes_equal_datapoints(class_descriptions, companies_descript
         file_.write("Folds have #classes of {}\n".format(list(zip([len(i) for i in folds],range(len(folds_volume))))))
     return folds
 
+
+def training_validation_split(class_descriptions,companies_descriptions):
+    """Desing big experiment, train 3 models with 3 fodls of held out classes
+    while we also keep some companies out from the seen classes so we can test SL learning
+    """
+    all_classes = list(class_descriptions.keys())
+    class_validation_N = 15
+    companies_validation = 5000
+    splits = 3
+    folds = [[] for i in range(splits)]
+    allowed_samples = all_classes
+    for fold in folds:
+        samples = np.random.choice(allowed_samples, 10, replace=False)
+        print(samples)
+
+
+
+
+
+
 def merge_folds(class_folds):
     """ Return N training, validation pairs from raw folds
     return: list of tuples (trainig, validation) for each fold
@@ -286,9 +308,10 @@ if __name__=="__main__":
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
     print(len(class_descriptions), len(companies_descriptions))
     # # #invert companies descriptions dictionairy
-    # classes_companies = defaultdict(list)
-    # for id_ in companies_descriptions:
-    #     classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
+    classes_companies = defaultdict(list)
+    for id_ in companies_descriptions:
+        classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
+    training_validation_split(class_descriptions,companies_descriptions)
     # folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     # class_folds = merge_folds(folds)
     # make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
