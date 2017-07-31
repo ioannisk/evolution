@@ -19,7 +19,7 @@ for snli_file in files:
             sen1 = line["sentence1"]
             sen2 = line["sentence2"]
             label = line['gold_label']
-            if data['gold_label'] == '-' or data['gold_label']=="neutral":
+            if line['gold_label'] == '-' or line['gold_label']=="neutral":
                 continue
 
             json_buffer = {'des':sen1, 'web':sen2, 'class':label}
