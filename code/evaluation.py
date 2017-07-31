@@ -9,8 +9,9 @@ from sklearn.metrics import accuracy_score
 from collections import Counter,defaultdict
 # from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 from new_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
+import matplotlib.pyplot as plt
 
-RANKS = [1,2,3,4,5,6,7,8,9,10,15,20]
+RANKS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 choosen_fold = "1rfolds3"
 data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
@@ -109,7 +110,7 @@ def train_naive_bayes_des_local(fold):
     X_train_vec = vec.transform(X_train_des)
     Y_train = Y_train_des
     X_valid_vec = vec.transform(X_valid)
-    a = 0.01
+    a = 0.001
     # for a in np.arange(1,20)*0.1:
     gnb = MultinomialNB(alpha=a,fit_prior=False)
     # clf = gnb.fit(X_train_des_vec, Y_train_des)
@@ -332,6 +333,10 @@ def each_fold_stats():
     #     print("    TfIdf avrg {}".format(tfidf_avrg[i]/len(folds)))
     #     print("    Decomposable Attention avrg {}".format(att_avrg[i]/len(folds)))
     print(" AVERGE STATS OVER ALL FOLDS")
+    plt.plot(nb_avrg/len(folds),label='Naive Bayes')
+    plt.plot(tfidf_avrg/len(folds),label='Tf-idf cosine_similarity')
+    plt.plot(att_avrg/len(folds),label='Decomposable Attention')
+    plt.show()
     print_nice_table(nb_avrg/len(folds), tfidf_avrg/len(folds), att_avrg/len(folds))
 
 if __name__=="__main__":
