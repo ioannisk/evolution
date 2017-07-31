@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
 from collections import Counter,defaultdict
-from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
+# from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
+from my_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 
 RANKS = [1,2,3,4,5,6,7,8,9,10,15,20]
 choosen_fold = "1rfolds3"
