@@ -39,11 +39,11 @@ def read_descriptions():
             line = line.strip()
             try:
                 class_num , txt = line.split('\t')
+                if len(txt.split()) <=MAX_DES_LEN:
+                    class_descriptions[class_num] = txt
             except:
-                continue
+                pass
             # print(class_num, txt)
-            if len(txt.split()) <=MAX_DES_LEN:
-                class_descriptions[class_num] = txt
     return class_descriptions
 
 def read_meta():
