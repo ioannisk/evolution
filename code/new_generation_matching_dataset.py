@@ -37,13 +37,9 @@ def read_descriptions():
     with open("../data/descriptions_data_1.txt","r") as file_:
         for line in file_:
             line = line.strip()
-            try:
-                class_num , txt = line.split('\t')
-                if len(txt.split()) <=MAX_DES_LEN:
-                    class_descriptions[class_num] = txt
-            except:
-                pass
-            # print(class_num, txt)
+            class_num , txt = line.split('\t')
+            if len(txt.split()) <=MAX_DES_LEN:
+                class_descriptions[class_num] = txt
     return class_descriptions
 
 def read_meta():
@@ -55,7 +51,10 @@ def read_meta():
     with open("/home/ioannis/data/web_sic_description.tsv", "r") as file_:
         for i, line in enumerate(file_):
             line = line.strip()
-            class_num , txt = line.split('\t')
+            try:
+                class_num , txt = line.split('\t')
+            except:
+                pass
             # if len(txt.split()) <= MAX_WEB_LEN:
             #     companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
     return companies_descriptions
