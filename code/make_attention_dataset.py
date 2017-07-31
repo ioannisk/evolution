@@ -11,7 +11,7 @@ from attention_evaluation import load_json_validation_file
 # df_web = pickle.load( open("../data/df_web.pkl","rb"))
 # des_df = pickle.load(open("../data/des_df.pkl","rb"))
 
-MAX_LEN=111
+MAX_LEN=115
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
 
@@ -180,8 +180,8 @@ def make_ranking_validation():
                 write_json_line(json_buffer,file_)
 
 if __name__ =="__main__":
-    # des, web_class, id_txt, id_class  = read_data()
-    # make_pairs(des, web_class, id_txt, id_class)
-    # shuffle_data()
+    des, web_class, id_txt, id_class  = read_data()
+    make_pairs(des, web_class, id_txt, id_class)
+    shuffle_data()
     make_ranking_validation()
 
