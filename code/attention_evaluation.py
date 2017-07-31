@@ -11,7 +11,7 @@ from utilities import  vectorize_corpus
 # from utilities import data_pipeline
 
 TOP_N = 1
-MAX_LEN = 111
+MAX_LEN = 115
 # def train_naive_bayes_des():
 #     used_classes = find_only_used_classes()
 #     ### change data type for pandas to work
