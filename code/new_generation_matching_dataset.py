@@ -10,7 +10,7 @@ import numpy as np
 # Not actually 20 folds
 # 2k in each bucket is convenient number for testing quickly
 N = 5
-MAX_LEN= 50
+MAX_LEN= 120
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
 data_path = "../data/new_folds{}/".format(N)
