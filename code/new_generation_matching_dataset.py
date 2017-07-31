@@ -166,17 +166,18 @@ def training_validation_split(class_descriptions,companies_descriptions):
     splits = 3
     folds = []
     allowed_samples = all_classes
+    class_counts = Counter()
     for id_ in companies_descriptions:
         class_counts[companies_descriptions[id_]["class_num"]]+=1
     for split in range(splits):
         for _ range(class_validation_N):
-        samples = np.random.choice(allowed_samples, 1, replace=False)[0]
-        print(samples)
-        folds.append(samples)
-        allowed_samples = [class_ for class_ in allowed_samples if class_ not in samples]
-    class_counts = Counter()
-    ranked = class_counts.most_common()[::-1]
-    print(ranked)
+            samples = np.random.choice(allowed_samples, 1, replace=False)[0]
+            print(samples)
+            folds.append(samples)
+            allowed_samples = [class_ for class_ in allowed_samples if class_ not in samples]
+
+    # ranked = class_counts.most_common()[::-1]
+    # print(ranked)
     # Rank according to least common count
     for fold in folds:
         fold_sum = 0
