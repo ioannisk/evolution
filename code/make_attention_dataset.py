@@ -164,7 +164,7 @@ def make_ranking_validation():
         counter = 0
         for i, website_txt in enumerate(web_txt):
             if counter % 100==0:
-                print counter
+                print(counter)
             counter +=1
             if binary_class[i]!="entailment":
                 continue
