@@ -26,7 +26,6 @@ for snli_file in files:
             label = line['gold_label']
             if line['gold_label'] == '-' or line['gold_label']=="neutral":
                 continue
-
             json_buffer = {'des':sen1, 'web':sen2, 'class':label}
             all_snli.append(json_buffer)
 
