@@ -52,6 +52,7 @@ def read_meta():
         counter = 0
         for i, line in enumerate(file_):
             line = line.strip()
+            id_ = i
             try:
                 class_num , txt = line.split('\t')
                 counter +=1
