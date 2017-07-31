@@ -160,6 +160,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     """Desing big experiment, train 3 models with 3 fodls of held out classes
     while we also keep some companies out from the seen classes so we can test SL learning
     """
+
     all_classes = list(class_descriptions.keys())
     class_validation_N = 10
     companies_validation = 5000
@@ -189,6 +190,16 @@ def training_validation_split(class_descriptions,companies_descriptions):
         for class_ in fold:
             fold_sum += class_counts[class_]
         print(fold_sum)
+
+    training_sets = []
+    for fold in folds:
+        training = [class_ for class_ in all_classes if class_ not in fold]
+        training_sets.append(training)
+
+    for i in range(3):
+        print(len(folds[i]), len(training_sets[i]), (len(folds[i]) + len(training_sets[i]) )
+    return folds
+
 
 
 
