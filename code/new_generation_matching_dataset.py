@@ -168,6 +168,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     allowed_samples = all_classes
     for _ in range(3):
         samples = np.random.choice(allowed_samples, 10, replace=False)
+        print(samples)
         folds.append(samples)
         allowed_samples = allowed_samples - set(samples)
     class_counts = Counter()
