@@ -171,10 +171,10 @@ def make_ranking_validation():
     descriptions_class = []
     descriptions_txt = []
     used_classes = find_only_used_classes()
-    with open("../data/meta_validation_{0}.json".format(MAX_LEN), 'rb') as file_:
+    with open("../data/meta_validation_{0}.json".format(MAX_LEN), 'r') as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
     print("Different website txt {0}".format(len(web_id)))
-    with open("/home/ioannis/evolution/data/descriptions_data.txt","rb") as file_:
+    with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
         for line in file_:
             line = line.strip()
             line = line.split('\t')
@@ -183,7 +183,7 @@ def make_ranking_validation():
     ###############
     # Make the actual dataset
     ###############
-    with open("/home/ioannis/evolution/data/meta_ranking_validation_{0}.json".format(MAX_LEN),"wb") as file_:
+    with open("/home/ioannis/evolution/data/meta_ranking_validation_{0}.json".format(MAX_LEN),"w") as file_:
         counter = 0
         for i, website_txt in enumerate(web_txt):
             if counter % 100==0:
