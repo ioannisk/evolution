@@ -1,5 +1,5 @@
 import json
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
@@ -8,7 +8,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
 from collections import Counter,defaultdict
 # from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
-from my_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
+from new_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 
 RANKS = [1,2,3,4,5,6,7,8,9,10,15,20]
 choosen_fold = "1rfolds3"
@@ -102,7 +102,10 @@ def train_naive_bayes_des_local(fold):
     # # X_train_des_vec = vec.transform(X_train_des)
     # X_train_vec = vec.transform(X_train)
     # X_valid_vec = vec.transform(X_valid)
-    vec = tf_idf_vectorization(X_train_des)
+    # vec = tf_idf_vectorization(X_train_des)
+
+
+    vec = count_vectorization(X_train_des)
     X_train_vec = vec.transform(X_train_des)
     Y_train = Y_train_des
     X_valid_vec = vec.transform(X_valid)
@@ -128,6 +131,11 @@ def train_naive_bayes_des_local(fold):
             if Y_valid[i] in classes[:TOP_N]:
                 true_positive[j] +=1
     return true_positive*100/float(len(Y_valid))
+
+def count_vectorization(corpus):
+    vec = CountVectorizer( min_df=1,sublinear_tf=True)
+    vec.fit(corpus)
+    return vec
 
 
 def tf_idf_vectorization(corpus):
