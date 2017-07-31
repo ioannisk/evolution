@@ -11,7 +11,7 @@ from utilities import  vectorize_corpus
 # from utilities import data_pipeline
 
 TOP_N = 1
-MAX_LEN = 115
+MAX_LEN = 111
 # def train_naive_bayes_des():
 #     used_classes = find_only_used_classes()
 #     ### change data type for pandas to work
@@ -330,8 +330,8 @@ def baseline_nb():
 def decomposable_attention_eval():
     used_classes =  find_only_used_classes()
     ###### OLD PREDICTIONS
-    # with open("/home/ioannis/models/my_model_{}/prob_predictions.txt".format(MAX_LEN), "r") as file_:
-    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/my_model_{}_slow/prob_predictions.txt".format(MAX_LEN), "r") as file_:
+    with open("/home/ioannis/models/my_model_{}/prob_predictions.txt".format(MAX_LEN), "r") as file_:
+    # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/my_model_{}_slow/prob_predictions.txt".format(MAX_LEN), "r") as file_:
         predictions = []
         for line in file_:
             line = line.strip()
