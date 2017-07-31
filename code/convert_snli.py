@@ -11,7 +11,7 @@ validation_snli = "/home/ioannis/data/snli_1.0/snli_1.0_dev.jsonl"
 testing_snli = "/home/ioannis/data/snli_1.0/snli_1.0_test.jsonl"
 files = [training_snli, validation_snli, testing_snli]
 all_snli = []
-for snli_file in file_:
+for snli_file in files:
     with open(snli_file, 'r') as file_:
         for line in file_:
             line = line.strip()
