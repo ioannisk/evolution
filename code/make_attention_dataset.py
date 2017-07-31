@@ -143,23 +143,23 @@ def shuffle_data():
 
 def find_only_used_classes():
     used_classes = set()
-    count_dic = Counter()
+    # count_dic = Counter()
     sum_all = 0.0
     with open("/home/ioannis/evolution/data/meta_training_{}.json".format(MAX_LEN),"r") as file_:
         for line in file_:
             line = line.strip()
             line = json.loads(line)
             used_classes.add(line["web_class"])
-            count_dic[line["web_class"]] +=1
+            # count_dic[line["web_class"]] +=1
             sum_all +=1
     with open("/home/ioannis/evolution/data/meta_validation_{}.json".format(MAX_LEN),"r") as file_:
         for line in file_:
             line = line.strip()
             line = json.loads(line)
             used_classes.add(line["web_class"])
-            count_dic[line["web_class"]] +=1
+            # count_dic[line["web_class"]] +=1
             sum_all +=1
-    cmon = count_dic.most_common()
+    # cmon = count_dic.most_common()
     # for i,j in cmon:
     #     print (i, j*100/sum_all)
     return used_classes
