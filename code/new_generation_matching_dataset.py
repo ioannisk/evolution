@@ -9,7 +9,7 @@ import numpy as np
 
 # Not actually 20 folds
 # 2k in each bucket is convenient number for testing quickly
-N = 5
+N = 3
 MAX_LEN= 120
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
@@ -185,6 +185,8 @@ def training_validation_split(class_descriptions,companies_descriptions):
     # ranked = class_counts.most_common()[::-1]
     # print(ranked)
     # Rank according to least common count
+    ## GOOD LIST PRODUCED FOR SPLIT 3
+    folds = [['14141', '47650', '66110', '33170', '82912', '46431', '10720', '81210', '28923', '24530', '25120', '47791'], ['85410', '23640', '20412', '27110', '65202', '46341', '59120', '72200', '24520', '66120', '28301', '82190', '52102', '20302', '13950', '47782', '74203'], ['20150', '71121', '14390', '46210', '63990', '23510', '31030', '51220', '28120', '46380', '81223', '85520']]
     for fold in folds:
         fold_sum = 0
         for class_ in fold:
@@ -348,6 +350,6 @@ if __name__=="__main__":
     class_folds = training_validation_split(class_descriptions,companies_descriptions)
     # folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     # class_folds = merge_folds(folds)
-    # make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
-    # make_evaluation_pairs(class_descriptions)
+    make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
+    make_evaluation_pairs(class_descriptions)
 
