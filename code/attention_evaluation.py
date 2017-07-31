@@ -11,7 +11,7 @@ from utilities import  vectorize_corpus
 # from utilities import data_pipeline
 
 TOP_N = 1
-
+MAX_LEN = 111
 # def train_naive_bayes_des():
 #     used_classes = find_only_used_classes()
 #     ### change data type for pandas to work
@@ -88,7 +88,7 @@ def train_naive_bayes_des_local():
     training_classes = set()
     validation_classes = set()
     ids_ = set()
-    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
+    with open("/home/ioannis/evolution/data/meta_training_{}.json".format(MAX_LEN),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
         for i, b in enumerate(binary_class):
             if b!="entailment":
@@ -97,7 +97,7 @@ def train_naive_bayes_des_local():
             Y_train.append(web_class[i])
             training_classes.add(web_class[i])
             # descriptions_txt.append(line[1])
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
+    with open("/home/ioannis/evolution/data/meta_validation_{}.json".format(MAX_LEN),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
         for i, b in enumerate(binary_class):
             if b!="entailment":
@@ -156,14 +156,14 @@ def find_only_used_classes():
     used_classes = set()
     count_dic = Counter()
     sum_all = 0.0
-    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
+    with open("/home/ioannis/evolution/data/meta_training_{}.json".format(MAX_LEN),"r") as file_:
         for line in file_:
             line = line.strip()
             line = json.loads(line)
             used_classes.add(line["web_class"])
             count_dic[line["web_class"]] +=1
             sum_all +=1
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
+    with open("/home/ioannis/evolution/data/meta_validation_{}.json".format(MAX_LEN),"r") as file_:
         for line in file_:
             line = line.strip()
             line = json.loads(line)
@@ -241,7 +241,7 @@ def baseline_tfidf():
     descriptions_txt = []
     descriptions_class = []
     used_classes = find_only_used_classes()
-    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
+    with open("/home/ioannis/evolution/data/meta_training_{}.json".format(MAX_LEN),"r") as file_:
         training_corpus = make_training_corpus(file_)
         # print(len(training_corpus))
     with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
@@ -254,7 +254,7 @@ def baseline_tfidf():
             descriptions_class.append(line[0])
             training_corpus.append(line[1])
             descriptions_txt.append(line[1])
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
+    with open("/home/ioannis/evolution/data/meta_validation_{}.json".format(MAX_LEN),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
     ## train tf-idf vectorizer
     # tfidf_vec = tf_idf_vectorization(descriptions_txt)
@@ -273,7 +273,7 @@ def baseline_nb():
     descriptions_class = []
     descriptions_txt = []
     used_classes = find_only_used_classes()
-    with open("/home/ioannis/evolution/data/meta_training_111.json","r") as file_:
+    with open("/home/ioannis/evolution/data/meta_training_{}.json".format(MAX_LEN),"r") as file_:
         for line in file_:
             line = line.strip()
             line = json.loads(line)
@@ -287,7 +287,7 @@ def baseline_nb():
             web_id = line["web_id"]
             x_train.append(web_txt)
             y_train.append(web_class)
-    with open("/home/ioannis/evolution/data/meta_validation_111.json","r") as file_:
+    with open("/home/ioannis/evolution/data/meta_validation_{}.json".format(MAX_LEN),"r") as file_:
         for line in file_:
             line = line.strip()
             line = json.loads(line)
@@ -329,13 +329,13 @@ def baseline_nb():
 
 def decomposable_attention_eval():
     used_classes =  find_only_used_classes()
-    with open("/home/ioannis/models/my_model_111/prob_predictions.txt", "r") as file_:
+    with open("/home/ioannis/models/my_model_{}/prob_predictions.txt".format(MAX_LEN), "r") as file_:
         predictions = []
         for line in file_:
             line = line.strip()
             predictions.append(float(line))
         # print(len(predictions))
-    with open("/home/ioannis/evolution/data/meta_ranking_validation_111.json", "r") as file_:
+    with open("/home/ioannis/evolution/data/meta_ranking_validation_{}.json".format(MAX_LEN), "r") as file_:
         companies = set()
         description_class = []
         web_class = []
