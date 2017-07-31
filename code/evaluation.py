@@ -109,7 +109,7 @@ def train_naive_bayes_des_local(fold):
     X_train_vec = vec.transform(X_train_des)
     Y_train = Y_train_des
     X_valid_vec = vec.transform(X_valid)
-    a = 0.8
+    a = 0.1
     # for a in np.arange(1,20)*0.1:
     gnb = MultinomialNB(alpha=a,fit_prior=False)
     # clf = gnb.fit(X_train_des_vec, Y_train_des)
@@ -142,7 +142,7 @@ def tf_idf_vectorization(corpus):
     # print("tfidf Vectorization")
     stopWords = stopwords.words('english')
     # vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords, sublinear_tf=False)
-    vec = TfidfVectorizer( min_df=1,sublinear_tf=True)
+    vec = TfidfVectorizer( min_df=1,sublinear_tf=False)
     vec.fit(corpus)
     return vec
 
@@ -219,8 +219,8 @@ def baseline_tfidf(fold):
     with open(data_path+"fold{}/validation.json".format(fold),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
     ## train tf-idf vectorizer
-    # tfidf_vec = tf_idf_vectorization(descriptions_txt)
-    tfidf_vec = tf_idf_vectorization(training_corpus)
+    tfidf_vec = tf_idf_vectorization(descriptions_txt)
+    # tfidf_vec = tf_idf_vectorization(training_corpus)
     ## vetorize des and validation websites
     des_tfidf = tfidf_vec.transform(descriptions_txt)
     web_tfidf = tfidf_vec.transform(web_txt)
