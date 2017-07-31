@@ -14,8 +14,8 @@ MAX_LEN= 120
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
 data_path = "../data/1rfolds{}/".format(N)
-data_path = "../data/10rfolds{}/".format(N)
-data_path = "../data/100rfolds{}/".format(N)
+# data_path = "../data/10rfolds{}/".format(N)
+# data_path = "../data/100rfolds{}/".format(N)
 
 def clean_up_txt(page_txt):
     page_txt = page_txt.lower()
@@ -195,10 +195,11 @@ def training_validation_split(class_descriptions,companies_descriptions):
     for fold in folds:
         training = [class_ for class_ in list(class_descriptions.keys()) if class_ not in fold]
         training_sets.append(training)
-
     for i in range(3):
         print(len(folds[i]), len(training_sets[i]), (len(folds[i]) + len(training_sets[i]) ))
-    return folds
+
+    data = list(zip(training_sets, folds))
+    return data
 
 
 
@@ -344,7 +345,7 @@ if __name__=="__main__":
     classes_companies = defaultdict(list)
     for id_ in companies_descriptions:
         classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
-    training_validation_split(class_descriptions,companies_descriptions)
+    class_folds = training_validation_split(class_descriptions,companies_descriptions)
     # folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     # class_folds = merge_folds(folds)
     # make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
