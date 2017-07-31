@@ -90,8 +90,8 @@ def train_naive_bayes_des_local(fold):
             line = line.strip()
             line = line.split('\t')
             ## ensure only used classes are used for inference
-            if line[0] not in used_classes:
-                continue
+            # if line[0] not in used_classes:
+            #     continue
             Y_train_des.append(line[0])
             X_train_des.append(line[1])
 
@@ -202,8 +202,8 @@ def baseline_tfidf(fold):
             line = line.strip()
             line = line.split('\t')
             ## ensure only used classes are used for inference
-            if line[0] not in used_classes:
-                continue
+            # if line[0] not in used_classes:
+            #     continue
             descriptions_class.append(line[0])
             training_corpus.append(line[1])
             descriptions_txt.append(line[1])
