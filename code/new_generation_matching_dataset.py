@@ -15,6 +15,14 @@ MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
 data_path = "../data/new_folds{}/".format(N)
 
+def clean_up_txt(page_txt):
+    page_txt = page_txt.lower()
+    page_txt = re.sub('\s+',' ',page_txt)
+    # page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
+    page_txt = re.sub('[^a-zA-Z]+', " ", page_txt)
+    return page_txt
+
+
 def write_json_line(json_ ,file_):
     json.dump(json_ , file_)
     file_.write('\n')
@@ -29,8 +37,11 @@ def read_descriptions():
     with open("../data/descriptions_data_1.txt","r") as file_:
         for line in file_:
             line = line.strip()
-            class_num , txt = line.split('\t')
-            print(class_num, txt)
+            try:
+                class_num , txt = line.split('\t')
+            else:
+                continue
+            # print(class_num, txt)
             if len(txt.split()) <=MAX_DES_LEN:
                 class_descriptions[class_num] = txt
     return class_descriptions
