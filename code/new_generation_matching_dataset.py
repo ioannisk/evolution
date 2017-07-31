@@ -171,16 +171,16 @@ def training_validation_split(class_descriptions,companies_descriptions):
         print(samples)
         folds.append(samples)
         allowed_samples = [class_ for class_ in allowed_samples if class_ not in samples]
-    # class_counts = Counter()
-    # for id_ in companies_descriptions:
-    #     class_counts[companies_descriptions[id_]["class_num"]]+=1
-    # # Rank according to least common count
-    # print(folds)
-    # for fold in folds:
-    #     fold_sum = 0
-    #     for class_ in fold:
-    #         fold_sum += class_counts[class_]
-    #     print(fold_sum)
+    class_counts = Counter()
+    for id_ in companies_descriptions:
+        class_counts[companies_descriptions[id_]["class_num"]]+=1
+    # Rank according to least common count
+    print(folds)
+    for fold in folds:
+        fold_sum = 0
+        for class_ in fold:
+            fold_sum += class_counts[class_]
+        print(fold_sum)
 
 
 
