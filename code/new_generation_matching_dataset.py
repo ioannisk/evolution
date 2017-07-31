@@ -39,7 +39,7 @@ def read_descriptions():
             line = line.strip()
             try:
                 class_num , txt = line.split('\t')
-            else:
+            except:
                 pass
                 continue
             # print(class_num, txt)
