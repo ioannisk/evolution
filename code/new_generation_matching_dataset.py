@@ -197,7 +197,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
         training_sets.append(training)
 
     for i in range(3):
-        print(len(folds[i]), len(training_sets[i]), (len(folds[i]) + len(training_sets[i]) )
+        print(len(folds[i]), len(training_sets[i]), (len(folds[i]) + len(training_sets[i]) ))
     return folds
 
 
