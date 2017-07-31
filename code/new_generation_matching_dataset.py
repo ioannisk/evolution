@@ -170,12 +170,14 @@ def training_validation_split(class_descriptions,companies_descriptions):
     for id_ in companies_descriptions:
         class_counts[companies_descriptions[id_]["class_num"]]+=1
     for split in range(splits):
-        for _ in range(class_validation_N):
-            samples = np.random.choice(allowed_samples, 1, replace=False)[0]
-            print(samples)
-            folds.append(samples)
-            allowed_samples = [class_ for class_ in allowed_samples if class_ not in samples]
-
+        folds_samples = []
+        while len(folds_samples) <class_validation_N:
+            sample = np.random.choice(allowed_samples, 1, replace=False)[0]
+            if class_counts[sample] < 1000:
+                allowed_samples.remove(sample)
+                folds_samples.append(sample)
+        folds.append(folds_samples)
+    print(folds)
     # ranked = class_counts.most_common()[::-1]
     # print(ranked)
     # Rank according to least common count
