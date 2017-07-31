@@ -131,7 +131,7 @@ if __name__ == '__main__':
     embedding_size = embeddings.shape[1]
 
     if args.model == 'mlp':
-        model = MultiFeedForwardClassifier(args.num_units, 2, vocab_size,
+        model = MultiFeedForwardClassifier(args.num_units, 3, vocab_size,
                                            embedding_size,
                                            use_intra_attention=args.use_intra,
                                            training=True,

@@ -277,7 +277,8 @@ def read_corpus(filename, lowercase, language='en'):
                 data = json.loads(line)
                 ## add this for binary clasification on SNLI
                 # contradiction neutral entailment
-                if data['gold_label'] == '-' or data['gold_label']=="neutral":
+                if data['gold_label'] == '-':
+                # if data['gold_label'] == '-' or data['gold_label']=="neutral":
                     # ignore items without a gold label
                     continue
 
