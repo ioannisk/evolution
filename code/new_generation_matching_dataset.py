@@ -160,7 +160,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     """Desing big experiment, train 3 models with 3 fodls of held out classes
     while we also keep some companies out from the seen classes so we can test SL learning
     """
-    all_classes = list(class_descriptions.keys())
+    all_classes = set(class_descriptions.keys())
     class_validation_N = 15
     companies_validation = 5000
     splits = 3
@@ -169,7 +169,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     for _ in range(3):
         samples = np.random.choice(allowed_samples, 10, replace=False)
         folds.append(samples)
-        allowed_samples -= samples
+        allowed_samples -= set(samples)
     class_counts = Counter()
     for id_ in companies_descriptions:
         class_counts[companies_descriptions[id_]["class_num"]]+=1
