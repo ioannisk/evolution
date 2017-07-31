@@ -171,11 +171,14 @@ def training_validation_split(class_descriptions,companies_descriptions):
         class_counts[companies_descriptions[id_]["class_num"]]+=1
     for split in range(splits):
         folds_samples = []
-        while len(folds_samples) <class_validation_N:
+        volume_fold = 0
+        # while len(folds_samples) <class_validation_N:
+        while volume_fold < 6000:
             sample = np.random.choice(allowed_samples, 1, replace=False)[0]
-            if class_counts[sample] < 1500:
-                allowed_samples.remove(sample)
-                folds_samples.append(sample)
+            # if class_counts[sample] < 1500:
+            volume_fold +=class_counts[sample]
+            allowed_samples.remove(sample)
+            folds_samples.append(sample)
         folds.append(folds_samples)
     print(folds)
     # ranked = class_counts.most_common()[::-1]
