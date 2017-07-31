@@ -4,7 +4,7 @@ import json
 import random
 import time
 import os
-from attention_evaluation import load_json_validation_file
+# from attention_evaluation import load_json_validation_file
 #### data -> dictionairy -> json
 
 
@@ -92,7 +92,7 @@ def make_pairs(des, web_class, id_txt, id_class):
     for i in range(len(positive)):
         counter +=1
         if counter % 1000 ==0:
-            print counter
+            print(counter)
         # take one random sample (sample is return as a list so take 0 element)
         id_ = random.sample(ids, 1)[0]
         unsuccesful_sample = True
@@ -183,5 +183,5 @@ if __name__ =="__main__":
     des, web_class, id_txt, id_class  = read_data()
     make_pairs(des, web_class, id_txt, id_class)
     shuffle_data()
-    make_ranking_validation()
+    # make_ranking_validation()
 
