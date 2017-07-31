@@ -30,6 +30,7 @@ def read_descriptions():
         for line in file_:
             line = line.strip()
             class_num , txt = line.split('\t')
+            print(class_num, txt)
             if len(txt.split()) <=MAX_DES_LEN:
                 class_descriptions[class_num] = txt
     return class_descriptions
