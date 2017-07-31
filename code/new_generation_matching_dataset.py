@@ -57,8 +57,9 @@ def read_meta():
                 counter +=1
             except:
                 pass
-            # if len(txt.split()) <= MAX_WEB_LEN:
-            #     companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
+                continue
+            if len(txt.split()) <= MAX_WEB_LEN:
+                companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
         print(counter)
     return companies_descriptions
 
