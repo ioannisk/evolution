@@ -37,13 +37,13 @@ def read_data():
     id_class = {}
     max_des = 0
     des_lens = []
-    with open("../data/descriptions_data.txt","r") as file_:
+    with open("../data/descriptions_data_1.txt","r") as file_:
         for line in file_:
             line = line.strip()
             class_num , txt = line.split('\t')
             if len(txt.split()) <=MAX_DES_LEN:
                 des[class_num] = txt
-    with open("../data/web_site_meta.txt", "r") as file_:
+    with open("../data/web_site_meta_1.txt", "r") as file_:
     # with open("../data/web_site_data.txt", "r") as file_:
         for line in file_:
             line = line.strip()
