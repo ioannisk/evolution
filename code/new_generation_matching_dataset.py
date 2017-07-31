@@ -166,7 +166,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     splits = 3
     folds = []
     allowed_samples = all_classes
-    for fold in folds:
+    for _ in range(3):
         samples = np.random.choice(allowed_samples, 10, replace=False)
         folds.append(samples)
         allowed_samples -= samples
