@@ -109,7 +109,7 @@ def train_naive_bayes_des_local(fold):
     X_train_vec = vec.transform(X_train_des)
     Y_train = Y_train_des
     X_valid_vec = vec.transform(X_valid)
-    a = 0.1
+    a = 0.01
     # for a in np.arange(1,20)*0.1:
     gnb = MultinomialNB(alpha=a,fit_prior=False)
     # clf = gnb.fit(X_train_des_vec, Y_train_des)
@@ -142,7 +142,7 @@ def tf_idf_vectorization(corpus):
     # print("tfidf Vectorization")
     stopWords = stopwords.words('english')
     # vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords, sublinear_tf=False)
-    vec = TfidfVectorizer( min_df=1,sublinear_tf=False)
+    vec = TfidfVectorizer( min_df=1,binary=True)
     vec.fit(corpus)
     return vec
 
