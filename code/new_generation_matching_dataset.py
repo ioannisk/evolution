@@ -61,7 +61,6 @@ def read_meta():
                 continue
             if len(txt.split()) <= MAX_WEB_LEN:
                 companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
-        print(counter)
     return companies_descriptions
 
 def web_des_intersection(class_descriptions, cmp_des):
@@ -284,7 +283,8 @@ def make_evaluation_pairs(class_descriptions):
 if __name__=="__main__":
     class_descriptions = read_descriptions()
     companies_descriptions= read_meta()
-    # class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
+    class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
+    print(len(class_descriptions), len(companies_descriptions))
     # # #invert companies descriptions dictionairy
     # classes_companies = defaultdict(list)
     # for id_ in companies_descriptions:
