@@ -4,7 +4,7 @@ import json
 import random
 import time
 import os
-# from attention_evaluation import load_json_validation_file
+from attention_evaluation import load_json_validation_file
 #### data -> dictionairy -> json
 
 
@@ -180,8 +180,8 @@ def make_ranking_validation():
                 write_json_line(json_buffer,file_)
 
 if __name__ =="__main__":
-    des, web_class, id_txt, id_class  = read_data()
-    make_pairs(des, web_class, id_txt, id_class)
-    shuffle_data()
-    # make_ranking_validation()
+    # des, web_class, id_txt, id_class  = read_data()
+    # make_pairs(des, web_class, id_txt, id_class)
+    # shuffle_data()
+    make_ranking_validation()
 
