@@ -220,8 +220,8 @@ def baseline_tfidf(fold):
 
 
 def decomposable_attention_eval(fold):
-    # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/{}/model{}/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
-    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/binary_snli_2/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
+    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/{}/model{}/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
+    # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/binary_snli_2/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
         predictions = []
         for line in file_:
             line = line.strip()
