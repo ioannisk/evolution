@@ -43,9 +43,9 @@ def read_meta():
     with open("/home/ioannis/data/web_sic_description.tsv", "r") as file_:
         for i, line in enumerate(file_):
             line = line.strip()
-            id_, class_num , txt = line.split('\t')
-            if len(txt.split()) <= MAX_WEB_LEN:
-                companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
+            class_num , txt = line.split('\t')
+            # if len(txt.split()) <= MAX_WEB_LEN:
+            #     companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
     return companies_descriptions
 
 def web_des_intersection(class_descriptions, cmp_des):
