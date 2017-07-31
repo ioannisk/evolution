@@ -193,7 +193,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
 
     training_sets = []
     for fold in folds:
-        training = [class_ for class_ in all_classes if class_ not in fold]
+        training = [class_ for class_ in list(class_descriptions.keys()) if class_ not in fold]
         training_sets.append(training)
 
     for i in range(3):
