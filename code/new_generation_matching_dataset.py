@@ -40,7 +40,6 @@ def read_descriptions():
             try:
                 class_num , txt = line.split('\t')
             except:
-                pass
                 continue
             # print(class_num, txt)
             if len(txt.split()) <=MAX_DES_LEN:
