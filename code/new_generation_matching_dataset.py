@@ -235,14 +235,12 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     """
 
     ## keep out a supervised training set of 10k companies
-
-    companies_in_fold = [ company for class_ in fold_classes for company in classes_companies[class_]]
-    random.shuffle(companies_in_fold)
     if TRAINING:
-        buff = zip(list(range(supervised_validation_volume)), list(companies_in_fold))
-        __, supervised_validation = zip(*buff)
+        companies_in_fold_all_info = [ (company,class_) for class_ in fold_classes for company in classes_companies[class_]]
+        random.shuffle(companies_in_fold_all_info)
+        supervised_validation_with_classes = companies_in_fold_all_info[:supervised_validation_volume]
+        supervised_validation, supervised_validation_classes = zip(*supervised_validation_with_classes)
         supervised_validation = set(supervised_validation)
-
 
     positive = []
     negative = []
@@ -261,12 +259,10 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
             json_buffer = {'des':class_des, 'web':company_des, 'class':"entailment",
             'des_class':class_, 'web_class':company_class, 'web_id':company}
             positive.append(json_buffer)
-    for pp in positive:
-        if pp["web_id"] in supervised_validation:
-            print("BADBABD")
-    print(len(positive))
+
     print(len(supervised_validation))
-    print(len(companies_in_fold))
+    print(len(companies_in_fold_all_info))
+    print(len(set(supervised_validation_classes)))
     stop
     ## negative pairs
     # 2 design choices
@@ -291,7 +287,6 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     ## shuffle data for learning purpose
     # print("########")
     # print(len(companies_descriptions.keys()))
-    print(len(positive))
     # print(len(supervised_validation))
     # print("########")
     # stop
@@ -334,7 +329,8 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
         with open(path+"validation.json", "w") as file_:
             for pair in validation_pairs:
                 write_json_line(pair, file_)
-    return supervised_validation
+        with open()
+    return
 
 
 
@@ -368,6 +364,7 @@ def make_evaluation_pairs(class_descriptions):
                         write_json_line(json_buffer,ranking_validation)
 
 
+def make_supervised_evaluation():
 
 
 
@@ -387,4 +384,5 @@ if __name__=="__main__":
     class_folds = training_validation_split(class_descriptions,companies_descriptions)
     supervised_validations = make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
     make_evaluation_pairs(class_descriptions, supervised_validations)
+    make_supervised_evaluation()
 
