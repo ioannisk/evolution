@@ -329,7 +329,7 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
         with open(path+"validation.json", "w") as file_:
             for pair in validation_pairs:
                 write_json_line(pair, file_)
-        with open()
+        # with open()
     return
 
 
