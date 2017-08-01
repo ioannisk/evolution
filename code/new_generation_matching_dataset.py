@@ -188,7 +188,8 @@ def training_validation_split(class_descriptions,companies_descriptions):
     # Rank according to least common count
     ## GOOD LIST PRODUCED FOR SPLIT 3
 
-    # folds = [['21200', '52243', '42910', '47799', '81291', '22110', '73120', '52101', '58210', '14132', '77120', '88910', '61200'], ['85410', '23640', '20412', '27110', '65202', '46341', '59120', '72200', '24520', '66120', '28301', '82190', '52102', '20302', '13950', '47782', '74203'], ['20150', '71121', '14390', '46210', '63990', '23510', '31030', '51220', '28120', '46380', '81223', '85520']]
+    #
+    folds = [['81299', '84130', '20301', '23110', '64303', '19209', '25400', '11010', '10850', '91030', '58190'], ['85410', '23640', '20412', '27110', '65202', '46341', '59120', '72200', '24520', '66120', '28301', '82190', '52102', '20302', '13950', '47782', '74203'], ['20150', '71121', '14390', '46210', '63990', '23510', '31030', '51220', '28120', '46380', '81223', '85520']]
     for fold in folds:
         fold_sum = 0
         for class_ in fold:
@@ -334,19 +335,20 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
             os.mkdir(path)
         except:
             pass
-        # with open(path+"training.json", "w") as file_:
-        #     print("writing trainign set")
-        #     for pair in training_pairs:
-        #         write_json_line(pair, file_)
+        with open(path+"training.json", "w") as file_:
+            print("writing trainign set")
+            for pair in training_pairs:
+                write_json_line(pair, file_)
         with open(path+"validation.json", "w") as file_:
             print("writing validation set")
             for pair in validation_pairs:
                 write_json_line(pair, file_)
-        stop
+
         with open(path+"supervised_validation.json", "w") as file_:
             print("writing supervised_validation set")
             for pair in supervised_validation_data:
                 write_json_line(pair, file_)
+        stop
         # with open()
     return
 
