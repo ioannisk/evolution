@@ -235,10 +235,7 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     """
 
     ## keep out a supervised training set of 10k companies
-    a = list(range(supervised_validation_volume))
-    b = list(companies_descriptions.keys)
-    print(len(a), len(b))
-    buff = zip(a, b)
+    buff = zip(list(range(supervised_validation_volume)), list(companies_descriptions.keys()))
     __, supervised_validation = zip(*buff)
     supervised_validation = set(supervised_validation)
 
