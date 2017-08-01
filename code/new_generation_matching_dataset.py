@@ -182,18 +182,19 @@ def training_validation_split(class_descriptions,companies_descriptions):
                 allowed_samples.remove(sample)
                 folds_samples.append(sample)
         folds.append(folds_samples)
-    # print(folds)
+    print(folds)
     # ranked = class_counts.most_common()[::-1]
     # print(ranked)
     # Rank according to least common count
     ## GOOD LIST PRODUCED FOR SPLIT 3
-    folds = [['21200', '52243', '42910', '47799', '81291', '22110', '73120', '52101', '58210', '14132', '77120', '88910', '61200'], ['85410', '23640', '20412', '27110', '65202', '46341', '59120', '72200', '24520', '66120', '28301', '82190', '52102', '20302', '13950', '47782', '74203'], ['20150', '71121', '14390', '46210', '63990', '23510', '31030', '51220', '28120', '46380', '81223', '85520']]
+
+    # folds = [['21200', '52243', '42910', '47799', '81291', '22110', '73120', '52101', '58210', '14132', '77120', '88910', '61200'], ['85410', '23640', '20412', '27110', '65202', '46341', '59120', '72200', '24520', '66120', '28301', '82190', '52102', '20302', '13950', '47782', '74203'], ['20150', '71121', '14390', '46210', '63990', '23510', '31030', '51220', '28120', '46380', '81223', '85520']]
     for fold in folds:
         fold_sum = 0
         for class_ in fold:
             fold_sum += class_counts[class_]
         print(fold_sum)
-
+    stop
     training_sets = []
     for fold in folds:
         training = [class_ for class_ in list(class_descriptions.keys()) if class_ not in fold]
