@@ -14,7 +14,7 @@ MAX_LEN= 120
 supervised_validation_volume = 8000
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
-data_path = "../data/1rfolds{}____/".format(N)
+data_path = "../data/1rfolds{}_1/".format(N)
 # data_path = "../data/10rfolds{}/".format(N)
 # data_path = "../data/100rfolds{}/".format(N)
 
@@ -187,7 +187,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     # print(ranked)
     # Rank according to least common count
     ## GOOD LIST PRODUCED FOR SPLIT 3
-    # folds = [['14141', '47650', '66110', '33170', '82912', '46431', '10720', '81210', '28923', '24530', '25120', '47791'], ['85410', '23640', '20412', '27110', '65202', '46341', '59120', '72200', '24520', '66120', '28301', '82190', '52102', '20302', '13950', '47782', '74203'], ['20150', '71121', '14390', '46210', '63990', '23510', '31030', '51220', '28120', '46380', '81223', '85520']]
+    folds = [['21200', '52243', '42910', '47799', '81291', '22110', '73120', '52101', '58210', '14132', '77120', '88910', '61200'], ['85410', '23640', '20412', '27110', '65202', '46341', '59120', '72200', '24520', '66120', '28301', '82190', '52102', '20302', '13950', '47782', '74203'], ['20150', '71121', '14390', '46210', '63990', '23510', '31030', '51220', '28120', '46380', '81223', '85520']]
     for fold in folds:
         fold_sum = 0
         for class_ in fold:
@@ -227,7 +227,7 @@ def merge_folds(class_folds):
     return data
 
 
-def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_companies):
+def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_companies, TRAINING=False):
     """ Match the document with the
     des class if match or a random
     des class if not match. Then shuffle
@@ -247,8 +247,10 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
         companies = classes_companies[class_]
         class_des = class_descriptions[class_]
         for company in companies:
-            if company in supervised_validation:
-                continue
+            if TRAINING:
+                if company in supervised_validation:
+                    stop
+                    continue
             company_des = companies_descriptions[company]["txt"]
             company_class = companies_descriptions[company]["class_num"]
             json_buffer = {'des':class_des, 'web':company_des, 'class':"entailment",
@@ -264,8 +266,9 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
         allowed_samples.remove(class_)
         companies = classes_companies[class_]
         for company in companies:
-            if company in supervised_validation:
-                continue
+            if TRAINING:
+                if company in supervised_validation:
+                    continue
             company_des = companies_descriptions[company]["txt"]
             company_class = companies_descriptions[company]["class_num"]
             sample_class = allowed_samples[random.randint(0, len(allowed_samples) - 1)]
@@ -274,15 +277,15 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
             'des_class':sample_class, 'web_class':company_class, 'web_id':company}
             negative.append(json_buffer)
     ## shuffle data for learning purpose
-    print("########")
-    print(len(companies_descriptions.keys()))
-    print(len(positive))
-    print(len(supervised_validation))
-    print("########")
-    stop
+    # print("########")
+    # print(len(companies_descriptions.keys()))
+    # print(len(positive))
+    # print(len(supervised_validation))
+    # print("########")
+    # stop
     data = positive + negative
     random.shuffle(data)
-    return data
+    return data, supervised_validation
 
 #
 # MAYBE!!!!!!! data leak in negations is a very smart idea
@@ -302,7 +305,7 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
     #     pass
     for i, (training, validation) in enumerate(class_folds):
         print("Writting fold {}".format(i))
-        training_pairs = make_pairs(training,class_descriptions, companies_descriptions,classes_companies)
+        training_pairs = make_pairs(training,class_descriptions, companies_descriptions,classes_companies, TRAINING = True)
         validation_pairs = make_pairs(validation,class_descriptions, companies_descriptions,classes_companies)
         path = data_path + "fold{}/".format(i)
         try:
