@@ -182,7 +182,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
                 allowed_samples.remove(sample)
                 folds_samples.append(sample)
         folds.append(folds_samples)
-    print(folds)
+    # print(folds)
     # ranked = class_counts.most_common()[::-1]
     # print(ranked)
     # Rank according to least common count
@@ -236,6 +236,8 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
 
     ## keep out a supervised training set of 10k companies
     if TRAINING:
+        stop
+        stop
         buff = zip(list(range(supervised_validation_volume)), list(companies_descriptions.keys()))
         __, supervised_validation = zip(*buff)
         supervised_validation = set(supervised_validation)
@@ -305,8 +307,9 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
     #     pass
     for i, (training, validation) in enumerate(class_folds):
         print("Writting fold {}".format(i))
-        training_pairs = make_pairs(training,class_descriptions, companies_descriptions,classes_companies, TRAINING = True)
+        # training_pairs = make_pairs(training,class_descriptions, companies_descriptions,classes_companies, TRAINING = True)
         validation_pairs = make_pairs(validation,class_descriptions, companies_descriptions,classes_companies)
+        stop
         path = data_path + "fold{}/".format(i)
         try:
             os.mkdir(path)
