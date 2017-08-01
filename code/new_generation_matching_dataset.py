@@ -241,8 +241,10 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     negative = []
     supervised_validations = []
     ## positive pairs
+    print(len(fold_classes))
     for class_ in fold_classes:
         print(len(class_))
+        stop
         if TRAINING:
             buff = zip(list(range(supervised_validation_volume)), list(companies_descriptions.keys()))
             __, supervised_validation = zip(*buff)
