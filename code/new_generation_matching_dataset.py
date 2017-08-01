@@ -289,7 +289,7 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     random.shuffle(data)
     if TRAINING:
         return data, supervised_validation
-    else
+    else:
         return data
 
 #
