@@ -364,7 +364,7 @@ def make_evaluation_pairs(class_descriptions):
                         write_json_line(json_buffer,ranking_validation)
 
 
-def make_supervised_evaluation():
+# def make_supervised_evaluation():
 
 
 
