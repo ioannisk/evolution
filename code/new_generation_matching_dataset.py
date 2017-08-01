@@ -274,9 +274,11 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
             'des_class':sample_class, 'web_class':company_class, 'web_id':company}
             negative.append(json_buffer)
     ## shuffle data for learning purpose
+    print("########")
     print(len(companies_descriptions.keys()))
     print(len(positive))
     print(len(supervised_validation))
+    print("########")
     data = positive + negative
     random.shuffle(data)
     return data
