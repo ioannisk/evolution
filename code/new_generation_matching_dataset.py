@@ -279,6 +279,7 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     print(len(positive))
     print(len(supervised_validation))
     print("########")
+    stop
     data = positive + negative
     random.shuffle(data)
     return data
