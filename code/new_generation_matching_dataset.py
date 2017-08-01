@@ -243,7 +243,6 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     positive = []
     negative = []
     ## positive pairs
-    print(len(companies_descriptions.keys()))
     for class_ in fold_classes:
         companies = classes_companies[class_]
         class_des = class_descriptions[class_]
@@ -275,7 +274,7 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
             'des_class':sample_class, 'web_class':company_class, 'web_id':company}
             negative.append(json_buffer)
     ## shuffle data for learning purpose
-    print(len(companies_descriptions.keys))
+    print(len(companies_descriptions.keys()))
     print(len(positive))
     print(len(supervised_validation))
     data = positive + negative
