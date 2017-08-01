@@ -393,8 +393,7 @@ if __name__=="__main__":
     classes_companies = defaultdict(list)
     for id_ in companies_descriptions:
         classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
-    class_folds = training_validation_split(class_descriptions,companies_descriptions)
-    supervised_validations = make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
-    make_evaluation_pairs(class_descriptions, supervised_validations)
-    make_supervised_evaluation()
+    # class_folds = training_validation_split(class_descriptions,companies_descriptions)
+    # supervised_validations = make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
+    make_evaluation_pairs(class_descriptions)
 
