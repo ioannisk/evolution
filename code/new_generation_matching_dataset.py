@@ -287,7 +287,10 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     # stop
     data = positive + negative
     random.shuffle(data)
-    return data, supervised_validation
+    if TRAINING:
+        return data, supervised_validation
+    else
+        return data
 
 #
 # MAYBE!!!!!!! data leak in negations is a very smart idea
