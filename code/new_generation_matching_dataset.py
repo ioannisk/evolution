@@ -326,7 +326,7 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
     #     pass
     for i, (training, validation) in enumerate(class_folds):
         print("Writting fold {}".format(i))
-        training_pairs, supervised_validation = make_pairs(training,class_descriptions, companies_descriptions,classes_companies, TRAINING = True)
+        training_pairs, supervised_validation_data = make_pairs(training,class_descriptions, companies_descriptions,classes_companies, TRAINING = True)
         validation_pairs = make_pairs(validation,class_descriptions, companies_descriptions,classes_companies)
         path = data_path + "fold{}/".format(i)
         try:
