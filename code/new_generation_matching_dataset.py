@@ -11,7 +11,7 @@ import numpy as np
 # 2k in each bucket is convenient number for testing quickly
 N = 3
 MAX_LEN= 120
-supervised_validation_volume = 10000
+supervised_validation_volume = 8000
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
 data_path = "../data/1rfolds{}____/".format(N)
@@ -267,7 +267,6 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
         for company in companies:
             if company in supervised_validation:
                 continue
-
             company_des = companies_descriptions[company]["txt"]
             company_class = companies_descriptions[company]["class_num"]
             sample_class = allowed_samples[random.randint(0, len(allowed_samples) - 1)]
@@ -276,6 +275,9 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
             'des_class':sample_class, 'web_class':company_class, 'web_id':company}
             negative.append(json_buffer)
     ## shuffle data for learning purpose
+    print(len(companies_descriptions.keys))
+    print(len(positive))
+    print(len(supervised_validation))
     data = positive + negative
     random.shuffle(data)
     return data
