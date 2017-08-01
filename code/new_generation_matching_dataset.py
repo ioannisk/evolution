@@ -161,7 +161,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     """Desing big experiment, train 3 models with 3 fodls of held out classes
     while we also keep some companies out from the seen classes so we can test SL learning
     """
-    os.mkdir(data_path)
+    # os.mkdir(data_path)
     all_classes = list(class_descriptions.keys())
     class_validation_N = 10
     companies_validation = 5000
@@ -333,14 +333,15 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
             os.mkdir(path)
         except:
             pass
-        with open(path+"training.json", "w") as file_:
-            print("writing trainign set")
-            for pair in training_pairs:
-                write_json_line(pair, file_)
+        # with open(path+"training.json", "w") as file_:
+        #     print("writing trainign set")
+        #     for pair in training_pairs:
+        #         write_json_line(pair, file_)
         with open(path+"validation.json", "w") as file_:
             print("writing validation set")
             for pair in validation_pairs:
                 write_json_line(pair, file_)
+        stop
         with open(path+"supervised_validation.json", "w") as file_:
             print("writing supervised_validation set")
             for pair in supervised_validation_data:
@@ -393,7 +394,7 @@ if __name__=="__main__":
     classes_companies = defaultdict(list)
     for id_ in companies_descriptions:
         classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
-    # class_folds = training_validation_split(class_descriptions,companies_descriptions)
-    # supervised_validations = make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
+    class_folds = training_validation_split(class_descriptions,companies_descriptions)
+    supervised_validations = make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
     make_evaluation_pairs(class_descriptions)
 

@@ -8,11 +8,15 @@
 # python my_evaluate.py 1rfolds3/model1 //home/ioannis/data/testing_binary_snli_snli.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
 
 
-############
+################################################################################################
+################################################################################################
+################################################################################################
 #
 # 1rfolds3 directory of data used for this experiments
 #
-##########
+################################################################################################
+################################################################################################
+################################################################################################
 ### training experimet #1
 ## done predictions
 # nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3/fold0/training.json /home/ioannis/evolution/data/1rfolds3/fold0/validation.json 1rfolds3/model0 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output_0.txt &
@@ -62,13 +66,21 @@
 #  python -u my_evaluate.py 1rfolds3_3/model1 /home/ioannis/evolution/data/1rfolds3/fold1/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
 #  python -u my_evaluate.py 1rfolds3_3/model2 /home/ioannis/evolution/data/1rfolds3/fold2/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
 
-############
+################################################################################################
+################################################################################################
+################################################################################################
 #
-# 1rfolds3 directory of data used for this experiments
+# 1rfolds3_sl directory of data used for this experiments
 #
-##########
+################################################################################################
+################################################################################################
+################################################################################################
 
+# Training experiment 1
 
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold0/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold0/validation.json 1rfolds3_sl/model0 mlp --lower -e 30 -u 250 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold1/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold1/validation.json 1rfolds3_sl/model1 mlp --lower -e 30 -u 250 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold2/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold2/validation.json 1rfolds3_sl/model2 mlp --lower -e 30 -u 250 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output.txt &
 
 
 
