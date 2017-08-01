@@ -196,7 +196,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
         for class_ in fold:
             fold_sum += class_counts[class_]
         print(fold_sum)
-    stop
+
     training_sets = []
     for fold in folds:
         training = [class_ for class_ in list(class_descriptions.keys()) if class_ not in fold]
@@ -204,6 +204,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     for i in range(3):
         print(len(folds[i]), len(training_sets[i]), (len(folds[i]) + len(training_sets[i]) ))
 
+    stop
     data = list(zip(training_sets, folds))
     return data
 
