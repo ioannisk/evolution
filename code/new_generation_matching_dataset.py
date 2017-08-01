@@ -11,6 +11,7 @@ import numpy as np
 # 2k in each bucket is convenient number for testing quickly
 N = 3
 MAX_LEN= 120
+supervised_validation_volume = 10000
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
 data_path = "../data/1rfolds{}____/".format(N)
@@ -232,17 +233,23 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     des class if not match. Then shuffle
     so MLP can learn.
     """
-    supervised_validation_volume = 10000
-    supervised_validation = []
+
+    ## keep out a supervised training set of 10k companies
+    buff = zip(range(supervised_validation_volume), list(companies_descriptions.keys))
+    __, supervised_validation = zip(*buff)
+    supervised_validation = set(supervised_validation)
+
+
     positive = []
     negative = []
     ## positive pairs
     print(len(companies_descriptions.keys()))
-    stop
     for class_ in fold_classes:
         companies = classes_companies[class_]
         class_des = class_descriptions[class_]
         for company in companies:
+            if company in supervised_validation:
+                continue
             company_des = companies_descriptions[company]["txt"]
             company_class = companies_descriptions[company]["class_num"]
             json_buffer = {'des':class_des, 'web':company_des, 'class':"entailment",
@@ -258,6 +265,9 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
         allowed_samples.remove(class_)
         companies = classes_companies[class_]
         for company in companies:
+            if company in supervised_validation:
+                continue
+
             company_des = companies_descriptions[company]["txt"]
             company_class = companies_descriptions[company]["class_num"]
             sample_class = allowed_samples[random.randint(0, len(allowed_samples) - 1)]
