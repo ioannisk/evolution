@@ -13,7 +13,7 @@ N = 3
 MAX_LEN= 120
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
-data_path = "../data/1rfolds{}/".format(N)
+data_path = "../data/1rfolds{}____/".format(N)
 # data_path = "../data/10rfolds{}/".format(N)
 # data_path = "../data/100rfolds{}/".format(N)
 
@@ -232,9 +232,13 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     des class if not match. Then shuffle
     so MLP can learn.
     """
+    supervised_validation_volume = 10000
+    supervised_validation = []
     positive = []
     negative = []
     ## positive pairs
+    print(len(companies_descriptions.keys()))
+    stop
     for class_ in fold_classes:
         companies = classes_companies[class_]
         class_des = class_descriptions[class_]
@@ -350,6 +354,6 @@ if __name__=="__main__":
     class_folds = training_validation_split(class_descriptions,companies_descriptions)
     # folds = make_N_folds_classes_equal_datapoints(class_descriptions, companies_descriptions)
     # class_folds = merge_folds(folds)
-    make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
-    make_evaluation_pairs(class_descriptions)
+    # make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
+    # make_evaluation_pairs(class_descriptions)
 
