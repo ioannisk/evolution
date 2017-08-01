@@ -235,18 +235,19 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     """
 
     ## keep out a supervised training set of 10k companies
-    if TRAINING:
-        stop
-        stop
-        buff = zip(list(range(supervised_validation_volume)), list(companies_descriptions.keys()))
-        __, supervised_validation = zip(*buff)
-        supervised_validation = set(supervised_validation)
 
 
     positive = []
     negative = []
+    supervised_validations = []
     ## positive pairs
     for class_ in fold_classes:
+        print(len(class_))
+        if TRAINING:
+            buff = zip(list(range(supervised_validation_volume)), list(companies_descriptions.keys()))
+            __, supervised_validation = zip(*buff)
+            supervised_validation = set(supervised_validation)
+
         companies = classes_companies[class_]
         class_des = class_descriptions[class_]
         for company in companies:
@@ -310,9 +311,8 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
     #     pass
     for i, (training, validation) in enumerate(class_folds):
         print("Writting fold {}".format(i))
-        # training_pairs = make_pairs(training,class_descriptions, companies_descriptions,classes_companies, TRAINING = True)
+        training_pairs, supervised_validation = make_pairs(training,class_descriptions, companies_descriptions,classes_companies, TRAINING = True)
         validation_pairs = make_pairs(validation,class_descriptions, companies_descriptions,classes_companies)
-        stop
         path = data_path + "fold{}/".format(i)
         try:
             os.mkdir(path)
@@ -324,7 +324,7 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
         with open(path+"validation.json", "w") as file_:
             for pair in validation_pairs:
                 write_json_line(pair, file_)
-
+    return supervised_validation
 
 
 
@@ -375,6 +375,6 @@ if __name__=="__main__":
     for id_ in companies_descriptions:
         classes_companies[companies_descriptions[id_]["class_num"]].append(id_)
     class_folds = training_validation_split(class_descriptions,companies_descriptions)
-    make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
-    make_evaluation_pairs(class_descriptions)
+    supervised_validations = make_training_dataset(class_folds, class_descriptions, companies_descriptions, classes_companies)
+    make_evaluation_pairs(class_descriptions, supervised_validations)
 
