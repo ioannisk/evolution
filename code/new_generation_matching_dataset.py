@@ -14,7 +14,7 @@ MAX_LEN= 120
 supervised_validation_volume = 8000
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
-data_path = "../data/1rfolds{}_1/".format(N)
+data_path = "../data/1rfolds{}_sl/".format(N)
 # data_path = "../data/10rfolds{}/".format(N)
 # data_path = "../data/100rfolds{}/".format(N)
 
@@ -161,7 +161,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     """Desing big experiment, train 3 models with 3 fodls of held out classes
     while we also keep some companies out from the seen classes so we can test SL learning
     """
-    # os.mkdir(data_path)
+    os.mkdir(data_path)
     all_classes = list(class_descriptions.keys())
     class_validation_N = 10
     companies_validation = 5000
@@ -235,7 +235,6 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     """
 
     ## keep out a supervised training set of 10k companies
-    counter_ = Counter()
     if TRAINING:
         supervised_validation_data = []
         companies_in_fold_all_info = [ (company,class_) for class_ in fold_classes for company in classes_companies[class_]]
@@ -249,13 +248,9 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
             id_ = company
             for class_num in class_descriptions:
                 class_buffer ='entailment' if class_num ==web_class else 'contradiction'
-                counter_[class_buffer] +=1
                 json_buffer={'des':class_descriptions[class_num] , 'web':website_txt ,
                 'class':class_buffer, 'web_id':id_, 'web_class':web_class, 'des_class':class_num}
                 supervised_validation_data.append(json_buffer)
-
-        print(counter_)
-        stop
 
     positive = []
     negative = []
@@ -339,12 +334,15 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
         except:
             pass
         with open(path+"training.json", "w") as file_:
+            print("writing trainign set")
             for pair in training_pairs:
                 write_json_line(pair, file_)
         with open(path+"validation.json", "w") as file_:
+            print("writing validation set")
             for pair in validation_pairs:
                 write_json_line(pair, file_)
         with open(path+"supervised_validation.json", "w") as file_:
+            print("writing supervised_validation set")
             for pair in supervised_validation_data:
                 write_json_line(pair, file_)
         # with open()
@@ -383,10 +381,6 @@ def make_evaluation_pairs(class_descriptions):
 
 
 # def make_supervised_evaluation():
-
-
-
-
 
 
 
