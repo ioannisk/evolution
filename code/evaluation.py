@@ -13,14 +13,15 @@ import matplotlib.pyplot as plt
 
 RANKS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 choosen_fold = "1rfolds3"
-choosen_model = "1rfolds3"
+choosen_model = "1rfolds3_2"
 data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
 #
 # Comparison on folds 2, 4, 0
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
-folds = [0,1,2]
+# folds = [0,1,2]
+folds = [0]
 # folds = [14]
 # folds = [0,2,4]
 class_descriptions = read_descriptions()
@@ -111,7 +112,7 @@ def train_naive_bayes_des_local(fold):
     X_train_vec = vec.transform(X_train_des)
     Y_train = Y_train_des
     X_valid_vec = vec.transform(X_valid)
-    a = 0.001
+    a = 0.0001
     # for a in np.arange(1,20)*0.1:
     gnb = MultinomialNB(alpha=a,fit_prior=False)
     # clf = gnb.fit(X_train_des_vec, Y_train_des)
