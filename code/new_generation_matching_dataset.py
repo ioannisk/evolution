@@ -235,9 +235,10 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     """
 
     ## keep out a supervised training set of 10k companies
-    buff = zip(list(range(supervised_validation_volume)), list(companies_descriptions.keys()))
-    __, supervised_validation = zip(*buff)
-    supervised_validation = set(supervised_validation)
+    if TRAINING:
+        buff = zip(list(range(supervised_validation_volume)), list(companies_descriptions.keys()))
+        __, supervised_validation = zip(*buff)
+        supervised_validation = set(supervised_validation)
 
 
     positive = []
@@ -249,7 +250,6 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
         for company in companies:
             if TRAINING:
                 if company in supervised_validation:
-                    stop
                     continue
             company_des = companies_descriptions[company]["txt"]
             company_class = companies_descriptions[company]["class_num"]
@@ -279,7 +279,7 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     ## shuffle data for learning purpose
     # print("########")
     # print(len(companies_descriptions.keys()))
-    # print(len(positive))
+    print(len(positive))
     # print(len(supervised_validation))
     # print("########")
     # stop
