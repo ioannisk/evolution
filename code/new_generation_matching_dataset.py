@@ -236,19 +236,19 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
 
     ## keep out a supervised training set of 10k companies
 
+    companies_in_fold = [ company for class_ in fold_classes for company in classes_companies[class_]]
+    random.shuffle(companies_in_fold)
+    if TRAINING:
+        buff = zip(list(range(supervised_validation_volume)), list(companies_in_fold))
+        __, supervised_validation = zip(*buff)
+        supervised_validation = set(supervised_validation)
+
 
     positive = []
     negative = []
-    supervised_validations = []
     ## positive pairs
     print(len(fold_classes))
     for class_ in fold_classes:
-        print(len(class_))
-        stop
-        if TRAINING:
-            buff = zip(list(range(supervised_validation_volume)), list(companies_descriptions.keys()))
-            __, supervised_validation = zip(*buff)
-            supervised_validation = set(supervised_validation)
 
         companies = classes_companies[class_]
         class_des = class_descriptions[class_]
@@ -261,6 +261,13 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
             json_buffer = {'des':class_des, 'web':company_des, 'class':"entailment",
             'des_class':class_, 'web_class':company_class, 'web_id':company}
             positive.append(json_buffer)
+    for pp in positive:
+        if pp["web_id"] in supervised_validation:
+            print("BADBABD")
+    print(len(positive))
+    print(len(supervised_validation))
+    print(len(companies_in_fold))
+    stop
     ## negative pairs
     # 2 design choices
     #       1. random sample a wrong company given a class
@@ -288,6 +295,7 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     # print(len(supervised_validation))
     # print("########")
     # stop
+
     data = positive + negative
     random.shuffle(data)
     if TRAINING:
