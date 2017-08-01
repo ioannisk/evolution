@@ -187,7 +187,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     # print(ranked)
     # Rank according to least common count
     ## GOOD LIST PRODUCED FOR SPLIT 3
-    folds = [['14141', '47650', '66110', '33170', '82912', '46431', '10720', '81210', '28923', '24530', '25120', '47791'], ['85410', '23640', '20412', '27110', '65202', '46341', '59120', '72200', '24520', '66120', '28301', '82190', '52102', '20302', '13950', '47782', '74203'], ['20150', '71121', '14390', '46210', '63990', '23510', '31030', '51220', '28120', '46380', '81223', '85520']]
+    # folds = [['14141', '47650', '66110', '33170', '82912', '46431', '10720', '81210', '28923', '24530', '25120', '47791'], ['85410', '23640', '20412', '27110', '65202', '46341', '59120', '72200', '24520', '66120', '28301', '82190', '52102', '20302', '13950', '47782', '74203'], ['20150', '71121', '14390', '46210', '63990', '23510', '31030', '51220', '28120', '46380', '81223', '85520']]
     for fold in folds:
         fold_sum = 0
         for class_ in fold:
@@ -235,7 +235,7 @@ def make_pairs(fold_classes,class_descriptions, companies_descriptions,classes_c
     """
 
     ## keep out a supervised training set of 10k companies
-    buff = zip(range(supervised_validation_volume), list(companies_descriptions.keys))
+    buff = zip(list(range(supervised_validation_volume)), list(companies_descriptions.keys))
     __, supervised_validation = zip(*buff)
     supervised_validation = set(supervised_validation)
 
