@@ -404,7 +404,7 @@ if __name__=="__main__":
     companies_descriptions= read_meta()
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
     print(len(class_descriptions), len(companies_descriptions))
-    stop
+    # stop
     # # #invert companies descriptions dictionairy
     classes_companies = defaultdict(list)
     for id_ in companies_descriptions:
