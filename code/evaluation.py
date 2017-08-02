@@ -130,19 +130,18 @@ def train_naive_bayes_des_local(fold):
         y_pred_train = clf.predict(X_train_vec)
         # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
         # import IPython; IPython.embed()
-        # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
-        y_pred_test_proba = clf.predict_proba(X_valid_vec)
-        true_positive = np.zeros(len(RANKS))
-        for i, proba in enumerate(y_pred_test_proba):
-            ranked = zip(proba, clf.classes_)
-            ranked = sorted(ranked, reverse=True)
-            proba, classes = zip(*ranked)
-            classes = list(classes)
-            # classes = remove_rare_classes(classes)
-            for j, TOP_N in enumerate(RANKS):
-                if Y_valid[i] in classes[:TOP_N]:
-                    true_positive[j] +=1
-        print(true_positive)
+        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
+        # y_pred_test_proba = clf.predict_proba(X_valid_vec)
+        # true_positive = np.zeros(len(RANKS))
+        # for i, proba in enumerate(y_pred_test_proba):
+        #     ranked = zip(proba, clf.classes_)
+        #     ranked = sorted(ranked, reverse=True)
+        #     proba, classes = zip(*ranked)
+        #     classes = list(classes)
+        #     # classes = remove_rare_classes(classes)
+        #     for j, TOP_N in enumerate(RANKS):
+        #         if Y_valid[i] in classes[:TOP_N]:
+        #             true_positive[j] +=1
     return true_positive*100/float(len(Y_valid))
 
 def count_vectorization(corpus):
