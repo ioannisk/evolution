@@ -21,8 +21,8 @@ for i in range(3):
             # web = line["web"]
             class_= line["web_class"]
             used_classes.add(class_)
-            if len(des.split())==0 or len(web.split())==0:
-                print(line[web_id])
+            # if len(des.split())==0 or len(web.split())==0:
+            #     print(line[web_id])
             print(used_classes)
 
 
