@@ -50,7 +50,7 @@ def read_descriptions():
             # stop
             class_descriptions[class_num] = " ".join(txt.split()[:100])
             # print(class_descriptions[class_num])
-    print(len(class_descriptions[class_num]))
+    print(len(class_descriptions))
     return class_descriptions
 
 def read_meta():
@@ -75,7 +75,7 @@ def read_meta():
                 # companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
             txt = " ".join(txt.split()[:100])
             companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
-    print(len(companies_descriptions[id_]))
+    print(len(companies_descriptions))
     return companies_descriptions
 
 def web_des_intersection(class_descriptions, cmp_des):
