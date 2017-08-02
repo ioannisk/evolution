@@ -51,11 +51,14 @@ def read_descriptions():
             # experiment with cutting the max len rather than excuding
             #
             if len(txt.split()) <=MAX_DES_LEN:
+                txt = clean_up_txt(txt)
                 class_descriptions[class_num] = txt
+                print(txt)
             # print(" ".join(txt.split()[:100]))
             # stop
             # class_descriptions[class_num] = " ".join(txt.split()[:100])
             # print(class_descriptions[class_num])
+    stop
     print(len(class_descriptions))
     # stop
     return class_descriptions
@@ -74,10 +77,7 @@ def read_meta():
             try:
                 class_num , txt = line.split('\t')
                 txt = clean_up_txt(txt)
-                print(txt)
                 counter +=1
-                if counter ==4:
-                    stop
             except:
                 pass
                 continue
