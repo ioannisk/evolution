@@ -15,7 +15,7 @@ for i in range(3):
             if counter % 100000:
                 print(counter)
             line = line.strip()
-            line = json.load(line)
+            line = json.loads(line)
             des = line["des"]
             web = line["web"]
             counter +=1
