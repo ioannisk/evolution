@@ -26,8 +26,9 @@ def clean_up_txt(page_txt):
     page_txt = re.sub('\s+',' ',page_txt)
     # page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
     page_txt = re.sub('[^a-zA-Z]+', " ", page_txt)
+    page_txt = [word for word in page_txt.split() if len(word) > 2]
     # page_txt = [word for word in page_txt.split() if word not in stopWords]
-    # page_txt = " ".join()
+    page_txt = " ".join(page_txt)
     return page_txt
 
 
@@ -49,13 +50,13 @@ def read_descriptions():
             #
             # experiment with cutting the max len rather than excuding
             #
-            # if len(txt.split()) <=MAX_DES_LEN:
-            #     class_descriptions[class_num] = txt
+            if len(txt.split()) <=MAX_DES_LEN:
+                class_descriptions[class_num] = txt
             # print(" ".join(txt.split()[:100]))
             # stop
-            class_descriptions[class_num] = " ".join(txt.split()[:100])
+            # class_descriptions[class_num] = " ".join(txt.split()[:100])
             # print(class_descriptions[class_num])
-    # print(len(class_descriptions))
+    print(len(class_descriptions))
     # stop
     return class_descriptions
 
@@ -73,15 +74,18 @@ def read_meta():
             try:
                 class_num , txt = line.split('\t')
                 txt = clean_up_txt(txt)
+                print(txt)
                 counter +=1
+                if counter ==4:
+                    stop
             except:
                 pass
                 continue
-            # if len(txt.split()) <= MAX_WEB_LEN:
-            #     companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
-            if len(txt) > 1:
-                txt = " ".join(txt.split()[:100])
+            if len(txt.split()) <= MAX_WEB_LEN and len(txt.split()) >1:
                 companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
+            # if len(txt) > 1:
+            #     txt = " ".join(txt.split()[:100])
+            #     companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
     print(len(companies_descriptions))
     return companies_descriptions
 
