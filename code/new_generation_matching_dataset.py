@@ -6,6 +6,7 @@ import os
 from collections import Counter, defaultdict
 from attention_evaluation import load_json_validation_file
 import numpy as np
+import re
 
 # Not actually 20 folds
 # 2k in each bucket is convenient number for testing quickly
@@ -66,15 +67,15 @@ def read_meta():
             id_ = i
             try:
                 class_num , txt = line.split('\t')
-                # txt = clean_up_txt(txt)
+                txt = clean_up_txt(txt)
                 counter +=1
             except:
                 pass
                 continue
-            if len(txt.split()) <= MAX_WEB_LEN:
-                companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
-            # txt = " ".join(txt.split()[:100])
-            # companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
+            # if len(txt.split()) <= MAX_WEB_LEN:
+            #     companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
+            txt = " ".join(txt.split()[:100])
+            companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
     print(len(companies_descriptions))
     return companies_descriptions
 
