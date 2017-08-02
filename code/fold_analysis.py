@@ -12,7 +12,7 @@ for i in range(3):
         print("Analysing fold {}".format(i))
         counter = 0
         for line in file_:
-            if counter % 100000:
+            if counter % 100000 == 0:
                 print(counter)
             line = line.strip()
             line = json.loads(line)
