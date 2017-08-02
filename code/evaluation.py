@@ -12,11 +12,15 @@ from new_generation_matching_dataset import read_descriptions, read_meta, web_de
 import matplotlib.pyplot as plt
 
 RANKS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-choosen_fold = "1rfolds3"
-choosen_model = "1rfolds3_2"
+# choosen_fold = "1rfolds3"
+# choosen_model = "1rfolds3_2"
 
-# choosen_fold = "best_models_1rfold3_sl"
-# choosen_model = "best_models_1rfold3_sl"
+
+###
+### CHANGE THE ATTENTION LOADING WHEN SWITCHING TO THE ONE ABOVE
+###
+choosen_fold = "best_models_1rfold3_sl"
+choosen_model = "best_models_1rfold3_sl"
 data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
 #
@@ -236,7 +240,8 @@ def baseline_tfidf(fold):
 
 
 def decomposable_attention_eval(fold):
-    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
+    # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
+    with open("/home/ioannis/models/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
 
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/mnli_con_folds/model14/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
         predictions = []
