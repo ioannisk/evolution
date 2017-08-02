@@ -15,14 +15,13 @@ RANKS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 # choosen_fold = "1rfolds3"
 # choosen_model = "1rfolds3_1"
 # data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
-
-
 ###
 ### TOP UNSEEN CLASS FOLDS
 ###
-# choosen_fold = "best_models_1rfold3_sl"
-# choosen_model = "best_models_1rfold3_sl"
-# data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
+choosen_fold = "best_models_1rfold3_sl"
+choosen_model = "best_models_1rfold3_sl"
+data_file = "validation"
+data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
 #
 # Comparison on folds 2, 4, 0
@@ -84,7 +83,7 @@ def train_naive_bayes_des_local(fold):
             Y_train.append(web_class[i])
             # training_classes.add(web_class[i])
             # descriptions_txt.append(line[1])
-    with open(data_path+"fold{}/validation.json".format(fold),"r") as file_:
+    with open(data_path+"fold{}/{}.json".format(fold, data_file),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
         for i, b in enumerate(binary_class):
             if b!="entailment":
@@ -154,7 +153,7 @@ def tf_idf_vectorization(corpus):
     # print("tfidf Vectorization")
     stopWords = stopwords.words('english')
     # vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords, sublinear_tf=False)
-    vec = TfidfVectorizer( min_df=1,sublinear_tf=True)
+    vec = TfidfVectorizer( min_df=1)
     vec.fit(corpus)
     return vec
 
@@ -228,7 +227,7 @@ def baseline_tfidf(fold):
             descriptions_class.append(line[0])
             training_corpus.append(line[1])
             descriptions_txt.append(line[1])
-    with open(data_path+"fold{}/validation.json".format(fold),"r") as file_:
+    with open(data_path+"fold{}/{}.json".format(fold,data_file),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
     ## train tf-idf vectorizer
     tfidf_vec = tf_idf_vectorization(descriptions_txt)
@@ -267,8 +266,8 @@ def decomposable_attention_eval(fold):
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
         list_web = web_class[i:i+step]
-        print(list_web)
-        stop
+        # print(list_web)
+        # stop
         list_des = description_class[i:i+step]
         ranked_list = sorted(list(zip(list_pred, list_web, list_des)),reverse=True)
         list_pred,list_web,list_des = zip(*ranked_list)
@@ -348,6 +347,7 @@ def each_fold_stats():
     plt.plot(nb_avrg/len(folds),label='Naive Bayes')
     plt.plot(tfidf_avrg/len(folds),label='Tf-idf cosine_similarity')
     plt.plot(att_avrg/len(folds),label='Decomposable Attention')
+    plt.legend(loc= 4)
     plt.show()
     print_nice_table(nb_avrg/len(folds), tfidf_avrg/len(folds), att_avrg/len(folds))
 

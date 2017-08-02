@@ -13,8 +13,8 @@ N = 3
 MAX_LEN= 120
 supervised_validation_volume = 8000
 MAX_DES_LEN=MAX_LEN
-MAX_WEB_LEN=MAX_LEN
-data_path = "../data/1rfolds{}_sl/".format(N)
+MAX_WEB_LEN=MAX_LENå
+data_path = "../data/1rfolds{}_sl_filtered/".format(N)
 # data_path = "../data/10rfolds{}/".format(N)
 # data_path = "../data/100rfolds{}/".format(N)
 
@@ -58,6 +58,7 @@ def read_meta():
             id_ = i
             try:
                 class_num , txt = line.split('\t')
+                txt = clean_up_txt(txt)
                 counter +=1
             except:
                 pass
@@ -161,7 +162,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     """Desing big experiment, train 3 models with 3 fodls of held out classes
     while we also keep some companies out from the seen classes so we can test SL learning
     """
-    # os.mkdir(data_path)
+    os.mkdir(data_path)
     all_classes = list(class_descriptions.keys())
     class_validation_N = 10
     companies_validation = 5000
@@ -347,7 +348,6 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
             print("writing supervised_validation set")
             for pair in supervised_validation_data:
                 write_json_line(pair, file_)
-        stop
         # with open()
     return
 
