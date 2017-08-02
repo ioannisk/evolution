@@ -7,7 +7,7 @@ data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
 # for li
 # for i in range(3):
-i = 1
+i = 2
 with open(data_path+"fold{}/validation.json".format(i),"r") as file_:
     print("Analysing fold {}".format(i))
     counter = 0
