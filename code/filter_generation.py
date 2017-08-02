@@ -4,6 +4,7 @@ import random
 import time
 import os
 from collections import Counter, defaultdict
+from nltk.corpus import stopwords
 from attention_evaluation import load_json_validation_file
 import numpy as np
 import re
