@@ -16,7 +16,7 @@ RANKS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 # choosen_model = "1rfolds3_3"
 
 choosen_fold = "1rfolds3_sl"
-choosen_model = "1rfolds3_sl"
+choosen_model = "1rfolds3_sl_1"
 
 data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
