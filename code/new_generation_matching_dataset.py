@@ -46,6 +46,8 @@ def read_descriptions():
             #
             # if len(txt.split()) <=MAX_DES_LEN:
             #     class_descriptions[class_num] = txt
+            print(" ".join(txt.split()[:100]))
+            stop
             class_descriptions[class_num] = " ".join(txt.split()[:100])
     return class_descriptions
 
