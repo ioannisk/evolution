@@ -1,9 +1,21 @@
 import numpy as np
 from attention_evaluation import load_json_validation_file
+import json
 
-choosen_fold = "folds5"
+choosen_fold = "1rfolds3_sl"
 data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
-with open(data_path+"fold{}/training.json".format(fold),"r") as file_:
-    des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
+
+# for li
+for i in range(3):
+    with open(data_path+"fold{}/training.json".format(i),"r") as file_:
+        for line in file_:
+            line = line.strip()
+            line = json.load(line)
+            des = line["des"]
+            web = line["web"]
+            if len(des.split())==0 orlen(web.split())==0:
+                print(line[web_id])
+
+
 
