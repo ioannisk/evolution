@@ -12,11 +12,11 @@ from new_generation_matching_dataset import read_descriptions, read_meta, web_de
 import matplotlib.pyplot as plt
 
 RANKS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-# choosen_fold = "1rfolds3"
-# choosen_model = "1rfolds3_3"
+choosen_fold = "1rfolds3"
+choosen_model = "1rfolds3_2"
 
-choosen_fold = "best_models_1rfold3_sl"
-choosen_model = "best_models_1rfold3_sl"
+# choosen_fold = "best_models_1rfold3_sl"
+# choosen_model = "best_models_1rfold3_sl"
 data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
 #
@@ -24,7 +24,8 @@ data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0,1,2]
-folds = [0,1,2]
+# folds = [0,1,2]
+folds = [1]
 # folds = [14]
 # folds = [0,2,4]
 class_descriptions = read_descriptions()
