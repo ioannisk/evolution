@@ -11,10 +11,10 @@ import re
 # Not actually 20 folds
 # 2k in each bucket is convenient number for testing quickly
 N = 3
-# MAX_LEN= 120
+MAX_LEN= 120
 supervised_validation_volume = 8000
-# MAX_DES_LEN=MAX_LEN
-# MAX_WEB_LEN=MAX_LEN
+MAX_DES_LEN=MAX_LEN
+MAX_WEB_LEN=MAX_LEN
 data_path = "../data/1rfolds{}_sl_filtered/".format(N)
 # data_path = "../data/10rfolds{}/".format(N)
 # data_path = "../data/100rfolds{}/".format(N)
@@ -45,13 +45,13 @@ def read_descriptions():
             #
             # experiment with cutting the max len rather than excuding
             #
-            # if len(txt.split()) <=MAX_DES_LEN:
-            #     class_descriptions[class_num] = txt
+            if len(txt.split()) <=MAX_DES_LEN:
+                class_descriptions[class_num] = txt
             # print(" ".join(txt.split()[:100]))
             # stop
-            class_descriptions[class_num] = " ".join(txt.split()[:100])
+            # class_descriptions[class_num] = " ".join(txt.split()[:100])
             # print(class_descriptions[class_num])
-    print(len(class_descriptions))
+    # print(len(class_descriptions))
     return class_descriptions
 
 def read_meta():
@@ -67,16 +67,16 @@ def read_meta():
             id_ = i
             try:
                 class_num , txt = line.split('\t')
-                txt = clean_up_txt(txt)
+                # txt = clean_up_txt(txt)
                 counter +=1
             except:
                 pass
                 continue
-            # if len(txt.split()) <= MAX_WEB_LEN:
-            #     companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
-            txt = " ".join(txt.split()[:100])
-            companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
-    print(len(companies_descriptions))
+            if len(txt.split()) <= MAX_WEB_LEN:
+                companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
+            # txt = " ".join(txt.split()[:100])
+            # companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
+    # print(len(companies_descriptions))
     return companies_descriptions
 
 def web_des_intersection(class_descriptions, cmp_des):
