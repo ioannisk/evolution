@@ -19,7 +19,7 @@ for i in range(3):
             line = json.loads(line)
             # des = line["des"]
             # web = line["web"]
-            class_= ["web_class"]
+            class_= line["web_class"]
             used_classes.add(class_)
             if len(des.split())==0 or len(web.split())==0:
                 print(line[web_id])
