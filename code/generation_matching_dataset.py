@@ -226,8 +226,6 @@ def make_training_dataset(class_folds, class_descriptions, companies_description
                 write_json_line(pair, file_)
 
 
-
-
 def make_evaluation_pairs(class_descriptions):
     """ This function makes as many pairs for a
     company as classes. This data is used for the final
@@ -256,13 +254,6 @@ def make_evaluation_pairs(class_descriptions):
                         class_buffer ='entailment' if class_num ==true_cl else 'contradiction'
                         json_buffer={'des':class_descriptions[class_num] , 'web':website_txt , 'class':class_buffer, 'web_id':id_, 'web_class':web_class[i], 'des_class':class_num}
                         write_json_line(json_buffer,ranking_validation)
-
-
-
-
-
-
-
 
 
 if __name__=="__main__":

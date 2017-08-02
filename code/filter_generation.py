@@ -13,17 +13,20 @@ import re
 N = 3
 MAX_LEN= 120
 supervised_validation_volume = 8000
-MAX_DES_LEN=MAX_LEN
-MAX_WEB_LEN=MAX_LEN
-# data_path = "../data/1rfolds{}_sl_filtered/".format(N)
+# MAX_DES_LEN=MAX_LEN
+# MAX_WEB_LEN=MAX_LEN
+data_path = "../data/1rfolds{}_sl_filtered/".format(N)
 # data_path = "../data/10rfolds{}/".format(N)
 # data_path = "../data/100rfolds{}/".format(N)
 
 def clean_up_txt(page_txt):
+    stopWords = stopwords.words('english')
     page_txt = page_txt.lower()
     page_txt = re.sub('\s+',' ',page_txt)
     # page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
     page_txt = re.sub('[^a-zA-Z]+', " ", page_txt)
+    page_txt = [word for word in page_txt.split() if word not in stopWords]
+    page_txt = " ".join()
     return page_txt
 
 
@@ -45,11 +48,11 @@ def read_descriptions():
             #
             # experiment with cutting the max len rather than excuding
             #
-            if len(txt.split()) <=MAX_DES_LEN:
-                class_descriptions[class_num] = txt
+            # if len(txt.split()) <=MAX_DES_LEN:
+            #     class_descriptions[class_num] = txt
             # print(" ".join(txt.split()[:100]))
             # stop
-            # class_descriptions[class_num] = " ".join(txt.split()[:100])
+            class_descriptions[class_num] = " ".join(txt.split()[:100])
             # print(class_descriptions[class_num])
     # print(len(class_descriptions))
     return class_descriptions
@@ -67,16 +70,17 @@ def read_meta():
             id_ = i
             try:
                 class_num , txt = line.split('\t')
-                # txt = clean_up_txt(txt)
+                txt = clean_up_txt(txt)
                 counter +=1
             except:
                 pass
                 continue
-            if len(txt.split()) <= MAX_WEB_LEN:
+            # if len(txt.split()) <= MAX_WEB_LEN:
+            #     companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
+            if len(txt) > 1:
+                txt = " ".join(txt.split()[:100])
                 companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
-            # txt = " ".join(txt.split()[:100])
-            # companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
-    # print(len(companies_descriptions))
+    print(len(companies_descriptions))
     return companies_descriptions
 
 def web_des_intersection(class_descriptions, cmp_des):
