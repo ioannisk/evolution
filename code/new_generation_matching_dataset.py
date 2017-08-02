@@ -10,7 +10,7 @@ import numpy as np
 # Not actually 20 folds
 # 2k in each bucket is convenient number for testing quickly
 N = 3
-MAX_LEN= 70
+# MAX_LEN= 120
 supervised_validation_volume = 8000
 MAX_DES_LEN=MAX_LEN
 MAX_WEB_LEN=MAX_LEN
@@ -41,8 +41,12 @@ def read_descriptions():
         for line in file_:
             line = line.strip()
             class_num , txt = line.split('\t')
-            if len(txt.split()) <=MAX_DES_LEN:
-                class_descriptions[class_num] = txt
+            #
+            # experiment with cutting the max len rather than excuding
+            #
+            # if len(txt.split()) <=MAX_DES_LEN:
+            #     class_descriptions[class_num] = txt
+            class_descriptions[class_num] = " ".join(txt.split()[:100])
     return class_descriptions
 
 def read_meta():
@@ -63,8 +67,10 @@ def read_meta():
             except:
                 pass
                 continue
-            if len(txt.split()) <= MAX_WEB_LEN:
-                companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
+            # if len(txt.split()) <= MAX_WEB_LEN:
+                # companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
+            txt = " ".join(txt.split()[:100])
+            companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
     return companies_descriptions
 
 def web_des_intersection(class_descriptions, cmp_des):
