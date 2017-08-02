@@ -71,10 +71,10 @@ def read_meta():
             except:
                 pass
                 continue
-            # if len(txt.split()) <= MAX_WEB_LEN:
-                # companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
-            txt = " ".join(txt.split()[:100])
-            companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
+            if len(txt.split()) <= MAX_WEB_LEN:
+                companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
+            # txt = " ".join(txt.split()[:100])
+            # companies_descriptions[id_] = {"class_num":class_num, "txt":txt}
     print(len(companies_descriptions))
     return companies_descriptions
 
