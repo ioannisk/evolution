@@ -121,27 +121,28 @@ def train_naive_bayes_des_local(fold):
     X_train_vec = vec.transform(X_train_des)
     Y_train = Y_train_des
     X_valid_vec = vec.transform(X_valid)
-    a = 0.0001
-    # for a in np.arange(1,20)*0.1:
-    gnb = MultinomialNB(alpha=a,fit_prior=False)
-    # clf = gnb.fit(X_train_des_vec, Y_train_des)
-    clf = gnb.fit(X_train_vec, Y_train)
-    y_pred_test = clf.predict(X_valid_vec)
-    y_pred_train = clf.predict(X_train_vec)
-    # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
-    # import IPython; IPython.embed()
-    # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
-    y_pred_test_proba = clf.predict_proba(X_valid_vec)
-    true_positive = np.zeros(len(RANKS))
-    for i, proba in enumerate(y_pred_test_proba):
-        ranked = zip(proba, clf.classes_)
-        ranked = sorted(ranked, reverse=True)
-        proba, classes = zip(*ranked)
-        classes = list(classes)
-        # classes = remove_rare_classes(classes)
-        for j, TOP_N in enumerate(RANKS):
-            if Y_valid[i] in classes[:TOP_N]:
-                true_positive[j] +=1
+    # a = 0.0001
+    for a in np.arange(1,200)*0.001:
+        gnb = MultinomialNB(alpha=a,fit_prior=False)
+        # clf = gnb.fit(X_train_des_vec, Y_train_des)
+        clf = gnb.fit(X_train_vec, Y_train)
+        y_pred_test = clf.predict(X_valid_vec)
+        y_pred_train = clf.predict(X_train_vec)
+        # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
+        # import IPython; IPython.embed()
+        # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
+        y_pred_test_proba = clf.predict_proba(X_valid_vec)
+        true_positive = np.zeros(len(RANKS))
+        for i, proba in enumerate(y_pred_test_proba):
+            ranked = zip(proba, clf.classes_)
+            ranked = sorted(ranked, reverse=True)
+            proba, classes = zip(*ranked)
+            classes = list(classes)
+            # classes = remove_rare_classes(classes)
+            for j, TOP_N in enumerate(RANKS):
+                if Y_valid[i] in classes[:TOP_N]:
+                    true_positive[j] +=1
+        print true_positive
     return true_positive*100/float(len(Y_valid))
 
 def count_vectorization(corpus):
@@ -154,7 +155,7 @@ def tf_idf_vectorization(corpus):
     # print("tfidf Vectorization")
     stopWords = stopwords.words('english')
     # vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords, sublinear_tf=False)
-    vec = TfidfVectorizer( min_df=1,binary=True)
+    vec = TfidfVectorizer( min_df=1)
     vec.fit(corpus)
     return vec
 
@@ -327,16 +328,14 @@ def each_fold_stats():
         print("###### FOLD {} ######".format(fold))
 
         nb_accuracy = train_naive_bayes_des_local(fold)
-        # print_each_fold_stats(nb_accuracy, "Naive Bayes")
         nb_avrg += nb_accuracy
 
-        tf_accuracy = baseline_tfidf(fold)
-        # print_each_fold_stats(tf_accuracy, "Tf IDF")
-        tfidf_avrg +=tf_accuracy
+        # tf_accuracy = baseline_tfidf(fold)
+        # tfidf_avrg +=tf_accuracy
 
-        att_accuracy = decomposable_attention_eval(fold)
-        # print_each_fold_stats(att_accuracy, "Decomposable Attention")
-        att_avrg += att_accuracy
+        # att_accuracy = decomposable_attention_eval(fold)
+        # att_avrg += att_accuracy
+
         print_nice_table(nb_accuracy, tf_accuracy, att_accuracy)
         # print("    Decomposable attention is {}".format( accuracy))
     # for i, TOP_N in enumerate(RANKS):
