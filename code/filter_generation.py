@@ -26,8 +26,8 @@ def clean_up_txt(page_txt):
     page_txt = re.sub('\s+',' ',page_txt)
     # page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
     page_txt = re.sub('[^a-zA-Z]+', " ", page_txt)
-    page_txt = [word for word in page_txt.split() if word not in stopWords]
-    page_txt = " ".join()
+    # page_txt = [word for word in page_txt.split() if word not in stopWords]
+    # page_txt = " ".join()
     return page_txt
 
 
