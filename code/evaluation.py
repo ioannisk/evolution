@@ -142,7 +142,7 @@ def train_naive_bayes_des_local(fold):
             for j, TOP_N in enumerate(RANKS):
                 if Y_valid[i] in classes[:TOP_N]:
                     true_positive[j] +=1
-        print true_positive
+        print(true_positive)
     return true_positive*100/float(len(Y_valid))
 
 def count_vectorization(corpus):
