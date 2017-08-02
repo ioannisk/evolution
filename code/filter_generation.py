@@ -55,8 +55,8 @@ def read_descriptions():
             # stop
             class_descriptions[class_num] = " ".join(txt.split()[:100])
             # print(class_descriptions[class_num])
-    print(len(class_descriptions))
-    stop
+    # print(len(class_descriptions))
+    # stop
     return class_descriptions
 
 def read_meta():
