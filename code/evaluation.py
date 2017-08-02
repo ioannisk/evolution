@@ -121,27 +121,27 @@ def train_naive_bayes_des_local(fold):
     X_train_vec = vec.transform(X_train_des)
     Y_train = Y_train_des
     X_valid_vec = vec.transform(X_valid)
-    # a = 0.0001
-    for a in np.arange(1,200)*0.0001:
-        gnb = MultinomialNB(alpha=a,fit_prior=False)
-        # clf = gnb.fit(X_train_des_vec, Y_train_des)
-        clf = gnb.fit(X_train_vec, Y_train)
-        y_pred_test = clf.predict(X_valid_vec)
-        y_pred_train = clf.predict(X_train_vec)
-        # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
-        # import IPython; IPython.embed()
-        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
-        # y_pred_test_proba = clf.predict_proba(X_valid_vec)
-        # true_positive = np.zeros(len(RANKS))
-        # for i, proba in enumerate(y_pred_test_proba):
-        #     ranked = zip(proba, clf.classes_)
-        #     ranked = sorted(ranked, reverse=True)
-        #     proba, classes = zip(*ranked)
-        #     classes = list(classes)
-        #     # classes = remove_rare_classes(classes)
-        #     for j, TOP_N in enumerate(RANKS):
-        #         if Y_valid[i] in classes[:TOP_N]:
-        #             true_positive[j] +=1
+    a = 0.002
+    # for a in np.arange(1,200)*0.0001:
+    gnb = MultinomialNB(alpha=a,fit_prior=False)
+    # clf = gnb.fit(X_train_des_vec, Y_train_des)
+    clf = gnb.fit(X_train_vec, Y_train)
+    y_pred_test = clf.predict(X_valid_vec)
+    y_pred_train = clf.predict(X_train_vec)
+    # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
+    # import IPython; IPython.embed()
+    # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
+    y_pred_test_proba = clf.predict_proba(X_valid_vec)
+    true_positive = np.zeros(len(RANKS))
+    for i, proba in enumerate(y_pred_test_proba):
+        ranked = zip(proba, clf.classes_)
+        ranked = sorted(ranked, reverse=True)
+        proba, classes = zip(*ranked)
+        classes = list(classes)
+        # classes = remove_rare_classes(classes)
+        for j, TOP_N in enumerate(RANKS):
+            if Y_valid[i] in classes[:TOP_N]:
+                true_positive[j] +=1
     return true_positive*100/float(len(Y_valid))
 
 def count_vectorization(corpus):
@@ -154,7 +154,7 @@ def tf_idf_vectorization(corpus):
     # print("tfidf Vectorization")
     stopWords = stopwords.words('english')
     # vec = TfidfVectorizer( min_df=1 ,stop_words=stopWords, sublinear_tf=False)
-    vec = TfidfVectorizer( min_df=1)
+    vec = TfidfVectorizer( min_df=1,sublinear_tf=True)
     vec.fit(corpus)
     return vec
 
