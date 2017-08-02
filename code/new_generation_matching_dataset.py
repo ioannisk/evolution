@@ -66,7 +66,7 @@ def read_meta():
             id_ = i
             try:
                 class_num , txt = line.split('\t')
-                txt = clean_up_txt(txt)
+                # txt = clean_up_txt(txt)
                 counter +=1
             except:
                 pass
