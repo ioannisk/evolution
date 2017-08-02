@@ -19,8 +19,8 @@ data_path = "../data/1rfolds{}_sl_filtered/".format(N)
 # data_path = "../data/10rfolds{}/".format(N)
 # data_path = "../data/100rfolds{}/".format(N)
 
+stopWords = stopwords.words('english')
 def clean_up_txt(page_txt):
-    stopWords = stopwords.words('english')
     page_txt = page_txt.lower()
     page_txt = re.sub('\s+',' ',page_txt)
     # page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
@@ -54,7 +54,8 @@ def read_descriptions():
             # stop
             class_descriptions[class_num] = " ".join(txt.split()[:100])
             # print(class_descriptions[class_num])
-    # print(len(class_descriptions))
+    print(len(class_descriptions))
+    stop
     return class_descriptions
 
 def read_meta():
