@@ -347,6 +347,7 @@ def each_fold_stats():
     plt.plot(nb_avrg/len(folds),label='Naive Bayes')
     plt.plot(tfidf_avrg/len(folds),label='Tf-idf cosine_similarity')
     plt.plot(att_avrg/len(folds),label='Decomposable Attention')
+    plt.legend(loc= 4)
     plt.show()
     print_nice_table(nb_avrg/len(folds), tfidf_avrg/len(folds), att_avrg/len(folds))
 
