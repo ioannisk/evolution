@@ -14,8 +14,8 @@ import re
 N = 3
 MAX_LEN= 120
 supervised_validation_volume = 8000
-# MAX_DES_LEN=MAX_LEN
-# MAX_WEB_LEN=MAX_LEN
+MAX_DES_LEN=MAX_LEN
+MAX_WEB_LEN=MAX_LEN
 data_path = "../data/1rfolds{}_sl_filtered/".format(N)
 # data_path = "../data/10rfolds{}/".format(N)
 # data_path = "../data/100rfolds{}/".format(N)
