@@ -2,9 +2,9 @@ import numpy as np
 from attention_evaluation import load_json_validation_file
 import json
 
-
-data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 choosen_fold = "1rfolds3"
+data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
+
 # for li
 # for i in range(3):
 i = 1
@@ -13,8 +13,9 @@ with open(data_path+"fold{}/validation.json".format(i),"r") as file_:
     counter = 0
     used_classes = set()
     for line in file_:
-        # if counter % 100000 == 0:
-        #     print(counter)
+        counter +=1
+        if counter % 100000 == 0:
+            print(counter)
         line = line.strip()
         line = json.loads(line)
         # des = line["des"]
@@ -26,13 +27,15 @@ with open(data_path+"fold{}/validation.json".format(i),"r") as file_:
     # print(used_classes)
 
 choosen_fold = "1rfolds3_sl"
+data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 with open(data_path+"fold{}/validation.json".format(i),"r") as file_:
     print("Analysing fold {}".format(i))
     counter = 0
     used_classes_1 = set()
     for line in file_:
-        # if counter % 100000 == 0:
-        #     print(counter)
+        counter +=1
+        if counter % 100000 == 0:
+            print(counter)
         line = line.strip()
         line = json.loads(line)
         # des = line["des"]
