@@ -13,8 +13,8 @@ for i in range(3):
         counter = 0
         used_classes = set()
         for line in file_:
-            if counter % 100000 == 0:
-                print(counter)
+            # if counter % 100000 == 0:
+            #     print(counter)
             line = line.strip()
             line = json.loads(line)
             # des = line["des"]
