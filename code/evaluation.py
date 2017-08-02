@@ -329,11 +329,11 @@ def each_fold_stats():
         nb_accuracy = train_naive_bayes_des_local(fold)
         nb_avrg += nb_accuracy
 
-        # tf_accuracy = baseline_tfidf(fold)
-        # tfidf_avrg +=tf_accuracy
+        tf_accuracy = baseline_tfidf(fold)
+        tfidf_avrg +=tf_accuracy
 
-        # att_accuracy = decomposable_attention_eval(fold)
-        # att_avrg += att_accuracy
+        att_accuracy = decomposable_attention_eval(fold)
+        att_avrg += att_accuracy
 
         print_nice_table(nb_accuracy, tf_accuracy, att_accuracy)
         # print("    Decomposable attention is {}".format( accuracy))
