@@ -1,48 +1,21 @@
-python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/concat_folds/fold14/snli_training.json /home/ioannis/evolution/data/concat_folds/fold14/validation.json snli_con_folds/model14 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
 
 
-python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/concat_folds/fold14/multi_training.json /home/ioannis/evolution/data/concat_folds/fold14/validation.json mnli_con_folds/model14 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
-
-
-python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds/fold14/training.json /home/ioannis/evolution/data/folds/fold14/validation.json folds/model19 mlp --lower -e 30 -u 300 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
+python train_snli.py cbow petModel-0 --keep_rate 0.9 --seq_length 25 --emb_to_load /home/ioannis/data/glove --datapath /home/ioannis/data
+python train_snli.py esim petModel-1 --seq_length 50 --keep_rate 0.9
 
 
 
-
-
-python my_evaluate.py snli_con_folds/model14 /home/ioannis/evolution/data/concat_folds/fold14/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
-python my_evaluate.py mnli_con_folds/model14 /home/ioannis/evolution/data/concat_folds/fold14/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
-python my_evaluate.py folds/model19 /home/ioannis/evolution/data/concat_folds/fold14/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
-
-
-python my_evaluate.py snli_con_folds/model14 /home/ioannis/evolution/data/concat_folds/fold14/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt  -save prob_predictions.txt
-
-python my_evaluate.py mnli_con_folds/model14 /home/ioannis/evolution/data/concat_folds/fold14/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
-
-python my_evaluate.py folds/model19 /home/ioannis/evolution/data/concat_folds/fold14/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
-
-
-a = [5.121     ,11.208     ,15.664     ,20.009     ,23.388     ,26.439     ,29.243     ,31.864     ,34.164     ,36.388     ,45.166     ,51.860    ]
+#
+#snli-entailment
+#
+python tf_model.py -train snli_1.0_train.tab -dev snli_1.0_dev.tab -test snli_1.0_test.tab
 
 
 
-
-b =[10.878,16.014,19.764,22.455,24.442,26.131,27.673,29.108,30.334,31.281,34.948,37.489]
-
-
-c = [10.637,15.211,18.493,21.003,22.948,24.743,26.189,27.528,28.593,29.677,33.317,36.047]
-
-
-Naive Bayes | Tf-IDF | Attention
-          |      |
-          |      |
-          |      |
-          |      |
-          |      |
-          |      |
-          |      |
-          |      |
-          |      |
-          |      |
-          |      |
-          |      |
+I think it works normally
+fucking finally
+#
+# entailment-neural-attention-lstm-tf
+#
+python main.py --data_dir /home/ioannis/data/snli_1.0 --model_name test --gpu '' --word2vec_path /home/ioannis/scp/GoogleNews-vectors-negative300.bin --train
+python tf_upgrade.py --infile main.py --outfile main.py
