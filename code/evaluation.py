@@ -18,9 +18,9 @@ RANKS = list(range(1,30))
 ###
 ### TOP UNSEEN CLASS FOLDS
 ###
-# choosen_fold = "best_models_1rfold3_sl"
+choosen_fold = "best_models_1rfold3_sl"
 # choosen_model = "best_models_1rfold3_sl"
-choosen_fold = "recovery_test"
+# choosen_fold = "recovery_test"
 choosen_model ="recovery_test"
 data_file = "validation"
 data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)

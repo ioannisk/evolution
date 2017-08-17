@@ -4,8 +4,8 @@
 # python interactive-eval.py ~/models/snli_trained/ ~/data/glove/glove-840B.npy --vocab ~/data/glove/glove-840B-vocabulary.txt -i -a
 
 ### WOW THIS IS SICK VISUALIZATION
-# python interactive-eval.py 1rfolds3/model1 ~/data/glove/glove-840B.npy --vocab ~/data/glove/glove-840B-vocabulary.txt -i -a
-# python my_evaluate.py 1rfolds3/model1 //home/ioannis/data/testing_binary_snli_snli.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
+# python interactive-eval.py 1rfolds3_2/model1 ~/data/glove/glove-840B.npy --vocab ~/data/glove/glove-840B-vocabulary.txt -i -a
+# python my_evaluate.py 1rfolds3_sl_1/model2 //home/ioannis/data/testing_binary_snli_snli.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
 
 
 ################################################################################################
@@ -83,25 +83,72 @@
 # nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold2/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold2/validation.json 1rfolds3_sl/model2 mlp --lower -e 30 -u 250 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output2.txt &
 
 
-####### TO BE DONE THIS ONE FOLD 0 STILL NOT TRAINED #######
-# nohup python -u my_evaluate.py 1rfolds3_sl/model0 /home/ioannis/evolution/data/1rfolds3_sl/fold0/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
 
-
+# nohup python -u my_evaluate.py 1rfolds3_sl/model0 /home/ioannis/evolution/data/1rfolds3_sl/fold0/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt &
 # nohup python -u my_evaluate.py 1rfolds3_sl/model1 /home/ioannis/evolution/data/1rfolds3_sl/fold1/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt  > Output1.txt &
 # nohup python -u my_evaluate.py 1rfolds3_sl/model2 /home/ioannis/evolution/data/1rfolds3_sl/fold2/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt > Output2.txt &
 
 
 # experiment 2
 #### PREDICTIONS HAVE BEEN DONE ALREADY CAREFUL
-# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold0/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold0/validation.json 1rfolds3_sl/model0 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.02 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output.txt &
-# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold1/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold1/validation.json 1rfolds3_sl/model1 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.02 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output1.txt &
-# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold2/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold2/validation.json 1rfolds3_sl/model2 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.02 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output2.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold0/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold0/validation.json 1rfolds3_sl_1/model0 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.02 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold1/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold1/validation.json 1rfolds3_sl_1/model1 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.02 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output1.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold2/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold2/validation.json 1rfolds3_sl_1/model2 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.02 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output2.txt &
+
+
+# python -u my_evaluate.py 1rfolds3_sl_1/model0 /home/ioannis/evolution/data/1rfolds3_sl/fold0/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
+# python -u my_evaluate.py 1rfolds3_sl_1/model1 /home/ioannis/evolution/data/1rfolds3_sl/fold1/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
+# python -u my_evaluate.py 1rfolds3_sl_1/model2 /home/ioannis/evolution/data/1rfolds3_sl/fold2/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt
+
+# nohup python -u my_evaluate.py 1rfolds3_sl_1/model0 /home/ioannis/evolution/data/1rfolds3_sl/fold0/supervised_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save supervised_predictions.txt &
+# nohup python -u my_evaluate.py 1rfolds3_sl_1/model1 /home/ioannis/evolution/data/1rfolds3_sl/fold1/supervised_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save supervised_predictions.txt  &
+# nohup python -u my_evaluate.py 1rfolds3_sl_1/model2 /home/ioannis/evolution/data/1rfolds3_sl/fold2/supervised_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save supervised_predictions.txt &
+
+
 
 # experiment 3
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold0/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold0/validation.json 1rfolds3_sl_2/model0 mlp --lower -e 30 -u 300 -d 0.7  -b 32 -r 0.01 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold1/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold1/validation.json 1rfolds3_sl_2/model1 mlp --lower -e 30 -u 300 -d 0.7  -b 32 -r 0.01 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output1.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold2/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold2/validation.json 1rfolds3_sl_2/model2 mlp --lower -e 30 -u 300 -d 0.7  -b 32 -r 0.01 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output2.txt &
 
-# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold0/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold0/validation.json 1rfolds3_sl_2/model0 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.02 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output.txt &
-# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold1/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold1/validation.json 1rfolds3_sl_2/model1 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.02 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output1.txt &
-# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl/fold2/training.json /home/ioannis/evolution/data/1rfolds3_sl/fold2/validation.json 1rfolds3_sl_2/model2 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.02 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output2.txt &
+# nohup python -u my_evaluate.py 1rfolds3_sl_2/model0 /home/ioannis/evolution/data/1rfolds3_sl/fold0/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt &
+# nohup python -u my_evaluate.py 1rfolds3_sl_2/model1 /home/ioannis/evolution/data/1rfolds3_sl/fold1/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt  &
+# nohup python -u my_evaluate.py 1rfolds3_sl_2/model2 /home/ioannis/evolution/data/1rfolds3_sl/fold2/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt &
+
+# nohup python -u my_evaluate.py 1rfolds3_sl_2/model0 /home/ioannis/evolution/data/1rfolds3_sl/fold0/supervised_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save supervised_predictions.txt &
+# nohup python -u my_evaluate.py 1rfolds3_sl_2/model1 /home/ioannis/evolution/data/1rfolds3_sl/fold1/supervised_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save supervised_predictions.txt  &
+# nohup python -u my_evaluate.py 1rfolds3_sl_2/model2 /home/ioannis/evolution/data/1rfolds3_sl/fold2/supervised_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save supervised_predictions.txt &
+
+
+
+
+
+################################################################################################
+################################################################################################
+################################################################################################
+#
+# 1rfolds3_sl_filtered directory of data used for this experiments
+#
+################################################################################################
+################################################################################################
+################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
