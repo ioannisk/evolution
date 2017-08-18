@@ -23,6 +23,7 @@ def des_vocabulary(file_str):
             line = line.strip()
             line = json.loads(line)
             des_list = line['des'].split()
+            print("---")
             print(len(des_list))
             des_list = sample(des_list, 0.4)
             print(len(des_list))
