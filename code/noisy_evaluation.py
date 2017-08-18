@@ -10,6 +10,7 @@ from collections import Counter,defaultdict
 # from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 from new_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 import matplotlib.pyplot as plt
+import random
 
 RANKS = list(range(1,30))
 # choosen_fold = "1rfolds3"
