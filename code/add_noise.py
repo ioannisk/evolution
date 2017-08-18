@@ -6,6 +6,17 @@ import random
 # 3. add noise to both 20 %
 # 4. add noise to both 50 %
 
+def write_json_line(json_ ,file_):
+    json.dump(json_ , file_)
+    file_.write('\n')
+
+def clean_up_txt(page_txt):
+    page_txt = page_txt.lower()
+    page_txt = re.sub('\s+',' ',page_txt)
+    # page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
+    page_txt = re.sub('[^a-zA-Z]+', " ", page_txt)
+    return page_txt
+
 def sample(list_, rate):
     buffer_ = []
     for i in list_:
@@ -23,24 +34,23 @@ def des_vocabulary(file_str):
             line = line.strip()
             line = json.loads(line)
             des_list = line['des'].split()
-            print("---")
-            print(len(des_list))
-            des_list = sample(des_list, 0.4)
-            print(len(des_list))
-            des = " ".join(des_list)
-            line['des'] = des
+
+
 
 
 
 def web_noise(files):
     for file_str in files:
-        vocab = des_vocabulary(file_str)
-        print(len(vocab))
-        # with open(file_str, 'r') as file_:
-        #     for line in file_:
-        #         line = line.strip
-        #         line = json.loads(line)
-        #         line['web']
+        for line in file_:
+            line = line.strip()
+            line = json.loads(line)
+            web_list = line['web'].split()
+            web_list = sample(web_list, 0.4)
+            print('='*80)
+            print(line['web'])
+            web = " ".join(web_list)
+            print(web)
+            line['web'] = web
 
 
 
