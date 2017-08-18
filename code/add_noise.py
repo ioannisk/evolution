@@ -50,16 +50,13 @@ def vocab_overlap(files):
                 line = line.strip()
                 line = json.loads(line)
                 buffer_ = []
-                print("="*80)
                 print(len(line['web'].split()))
                 for word in line['web'].split():
                     if word not in vocab:
                         buffer_.append(word)
-                print(len(buffer_))
                 web = " ".join(buffer_)
-
-                # line['web'] = web
-                # write_json_line(line, output)
+                line['web'] = web
+                write_json_line(line, output)
 
 
 def web_noise(files):
