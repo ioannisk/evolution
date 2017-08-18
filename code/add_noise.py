@@ -41,6 +41,7 @@ def des_vocabulary(file_str):
 
 def web_noise(files):
     for file_str in files:
+        print("writing file {}".format(file_str))
         output = open(file_str+".noise", 'w')
         with open(file_str, 'r') as file_:
             for line in file_:
@@ -68,5 +69,6 @@ def web_noise(files):
 if __name__=="__main__":
     data_path = "/home/ioannis/data/recovery_test/"
     files =[data_path +"fold{}/".format(i)+"ranking_validation.json" for i in range(0,3)]
+
     web_noise(files)
 
