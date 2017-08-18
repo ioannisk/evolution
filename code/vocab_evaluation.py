@@ -112,6 +112,7 @@ def train_naive_bayes_des_local(fold):
     vocab = set()
     for xx in X_train_des:
         for word in xx.split():
+            print()
             vocab.add(word)
 
     buffer_ =[]
@@ -257,7 +258,7 @@ def baseline_tfidf(fold):
             if word not in vocab:
                 sen_buffer.append(word)
         buffer_.append(" ".join(sen_buffer))
-    X_valid = buffer_
+    web_txt = buffer_
 
 
     tfidf_vec = tf_idf_vectorization(descriptions_txt)
