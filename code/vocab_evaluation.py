@@ -129,7 +129,6 @@ def train_naive_bayes_des_local(fold):
         sen_buffer = []
         xx = clean_up_txt(xx)
         for word in xx.split():
-            print(word.lower())
             if word not in vocab:
                 sen_buffer.append(word)
         buffer_.append(" ".join(sen_buffer))
