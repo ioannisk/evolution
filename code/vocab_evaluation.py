@@ -51,6 +51,14 @@ for key in classes_companies:
     if counts[key] <= less_than:
         rare_classes_set.add(key)
 
+
+def clean_up_txt(page_txt):
+    page_txt = page_txt.lower()
+    page_txt = re.sub('\s+',' ',page_txt)
+    # page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
+    page_txt = re.sub('[^a-zA-Z]+', " ", page_txt)
+    return page_txt
+
 #
 # Decomposable attention doesnt change
 # but all other models do for the best, mayve that is a good thing
@@ -111,12 +119,14 @@ def train_naive_bayes_des_local(fold):
 
     vocab = set()
     for xx in X_train_des:
+        xx = clean_up_txt(xx)
         for word in xx.split():
             vocab.add(word.lower())
 
     buffer_ =[]
     for xx in X_valid:
         sen_buffer = []
+        xx = clean_up_txt(xx)
         for word in xx.split():
             print(word.lower())
             if word not in vocab:
@@ -248,11 +258,13 @@ def baseline_tfidf(fold):
 
     vocab = set()
     for xx in descriptions_txt:
+        xx = clean_up_txt(xx)
         for word in xx.split():
             vocab.add(word)
 
     buffer_ =[]
     for xx in web_txt:
+        xx = clean_up_txt(xx)
         sen_buffer = []
         for word in xx.split():
             if word not in vocab:
