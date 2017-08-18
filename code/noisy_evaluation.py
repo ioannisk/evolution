@@ -359,6 +359,6 @@ def each_fold_stats():
     print_nice_table(nb_avrg/len(folds), tfidf_avrg/len(folds), att_avrg/len(folds))
 
 if __name__=="__main__":
-    # each_fold_stats()
-    nb_noisy(0)
+    each_fold_stats()
+    # nb_noisy(0)
 
