@@ -11,7 +11,7 @@ from collections import Counter,defaultdict
 from new_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 import matplotlib.pyplot as plt
 
-RANKS = list(range(1,200))
+RANKS = list(range(1,20))
 # choosen_fold = "1rfolds3"
 # choosen_model = "1rfolds3_1"
 # data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
