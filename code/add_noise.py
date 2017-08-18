@@ -48,6 +48,7 @@ def vocab_overlap(files):
         with open(file_str, 'r') as file_:
             for line in file_:
                 line = line.strip()
+                line = json.loads(line)
                 buffer_ = []
                 print("="*80)
                 print(len(line['web'].split()))
