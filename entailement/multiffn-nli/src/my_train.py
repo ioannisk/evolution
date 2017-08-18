@@ -7,8 +7,16 @@
 # python interactive-eval.py 1rfolds3_2/model1 ~/data/glove/glove-840B.npy --vocab ~/data/glove/glove-840B-vocabulary.txt -i -a
 # python my_evaluate.py 1rfolds3_sl_filtered/model2 //home/ioannis/data/testing_binary_snli_snli.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
 
-
-######
+##################################################################
+##################################################################
+##################################################################
+##################################################################
+##################################################################
+##################################################################
+#
+# FINAL EXPERIMENTS USE THEM
+#
+#
 # WORK RECOVERY sanity check to know where i stand
 # RUNNED ALL OF THEM IT WORKS
 #
@@ -19,23 +27,56 @@
 #
 # RUN THE NOISY WEBSITES
 #
-# running 40% noise in both web and dis
+# 40% noise in both web and dis
 # nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model0 /home/ioannis/data/recovery_test/fold0/ranking_validation.json.noise ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise.txt > log0.txt &
 # nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model1 /home/ioannis/data/recovery_test/fold1/ranking_validation.json.noise ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise.txt > log1.txt &
 # nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json.noise ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise.txt > log2.txt &
+#
+# 20% noise in both web and dis
+#
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model0 /home/ioannis/data/recovery_test/fold0/ranking_validation.json.noise2 ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise2.txt > log0.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model1 /home/ioannis/data/recovery_test/fold1/ranking_validation.json.noise2 ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise2.txt > log1.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json.noise2 ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise2.txt > log2.txt &
+
+# 60% noise in both web and dis
+#
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model0 /home/ioannis/data/recovery_test/fold0/ranking_validation.json.noise6 ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise6.txt > log0.txt &
+# to be runned
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model1 /home/ioannis/data/recovery_test/fold1/ranking_validation.json.noise6 ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise6.txt > log1.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json.noise6 ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise6.txt > log2.txt &
+
+# 80% noise in both web and dis
+#
+# TODO
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model0 /home/ioannis/data/recovery_test/fold0/ranking_validation.json.noise8 ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise8.txt > log0.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model1 /home/ioannis/data/recovery_test/fold1/ranking_validation.json.noise8 ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise8.txt > log1.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json.noise8 ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise8.txt > log2.txt &
+
+
+
 #
 #running no vocabulary overlap
 # nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model0 /home/ioannis/data/recovery_test/fold0/ranking_validation.json.vocab ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_vocab.txt > log0.txt &
 # nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model1 /home/ioannis/data/recovery_test/fold1/ranking_validation.json.vocab ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_vocab.txt > log1.txt &
 # nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json.vocab ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_vocab.txt > log2.txt &
 
-## try this
+### DONE filter out commas ans shit while removing vocab
 # nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model0 /home/ioannis/data/recovery_test/fold0/ranking_validation.json.vocab_clean ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_vocab_clean.txt > log0.txt &
 # nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model1 /home/ioannis/data/recovery_test/fold1/ranking_validation.json.vocab_clean ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_vocab_clean.txt > log1.txt &
 # nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json.vocab_clean ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_vocab_clean.txt > log2.txt &
 
-
+### JUST FILTER same as normal
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model0 /home/ioannis/data/recovery_test/fold0/ranking_validation.json.filter ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_filter.txt > log0.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model1 /home/ioannis/data/recovery_test/fold1/ranking_validation.json.filter ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_filter.txt > log1.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json.filter ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_filter.txt > log2.txt &
 ######
+
+##################################################################
+##################################################################
+##################################################################
+##################################################################
+##################################################################
+##################################################################
 
 
 
