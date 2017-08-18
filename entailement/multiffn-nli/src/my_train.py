@@ -5,7 +5,38 @@
 
 ### WOW THIS IS SICK VISUALIZATION
 # python interactive-eval.py 1rfolds3_2/model1 ~/data/glove/glove-840B.npy --vocab ~/data/glove/glove-840B-vocabulary.txt -i -a
-# python my_evaluate.py 1rfolds3_sl_1/model2 //home/ioannis/data/testing_binary_snli_snli.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
+# python my_evaluate.py 1rfolds3_sl_filtered/model2 //home/ioannis/data/testing_binary_snli_snli.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
+
+
+######
+# WORK RECOVERY sanity check to know where i stand
+# RUNNED ALL OF THEM IT WORKS
+#
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model0 /home/ioannis/data/recovery_test/fold0/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt > log0.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model1 /home/ioannis/data/recovery_test/fold1/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt > log1.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt > log2.txt &
+#
+#
+# RUN THE NOISY WEBSITES
+#
+# running 40% noise in both web and dis
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model0 /home/ioannis/data/recovery_test/fold0/ranking_validation.json.noise ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise.txt > log0.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model1 /home/ioannis/data/recovery_test/fold1/ranking_validation.json.noise ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise.txt > log1.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json.noise ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_noise.txt > log2.txt &
+#
+#running no vocabulary overlap
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model0 /home/ioannis/data/recovery_test/fold0/ranking_validation.json.vocab ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_vocab.txt > log0.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model1 /home/ioannis/data/recovery_test/fold1/ranking_validation.json.vocab ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_vocab.txt > log1.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json.vocab ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_vocab.txt > log2.txt &
+
+## try this
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model0 /home/ioannis/data/recovery_test/fold0/ranking_validation.json.vocab_clean ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_vocab_clean.txt > log0.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model1 /home/ioannis/data/recovery_test/fold1/ranking_validation.json.vocab_clean ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_vocab_clean.txt > log1.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json.vocab_clean ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_vocab_clean.txt > log2.txt &
+
+
+######
+
 
 
 ################################################################################################
@@ -133,15 +164,33 @@
 ################################################################################################
 ################################################################################################
 
+# python my_evaluate.py /home/ioannis/models/best_models_1rfold3_sl/model0 /home/ioannis/data/best_models_1rfold3_sl/fold0/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
 
 
 
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold0/training.json /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold0/validation.json 1rfolds3_sl_filtered/model0 mlp --lower -e 30 -u 250 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold1/training.json /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold1/validation.json 1rfolds3_sl_filtered/model1 mlp --lower -e 30 -u 250 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output1.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold2/training.json /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold2/validation.json 1rfolds3_sl_filtered/model2 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.04 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output2.txt &
 
 
+# nohup python -u my_evaluate.py 1rfolds3_sl_filtered/model0 /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold0/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt &
+# nohup python -u my_evaluate.py 1rfolds3_sl_filtered/model1 /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold1/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt  &
+# nohup python -u my_evaluate.py 1rfolds3_sl_filtered/model2 /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold2/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt &
+
+# nohup python -u my_evaluate.py 1rfolds3_sl_filtered/model0 /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold0/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save supervised_predictions.txt &
+# nohup python -u my_evaluate.py 1rfolds3_sl_filtered/model1 /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold1/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save supervised_predictions.txt  &
+# nohup python -u my_evaluate.py 1rfolds3_sl_filtered/model2 /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold2/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save supervised_predictions.txt &
 
 
+#### experiment 2
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold0/training.json /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold0/validation.json 1rfolds3_sl_filtered_1/model0 mlp --lower -e 3 -u 180 -d 0.75  -b 32 -r 0.03 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold1/training.json /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold1/validation.json 1rfolds3_sl_filtered_1/model1 mlp --lower -e 3 -u 180 -d 0.75  -b 32 -r 0.03 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output1.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold2/training.json /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold2/validation.json 1rfolds3_sl_filtered_1/model2 mlp --lower -e 3 -u 180 -d 0.75  -b 32 -r 0.03 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output2.txt &
 
-
+#### experiment 3 minimise training loss just to see how that goes
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold0/training.json /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold0/training_small.json 1rfolds3_sl_filtered_2/model0 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold1/training.json /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold1/training_small.json 1rfolds3_sl_filtered_2/model1 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output1.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold2/training.json /home/ioannis/evolution/data/1rfolds3_sl_filtered/fold2/training_small.json 1rfolds3_sl_filtered_2/model2 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt > Output2.txt &
 
 
 

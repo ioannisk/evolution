@@ -87,12 +87,25 @@ def web_noise(files):
 
 
 
+def filter_data(files):
+    for file_str in files:
+        print("writing file {}".format(file_str))
+        output = open(file_str+".filter", 'w')
+        with open(file_str, 'r') as file_:
+            for line in file_:
+                line = line.strip()
+                line = json.loads(line)
+                line['web'] = clean_up_txt(line['web'])
+                line['des'] = clean_up_txt(line['des'])
+                write_json_line(line, output)
+
 
 
 
 if __name__=="__main__":
     data_path = "/home/ioannis/data/recovery_test/"
     files =[data_path +"fold{}/".format(i)+"ranking_validation.json" for i in range(0,3)]
+    filter_data(files)
     # web_noise(files)
-    vocab_overlap(files)
+    # vocab_overlap(files)
 
