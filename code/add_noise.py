@@ -1,5 +1,6 @@
 import json
 import random
+import re
 # 1. add noise to web 20 %
 # 1. add noise to web 50 %
 # 2. remove all keywords of descriptions from websites
@@ -33,7 +34,9 @@ def get_vocab(file_str):
         for line in file_:
             line = line.strip()
             line = json.loads(line)
-            des_list = line['des'].split()
+            des = line['des']
+            des = clean_up_txt(des)
+            des_list = des.split()
             for word in des_list:
                 vocab.add(word)
     return vocab
@@ -44,13 +47,15 @@ def vocab_overlap(files):
         print("making vocab")
         vocab = get_vocab(file_str)
         print("writing file {}".format(file_str))
-        output = open(file_str+".vocab", 'w')
+        output = open(file_str+".vocab_clean", 'w')
         with open(file_str, 'r') as file_:
             for line in file_:
                 line = line.strip()
                 line = json.loads(line)
                 buffer_ = []
-                for word in line['web'].split():
+                web_txt = line['web']
+                web_txt = clean_up_txt(web_txt)
+                for word in web_txt.split():
                     if word not in vocab:
                         buffer_.append(word)
                 web = " ".join(buffer_)
