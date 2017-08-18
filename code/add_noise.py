@@ -41,17 +41,23 @@ def des_vocabulary(file_str):
 
 def web_noise(files):
     for file_str in files:
+        output = open(file_str+".noise", 'w')
         with open(file_str, 'r') as file_:
             for line in file_:
                 line = line.strip()
                 line = json.loads(line)
                 web_list = line['web'].split()
                 web_list = sample(web_list, 0.4)
-                print('='*80)
-                print(line['web'])
                 web = " ".join(web_list)
-                print(web)
                 line['web'] = web
+
+                des_list = line['des'].split()
+                des_list = sample(des_list, 0.4)
+                des = " ".join(des_list)
+                line['des'] = des
+
+                write_json_line(line, output)
+
 
 
 
