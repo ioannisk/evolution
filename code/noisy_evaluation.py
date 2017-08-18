@@ -65,88 +65,16 @@ def remove_rare_classes(ranked_list, ):
 
 
 
+def sample(str_, rate):
+    list_ = str_.split()
+    buffer_ = []
+    for i in list_:
+        sample = random.uniform(0,1)
+        if sample > rate:
+            buffer_.append(i)
+    buffer_ = " ".join(buffer_)
+    return buffer_
 
-def train_naive_bayes_des_local(fold):
-    # used_classes = find_only_used_classes()
-    X_train =[]
-    X_valid =[]
-    Y_train =[]
-    Y_valid =[]
-    Y_train_des = []
-    X_train_des = []
-    training_classes = set()
-    validation_classes = set()
-    ids_ = set()
-    with open(data_path+"fold{}/training.json".format(fold),"r") as file_:
-        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
-        for i, b in enumerate(binary_class):
-            if b!="entailment":
-                continue
-            # if des_class[i] not in used_classes:
-            #     continue
-            X_train.append(web_txt[i])
-            Y_train.append(web_class[i])
-            # training_classes.add(web_class[i])
-            # descriptions_txt.append(line[1])
-    with open(data_path+"fold{}/{}.json".format(fold, data_file),"r") as file_:
-        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
-        for i, b in enumerate(binary_class):
-            if b!="entailment":
-                continue
-            # if des_class[i] not in used_classes:
-            #     continue
-            X_valid.append(web_txt[i])
-            Y_valid.append(web_class[i])
-            # validation_classes.add(web_class[i])
-    # all_classes = training_classes.union(validation_classes)
-    # print(len(all_classes))
-
-    # stop
-    with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
-        for line in file_:
-            line = line.strip()
-            line = line.split('\t')
-            ## ensure only used classes are used for inference
-            # if line[0] not in used_classes:
-            #     continue
-            Y_train_des.append(line[0])
-            X_train_des.append(line[1])
-
-    # X_train = X_train + X_train_des
-    # Y_train = Y_train + Y_train_des
-    # vec = tf_idf_vectorization(X_train)
-    # # X_train_des_vec = vec.transform(X_train_des)
-    # X_train_vec = vec.transform(X_train)
-    # X_valid_vec = vec.transform(X_valid)
-    # vec = tf_idf_vectorization(X_train_des)
-
-
-    vec = count_vectorization(X_train_des)
-    X_train_vec = vec.transform(X_train_des)
-    Y_train = Y_train_des
-    X_valid_vec = vec.transform(X_valid)
-    a = 0.002
-    # for a in np.arange(1,200)*0.0001:
-    gnb = MultinomialNB(alpha=a,fit_prior=False)
-    # clf = gnb.fit(X_train_des_vec, Y_train_des)
-    clf = gnb.fit(X_train_vec, Y_train)
-    y_pred_test = clf.predict(X_valid_vec)
-    y_pred_train = clf.predict(X_train_vec)
-    # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
-    # import IPython; IPython.embed()
-    # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
-    y_pred_test_proba = clf.predict_proba(X_valid_vec)
-    true_positive = np.zeros(len(RANKS))
-    for i, proba in enumerate(y_pred_test_proba):
-        ranked = zip(proba, clf.classes_)
-        ranked = sorted(ranked, reverse=True)
-        proba, classes = zip(*ranked)
-        classes = list(classes)
-        # classes = remove_rare_classes(classes)
-        for j, TOP_N in enumerate(RANKS):
-            if Y_valid[i] in classes[:TOP_N]:
-                true_positive[j] +=1
-    return true_positive*100/float(len(Y_valid))
 
 def count_vectorization(corpus):
     vec = CountVectorizer( min_df=1)
@@ -229,10 +157,14 @@ def baseline_tfidf(fold):
             #     continue
             descriptions_class.append(line[0])
             training_corpus.append(line[1])
-            descriptions_txt.append(line[1])
+            descriptions_txt.append(sample(line[1],0.4))
     with open(data_path+"fold{}/{}.json".format(fold,data_file),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
     ## train tf-idf vectorizer
+    buffer__ = []
+    for txt in web_txt:
+        buffer__.append(sample(web_txt, 0.4))
+    web_txt = buffer__
     tfidf_vec = tf_idf_vectorization(descriptions_txt)
     # tfidf_vec = tf_idf_vectorization(training_corpus)
     ## vetorize des and validation websites
@@ -241,6 +173,60 @@ def baseline_tfidf(fold):
     accuracy = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
     return accuracy
 
+
+def train_naive_bayes_des_local(fold):
+    X_train =[]
+    X_valid =[]
+    Y_train =[]
+    Y_valid =[]
+    Y_train_des = []
+    X_train_des = []
+    training_classes = set()
+    validation_classes = set()
+    ids_ = set()
+    with open(data_path+"fold{}/training.json".format(fold),"r") as file_:
+        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
+        for i, b in enumerate(binary_class):
+            if b!="entailment":
+                continue
+            X_train.append(web_txt[i])
+            Y_train.append(web_class[i])
+    with open(data_path+"fold{}/{}.json".format(fold, data_file),"r") as file_:
+        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
+        for i, b in enumerate(binary_class):
+            if b!="entailment":
+                continue
+            X_valid.append(sample(web_txt[i], 0.4))
+            Y_valid.append(web_class[i])
+
+    with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
+        for line in file_:
+            line = line.strip()
+            line = line.split('\t')
+            Y_train_des.append(line[0])
+            X_train_des.append(sample(line[1],0.4))
+
+    vec = count_vectorization(X_train_des)
+    X_train_vec = vec.transform(X_train_des)
+    Y_train = Y_train_des
+    X_valid_vec = vec.transform(X_valid)
+    a = 0.002
+    gnb = MultinomialNB(alpha=a,fit_prior=False)
+    clf = gnb.fit(X_train_vec, Y_train)
+    y_pred_test = clf.predict(X_valid_vec)
+    y_pred_train = clf.predict(X_train_vec)
+    y_pred_test_proba = clf.predict_proba(X_valid_vec)
+    true_positive = np.zeros(len(RANKS))
+    for i, proba in enumerate(y_pred_test_proba):
+        ranked = zip(proba, clf.classes_)
+        ranked = sorted(ranked, reverse=True)
+        proba, classes = zip(*ranked)
+        classes = list(classes)
+        # classes = remove_rare_classes(classes)
+        for j, TOP_N in enumerate(RANKS):
+            if Y_valid[i] in classes[:TOP_N]:
+                true_positive[j] +=1
+    return true_positive*100/float(len(Y_valid))
 
 def nb_noisy(fold):
     with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
@@ -262,7 +248,7 @@ def nb_noisy(fold):
 
 def decomposable_attention_eval(fold):
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
-    with open("/home/ioannis/models/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
+    with open("/home/ioannis/models/{}/model{}/prob_predictions.txt.noise".format(choosen_model,fold), "r") as file_:
 
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/mnli_con_folds/model14/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
         predictions = []
