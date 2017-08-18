@@ -41,7 +41,9 @@ def get_vocab(file_str):
 
 def vocab_overlap(files):
     for file_str in files:
+        print("making vocab")
         vocab = get_vocab(file_str)
+        print("writing file {}".format(file_str))
         output = open(file_str+".vocab", 'w')
         with open(file_str, 'r') as file_:
             for line in file_:
