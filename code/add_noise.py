@@ -50,7 +50,6 @@ def vocab_overlap(files):
                 line = line.strip()
                 line = json.loads(line)
                 buffer_ = []
-                print(len(line['web'].split()))
                 for word in line['web'].split():
                     if word not in vocab:
                         buffer_.append(word)
