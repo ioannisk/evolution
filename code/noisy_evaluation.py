@@ -164,7 +164,7 @@ def baseline_tfidf(fold):
     ## train tf-idf vectorizer
     buffer__ = []
     for txt in web_txt:
-        buffer__.append(sample(web_txt, 0.4))
+        buffer__.append(sample(txt, 0.4))
     web_txt = buffer__
     tfidf_vec = tf_idf_vectorization(descriptions_txt)
     # tfidf_vec = tf_idf_vectorization(training_corpus)
