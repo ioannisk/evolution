@@ -112,7 +112,7 @@ def train_naive_bayes_des_local(fold):
     vocab = set()
     for xx in X_train_des:
         for word in xx.split():
-            print()
+            print(word)
             vocab.add(word)
 
     buffer_ =[]
