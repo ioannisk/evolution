@@ -67,7 +67,7 @@ def web_noise(files):
     noise = 0.2
     for file_str in files:
         print("writing file {}".format(file_str))
-        output = open(file_str+".noise{}".format(noise*10), 'w')
+        output = open(file_str+".noise{}".format(int(noise*10)), 'w')
         with open(file_str, 'r') as file_:
             for line in file_:
                 line = line.strip()
