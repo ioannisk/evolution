@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 import random
 
 RANKS = list(range(1,20))
+NOISE = 0.2
 # choosen_fold = "1rfolds3"
 # choosen_model = "1rfolds3_1"
 # data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
@@ -158,13 +159,13 @@ def baseline_tfidf(fold):
             #     continue
             descriptions_class.append(line[0])
             training_corpus.append(line[1])
-            descriptions_txt.append(sample(line[1],0.4))
+            descriptions_txt.append(sample(line[1],NOISE))
     with open(data_path+"fold{}/{}.json".format(fold,data_file),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
     ## train tf-idf vectorizer
     buffer__ = []
     for txt in web_txt:
-        buffer__.append(sample(txt, 0.4))
+        buffer__.append(sample(txt, NOISE))
     web_txt = buffer__
     tfidf_vec = tf_idf_vectorization(descriptions_txt)
     # tfidf_vec = tf_idf_vectorization(training_corpus)
@@ -197,7 +198,7 @@ def train_naive_bayes_des_local(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            X_valid.append(sample(web_txt[i], 0.4))
+            X_valid.append(sample(web_txt[i], NOISE))
             Y_valid.append(web_class[i])
 
     with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
@@ -205,7 +206,7 @@ def train_naive_bayes_des_local(fold):
             line = line.strip()
             line = line.split('\t')
             Y_train_des.append(line[0])
-            X_train_des.append(sample(line[1],0.4))
+            X_train_des.append(sample(line[1],NOISE))
 
     vec = count_vectorization(X_train_des)
     X_train_vec = vec.transform(X_train_des)
@@ -252,7 +253,7 @@ def decomposable_attention_eval(fold):
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/mnli_con_folds/model14/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
 
     # with open("/home/ioannis/models/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
-    with open("/home/ioannis/models/{}/model{}/prob_predictions_noise.txt".format(choosen_model,fold), "r") as file_:
+    with open("/home/ioannis/models/{}/model{}/prob_predictions_noise_filter.txt".format(choosen_model,fold), "r") as file_:
 
 
         predictions = []
