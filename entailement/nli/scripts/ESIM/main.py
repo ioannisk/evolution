@@ -735,7 +735,7 @@ def train(
                          batch_size=batch_size)
     train_valid = TextIterator(datasets[0], datasets[1], datasets[2],
                          dictionary,
-                         n_words=n_words
+                         n_words=n_words,
                          batch_size=valid_batch_size,
                          shuffle=False)
     valid = TextIterator(valid_datasets[0], valid_datasets[1], valid_datasets[2],
