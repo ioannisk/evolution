@@ -18,6 +18,8 @@ MAX_WEB_LEN=MAX_LEN
 # data_path = "../data/1rfolds{}_sl_filtered/".format(N)
 # data_path = "../data/10rfolds{}/".format(N)
 # data_path = "../data/100rfolds{}/".format(N)
+data_path = "../new_data_{}".format(N)
+
 
 def clean_up_txt(page_txt):
     page_txt = page_txt.lower()
@@ -174,7 +176,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     """Desing big experiment, train 3 models with 3 fodls of held out classes
     while we also keep some companies out from the seen classes so we can test SL learning
     """
-    os.mkdir(data_path)
+    # os.mkdir(data_path)
     all_classes = list(class_descriptions.keys())
     class_validation_N = 10
     companies_validation = 5000
@@ -200,7 +202,8 @@ def training_validation_split(class_descriptions,companies_descriptions):
     # print(ranked)
     # Rank according to least common count
     ## GOOD LIST PRODUCED FOR SPLIT 3
-    folds = [['47990', '38310', '46431', '51220', '17230', '47220', '23520', '27110', '32110', '26701', '25120', '95240'], ['85410', '23640', '20412', '27110', '65202', '46341', '59120', '72200', '24520', '66120', '28301', '82190', '52102', '20302', '13950', '47782', '74203'], ['20150', '71121', '14390', '46210', '63990', '23510', '31030', '51220', '28120', '46380', '81223', '85520']]
+    ############## THATS THE LIST PRODUCED #####################
+    # folds = [['47990', '38310', '46431', '51220', '17230', '47220', '23520', '27110', '32110', '26701', '25120', '95240'], ['85410', '23640', '20412', '27110', '65202', '46341', '59120', '72200', '24520', '66120', '28301', '82190', '52102', '20302', '13950', '47782', '74203'], ['20150', '71121', '14390', '46210', '63990', '23510', '31030', '51220', '28120', '46380', '81223', '85520']]
 
     for fold in folds:
         fold_sum = 0
@@ -208,6 +211,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
             fold_sum += class_counts[class_]
         print(fold_sum)
 
+    sincfivnfin
     training_sets = []
     for fold in folds:
         training = [class_ for class_ in list(class_descriptions.keys()) if class_ not in fold]

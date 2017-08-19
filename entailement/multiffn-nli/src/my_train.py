@@ -23,6 +23,10 @@
 # nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model0 /home/ioannis/data/recovery_test/fold0/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt > log0.txt &
 # nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model1 /home/ioannis/data/recovery_test/fold1/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt > log1.txt &
 # nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions.txt > log2.txt &
+
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model0 /home/ioannis/data/recovery_test/fold0/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt  > log0.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model1 /home/ioannis/data/recovery_test/fold1/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt  > log1.txt &
+# nohup python -u my_evaluate.py /home/ioannis/models/recovery_test/model2 /home/ioannis/data/recovery_test/fold2/validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt  > log2.txt &
 #
 #
 # RUN THE NOISY WEBSITES
