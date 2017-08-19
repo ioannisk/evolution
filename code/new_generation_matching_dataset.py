@@ -18,7 +18,7 @@ MAX_WEB_LEN=MAX_LEN
 # data_path = "../data/1rfolds{}_sl_filtered/".format(N)
 # data_path = "../data/10rfolds{}/".format(N)
 # data_path = "../data/100rfolds{}/".format(N)
-data_path = "../data/new_data_{}".format(N)
+data_path = "../data/new_data_{}/".format(N)
 
 
 def clean_up_txt(page_txt):
