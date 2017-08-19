@@ -64,7 +64,7 @@ def vocab_overlap(files):
 
 
 def web_noise(files):
-    noise = 0.4
+    noise = 0.6
     print(noise)
     for file_str in files:
         print("writing file {}".format(file_str))
