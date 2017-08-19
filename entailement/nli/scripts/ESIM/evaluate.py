@@ -38,7 +38,7 @@ if __name__ == '__main__':
     # test_datasets    = ['../../data/word_sequence/premise_snli_1.0_test.txt',
     #                     '../../data/word_sequence/hypothesis_snli_1.0_test.txt',
     #                     '../../data/word_sequence/label_snli_1.0_test.txt'],
-    dictionary       = '../../data/word_sequence/vocab_cased.pkl',
+    dictionary       = '/home/ioannis/data/recovery_test/fold{}/web_word_sequence/vocab_cased.pkl'.format(FOLD),
     embedding        = '../../data/glove/glove.840B.300d.txt',
     )
 
