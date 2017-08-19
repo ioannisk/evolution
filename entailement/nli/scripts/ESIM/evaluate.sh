@@ -6,7 +6,7 @@ export THEANO_FLAGS='mode=FAST_RUN,device=gpu0,floatX=float32,optimizer_includin
 # CPU
 # export THEANO_FLAGS='mode=FAST_RUN,device=cpu,floatX=float32'
 
-nohup python -u ./evaluate.py model_1 1 > log1.txt 2>&1 &
+nohup python -u ./evaluate.py model_2 2 > log2.txt 2>&1 &
 #python ./train.py
 
 
