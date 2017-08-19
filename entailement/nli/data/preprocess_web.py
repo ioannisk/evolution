@@ -4,7 +4,7 @@ import os
 import numpy
 import cPickle as pkl
 import json
-
+import re
 from collections import OrderedDict
 
 dic = {'entailment': '0', 'contradiction': '1'}
