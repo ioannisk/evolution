@@ -79,7 +79,7 @@ def build_sequence(filepath, dst_dir):
             web_ = line['web']
             web_ = clean_up_txt(web_)
             f2.write(web_ + '\n')
-            len_h.append(web_.split())
+            len_h.append(len(web_.split()))
 
             f3.write(dic[label_] + '\n')
 
