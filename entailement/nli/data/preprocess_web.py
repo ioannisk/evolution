@@ -97,7 +97,7 @@ def make_dirs(dirs):
             os.makedirs(d)
 
 if __name__ == '__main__':
-    FOLD = 0
+    FOLD = 1
     print('=' * 80)
     print('Preprocessing fold{} dataset'.format(FOLD))
     print('=' * 80)
