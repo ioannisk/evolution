@@ -17,10 +17,10 @@ import matplotlib.pyplot as plt
 RANKS = list(range(1,21))
 
 
-choosen_fold = "new_data_3"
-choosen_model = "new_data_3_1"
-data_file = "validation"
-data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
+# choosen_fold = "new_data_3"
+# choosen_model = "new_data_3_1"
+# data_file = "validation"
+# data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
 # choosen_fold = "1rfolds3"
 # choosen_model = "1rfolds3_1"
@@ -28,19 +28,19 @@ data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 ###
 ### TOP UNSEEN CLASS FOLDS
 ### comment evetyhting below
-# choosen_fold = "best_models_1rfold3_sl"
-#             # choosen_model = "best_models_1rfold3_sl"
-#             # choosen_fold = "recovery_test"
-# choosen_model ="recovery_test"
-# data_file = "validation"
-# data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
+choosen_fold = "best_models_1rfold3_sl"
+            # choosen_model = "best_models_1rfold3_sl"
+            # choosen_fold = "recovery_test"
+choosen_model ="recovery_test"
+data_file = "validation"
+data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
 #
 # Comparison on folds 2, 4, 0
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0,1,2]
-folds = [0,1,2]
+folds = [0,1,2,3,4]
 # folds = [2]
 # folds = [14]
 # folds = [0,2,4]
@@ -250,8 +250,8 @@ def baseline_tfidf(fold):
 
 
 def decomposable_attention_eval(fold):
-    with open("/home/ioannis/evolution/entailement/multiffn-nli/src/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
-    # with open("/home/ioannis/models/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
+    # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
+    with open("/home/ioannis/models/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
 
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/mnli_con_folds/model14/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
         predictions = []
