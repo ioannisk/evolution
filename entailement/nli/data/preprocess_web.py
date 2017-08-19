@@ -9,6 +9,14 @@ from collections import OrderedDict
 
 dic = {'entailment': '0', 'contradiction': '1'}
 
+def clean_up_txt(page_txt):
+    page_txt = page_txt.lower()
+    page_txt = re.sub('\s+',' ',page_txt)
+    # page_txt = re.sub('[^0-9a-zA-Z]+', " ", page_txt)
+    page_txt = re.sub('[^a-zA-Z]+', " ", page_txt)
+    return page_txt
+
+
 def build_dictionary(filepaths, dst_path, lowercase=False):
     word_freqs = OrderedDict()
     for filepath in filepaths:
@@ -62,12 +70,14 @@ def build_sequence(filepath, dst_dir):
             # words_in = sents[1].strip().split(' ')
             # words_in = [x for x in words_in if x not in ('(',')')]
             des_ = line['des']
+            des_ = clean_up_txt(des_)
             f1.write(des_ + '\n')
             len_p.append(len(des_.split()))
 
             # words_in = sents[2].strip().split(' ')
             # words_in = [x for x in words_in if x not in ('(',')')]
             web_ = line['web']
+            web_ = clean_up_txt(web_)
             f2.write(web_ + '\n')
             len_h.append(web_.split())
 
@@ -98,7 +108,7 @@ if __name__ == '__main__':
     print("ranking_validation.json")
     build_sequence(os.path.join(base_dir, 'ranking_validation.json'), dst_dir)
 
-    build_dictionary([os.path.join(dst_dir, 'premise_snli_1.0_train.txt'),
-                      os.path.join(dst_dir, 'hypothesis_snli_1.0_train.txt')],
+    build_dictionary([os.path.join(dst_dir, 'premise_training.json'),
+                      os.path.join(dst_dir, 'hypothesis_training.json')],
                       os.path.join(dst_dir, 'vocab_cased.pkl'))
 
