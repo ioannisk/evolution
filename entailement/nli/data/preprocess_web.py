@@ -69,15 +69,19 @@ def build_sequence(filepath, dst_dir):
             # sents = line.strip().split('\t')
             # words_in = sents[1].strip().split(' ')
             # words_in = [x for x in words_in if x not in ('(',')')]
+
             des_ = line['des']
             des_ = clean_up_txt(des_)
+            web_ = line['web']
+            web_ = clean_up_txt(web_)
+            if len(des_.split()) > 125 or len(web_.split()) >125:
+                continue
+
             f1.write(des_ + '\n')
             len_p.append(len(des_.split()))
 
             # words_in = sents[2].strip().split(' ')
             # words_in = [x for x in words_in if x not in ('(',')')]
-            web_ = line['web']
-            web_ = clean_up_txt(web_)
             f2.write(web_ + '\n')
             len_h.append(len(web_.split()))
 
