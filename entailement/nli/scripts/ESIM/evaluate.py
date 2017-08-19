@@ -6,9 +6,10 @@ from main_evaluate import train
 
 
 if __name__ == '__main__':
-    model_name = sys.argv[1]
     # model_name = os.path.basename(os.path.dirname(os.path.realpath(__file__)))
-    print(model_name)
+    model_name = sys.argv[1]
+    FOLD = sys.argv[2]
+
     train(
     saveto           = './{}.npz'.format(model_name),
     reload_          = True,
@@ -28,12 +29,12 @@ if __name__ == '__main__':
     saveFreq         = int(1500),
     use_dropout      = True,
     verbose          = False,
-    datasets         = ['../../data/word_sequence/premise_snli_1.0_train.txt',
-                        '../../data/word_sequence/hypothesis_snli_1.0_train.txt',
-                        '../../data/word_sequence/label_snli_1.0_train.txt'],
-    valid_datasets   = ['../../data/word_sequence/premise_snli_1.0_dev.txt',
-                        '../../data/word_sequence/hypothesis_snli_1.0_dev.txt',
-                        '../../data/word_sequence/label_snli_1.0_dev.txt'],
+    datasets         = ['/home/ioannis/data/recovery_test/fold{}/web_word_sequence/premise_training.json'.format(FOLD),
+                        '/home/ioannis/data/recovery_test/fold{}/web_word_sequence/hypothesis_training.json'.format(FOLD),
+                        '/home/ioannis/data/recovery_test/fold{}/web_word_sequence/label_training.json'.format(FOLD)],
+    valid_datasets   = ['/home/ioannis/data/recovery_test/fold{}/web_word_sequence/premise_validation.json'.format(FOLD),
+                        '/home/ioannis/data/recovery_test/fold{}/web_word_sequence/hypothesis_validation.json'.format(FOLD),
+                        '/home/ioannis/data/recovery_test/fold{}/web_word_sequence/label_validation.json'.format(FOLD)],
     # test_datasets    = ['../../data/word_sequence/premise_snli_1.0_test.txt',
     #                     '../../data/word_sequence/hypothesis_snli_1.0_test.txt',
     #                     '../../data/word_sequence/label_snli_1.0_test.txt'],
