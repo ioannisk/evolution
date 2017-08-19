@@ -7,7 +7,7 @@ if __name__ == '__main__':
     model_name = os.path.basename(os.path.dirname(os.path.realpath(__file__)))
     train(
     saveto           = './{}.npz'.format(model_name),
-    reload_          = False,
+    reload_          = True,
     dim_word         = 300,
     dim              = 300,
     patience         = 7,
