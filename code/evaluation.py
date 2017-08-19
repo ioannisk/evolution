@@ -14,11 +14,11 @@ import matplotlib.pyplot as plt
 # from gensim.models import Word2Vec
 # model = Word2Vec.load_word2vec_format('/home/scp/GoogleNews-vectors-negative300.bin',binary=True)
 
-RANKS = list(range(1,201))
+RANKS = list(range(1,21))
 
 
-choosen_fold = "new_data_3"
-choosen_model = "new_data_3"
+choosen_fold = "new_data_3_1"
+choosen_model = "new_data_3_1"
 data_file = "validation"
 data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
