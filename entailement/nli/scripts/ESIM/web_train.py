@@ -6,8 +6,7 @@ from main import train
 if __name__ == '__main__':
     # model_name = os.path.basename(os.path.dirname(os.path.realpath(__file__)))
     model_name = sys.argv[1]
-    training_data_path = sys.argv[2]
-    validation_data_path = sys.argv[3]
+    FOLD = sys.argv[2]
     train(
     saveto           = './{}.npz'.format(model_name),
     reload_          = False,
@@ -27,16 +26,16 @@ if __name__ == '__main__':
     saveFreq         = int(1500),
     use_dropout      = True,
     verbose          = False,
-    datasets         = ['../../data/word_sequence/premise_snli_1.0_train.txt',
-                        '../../data/word_sequence/hypothesis_snli_1.0_train.txt',
-                        '../../data/word_sequence/label_snli_1.0_train.txt'],
-    valid_datasets   = ['../../data/word_sequence/premise_snli_1.0_dev.txt',
-                        '../../data/word_sequence/hypothesis_snli_1.0_dev.txt',
-                        '../../data/word_sequence/label_snli_1.0_dev.txt'],
+    datasets         = ['/home/ioannis/data/recovery_test/fold{}/web_word_sequence/premise_training.json'.format(FOLD),
+                        '/home/ioannis/data/recovery_test/fold{}/web_word_sequence/hypothesis_training.json'.format(FOLD),
+                        '/home/ioannis/data/recovery_test/fold{}/web_word_sequence/label_training.json'.format(FOLD)],
+    valid_datasets   = ['/home/ioannis/data/recovery_test/fold{}/web_word_sequence/premise_validation.json'.format(FOLD),
+                        '/home/ioannis/data/recovery_test/fold{}/web_word_sequence/hypothesis_validation.json'.format(FOLD),
+                        '/home/ioannis/data/recovery_test/fold{}/web_word_sequence/label_validation.json'.format(FOLD)],
     # test_datasets    = ['../../data/word_sequence/premise_snli_1.0_test.txt',
     #                     '../../data/word_sequence/hypothesis_snli_1.0_test.txt',
     #                     '../../data/word_sequence/label_snli_1.0_test.txt'],
-    dictionary       = '../../data/word_sequence/vocab_cased.pkl',
-    embedding        = '../../data/glove/glove.840B.300d.txt',
+    dictionary       = '/home/ioannis/data/recovery_test/fold{}/web_word_sequence/vocab_cased.pkl'.format(FOLD),
+    embedding        = '/home/ioannis/data/glove/glove.840B.300d.txt',
     )
 
