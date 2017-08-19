@@ -84,15 +84,18 @@ def make_dirs(dirs):
 
 if __name__ == '__main__':
     print('=' * 80)
-    print('Preprocessing fold{} dataset'.format(FOLD)))
+    print('Preprocessing fold{} dataset'.format(FOLD))
     print('=' * 80)
     FOLD = 0
     base_dir = "/home/ioannis/data/recovery_test/fold{}".format(FOLD)
     dst_dir = os.path.join(base_dir, 'web_word_sequence')
     make_dirs([dst_dir])
 
+    print("trainign.json")
     build_sequence(os.path.join(base_dir, 'training.json'), dst_dir)
+    print("validation.json")
     build_sequence(os.path.join(base_dir, 'validation.json'), dst_dir)
+    print("ranking_validation.json")
     build_sequence(os.path.join(base_dir, 'ranking_validation.json'), dst_dir)
 
     build_dictionary([os.path.join(dst_dir, 'premise_snli_1.0_train.txt'),
