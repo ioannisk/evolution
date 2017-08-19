@@ -11,19 +11,29 @@ from collections import Counter,defaultdict
 from new_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 import matplotlib.pyplot as plt
 
+# from gensim.models import Word2Vec
+# model = Word2Vec.load_word2vec_format('/home/scp/GoogleNews-vectors-negative300.bin',binary=True)
+
 RANKS = list(range(1,201))
+
+
+choosen_fold = "new_data_3"
+choosen_model = "new_data_3"
+data_file = "validation"
+data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
+
 # choosen_fold = "1rfolds3"
 # choosen_model = "1rfolds3_1"
 # data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 ###
 ### TOP UNSEEN CLASS FOLDS
-###
-choosen_fold = "best_models_1rfold3_sl"
-# choosen_model = "best_models_1rfold3_sl"
-# choosen_fold = "recovery_test"
-choosen_model ="recovery_test"
-data_file = "validation"
-data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
+### comment evetyhting below
+# choosen_fold = "best_models_1rfold3_sl"
+#             # choosen_model = "best_models_1rfold3_sl"
+#             # choosen_fold = "recovery_test"
+# choosen_model ="recovery_test"
+# data_file = "validation"
+# data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
 #
 # Comparison on folds 2, 4, 0
