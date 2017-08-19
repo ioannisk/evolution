@@ -64,7 +64,7 @@ def vocab_overlap(files):
 
 
 def web_noise(files):
-    noise = 0.8
+    noise = 0.2
     for file_str in files:
         print("writing file {}".format(file_str))
         output = open(file_str+".noise{}".format(int(noise*10)), 'w')
@@ -108,6 +108,6 @@ if __name__=="__main__":
     files =[data_path +"fold{}/".format(i)+"ranking_validation.json" for i in range(3,5)]
     print(files)
     # filter_data(files)
-    # web_noise(files)
-    vocab_overlap(files)
+    web_noise(files)
+    # vocab_overlap(files)
 
