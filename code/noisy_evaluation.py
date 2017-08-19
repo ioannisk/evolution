@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import random
 
 RANKS = list(range(1,201))
-NOISE = 0.6
+NOISE = 0.8
 # choosen_fold = "1rfolds3"
 # choosen_model = "1rfolds3_1"
 # data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
