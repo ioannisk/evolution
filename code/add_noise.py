@@ -109,5 +109,5 @@ if __name__=="__main__":
     print(files)
     # filter_data(files)
     # web_noise(files)
-    # vocab_overlap(files)
+    vocab_overlap(files)
 
