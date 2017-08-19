@@ -109,6 +109,6 @@ if __name__=="__main__":
     files =[data_path +"fold{}/".format(i)+"ranking_validation.json" for i in range(3,5)]
     print(files)
     # filter_data(files)
-    web_noise(files)
-    # vocab_overlap(files)
+    # web_noise(files)
+    vocab_overlap(files)
 
