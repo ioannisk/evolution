@@ -8,7 +8,7 @@ if __name__ == '__main__':
     print(model_name)
     train(
     saveto           = './{}.npz'.format(model_name),
-    reload_          = True,
+    reload_          = False,
     dim_word         = 300,
     dim              = 300,
     patience         = 7,
