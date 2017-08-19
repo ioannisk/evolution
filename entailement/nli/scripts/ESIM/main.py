@@ -316,7 +316,7 @@ def lstm_layer(tparams, state_below, options, prefix='lstm', mask=None, **kwargs
         c = tensor.tanh(_slice(preact, 3, dim))
 
         c = f * c_ + i * c
-        c = m_[:,None] * c + (1. - m_)[:,None] * c_ 
+        c = m_[:,None] * c + (1. - m_)[:,None] * c_
 
         h = o * tensor.tanh(c)
         h = m_[:,None] * h + (1. - m_)[:,None] * h_
@@ -451,7 +451,7 @@ def build_model(tparams, options):
     ctx2 = ctx2 * x2_mask[:,:,None]
 
     # weight_matrix: #sample x #step1 x #step2
-    weight_matrix = tensor.batched_dot(ctx1.dimshuffle(1,0,2), ctx2.dimshuffle(1,2,0)) 
+    weight_matrix = tensor.batched_dot(ctx1.dimshuffle(1,0,2), ctx2.dimshuffle(1,2,0))
     weight_matrix_1 = tensor.exp(weight_matrix - weight_matrix.max(1, keepdims=True)).dimshuffle(1,2,0)
     weight_matrix_2 = tensor.exp(weight_matrix - weight_matrix.max(2, keepdims=True)).dimshuffle(1,2,0)
 
@@ -480,7 +480,7 @@ def build_model(tparams, options):
     inpr1 = inp1[::-1]
     inpr2 = inp2[::-1]
 
-    # decoder 
+    # decoder
     proj3 = get_layer(options['decoder'])[1](tparams, inp1, options,
                                             prefix='decoder',
                                             mask=x1_mask)
@@ -519,7 +519,7 @@ def build_model(tparams, options):
 
     f_pred = theano.function([x1, x1_mask, x2, x2_mask], probs.argmax(axis=1), name='f_pred')
 
-    return trng, use_noise, x1, x1_mask, x2, x2_mask, y, opt_ret, cost, f_pred, 
+    return trng, use_noise, x1, x1_mask, x2, x2_mask, y, opt_ret, cost, f_pred,
 
 
 # calculate the log probablities on a given corpus using translation model
@@ -595,7 +595,7 @@ def adam(lr, tparams, grads, inp, cost, beta1=0.9, beta2=0.999, e=1e-8):
                                on_unused_input='ignore', profile=profile)
 
     return f_grad_shared, f_update
-    
+
 
 def adadelta(lr, tparams, grads, inp, cost, epsilon = 1e-6, rho = 0.95):
     zipped_grads = [theano.shared(p.get_value() * numpy.float32(0.),
@@ -686,9 +686,9 @@ def train(
           dim_word         = 100,  # word vector dimensionality
           dim              = 100,  # the number of GRU units
           encoder          = 'lstm', # encoder model
-          decoder          = 'lstm', # decoder model 
+          decoder          = 'lstm', # decoder model
           patience         = 10,  # early stopping patience
-          max_epochs       = 5000, 
+          max_epochs       = 5000,
           finish_after     = 10000000, # finish after this many updates
           decay_c          = 0.,  # L2 regularization penalty
           clip_c           = -1.,  # gradient clipping threshold
@@ -735,7 +735,7 @@ def train(
                          batch_size=batch_size)
     train_valid = TextIterator(datasets[0], datasets[1], datasets[2],
                          dictionary,
-                         n_words=n_words,
+                         n_words=n_words
                          batch_size=valid_batch_size,
                          shuffle=False)
     valid = TextIterator(valid_datasets[0], valid_datasets[1], valid_datasets[2],
@@ -743,11 +743,11 @@ def train(
                          n_words=n_words,
                          batch_size=valid_batch_size,
                          shuffle=False)
-    test = TextIterator(test_datasets[0], test_datasets[1], test_datasets[2],
-                         dictionary,
-                         n_words=n_words,
-                         batch_size=valid_batch_size,
-                         shuffle=False)
+    # test = TextIterator(test_datasets[0], test_datasets[1], test_datasets[2],
+    #                      dictionary,
+    #                      n_words=n_words,
+    #                      batch_size=valid_batch_size,
+    #                      shuffle=False)
 
     # Initialize (or reload) the parameters using 'model_options'
     # then build the Theano graph
@@ -894,17 +894,17 @@ def train(
                 valid_acc = pred_acc(f_pred, prepare_data, model_options, valid)
                 valid_err = 1.0 - valid_acc
                 history_errs.append(valid_err)
-                test_cost = pred_probs(f_log_probs, prepare_data, model_options, test).mean()
-                test_acc = pred_acc(f_pred, prepare_data, model_options, test)
+                # test_cost = pred_probs(f_log_probs, prepare_data, model_options, test).mean()
+                # test_acc = pred_acc(f_pred, prepare_data, model_options, test)
 
                 print 'Valid cost', valid_cost
                 print 'Valid accuracy', valid_acc
-                print 'Test cost', test_cost
-                print 'Test accuracy', test_acc
+                # print 'Test cost', test_cost
+                # print 'Test accuracy', test_acc
                 print 'lrate:', lrate
 
                 valid_acc_record.append(valid_acc)
-                test_acc_record.append(test_acc)
+                # test_acc_record.append(test_acc)
 
                 if uidx == 0 or valid_err <= numpy.array(history_errs).min():
                     best_p = unzip(tparams)
@@ -913,7 +913,7 @@ def train(
 
                 if valid_err > numpy.array(history_errs).min():
                     wait_counter += 1
-            
+
                 if wait_counter >= wait_N:
                     print 'wait_counter max, need to half the lr'
                     bad_counter += 1
@@ -950,7 +950,7 @@ def train(
         f.write(str(best_epoch_num) + '\n')
         f.write(','.join(map(str,lr_change_list)) + '\n')
         f.write(','.join(map(str,valid_acc_record)) + '\n')
-        f.write(','.join(map(str,test_acc_record)) + '\n')
+        # f.write(','.join(map(str,test_acc_record)) + '\n')
 
     use_noise.set_value(0.)
 
@@ -965,10 +965,10 @@ def train(
     valid_acc = pred_acc(f_pred, prepare_data, model_options, valid)
     print 'Valid cost', valid_cost
     print 'Valid accuracy', valid_acc
-    test_cost = pred_probs(f_log_probs, prepare_data, model_options, test).mean()
-    test_acc = pred_acc(f_pred, prepare_data, model_options, test)
-    print 'Test cost', test_cost
-    print 'Test accuracy', test_acc
+    # test_cost = pred_probs(f_log_probs, prepare_data, model_options, test).mean()
+    # test_acc = pred_acc(f_pred, prepare_data, model_options, test)
+    # print 'Test cost', test_cost
+    # print 'Test accuracy', test_acc
     params = copy.copy(best_p)
     numpy.savez(saveto, zipped_params=best_p, history_errs=history_errs, **params)
     logger.debug('Done')
