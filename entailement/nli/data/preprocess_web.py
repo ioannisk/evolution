@@ -83,10 +83,10 @@ def make_dirs(dirs):
             os.makedirs(d)
 
 if __name__ == '__main__':
+    FOLD = 0
     print('=' * 80)
     print('Preprocessing fold{} dataset'.format(FOLD))
     print('=' * 80)
-    FOLD = 0
     base_dir = "/home/ioannis/data/recovery_test/fold{}".format(FOLD)
     dst_dir = os.path.join(base_dir, 'web_word_sequence')
     make_dirs([dst_dir])
