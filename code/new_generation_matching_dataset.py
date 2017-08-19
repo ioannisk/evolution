@@ -176,7 +176,7 @@ def training_validation_split(class_descriptions,companies_descriptions):
     """Desing big experiment, train 3 models with 3 fodls of held out classes
     while we also keep some companies out from the seen classes so we can test SL learning
     """
-    # os.mkdir(data_path)
+    os.mkdir(data_path)
     all_classes = list(class_descriptions.keys())
     class_validation_N = 10
     companies_validation = 5000
@@ -204,6 +204,10 @@ def training_validation_split(class_descriptions,companies_descriptions):
     ## GOOD LIST PRODUCED FOR SPLIT 3
     ############## THATS THE LIST PRODUCED #####################
     # folds = [['47990', '38310', '46431', '51220', '17230', '47220', '23520', '27110', '32110', '26701', '25120', '95240'], ['85410', '23640', '20412', '27110', '65202', '46341', '59120', '72200', '24520', '66120', '28301', '82190', '52102', '20302', '13950', '47782', '74203'], ['20150', '71121', '14390', '46210', '63990', '23510', '31030', '51220', '28120', '46380', '81223', '85520']]
+
+
+    ### new attemp
+    folds = [['26514', '82110', '28410', '24520', '99000', '31030', '77341', '10840', '28120', '20510', '22230', '46360', '10720', '10130', '46460', '43330', '18130', '38110'], ['25930', '13923', '33170', '13990', '46439', '14310', '33110', '28950', '71121', '46220', '24320', '77351', '52230', '11070', '21100', '24430', '13922', '35140', '64304', '59140'], ['25910', '35120', '58141', '86220', '63910', '65300', '80100', '23320', '46640', '27110', '10831', '27510', '93191', '10120', '47781', '62011', '24440', '14390', '84300', '11030', '13910', '46210', '25720']]
 
     for fold in folds:
         fold_sum = 0
