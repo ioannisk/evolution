@@ -12,7 +12,7 @@ from new_generation_matching_dataset import read_descriptions, read_meta, web_de
 import matplotlib.pyplot as plt
 import random
 
-RANKS = list(range(1,20))
+RANKS = list(range(1,21))
 NOISE = 0.2
 # choosen_fold = "1rfolds3"
 # choosen_model = "1rfolds3_1"
