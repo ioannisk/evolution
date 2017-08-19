@@ -1,13 +1,14 @@
 import numpy
 import os
 import sys
-from main_evaluate import train
+# from main_evaluate import train
+from main import train
+
 
 if __name__ == '__main__':
     model_name = sys.argv[1]
     model_name = os.path.basename(os.path.dirname(os.path.realpath(__file__)))
     print(model_name)
-
     train(
     saveto           = './{}.npz'.format(model_name),
     reload_          = True,
