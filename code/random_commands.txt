@@ -1,7 +1,13 @@
 
 
 python train_snli.py cbow petModel-0 --keep_rate 0.9 --seq_length 25 --emb_to_load /home/ioannis/data/glove --datapath /home/ioannis/data
-python train_snli.py esim petModel-1 --seq_length 50 --keep_rate 0.9
+
+nohup python train_snli.py bilstm petModel-12 --seq_length 50 --keep_rate 0.8 --learning_rate 0.0001 &
+
+
+python train_snli.py esim petModel-3 --seq_length 50 --keep_rate 0.8 --learning_rate 0.0001
+
+python train_snli.py esim petModel-11 --seq_length 25 --keep_rate 0.8 --learning_rate 0.0001
 
 
 
@@ -17,5 +23,7 @@ fucking finally
 #
 # entailment-neural-attention-lstm-tf
 #
-python main.py --data_dir /home/ioannis/data/snli_1.0 --model_name test --gpu '' --word2vec_path /home/ioannis/scp/GoogleNews-vectors-negative300.bin --train
+nohup python main.py --data_dir /home/ioannis/data/snli_1.0 --model_name test --gpu '' --word2vec_path /home/ioannis/scp/GoogleNews-vectors-negative300.bin --train --sequence_length 50 &
+nohup python main.py --data_dir /home/ioannis/data/snli_1.0 --model_name test_1  --word2vec_path /home/ioannis/scp/GoogleNews-vectors-negative300.bin --train --sequence_length 50 &
+
 python tf_upgrade.py --infile main.py --outfile main.py
