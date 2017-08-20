@@ -352,7 +352,7 @@ def each_fold_stats():
         nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
         norm = float(sum(nb_rank_index_stats.values()))
         a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
-        rank_nb_probs = np.asarray(zip(*a)[1])/norm
+        rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
         bar_nb_data += rank_nb_probs
 
         nb_avrg += nb_accuracy
@@ -360,7 +360,7 @@ def each_fold_stats():
         tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
         norm = float(sum(tf_rank_index_stats.values()))
         a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
-        rank_tf_probs = np.asarray(zip(*a)[1])/norm
+        rank_tf_probs = np.asarray(list(zip(*a)[1]))/norm
         bar_tf_data += rank_tf_probs
 
         tfidf_avrg +=tf_accuracy
@@ -368,7 +368,7 @@ def each_fold_stats():
         att_accuracy, da_rank_index_stats = decomposable_attention_eval(fold)
         norm = float(sum(da_rank_index_stats.values()))
         a = sorted(da_rank_index_stats.items())[:len(RANKS)]
-        rank_da_probs = np.asarray(zip(*a)[1])/norm
+        rank_da_probs = np.asarray(list(zip(*a)[1]))/norm
         bar_da_data += rank_da_probs
 
         att_avrg += att_accuracy
