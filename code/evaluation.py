@@ -396,7 +396,7 @@ def each_fold_stats():
     plt.bar(xx, bar_nb_data/len(folds), width=0.3, facecolor='b', edgecolor='b', linewidth=3, alpha=.5, label='Naive Bayes')
     plt.bar(xx+0.3, bar_tf_data/len(folds), width=0.3, facecolor='g', edgecolor='g', linewidth=3, alpha=.5, label='Tf-idf Cosine Sim')
     plt.bar(xx+0.6, bar_da_data/len(folds), width=0.3, facecolor='r', edgecolor='r', linewidth=3, alpha=.5, label='Decomposable Attention')
-    plt.legend(loc=2)
+    plt.legend()
     plt.show()
 
     print_nice_table(nb_avrg/len(folds), tfidf_avrg/len(folds), att_avrg/len(folds))
