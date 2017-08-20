@@ -42,8 +42,8 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0,1,2]
-# folds = [0,1,2,3,4]
-folds = [0,1]
+folds = [0,1,2,3,4]
+# folds = [0,1]
 # folds = [14]
 # folds = [0,2,4]
 class_descriptions = read_descriptions()
