@@ -43,7 +43,7 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 # folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0,1,2]
 # folds = [0,1,2,3,4]
-folds = [0]
+folds = [0,1]
 # folds = [14]
 # folds = [0,2,4]
 class_descriptions = read_descriptions()
@@ -428,7 +428,7 @@ def each_fold_stats():
     plt.legend()
     plt.show()
 
-    print_nice_table(nb_avrg/len(folds), tfidf_avrg/len(folds), att_avrg/len(folds))
+    print_nice_table(np.mean(nb_avrg,0), np.mean(tfidf_avrg,0), np.mean(att_avrg,0))
 
 if __name__=="__main__":
     # all_fold_stats()
