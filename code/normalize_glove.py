@@ -25,7 +25,6 @@ def load_text_embeddings(path):
             vector = np.array([float(x) for x in fields[1:]], dtype=np.float32)
             norm = (np.linalg.norm(vector))
             vector = vector /norm
-            print np.linalg.norm(vector)
             vectors.append(vector)
     # IPython.embed()
     embeddings = np.array(vectors, dtype=np.float32)
