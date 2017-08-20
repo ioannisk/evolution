@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# nohup time python -u train.py  ~/data/glove/glove-840B.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl test mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad --report 1500 --vocab ~/data/glove/glove-840B-vocabulary.txt --no-proj > snli_log.txt &
+# nohup time python -u train.py  ~/data/glove/glove-840B.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl test mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad --report 1500 --vocab ~/data/glove/glove-840B-vocabulary.txt > snli_log.txt &
 
 # python train.py ~/data/glove/glove.840B.300d.txt ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl test_models mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad
 # python train.py ~/data/glove/glove-840B.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl test_models mlp --lower -e 30 -u 300 -d 0.8 --l2 0 -b 32 -r 0.05 --vocab ~/data/glove/glove-840B-vocabulary.txt

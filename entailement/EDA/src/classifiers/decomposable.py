@@ -400,7 +400,7 @@ class DecomposableNLIModel(object):
             num_units = 2 * self.representation_size + self.representation_size + 1
 
             # sent_and_alignment has shape (batch, time_steps, num_units)
-            dot_product = tf.matmul(sentence,tf.transpose(soft_alignment))
+            dot_product = tf.multiply(sentence,tf.transpose(soft_alignment))
             vec_diff = tf.subtract(sentence, soft_alignment)
             sent_and_alignment = tf.concat(axis=2, values=[sentence, soft_alignment, dot_product, vec_diff])
 
