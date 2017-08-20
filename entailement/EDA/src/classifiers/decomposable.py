@@ -336,6 +336,9 @@ class DecomposableNLIModel(object):
         v1 = mask_3d(v1, self.sentence1_size, 0, 1)
         v2 = mask_3d(v2, self.sentence2_size, 0, 1)
 
+
+        # tf.argmax(tf.reduce_sum(tf.multiply(v1,v1),[2]),[1])
+        # tf.argmax(tf.reduce_sum(tf.multiply(v2,v2),[2]),[1])
         # v1_norms = tf.norm(v1, axis=2)
         # v2_norms = tf.norm(v2, axis=2)
 
