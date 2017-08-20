@@ -38,5 +38,5 @@ def load_text_embeddings(path):
     np.save(npy_file, embeddings)
     # return words, embeddings
 
-if __name__="__main__":
+if __name__=="__main__":
     load_text_embeddings("/home/ioannis/data/glove/glove.840B.300d.txt")
