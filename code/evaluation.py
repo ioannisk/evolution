@@ -33,7 +33,7 @@ choosen_fold = "recovery_test"
             # choosen_fold = "recovery_test"
 choosen_model ="recovery_test"
 data_file = "validation"
-data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
+data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 
 #
 # Comparison on folds 2, 4, 0
