@@ -408,14 +408,14 @@ def each_fold_stats():
     plt.ylabel('Accuracy')
     plt.xlabel('Top N')
 
-    plt.errorbar(y=np.mean(nb_avrg,0), yerr= np.std(nb_avrg,0), label='Naive Bayes',linewidth=2)
+    plt.errorbar(x=RANKS, y=np.mean(nb_avrg,0), yerr= np.std(nb_avrg,0), label='Naive Bayes',linewidth=2)
     # plt.plot(nb_avrg/len(folds),label='Naive Bayes',linewidth=2)
 
     # plt.plot(tfidf_avrg/len(folds),label='Tf-idf cosine sim',linewidth=2)
-    plt.errorbar(y=np.mean(tfidf_avrg,0), yerr= np.std(tfidf_avrg,0), label='Tf-idf cosine sim',linewidth=2)
+    plt.errorbar(x=RANKS,y=np.mean(tfidf_avrg,0), yerr= np.std(tfidf_avrg,0), label='Tf-idf cosine sim',linewidth=2)
 
     # plt.plot(att_avrg/len(folds),label='Decomposable Attention',linewidth=2)
-    plt.errorbar(y=np.mean(att_avrg,0), yerr= np.std(att_avrg,0), label='Decomposable Attention',linewidth=2)
+    plt.errorbar(x=RANKS,y=np.mean(att_avrg,0), yerr= np.std(att_avrg,0), label='Decomposable Attention',linewidth=2)
 
     plt.legend(loc= 4)
     plt.show()
