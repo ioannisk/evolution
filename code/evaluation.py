@@ -14,7 +14,9 @@ import matplotlib.pyplot as plt
 # from gensim.models import Word2Vec
 # model = Word2Vec.load_word2vec_format('/home/scp/GoogleNews-vectors-negative300.bin',binary=True)
 
-RANKS = list(range(1,21))
+
+MAX_RANK = 21
+RANKS = list(range(1,MAX_RANK))
 
 
 # choosen_fold = "new_data_3"
@@ -143,6 +145,7 @@ def train_naive_bayes_des_local(fold):
     # import IPython; IPython.embed()
     # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
     y_pred_test_proba = clf.predict_proba(X_valid_vec)
+    rank_index_stats = Counter()
     true_positive = np.zeros(len(RANKS))
     for i, proba in enumerate(y_pred_test_proba):
         ranked = zip(proba, clf.classes_)
@@ -150,10 +153,11 @@ def train_naive_bayes_des_local(fold):
         proba, classes = zip(*ranked)
         classes = list(classes)
         # classes = remove_rare_classes(classes)
+        rank_index_stats[classes.index(Y_valid[i])] +=1
         for j, TOP_N in enumerate(RANKS):
             if Y_valid[i] in classes[:TOP_N]:
                 true_positive[j] +=1
-    return true_positive*100/float(len(Y_valid))
+    return true_positive*100/float(len(Y_valid)), rank_index_stats
 
 def count_vectorization(corpus):
     vec = CountVectorizer( min_df=1)
@@ -208,6 +212,7 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     # print pairwise_cos_matrix.shape
     # print("pairwise evaluation {}".format(pairwise_cos_matrix.shape))
     assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[0])
+    rank_index_stats = Counter()
     true_positive = np.zeros(len(RANKS))
     for i, row in enumerate(pairwise_cos_matrix):
         sim_labels = list(zip(row, des_class))
@@ -215,10 +220,11 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
         similarities, classes = zip(*ranked)
         classes = list(classes)
         # classes = remove_rare_classes(classes)
+        rank_index_stats[classes.index(web_class[i])] +=1
         for j, TOP_N in enumerate(RANKS):
             if web_class[i] in classes[:TOP_N]:
                 true_positive[j] +=1
-    return true_positive*100/float(len(web_class))
+    return true_positive*100/float(len(web_class)), rank_index_stats
 
 def baseline_tfidf(fold):
     # print("Loading data sets")
@@ -245,8 +251,8 @@ def baseline_tfidf(fold):
     ## vetorize des and validation websites
     des_tfidf = tfidf_vec.transform(descriptions_txt)
     web_tfidf = tfidf_vec.transform(web_txt)
-    accuracy = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
-    return accuracy
+    accuracy, rank_index_stats = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
+    return accuracy, rank_index_stats
 
 
 def decomposable_attention_eval(fold):
@@ -272,6 +278,7 @@ def decomposable_attention_eval(fold):
             description_class.append(line['des_class'])
             companies.add(line['web_id'])
     true_positive = np.zeros(len(RANKS))
+    rank_index_stats = Counter()
     step = len(used_classes)
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
@@ -288,10 +295,11 @@ def decomposable_attention_eval(fold):
         # used_list_des.remove('87200')
         # used_list_des.remove('82990')
         # used_list_des = remove_rare_classes(used_list_des)
+        rank_index_stats[used_list_des.index(list_web[0])] +=1
         for j, TOP_N in enumerate(RANKS):
             if list_web[0] in used_list_des[:TOP_N]:
                 true_positive[j] +=1
-    return true_positive*100/float(len(companies))
+    return true_positive*100/float(len(companies)), rank_index_stats
 
 
 
@@ -334,18 +342,36 @@ def each_fold_stats():
     nb_avrg = np.zeros(len(RANKS))
     tfidf_avrg = np.zeros(len(RANKS))
     att_avrg = np.zeros(len(RANKS))
+
+    bar_nb_data = np.zeros(len(RANKS))
+    bar_tf_data = np.zeros(len(RANKS))
+    bar_da_data = np.zeros(len(RANKS))
     for fold in folds:
         print("###### FOLD {} ######".format(fold))
 
-        nb_accuracy = train_naive_bayes_des_local(fold)
+        nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
+        norm = float(sum(nb_rank_index_stats.values()))
+        a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
+        rank_nb_probs = zip(*a)[1]/norm
+        bar_nb_data += rank_nb_probs
+
         nb_avrg += nb_accuracy
 
-        tf_accuracy = baseline_tfidf(fold)
+        tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
+        norm = float(sum(tf_rank_index_stats.values()))
+        a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
+        rank_tf_probs = zip(*a)[1]/norm
+        bar_tf_data += rank_tf_probs
+
         tfidf_avrg +=tf_accuracy
 
-        att_accuracy = decomposable_attention_eval(fold)
-        att_avrg += att_accuracy
+        att_accuracy, da_rank_index_stats = decomposable_attention_eval(fold)
+        norm = float(sum(da_rank_index_stats.values()))
+        a = sorted(da_rank_index_stats.items())[:len(RANKS)]
+        rank_da_probs = zip(*a)[1]/norm
+        bar_da_data += rank_da_probs
 
+        att_avrg += att_accuracy
         print_nice_table(nb_accuracy, tf_accuracy, att_accuracy)
         # print("    Decomposable attention is {}".format( accuracy))
     # for i, TOP_N in enumerate(RANKS):
@@ -358,10 +384,17 @@ def each_fold_stats():
     plt.ylabel('Accuracy')
     plt.xlabel('Top N')
     plt.plot(nb_avrg/len(folds),label='Naive Bayes',linewidth=2)
-    plt.plot(tfidf_avrg/len(folds),label='Tf-idf cosine_similarity',linewidth=2)
+    plt.plot(tfidf_avrg/len(folds),label='Tf-idf cosine sim',linewidth=2)
     plt.plot(att_avrg/len(folds),label='Decomposable Attention',linewidth=2)
     plt.legend(loc= 4)
     plt.show()
+
+    plt.title('Accuracy in each Rank')
+    plt.bar(RANKS, bar_nb_data/len(folds), label='Naive Bayes', color='blue',align='center')
+    plt.bar(RANKS, bar_tf_data/len(folds), label='Tf-idf Cosine Sim', color='green',align='center')
+    plt.bar(RANKS, bar_da_data/len(folds), label='Decomposable Attention', color='red',align='center')
+    plt.show()
+
     print_nice_table(nb_avrg/len(folds), tfidf_avrg/len(folds), att_avrg/len(folds))
 
 if __name__=="__main__":

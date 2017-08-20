@@ -4,10 +4,12 @@
 ############## EDA  #####################
 
 ### training now
-# nohup time python -u train.py  ~/data/glove/glove-840B_l2.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl test mlp --lower -e 30 -u 200 -d 0.85 --l2 0  -b 32 -r 0.05 --optim adagrad  --report 1500 --use-intra --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > snli_intra.txt &
-# parikh settings
-# nohup time python -u train.py  ~/data/glove/glove-840B_l2.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl test mlp --lower -e 30 -u 200 -d 0.85 --l2 0 -b 32 -r 0.05 --optim adagrad --report 1500 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > snli_log_eda.txt &
-# nohup time python -u train.py  ~/data/glove/glove-840B_l2.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl test_1 mlp --lower -e 30 -u 240 -d 0.8 --l2 0  -b 32 -r 0.025 --optim adagrad  --report 1500 --use-intra --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > snli_intra_slow.txt &
+# nohup time python -u train.py  ~/data/glove/glove-840B_l2.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_test.jsonl test mlp --lower -e 30 -u 220 -d 0.8 --l2 0  -b 32 -r 0.05 --optim adagrad  --report 1500 --use-intra --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > snli_intra.txt &
+# nohup time python -u train.py  ~/data/glove/glove-840B_l2.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_test.jsonl test_eda mlp --lower -e 30 -u 220 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad --report 1500 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > snli_log_eda.txt &
+# nohup time python -u train.py  ~/data/glove/glove-840B_l2.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_test.jsonl test_1 mlp --lower -e 30 -u 240 -d 0.8 --l2 0  -b 32 -r 0.024 --optim adagrad  --report 1500 --use-intra --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > snli_intra_slow.txt &
+
+# python evaluate.py test ~/data/snli_1.0/snli_1.0_test.jsonl ~/data/glove/glove-840B_l2.npy --vocabulary ~/data/glove/glove-840B-vocabulary_l2.txt
+# python evaluate.py test_1 ~/data/snli_1.0/snli_1.0_test.jsonl ~/data/glove/glove-840B_l2.npy --vocabulary ~/data/glove/glove-840B-vocabulary_l2.txt
 
 
 
