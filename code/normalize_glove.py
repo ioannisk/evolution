@@ -12,7 +12,7 @@ def load_text_embeddings(path):
 
     # start from index 1 and reserve 0 for unknown
     vectors = []
-    with open(path, 'rb') as f:
+    with open(path, 'r') as f:
         for line in f:
             # line = line.decode('utf-8')
             line = line.strip()
