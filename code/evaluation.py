@@ -390,7 +390,9 @@ def each_fold_stats():
     # plt.plot(att_avrg/len(folds),label='Decomposable Attention',linewidth=2)
     # plt.legend(loc= 4)
     # plt.show()
-
+print([bar_nb_data/len(folds),
+    bar_tf_data/len(folds),
+    bar_da_data/len(folds)])
     plt.title('Accuracy in each Rank')
     plt.bar(RANKS, bar_nb_data/len(folds), label='Naive Bayes', color='blue',align='center')
     plt.bar(RANKS, bar_tf_data/len(folds), label='Tf-idf Cosine Sim', color='green',align='center')
