@@ -408,14 +408,21 @@ def each_fold_stats():
     plt.ylabel('Accuracy')
     plt.xlabel('Top N')
 
-    plt.errorbar(x=[0]+RANKS, y=np.mean(nb_avrg,0), yerr= [0]+np.std(nb_avrg,0), label='Naive Bayes',linewidth=2)
+    # plt.errorbar(x=RANKS, y=np.mean(nb_avrg,0), yerr=np.std(nb_avrg,0), label='Naive Bayes',linewidth=2, color='blue')
     # plt.plot(nb_avrg/len(folds),label='Naive Bayes',linewidth=2)
+    plt.plot(np.mean(nb_avrg,0),label='Naive Bayes',linewidth=2)
+    plt.axvline(x= np.mean(np.mean(nb_avrg,0)),linestyle='--', color='blue')
+
 
     # plt.plot(tfidf_avrg/len(folds),label='Tf-idf cosine sim',linewidth=2)
-    plt.errorbar(x=[0]+RANKS,y=np.mean(tfidf_avrg,0), yerr= [0]+np.std(tfidf_avrg,0), label='Tf-idf cosine sim',linewidth=2)
+    plt.plot(np.mean(tfidf_avrg,0),label='Tf-idf cosine sim',linewidth=2)
+    # plt.errorbar(x=RANKS,y=np.mean(tfidf_avrg,0), yerr=np.std(tfidf_avrg,0), label='Tf-idf cosine sim',linewidth=2, color='green')
+    plt.axvline(x= np.mean(np.mean(tfidf_avrg,0)),linestyle='--', color='green')
 
     # plt.plot(att_avrg/len(folds),label='Decomposable Attention',linewidth=2)
-    plt.errorbar(x=[0]+RANKS,y=np.mean(att_avrg,0), yerr= [0]+np.std(att_avrg,0), label='Decomposable Attention',linewidth=2)
+    plt.plot(np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2)
+    # plt.errorbar(x=RANKS,y=np.mean(att_avrg,0), yerr=np.std(att_avrg,0), label='Decomposable Attention',linewidth=2, color='red')
+    plt.axvline(x= np.mean(np.mean(att_avrg,0)),linestyle='--', color='red')
 
     plt.legend(loc= 4)
     plt.show()
