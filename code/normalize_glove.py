@@ -1,4 +1,4 @@
-
+import numpy as np
 
 def load_text_embeddings(path):
     """
@@ -23,7 +23,7 @@ def load_text_embeddings(path):
             word = fields[0]
             words.append(word)
             vector = np.array([float(x) for x in fields[1:]], dtype=np.float32)
-            print(vector).shape
+            print(vector.shape)
             print(np.linalg.norm(vector))
             advfvfv
             vectors.append(vector)
