@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+###
+###
+### ENCHANCED
+###
 ####
 #### LINE 586 for validation stats
 ####
@@ -245,7 +249,7 @@ class DecomposableNLIModel(object):
         Return the number of units used by the network when computing
         the aggregated representation of the two sentences.
         """
-        return 2 * self.num_units
+        return 2 * self.num_units + self.num_units + self.num_units
 
     def _apply_feedforward(self, inputs, num_input_units, scope,
                            reuse_weights=False, initializer=None,
@@ -331,9 +335,18 @@ class DecomposableNLIModel(object):
         # sum over time steps; resulting shape is (batch, num_units)
         v1 = mask_3d(v1, self.sentence1_size, 0, 1)
         v2 = mask_3d(v2, self.sentence2_size, 0, 1)
-        v1_sum = tf.reduce_sum(v1, [1])
-        v2_sum = tf.reduce_sum(v2, [1])
-        return tf.concat(axis=1, values=[v1_sum, v2_sum])
+
+
+        # tf.argmax(tf.reduce_sum(tf.multiply(v1,v1),[2]),[1])
+        # tf.argmax(tf.reduce_sum(tf.multiply(v2,v2),[2]),[1])
+        # v1_norms = tf.norm(v1, axis=2)
+        # v2_norms = tf.norm(v2, axis=2)
+        max_pool_v1 = tf.reduce_max(v1, 1)
+        max_pool_v2 = tf.reduce_max(v2, 1)
+
+        v1_sum = tf.reduce_mean(v1, [1])
+        v2_sum = tf.reduce_mean(v2, [1])
+        return tf.concat(axis=1, values=[v1_sum, v2_sum, max_pool_v1, max_pool_v2])
 
     def attend(self, sent1, sent2):
         """
@@ -389,10 +402,13 @@ class DecomposableNLIModel(object):
         """
         with tf.variable_scope('comparison', reuse=reuse_weights) \
                 as self.compare_scope:
-            num_units = 2 * self.representation_size
+            num_units = 2 * self.representation_size + self.representation_size + self.representation_size
 
             # sent_and_alignment has shape (batch, time_steps, num_units)
-            sent_and_alignment = tf.concat(axis=2, values=[sentence, soft_alignment])
+
+            dot_product = tf.multiply(sentence,soft_alignment)
+            vec_diff = tf.subtract(sentence, soft_alignment)
+            sent_and_alignment = tf.concat(axis=2, values=[sentence, soft_alignment, dot_product, vec_diff])
 
             output = self._transformation_compare(sent_and_alignment, num_units,
                                                   sentence_length,
