@@ -397,7 +397,7 @@ class DecomposableNLIModel(object):
         """
         with tf.variable_scope('comparison', reuse=reuse_weights) \
                 as self.compare_scope:
-            num_units = 2 * self.representation_size + self.representation_size + 1
+            num_units = 2 * self.representation_size + self.representation_size + self.representation_size
 
             # sent_and_alignment has shape (batch, time_steps, num_units)
             dot_product = tf.multiply(sentence,tf.transpose(soft_alignment))
