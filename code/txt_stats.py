@@ -1,14 +1,12 @@
 import json
 import sys
-
-print(sys.argv)
-# vocab = set()
-# with open("/home/ioannis/data/snli_1.0/snli_1.0_train.jsonl", "r") as file_:
-#     for line in file_:
-#         line = json.loads(line.strip())
-#         sen1 = line['sentence1']
-#         sen2 = line['sentence2']
-#         data = sen1 + " "+ sen2
-#         for word in data.split():
-#             vocab.add(word)
-# print(len(vocab))
+vocab = set()
+with open("/home/ioannis/data/snli_1.0/snli_1.0_train.jsonl", "r") as file_:
+    for line in file_:
+        line = json.loads(line.strip())
+        sen1 = line['sentence1']
+        sen2 = line['sentence2']
+        data = sen1 + " "+ sen2
+        for word in data.split():
+            vocab.add(word)
+print(len(vocab))
