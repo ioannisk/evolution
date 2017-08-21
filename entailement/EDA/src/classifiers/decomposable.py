@@ -591,12 +591,18 @@ class DecomposableNLIModel(object):
             # if i > 8:
             #     learning_rate = 0.005
             #     dropout_keep = 0.9
-            if i > 15:
+            if i > 20:
                 learning_rate = 0.05/2
-                dropout_keep = 0.88
-            if i > 25:
+                dropout_keep = 0.80
+            if i > 40:
                 learning_rate = 0.05/5
+                dropout_keep = 0.85
+            if i > 60:
+                learning_rate = 0.05/10
                 dropout_keep = 0.90
+            if i > 60:
+                learning_rate = 0.05/20
+                dropout_keep = 0.95
 
 
             # for jj in range(20):
