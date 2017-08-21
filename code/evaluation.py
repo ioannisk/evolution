@@ -226,7 +226,7 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
 
         ri = classes.index(web_class[i])
         if ri ==0:
-            output_de.write("{} {}\n".format(web_class[i] , classes[ri]))
+            output_tf.write("{} {}\n".format(web_class[i] , classes[ri]))
 
         rank_index_stats[classes.index(web_class[i])] +=1
         for j, TOP_N in enumerate(RANKS):
