@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 # model = Word2Vec.load_word2vec_format('/home/scp/GoogleNews-vectors-negative300.bin',binary=True)
 
 
-MAX_RANK = 21
+MAX_RANK = 31
 RANKS = list(range(1,MAX_RANK))
 
 
@@ -42,8 +42,8 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0,1,2]
-# folds = [0,1,2,3,4]
-folds = [0,1]
+folds = [0,1,2,3,4]
+# folds = [0,1]
 # folds = [14]
 # folds = [0,2,4]
 class_descriptions = read_descriptions()
@@ -428,7 +428,7 @@ def each_fold_stats():
     plt.show()
     # print([bar_nb_data/len(folds),bar_tf_data/len(folds),bar_da_data/len(folds)])
     plt.title('Accuracy in each Rank')
-    xx = np.asarray(range(20))
+    xx = np.asarray(range(MAX_RANK -1))
     plt.bar(xx, bar_nb_data/len(folds), width=0.3, facecolor='b', edgecolor='b', linewidth=3, alpha=.5, label='Naive Bayes')
     plt.bar(xx+0.3, bar_tf_data/len(folds), width=0.3, facecolor='g', edgecolor='g', linewidth=3, alpha=.5, label='Tf-idf Cosine Sim')
     plt.bar(xx+0.6, bar_da_data/len(folds), width=0.3, facecolor='r', edgecolor='r', linewidth=3, alpha=.5, label='Decomposable Attention')
