@@ -43,7 +43,7 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 # folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0,1,2]
 folds = [0,1,2,3,4]
-# folds = [0,1]
+folds = [1]
 # folds = [14]
 # folds = [0,2,4]
 class_descriptions = read_descriptions()
@@ -295,6 +295,10 @@ def decomposable_attention_eval(fold):
         # used_list_des.remove('87200')
         # used_list_des.remove('82990')
         # used_list_des = remove_rare_classes(used_list_des)
+        ri = used_list_des.index(list_web[0])
+        if ri <=2:
+            print(ri)
+        # print (used_list_des.index(list_web[0]))
         rank_index_stats[used_list_des.index(list_web[0])] +=1
         for j, TOP_N in enumerate(RANKS):
             if list_web[0] in used_list_des[:TOP_N]:
