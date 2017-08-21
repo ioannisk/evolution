@@ -213,6 +213,9 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     # print("pairwise evaluation {}".format(pairwise_cos_matrix.shape))
     assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[0])
     rank_index_stats = Counter()
+
+    output_tf = open("fold_1_rank1_tfidf.txt", 'w')
+
     true_positive = np.zeros(len(RANKS))
     for i, row in enumerate(pairwise_cos_matrix):
         sim_labels = list(zip(row, des_class))
@@ -220,6 +223,11 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
         similarities, classes = zip(*ranked)
         classes = list(classes)
         # classes = remove_rare_classes(classes)
+
+        ri = classes.index(web_class[i])
+        if ri ==0:
+            output_de.write("{} {}\n".format(web_class[i] , classes[ri]))
+
         rank_index_stats[classes.index(web_class[i])] +=1
         for j, TOP_N in enumerate(RANKS):
             if web_class[i] in classes[:TOP_N]:
