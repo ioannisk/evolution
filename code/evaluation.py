@@ -42,7 +42,7 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0,1,2]
-folds = [0,1,2,3,4]
+# folds = [0,1,2,3,4]
 folds = [1]
 # folds = [14]
 # folds = [0,2,4]
@@ -280,6 +280,10 @@ def decomposable_attention_eval(fold):
     true_positive = np.zeros(len(RANKS))
     rank_index_stats = Counter()
     step = len(used_classes)
+
+
+    output_de = open("fold_1_rank1_de.txt", 'w')
+
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
         list_web = web_class[i:i+step]
@@ -296,8 +300,8 @@ def decomposable_attention_eval(fold):
         # used_list_des.remove('82990')
         # used_list_des = remove_rare_classes(used_list_des)
         ri = used_list_des.index(list_web[0])
-        if ri <=2:
-            print(ri)
+        if ri ==0:
+            output_de.write("{} {}\n".format(list_web[0] , used_list_des[ri]))
         # print (used_list_des.index(list_web[0]))
         rank_index_stats[used_list_des.index(list_web[0])] +=1
         for j, TOP_N in enumerate(RANKS):
