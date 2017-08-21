@@ -353,7 +353,7 @@ def each_fold_stats():
     bar_nb_data = np.zeros(len(RANKS))
     bar_tf_data = np.zeros(len(RANKS))
     bar_da_data = np.zeros(len(RANKS))
-    for fold in folds:
+    for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
 
         # nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
