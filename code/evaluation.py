@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 # model = Word2Vec.load_word2vec_format('/home/scp/GoogleNews-vectors-negative300.bin',binary=True)
 
 
-MAX_RANK = 31
+MAX_RANK = 21
 RANKS = list(range(1,MAX_RANK))
 
 
@@ -363,36 +363,24 @@ def each_fold_stats():
 
         nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
         nb_avrg[ii] = nb_accuracy
-
         norm = float(sum(nb_rank_index_stats.values()))
         a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
         rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
         bar_nb_data += rank_nb_probs
 
-
-
-
-
-
         tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
         tfidf_avrg[ii] = tf_accuracy
-
         norm = float(sum(tf_rank_index_stats.values()))
         a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
         rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
         bar_tf_data += rank_tf_probs
 
-
-
         att_accuracy, da_rank_index_stats = decomposable_attention_eval(fold)
         att_avrg[ii] = att_accuracy
-
         norm = float(sum(da_rank_index_stats.values()))
         a = sorted(da_rank_index_stats.items())[:len(RANKS)]
         rank_da_probs = np.asarray(list(zip(*a))[1])/norm
         bar_da_data += rank_da_probs
-
-
 
         print_nice_table(nb_accuracy, tf_accuracy, att_accuracy)
         # print("    Decomposable attention is {}".format( accuracy))
