@@ -14,7 +14,7 @@ import random
 
 MAX_RANK = 21
 RANKS = list(range(1,MAX_RANK))
-NOISE = 0.6
+NOISE = 0.4
 # choosen_fold = "1rfolds3"
 # choosen_model = "1rfolds3_1"
 # data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
