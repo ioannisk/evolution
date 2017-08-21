@@ -15,6 +15,7 @@ import random
 MAX_RANK = 21
 RANKS = list(range(1,MAX_RANK))
 NOISE = 0.2
+print(NOISE)
 # choosen_fold = "1rfolds3"
 # choosen_model = "1rfolds3_1"
 # data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
@@ -395,7 +396,7 @@ def each_fold_stats():
 
 
     print(" AVERGE STATS OVER ALL FOLDS")
-    plt.title('Accuracy in Top N ranks'.format(0))
+    plt.title('Accuracy in Top N ranks with Noise {}'.format(NOISE))
     plt.ylabel('Accuracy')
     plt.xlabel('Top N')
 
@@ -418,7 +419,7 @@ def each_fold_stats():
     plt.legend(loc= 4)
     plt.show()
     # print([bar_nb_data/len(folds),bar_tf_data/len(folds),bar_da_data/len(folds)])
-    plt.title('Accuracy in each Rank')
+    plt.title('Accuracy in each Rank with Noise {}'.format(NOISE))
     xx = np.asarray(range(MAX_RANK -1))
     plt.bar(xx, bar_nb_data/len(folds), width=0.3, facecolor='b', edgecolor='b', linewidth=3, alpha=.5, label='Naive Bayes')
     plt.bar(xx+0.3, bar_tf_data/len(folds), width=0.3, facecolor='g', edgecolor='g', linewidth=3, alpha=.5, label='Tf-idf Cosine Sim')
