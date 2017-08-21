@@ -12,7 +12,8 @@ from new_generation_matching_dataset import read_descriptions, read_meta, web_de
 import matplotlib.pyplot as plt
 import random
 
-RANKS = list(range(1,201))
+MAX_RANK = 21
+RANKS = list(range(1,MAX_RANK))
 NOISE = 0.8
 # choosen_fold = "1rfolds3"
 # choosen_model = "1rfolds3_1"
@@ -20,19 +21,23 @@ NOISE = 0.8
 ###
 ### TOP UNSEEN CLASS FOLDS
 ###
-choosen_fold = "best_models_1rfold3_sl"
+# choosen_fold = "best_models_1rfold3_sl"
 # choosen_model = "best_models_1rfold3_sl"
 # choosen_fold = "recovery_test"
+choosen_fold = "recovery_test"
+    # data_file = "validation"
+    # data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 choosen_model ="recovery_test"
 data_file = "validation"
-data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
+data_path = "/home/ioannis/data/{}/".format(choosen_fold)
+
 
 #
 # Comparison on folds 2, 4, 0
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0,1,2]
-folds = [0,1,2]
+folds = [0,1,2,3,4,5]
 # folds = [2]
 # folds = [14]
 # folds = [0,2,4]
@@ -334,20 +339,45 @@ def print_nice_table(list1, list2, list3):
 
 
 def each_fold_stats():
-    nb_avrg = np.zeros(len(RANKS))
-    tfidf_avrg = np.zeros(len(RANKS))
-    att_avrg = np.zeros(len(RANKS))
+    nb_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
+    tfidf_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
+    att_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
+
+
+    bar_nb_data = np.zeros(len(RANKS))
+    bar_tf_data = np.zeros(len(RANKS))
+    bar_da_data = np.zeros(len(RANKS))
     for fold in folds:
         print("###### FOLD {} ######".format(fold))
 
-        nb_accuracy = train_naive_bayes_des_local(fold)
-        nb_avrg += nb_accuracy
+        # nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
+        # norm = float(sum(nb_rank_index_stats.values()))
+        # a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
+        # rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
+        # bar_nb_data += rank_nb_probs
 
-        tf_accuracy = baseline_tfidf(fold)
-        tfidf_avrg +=tf_accuracy
+        # nb_avrg += nb_accuracy
 
-        att_accuracy = decomposable_attention_eval(fold)
-        att_avrg += att_accuracy
+        nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
+        nb_avrg[ii] = nb_accuracy
+        norm = float(sum(nb_rank_index_stats.values()))
+        a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
+        rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_nb_data += rank_nb_probs
+
+        tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
+        tfidf_avrg[ii] = tf_accuracy
+        norm = float(sum(tf_rank_index_stats.values()))
+        a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
+        rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_tf_data += rank_tf_probs
+
+        att_accuracy, da_rank_index_stats = decomposable_attention_eval(fold)
+        att_avrg[ii] = att_accuracy
+        norm = float(sum(da_rank_index_stats.values()))
+        a = sorted(da_rank_index_stats.items())[:len(RANKS)]
+        rank_da_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_da_data += rank_da_probs
 
         print_nice_table(nb_accuracy, tf_accuracy, att_accuracy)
         # print("    Decomposable attention is {}".format( accuracy))
@@ -356,16 +386,41 @@ def each_fold_stats():
     #     print("    Naive Bayes avrg {}".format(nb_avrg[i]/len(folds)))
     #     print("    TfIdf avrg {}".format(tfidf_avrg[i]/len(folds)))
     #     print("    Decomposable Attention avrg {}".format(att_avrg[i]/len(folds)))
+
+
     print(" AVERGE STATS OVER ALL FOLDS")
-    plt.title('Noisy inputs with {} rate'.format(NOISE))
+    plt.title('Accuracy in Top N ranks'.format(0))
     plt.ylabel('Accuracy')
     plt.xlabel('Top N')
-    plt.plot(nb_avrg/len(folds),label='Naive Bayes',linewidth=2)
-    plt.plot(tfidf_avrg/len(folds),label='Tf-idf cosine_similarity',linewidth=2)
-    plt.plot(att_avrg/len(folds),label='Decomposable Attention',linewidth=2)
+
+    # plt.errorbar(x=RANKS, y=np.mean(nb_avrg,0), yerr=np.std(nb_avrg,0), label='Naive Bayes',linewidth=2, color='blue')
+    # plt.plot(nb_avrg/len(folds),label='Naive Bayes',linewidth=2)
+    plt.plot(np.mean(nb_avrg,0),label='Naive Bayes',linewidth=2)
+    # plt.axvline(x= np.mean(np.mean(nb_avrg,0)),linestyle='--', color='blue')
+
+
+    # plt.plot(tfidf_avrg/len(folds),label='Tf-idf cosine sim',linewidth=2)
+    plt.plot(np.mean(tfidf_avrg,0),label='Tf-idf cosine sim',linewidth=2)
+    # plt.errorbar(x=RANKS,y=np.mean(tfidf_avrg,0), yerr=np.std(tfidf_avrg,0), label='Tf-idf cosine sim',linewidth=2, color='green')
+    # plt.axvline(x= np.mean(np.mean(tfidf_avrg,0)),linestyle='--', color='green')
+
+    # plt.plot(att_avrg/len(folds),label='Decomposable Attention',linewidth=2)
+    plt.plot(np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2)
+    # plt.errorbar(x=RANKS,y=np.mean(att_avrg,0), yerr=np.std(att_avrg,0), label='Decomposable Attention',linewidth=2, color='red')
+    # plt.axvline(x= np.mean(np.mean(att_avrg,0)),linestyle='--', color='red')
+
     plt.legend(loc= 4)
     plt.show()
-    print_nice_table(nb_avrg/len(folds), tfidf_avrg/len(folds), att_avrg/len(folds))
+    # print([bar_nb_data/len(folds),bar_tf_data/len(folds),bar_da_data/len(folds)])
+    plt.title('Accuracy in each Rank')
+    xx = np.asarray(range(MAX_RANK -1))
+    plt.bar(xx, bar_nb_data/len(folds), width=0.3, facecolor='b', edgecolor='b', linewidth=3, alpha=.5, label='Naive Bayes')
+    plt.bar(xx+0.3, bar_tf_data/len(folds), width=0.3, facecolor='g', edgecolor='g', linewidth=3, alpha=.5, label='Tf-idf Cosine Sim')
+    plt.bar(xx+0.6, bar_da_data/len(folds), width=0.3, facecolor='r', edgecolor='r', linewidth=3, alpha=.5, label='Decomposable Attention')
+    plt.legend()
+    plt.show()
+
+    print_nice_table(np.mean(nb_avrg,0), np.mean(tfidf_avrg,0), np.mean(att_avrg,0))
 
 if __name__=="__main__":
     each_fold_stats()

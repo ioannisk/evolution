@@ -7,7 +7,7 @@
 #testing more than 86.3 :)
 # nohup time python -u train.py  ~/data/glove/glove-840B_l2.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_test.jsonl test_eda mlp --lower -e 30 -u 220 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad --report 1500 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > snli_log_eda.txt &
 
-
+## over night
 # nohup time python -u train.py  ~/data/glove/glove-840B_l2.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_test.jsonl test_eda_1 mlp --lower -e 90 -u 220 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad --report 1000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > snli_log_eda_1.txt &
 # nohup time python -u train.py  ~/data/glove/glove-840B_l2.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_test.jsonl test_eda_2 mlp --lower -e 90 -u 240 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad --report 1000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > snli_log_eda_2.txt &
 
