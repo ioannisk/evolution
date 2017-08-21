@@ -14,7 +14,7 @@ import random
 
 MAX_RANK = 21
 RANKS = list(range(1,MAX_RANK))
-NOISE = 0.2
+NOISE = 0.4
 print(NOISE)
 # choosen_fold = "1rfolds3"
 # choosen_model = "1rfolds3_1"
