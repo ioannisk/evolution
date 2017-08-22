@@ -5,6 +5,9 @@
 
 ### WOW THIS IS SICK VISUALIZATION
 # python interactive-eval.py 1rfolds3_2/model1 ~/data/glove/glove-840B.npy --vocab ~/data/glove/glove-840B-vocabulary.txt -i -a
+
+# python interactive-eval.py /home/ioannis/models/recovery_test/model0 ~/data/glove/glove-840B.npy --vocab ~/data/glove/glove-840B-vocabulary.txt -i -a
+# python interactive-eval.py 1rfolds3_2/model1 ~/data/glove/glove-840B.npy --vocab ~/data/glove/glove-840B-vocabulary.txt -i -a
 # python my_evaluate.py 1rfolds3_sl_filtered/model2 //home/ioannis/data/testing_binary_snli_snli.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt
 
 ##################################################################

@@ -12,8 +12,15 @@ from new_generation_matching_dataset import read_descriptions, read_meta, web_de
 import matplotlib.pyplot as plt
 
 # from gensim.models import Word2Vec
-# model = Word2Vec.load_word2vec_format('/home/scp/GoogleNews-vectors-negative300.bin',binary=True)
-
+# model = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
+# sentence_obama = 'Obama speaks to the media in Illinois'.lower().split()
+# sentence_president = 'The president greets the press in Chicago'.lower().split()
+# import nltk
+# from nltk.corpus import stopwords
+# stopwords = nltk.corpus.stopwords.words('english')
+# sentence_obama = [w for w in sentence_obama if w not in stopwords]
+# sentence_president = [w for w in sentence_president if w not in stopwords]
+# distance = model.wmdistance(sentence_obama, sentence_president)
 
 MAX_RANK = 21
 RANKS = list(range(1,MAX_RANK))
@@ -33,7 +40,7 @@ RANKS = list(range(1,MAX_RANK))
 choosen_fold = "recovery_test"
             # choosen_model = "best_models_1rfold3_sl"
             # choosen_fold = "recovery_test"
-choosen_model ="recovery_test"
+choosen_model ="eda_models"
 data_file = "validation"
 data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 
@@ -42,8 +49,8 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0,1,2]
-# folds = [0,1,2,3,4]
-folds = [1]
+folds = [0,1,2,3,4]
+# folds = [1]
 # folds = [14]
 # folds = [0,2,4]
 class_descriptions = read_descriptions()
