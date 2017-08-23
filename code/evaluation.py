@@ -40,8 +40,8 @@ RANKS = list(range(1,MAX_RANK))
 choosen_fold = "recovery_test"
             # choosen_model = "best_models_1rfold3_sl"
             # choosen_fold = "recovery_test"
-# choosen_model ="eda_models"
-choosen_model = "recovery_test"
+choosen_model ="eda_models"
+# choosen_model = "recovery_test"
 data_file = "validation"
 data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 
@@ -423,22 +423,28 @@ def each_fold_stats():
 
     # plt.errorbar(x=RANKS, y=np.mean(nb_avrg,0), yerr=np.std(nb_avrg,0), label='Naive Bayes',linewidth=2, color='blue')
     # plt.plot(nb_avrg/len(folds),label='Naive Bayes',linewidth=2)
+    # plt.axvline(x= np.mean(np.mean(nb_avrg,0)),linestyle='--', color='blue')
+
     plt.plot(np.mean(nb_avrg,0),label='Naive Bayes',linewidth=2)
     plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(nb_avrg,0) - np.std(nb_avrg,0), np.mean(nb_avrg,0) + np.std(nb_avrg,0) ,alpha=0.3, facecolor='b')
-    # plt.axvline(x= np.mean(np.mean(nb_avrg,0)),linestyle='--', color='blue')
+
 
 
     # plt.plot(tfidf_avrg/len(folds),label='Tf-idf cosine sim',linewidth=2)
-    plt.plot(np.mean(tfidf_avrg,0),label='Tf-idf cosine sim',linewidth=2)
-    plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(tfidf_avrg,0) - np.std(tfidf_avrg,0), np.mean(tfidf_avrg,0) + np.std(tfidf_avrg,0) ,alpha=0.3, facecolor='g')
     # plt.errorbar(x=RANKS,y=np.mean(tfidf_avrg,0), yerr=np.std(tfidf_avrg,0), label='Tf-idf cosine sim',linewidth=2, color='green')
     # plt.axvline(x= np.mean(np.mean(tfidf_avrg,0)),linestyle='--', color='green')
 
+    plt.plot(np.mean(tfidf_avrg,0),label='Tf-idf cosine sim',linewidth=2)
+    plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(tfidf_avrg,0) - np.std(tfidf_avrg,0), np.mean(tfidf_avrg,0) + np.std(tfidf_avrg,0) ,alpha=0.3, facecolor='g')
+
+
     # plt.plot(att_avrg/len(folds),label='Decomposable Attention',linewidth=2)
-    plt.plot(np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2)
-    plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
     # plt.errorbar(x=RANKS,y=np.mean(att_avrg,0), yerr=np.std(att_avrg,0), label='Decomposable Attention',linewidth=2, color='red')
     # plt.axvline(x= np.mean(np.mean(att_avrg,0)),linestyle='--', color='red')
+
+    plt.plot(np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2)
+    plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
+
 
     plt.legend(loc= 4)
     plt.show()
