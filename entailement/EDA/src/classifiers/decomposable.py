@@ -585,12 +585,14 @@ class DecomposableNLIModel(object):
         saver = tf.train.Saver(tf.trainable_variables(), max_to_keep=1)
 
         for i in range(num_epochs):
-            # if i > 5:
+            # if i > 3:
             #     learning_rate = 0.01
             #     dropout_keep = 0.85
-            # if i > 8:
+            # if i > 5:
             #     learning_rate = 0.005
             #     dropout_keep = 0.9
+
+            ## SNLI good shit
             if i > 20:
                 learning_rate = 0.05/2
                 dropout_keep = 0.80
