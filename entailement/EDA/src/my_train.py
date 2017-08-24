@@ -17,12 +17,12 @@
 # nohup time python -u train.py  ~/data/glove/glove-840B_l2.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_test.jsonl test_eda_1 mlp --lower -e 90 -u 220 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad --report 1000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > snli_log_eda_1.txt &
 
 #
-
-# nohup python -u my_train.py ~/data/glove/glove-840B_l2.npy /home/ioannis/data/recovery_test/fold0/training.json /home/ioannis/data/recovery_test/fold0/validation.json /home/ioannis/models/eda_models/model0 mlp --lower -e 30 -u 150 -d 0.8  -b 32 -r 0.05 --report 10000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > log_0.txt &
-# nohup python -u my_train.py ~/data/glove/glove-840B_l2.npy /home/ioannis/data/recovery_test/fold1/training.json /home/ioannis/data/recovery_test/fold1/validation.json /home/ioannis/models/eda_models/model1 mlp --lower -e 30 -u 150 -d 0.8  -b 32 -r 0.05 --report 10000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > log_1.txt &
-# nohup python -u my_train.py ~/data/glove/glove-840B_l2.npy /home/ioannis/data/recovery_test/fold2/training.json /home/ioannis/data/recovery_test/fold2/validation.json /home/ioannis/models/eda_models/model2 mlp --lower -e 30 -u 150 -d 0.8  -b 32 -r 0.05 --report 10000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > log_2.txt &
-# nohup python -u my_train.py ~/data/glove/glove-840B_l2.npy /home/ioannis/data/recovery_test/fold3/training.json /home/ioannis/data/recovery_test/fold3/validation.json /home/ioannis/models/eda_models/model3 mlp --lower -e 30 -u 150 -d 0.8  -b 32 -r 0.05 --report 10000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > log_3.txt &
-# nohup python -u my_train.py ~/data/glove/glove-840B_l2.npy /home/ioannis/data/recovery_test/fold4/training.json /home/ioannis/data/recovery_test/fold4/validation.json /home/ioannis/models/eda_models/model4 mlp --lower -e 30 -u 150 -d 0.8  -b 32 -r 0.05 --report 10000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > log_4.txt &
+## RUNNING while unibuddy
+# nohup python -u my_train.py ~/data/glove/glove-840B_l2.npy /home/ioannis/data/recovery_test/fold0/training.json /home/ioannis/data/recovery_test/fold0/validation.json /home/ioannis/models/eda_models/model0 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 15000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > log_0.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B_l2.npy /home/ioannis/data/recovery_test/fold1/training.json /home/ioannis/data/recovery_test/fold1/validation.json /home/ioannis/models/eda_models/model1 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 15000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > log_1.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B_l2.npy /home/ioannis/data/recovery_test/fold2/training.json /home/ioannis/data/recovery_test/fold2/validation.json /home/ioannis/models/eda_models/model2 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 15000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > log_2.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B_l2.npy /home/ioannis/data/recovery_test/fold3/training.json /home/ioannis/data/recovery_test/fold3/validation.json /home/ioannis/models/eda_models/model3 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 15000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > log_3.txt &
+# nohup python -u my_train.py ~/data/glove/glove-840B_l2.npy /home/ioannis/data/recovery_test/fold4/training.json /home/ioannis/data/recovery_test/fold4/validation.json /home/ioannis/models/eda_models/model4 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 15000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt > log_4.txt &
 
 # Testing
 

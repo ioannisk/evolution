@@ -87,8 +87,6 @@ def web_noise(files):
 
 
 
-
-
 def filter_data(files):
     for file_str in files:
         print("writing file {}".format(file_str))
@@ -102,13 +100,11 @@ def filter_data(files):
                 write_json_line(line, output)
 
 
-
-
 if __name__=="__main__":
     data_path = "/home/ioannis/data/recovery_test/"
-    files =[data_path +"fold{}/".format(i)+"ranking_validation.json" for i in range(3,5)]
-    print(files)
+    files =[data_path +"fold{}/".format(i)+"ranking_validation.json" for i in range(0,5)]
+    # print(files)
     # filter_data(files)
     # web_noise(files)
-    vocab_overlap(files)
+    # vocab_overlap(files)
 
