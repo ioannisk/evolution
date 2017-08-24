@@ -8,7 +8,7 @@ for fold in folds:
     num_lines = sum(1 for line in open('/home/ioannis/models/eda_models/model{}/prob_predictions.txt'.format(fold), 'r'))
     store_pred = np.zeros(num_lines)
     for model in models:
-        print("    reading model {}".format(model)))
+        print("    reading model {}".format(model))
         with open('/home/ioannis/models/{}/model{}/prob_predictions.txt'.format(model, fold), 'r') as file_:
             for i, line in enumerate(file_):
                 line=float(line)
