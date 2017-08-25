@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
 from collections import Counter,defaultdict
+from sklearn.decomposition import LatentDirichletAllocation
 # from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 from new_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 import matplotlib.pyplot as plt
