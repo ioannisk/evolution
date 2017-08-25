@@ -276,6 +276,84 @@ def baseline_tfidf(fold):
     return accuracy, rank_index_stats
 
 
+
+def lda_inference(des_tfidf, des_class, web_tfidf, web_class):
+    # print("cosine similarity inference")
+    inference = []
+    # print("des vectors {}".format(des_tfidf.shape))
+    # print("web vectors {}".format(web_tfidf.shape))
+    # print(len(des_class))
+    pairwise_cos_matrix  = cosine_similarity(web_tfidf, des_tfidf)
+    # print pairwise_cos_matrix.shape
+    # print("pairwise evaluation {}".format(pairwise_cos_matrix.shape))
+    assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[0])
+    rank_index_stats = Counter()
+
+    output_tf = open("fold_1_rank1_tfidf.txt", 'w')
+
+    true_positive = np.zeros(len(RANKS))
+    for i, row in enumerate(pairwise_cos_matrix):
+        sim_labels = list(zip(row, des_class))
+        ranked = sorted(sim_labels, reverse=True)
+        similarities, classes = zip(*ranked)
+        classes = list(classes)
+        # classes = remove_rare_classes(classes)
+
+        ri = classes.index(web_class[i])
+        if ri ==0:
+            output_tf.write("{} {}\n".format(web_class[i] , classes[ri]))
+
+        rank_index_stats[classes.index(web_class[i])] +=1
+        for j, TOP_N in enumerate(RANKS):
+            if web_class[i] in classes[:TOP_N]:
+                true_positive[j] +=1
+    return true_positive*100/float(len(web_class)), rank_index_stats
+
+
+
+
+
+
+def baseline_lda(fold):
+    # print("Loading data sets")
+    descriptions_txt = []
+    descriptions_class = []
+    with open(data_path+"fold{}/training.json".format(fold),"r") as file_:
+        training_corpus = make_training_corpus(file_)
+        # print(len(training_corpus))
+    with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
+        for line in file_:
+            line = line.strip()
+            line = line.split('\t')
+            ## ensure only used classes are used for inference
+            # if line[0] not in used_classes:
+            #     continue
+            descriptions_class.append(line[0])
+            training_corpus.append(line[1])
+            descriptions_txt.append(line[1])
+    with open(data_path+"fold{}/{}.json".format(fold,data_file),"r") as file_:
+        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
+
+
+    ## train tf-idf vectorizer
+    tfidf_vec = count_vectorization(descriptions_txt)
+    des_tfidf = tfidf_vec.transform(descriptions_txt)
+    web_tfidf = tfidf_vec.transform(web_txt)
+    N_TOPICS = 10
+    lda = LatentDirichletAllocation(n_topics=N_TOPICS, max_iter=100,
+                                    learning_method='online',
+                                    learning_offset=50.,
+                                    random_state=0,n_jobs=-1)
+    lda.fit(des_tfidf)
+    des_tfidf = lda.transform(des_tfidf)
+    web_tfidf = lda.transform(web_tfidf)
+
+    # tfidf_vec = tf_idf_vectorization(training_corpus)
+    ## vetorize des and validation websites
+    accuracy, rank_index_stats = lda_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
+    return accuracy, rank_index_stats
+
+
 def decomposable_attention_eval(fold):
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
     with open("/home/ioannis/models/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
@@ -345,6 +423,10 @@ def all_fold_stats():
         # print("    Naive Bayes baseline is {}".format(accuracy))
         accuracy = baseline_tfidf(fold)
         tfidf_avrg +=accuracy
+
+        accuracy = baseline_tfidf(fold)
+        tfidf_avrg +=accuracy
+
         # print("    Tf-idf baseline is {}".format(accuracy))
         accuracy = decomposable_attention_eval(fold)
         att_avrg += accuracy
@@ -360,10 +442,10 @@ def print_each_fold_stats(accuracy, message):
     for acc, ra in zip(accuracy, RANKS):
         print("Rank {} accuracy {}".format(ra, acc))
 
-def print_nice_table(list1, list2, list3):
-    print("Naive Bayes | Tf-IDF | Attention")
+def print_nice_table(list1, list2, list3, list4):
+    print("Naive Bayes | Tf-IDF | LDA  | Attention")
     for i,j in enumerate(list1):
-        print("    {:.3f}      |   {:.3f}   |     {:.3f}     ".format(j, list2[i], list3[i]))
+        print("    {:.3f}      |   {:.3f}   |   {:.3f}   |    {:.3f}     ".format(j, list2[i], list3[i], list4[i]))
 
 
 
@@ -373,11 +455,13 @@ def each_fold_stats():
     # att_avrg = np.zeros(len(RANKS))
     nb_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
     tfidf_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
+    lda_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
     att_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
 
 
     bar_nb_data = np.zeros(len(RANKS))
     bar_tf_data = np.zeros(len(RANKS))
+    bar_lda_data = np.zeros(len(RANKS))
     bar_da_data = np.zeros(len(RANKS))
     for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
@@ -404,6 +488,14 @@ def each_fold_stats():
         rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
         bar_tf_data += rank_tf_probs
 
+        lda_accuracy, lda_rank_index_stats = baseline_lda(fold)
+        lda_avrg[ii] = lda_accuracy
+        norm = float(sum(lda_rank_index_stats.values()))
+        a = sorted(lda_rank_index_stats.items())[:len(RANKS)]
+        rank_lda_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_lda_data += rank_lda_probs
+
+
         att_accuracy, da_rank_index_stats = decomposable_attention_eval(fold)
         att_avrg[ii] = att_accuracy
         norm = float(sum(da_rank_index_stats.values()))
@@ -411,7 +503,7 @@ def each_fold_stats():
         rank_da_probs = np.asarray(list(zip(*a))[1])/norm
         bar_da_data += rank_da_probs
 
-        print_nice_table(nb_accuracy, tf_accuracy, att_accuracy)
+        print_nice_table(nb_accuracy, tf_accuracy, lda_accuracy, att_accuracy)
         # print("    Decomposable attention is {}".format( accuracy))
     # for i, TOP_N in enumerate(RANKS):
     #     print("RANK {} accuracy".format(TOP_N))
