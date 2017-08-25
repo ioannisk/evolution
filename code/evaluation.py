@@ -511,7 +511,8 @@ def each_fold_stats():
         bar_da_data += rank_da_probs
 
         print_nice_table(att_accuracy, att_accuracy,  att_accuracy)
-        print_nice_table(nb_accuracy, tf_accuracy,  att_accuracy)
+        # print_nice_table(nb_accuracy, tf_accuracy,  att_accuracy)
+
         # print("    Decomposable attention is {}".format( accuracy))
     # for i, TOP_N in enumerate(RANKS):
     #     print("RANK {} accuracy".format(TOP_N))
