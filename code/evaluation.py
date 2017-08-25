@@ -443,10 +443,10 @@ def print_each_fold_stats(accuracy, message):
     for acc, ra in zip(accuracy, RANKS):
         print("Rank {} accuracy {}".format(ra, acc))
 
-def print_nice_table(list1, list2, list3, list4):
+def print_nice_table(list1, list2, list3):
     print("Naive Bayes | Tf-IDF | LDA  | Attention")
     for i,j in enumerate(list1):
-        print("    {:.3f}      |   {:.3f}   |   {:.3f}   |    {:.3f}     ".format(j, list2[i], list3[i], list4[i]))
+        print("    {:.3f}      |   {:.3f}   |   {:.3f}   ".format(j, list2[i], list3[i]))
 
 
 
