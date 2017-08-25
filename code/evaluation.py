@@ -39,9 +39,9 @@ choosen_fold = "recovery_test"
 
 ### prediction done for eda_models, eda_models_1, eda_models_2
 
-choosen_model ="best_eda"
+# choosen_model ="best_eda"
 # choosen_model = "recovery_test"
-# choosen_model = "eda_models_2"
+choosen_model = "eda_models"
 data_file = "validation"
 data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 
@@ -353,6 +353,8 @@ def baseline_lda(fold):
 
 
 def move_over_distance(fold):
+    with open(data_path+"fold{}/{}.json".format(fold,data_file),"r") as file_:
+        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
 
     distance = model.wmdistance(sentence_obama, sentence_president)
     stopwords = nltk.corpus.stopwords.words('english')
