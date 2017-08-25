@@ -19,10 +19,6 @@ model = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-nega
 # sentence_president = 'The president greets the press in Chicago'.lower().split()
 import nltk
 from nltk.corpus import stopwords
-# stopwords = nltk.corpus.stopwords.words('english')
-# sentence_obama = [w for w in sentence_obama if w not in stopwords]
-# sentence_president = [w for w in sentence_president if w not in stopwords]
-# distance = model.wmdistance(sentence_obama, sentence_president)
 
 MAX_RANK = 21
 RANKS = list(range(1,MAX_RANK))
@@ -45,8 +41,8 @@ choosen_fold = "recovery_test"
 
 ### prediction done for eda_models, eda_models_1, eda_models_2
 
-# choosen_model ="best_eda"
-choosen_model = "recovery_test"
+choosen_model ="best_eda"
+# choosen_model = "recovery_test"
 # choosen_model = "eda_models_2"
 data_file = "validation"
 data_path = "/home/ioannis/data/{}/".format(choosen_fold)
@@ -56,7 +52,7 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0,1,2]
-folds = [0,1,2,3,4]
+folds = [1,2,3,4]
 # folds = [3,4]
 # folds = [0]
 # folds = [14]
@@ -358,10 +354,18 @@ def baseline_lda(fold):
 
 
 
-# def move_over_distance(fold):
+def move_over_distance(fold):
+
+    distance = model.wmdistance(sentence_obama, sentence_president)
+    stopwords = nltk.corpus.stopwords.words('english')
+    sentence_obama = [w for w in sentence_obama if w not in stopwords]
+    sentence_president = [w for w in sentence_president if w not in stopwords]
+    distance = model.wmdistance(sentence_obama, sentence_president)
 
 
-# def embedding_similarity(fold):
+
+def embedding_similarity(fold):
+
 
 
 
