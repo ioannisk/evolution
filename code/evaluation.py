@@ -340,8 +340,8 @@ def baseline_lda(fold):
     tfidf_vec = count_vectorization(descriptions_txt)
     des_tfidf = tfidf_vec.transform(descriptions_txt)
     web_tfidf = tfidf_vec.transform(web_txt)
-    N_TOPICS = 10
-    lda = LatentDirichletAllocation(n_topics=N_TOPICS, max_iter=100,
+    N_TOPICS = 100
+    lda = LatentDirichletAllocation(n_topics=N_TOPICS, max_iter=1000,
                                     learning_method='online',
                                     learning_offset=50.,
                                     random_state=0,n_jobs=-1)
