@@ -268,7 +268,7 @@ def baseline_tfidf(fold):
     with open(data_path+"fold{}/{}.json".format(fold,data_file),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
     ## train tf-idf vectorizer
-    tfidf_vec = tf_idf_vectorization(descriptions_txt)
+    tfidf_vec = tf_idf_vectorization(descriptions_txt + training_corpus)
     # tfidf_vec = tf_idf_vectorization(training_corpus)
     ## vetorize des and validation websites
     des_tfidf = tfidf_vec.transform(descriptions_txt)
@@ -489,12 +489,12 @@ def each_fold_stats():
         rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
         bar_tf_data += rank_tf_probs
 
-        lda_accuracy, lda_rank_index_stats = baseline_lda(fold)
-        lda_avrg[ii] = lda_accuracy
-        norm = float(sum(lda_rank_index_stats.values()))
-        a = sorted(lda_rank_index_stats.items())[:len(RANKS)]
-        rank_lda_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_lda_data += rank_lda_probs
+        # lda_accuracy, lda_rank_index_stats = baseline_lda(fold)
+        # lda_avrg[ii] = lda_accuracy
+        # norm = float(sum(lda_rank_index_stats.values()))
+        # a = sorted(lda_rank_index_stats.items())[:len(RANKS)]
+        # rank_lda_probs = np.asarray(list(zip(*a))[1])/norm
+        # bar_lda_data += rank_lda_probs
 
 
         att_accuracy, da_rank_index_stats = decomposable_attention_eval(fold)
@@ -504,7 +504,7 @@ def each_fold_stats():
         rank_da_probs = np.asarray(list(zip(*a))[1])/norm
         bar_da_data += rank_da_probs
 
-        print_nice_table(nb_accuracy, tf_accuracy, lda_accuracy, att_accuracy)
+        print_nice_table(nb_accuracy, tf_accuracy,  att_accuracy)
         # print("    Decomposable attention is {}".format( accuracy))
     # for i, TOP_N in enumerate(RANKS):
     #     print("RANK {} accuracy".format(TOP_N))
