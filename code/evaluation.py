@@ -12,12 +12,13 @@ from sklearn.decomposition import LatentDirichletAllocation
 from new_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 import matplotlib.pyplot as plt
 
-# from gensim.models import Word2Vec
-# model = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
+print("Loading Word2Vec")
+from gensim.models import Word2Vec
+model = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
 # sentence_obama = 'Obama speaks to the media in Illinois'.lower().split()
 # sentence_president = 'The president greets the press in Chicago'.lower().split()
-# import nltk
-# from nltk.corpus import stopwords
+import nltk
+from nltk.corpus import stopwords
 # stopwords = nltk.corpus.stopwords.words('english')
 # sentence_obama = [w for w in sentence_obama if w not in stopwords]
 # sentence_president = [w for w in sentence_president if w not in stopwords]
@@ -181,7 +182,7 @@ def count_vectorization(corpus):
 
 def tf_idf_vectorization(corpus):
     # print("tfidf Vectorization")
-    vec = TfidfVectorizer( min_df=1)
+    vec = TfidfVectorizer( min_df=1, sublinear_tf=True)
     vec.fit(corpus)
     return vec
 
@@ -444,7 +445,7 @@ def print_each_fold_stats(accuracy, message):
         print("Rank {} accuracy {}".format(ra, acc))
 
 def print_nice_table(list1, list2, list3):
-    print("Naive Bayes | Tf-IDF | LDA  | Attention")
+    print("Naive Bayes | Tf-IDF | Decomposable Attention")
     for i,j in enumerate(list1):
         print("    {:.3f}      |   {:.3f}   |   {:.3f}   ".format(j, list2[i], list3[i]))
 
