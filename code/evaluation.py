@@ -45,7 +45,7 @@ choosen_fold = "recovery_test"
 
 # choosen_model ="best_eda"
 # choosen_model = "recovery_test"
-choosen_model = "eda_models"
+choosen_model = "eda_models_2"
 data_file = "validation"
 data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 
