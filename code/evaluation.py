@@ -14,7 +14,8 @@ import matplotlib.pyplot as plt
 
 print("Loading Word2Vec")
 from gensim.models import Word2Vec
-model = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
+model_w2v = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
+model_w2v_vocab = model_w2v.vocab
 import nltk
 from nltk.corpus import stopwords
 stopwords = nltk.corpus.stopwords.words('english')
@@ -264,7 +265,7 @@ def baseline_tfidf(fold):
     with open(data_path+"fold{}/{}.json".format(fold,data_file),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
     ## train tf-idf vectorizer
-    tfidf_vec = tf_idf_vectorization(descriptions_txt + training_corpus)
+    tfidf_vec = tf_idf_vectorization(training_corpus)
     # tfidf_vec = tf_idf_vectorization(training_corpus)
     ## vetorize des and validation websites
     des_tfidf = tfidf_vec.transform(descriptions_txt)
@@ -366,7 +367,7 @@ def move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt, w
         results = []
         for des_page, des_cl in zip(descriptions_txt,descriptions_class):
             des_page = des_page.split()
-            distance = model.wmdistance(web_page, des_page)
+            distance = model_w2v.wmdistance(web_page, des_page)
             results.append((distance, des_cl))
         results = sorted(results)
         distance, classes = zip(*results)
@@ -398,9 +399,50 @@ def move_over_distance(fold):
     return accuracy, rank_index_stats
 
 
+def avg_feature_vector(sentece):
+    sentece = sentece.split()
+    feat_vec = np.zeros(300)
+    counter = 0
+    for word in words:
+        if word in model_w2v_vocab:
+            counter += 1
+            feat_vec += model_w2v[word]
+    if(counter>0):
+        feat_vec = feat_vec/counter
+    return feat_vec
 
 
-# def embedding_similarity(fold):
+def embedding_doc_vectorizer(doc_data):
+    output = np.zeros(len(doc_data)*300).reshape(len(doc_data), 300)
+    for index , doc in enumerate(doc_data):
+        output[index] = avg_feature_vector(doc)
+    return output
+
+
+def embedding_similarity(fold):
+    # print("Loading data sets")
+    descriptions_txt = []
+    descriptions_class = []
+    with open(data_path+"fold{}/training.json".format(fold),"r") as file_:
+        training_corpus = make_training_corpus(file_)
+        # print(len(training_corpus))
+    with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
+        for line in file_:
+            line = line.strip()
+            line = line.split('\t')
+            ## ensure only used classes are used for inference
+            if line[0] not in used_classes:
+                continue
+            descriptions_class.append(line[0])
+            training_corpus.append(line[1])
+            descriptions_txt.append(line[1])
+    with open(data_path+"fold{}/{}.json".format(fold,data_file),"r") as file_:
+        des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
+
+    des_tfidf = embedding_doc_vectorizer(descriptions_txt)
+    web_tfidf = embedding_doc_vectorizer(web_txt)
+    accuracy, rank_index_stats = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
+    return accuracy, rank_index_stats
 
 
 
@@ -517,7 +559,7 @@ def each_fold_stats():
     for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
 
-        nb_accuracy, nb_rank_index_stats = move_over_distance(fold)
+        nb_accuracy, nb_rank_index_stats = embedding_similarity(fold)
         nb_avrg[ii] = nb_accuracy
         norm = float(sum(nb_rank_index_stats.values()))
         a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
