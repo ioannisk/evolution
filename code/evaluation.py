@@ -20,7 +20,7 @@ import nltk
 from nltk.corpus import stopwords
 stopwords = nltk.corpus.stopwords.words('english')
 
-MAX_RANK = 200
+MAX_RANK = 15
 RANKS = list(range(1,MAX_RANK))
 
 
