@@ -39,9 +39,9 @@ choosen_fold = "recovery_test"
 
 ### prediction done for eda_models, eda_models_1, eda_models_2
 
-choosen_model ="best_eda"
+# choosen_model ="best_eda"
 # choosen_model = "recovery_test"
-# choosen_model = "eda_models_2"
+choosen_model = "eda_models_2"
 data_file = "validation"
 data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 
@@ -335,7 +335,7 @@ def baseline_lda(fold):
     tfidf_vec = count_vectorization(descriptions_txt)
     des_tfidf = tfidf_vec.transform(descriptions_txt)
     web_tfidf = tfidf_vec.transform(web_txt)
-    N_TOPICS = 20
+    N_TOPICS = 50
     lda = LatentDirichletAllocation(n_topics=N_TOPICS, max_iter=70,
                                     learning_method='online',
                                     learning_offset=50.,
