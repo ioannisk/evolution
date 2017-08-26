@@ -15,8 +15,9 @@ import matplotlib.pyplot as plt
 # print("Loading Word2Vec")
 # from gensim.models import Word2Vec
 # model = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
-# import nltk
-# from nltk.corpus import stopwords
+import nltk
+from nltk.corpus import stopwords
+stopwords = nltk.corpus.stopwords.words('english')
 
 MAX_RANK = 21
 RANKS = list(range(1,MAX_RANK))
@@ -41,7 +42,7 @@ choosen_fold = "recovery_test"
 
 # choosen_model ="best_eda"
 # choosen_model = "recovery_test"
-choosen_model = "eda_models_2"
+choosen_model = "eda_models_1"
 data_file = "validation"
 data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 
@@ -50,9 +51,9 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0,1]
-folds = [0,1,2,3,4]
+# folds = [0,1,2,3,4]
 # folds = [3,4]
-# folds = [1]
+folds = [1]
 # folds = [14]
 # folds = [0,2,4]
 class_descriptions = read_descriptions()
@@ -352,15 +353,33 @@ def baseline_lda(fold):
 
 
 
+
+
+def move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt, web_class):
+    for web_page in web_txt:
+        web_page = web_page.split()
+        for des_page in descriptions_txt:
+
+        distance = model.wmdistance(sentence_obama, sentence_president)
+
+
 def move_over_distance(fold):
     with open(data_path+"fold{}/{}.json".format(fold,data_file),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
+    descriptions_txt = []
+    descriptions_class = []
+    with open("/home/ioannis/evolution/data/descriptions_data.txt","r") as file_:
+        for line in file_:
+            line = line.strip()
+            line = line.split('\t')
+            ## ensure only used classes are used for inference
+            if line[0] not in used_classes:
+                continue
+            descriptions_class.append(line[0])
+            descriptions_txt.append(line[1])
+    accuracy, rank_index_stats = move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt, web_class)
 
-    distance = model.wmdistance(sentence_obama, sentence_president)
-    stopwords = nltk.corpus.stopwords.words('english')
-    sentence_obama = [w for w in sentence_obama if w not in stopwords]
-    sentence_president = [w for w in sentence_president if w not in stopwords]
-    distance = model.wmdistance(sentence_obama, sentence_president)
+
 
 
 
