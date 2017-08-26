@@ -39,9 +39,9 @@ choosen_fold = "recovery_test"
 
 ### prediction done for eda_models, eda_models_1, eda_models_2
 
-# choosen_model ="best_eda"
+choosen_model ="best_eda"
 # choosen_model = "recovery_test"
-choosen_model = "eda_models_3"
+# choosen_model = "eda_models_3"
 data_file = "validation"
 data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 
