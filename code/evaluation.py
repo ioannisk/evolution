@@ -20,13 +20,13 @@ import nltk
 from nltk.corpus import stopwords
 stopwords = nltk.corpus.stopwords.words('english')
 
-MAX_RANK = 50
+MAX_RANK = 200
 RANKS = list(range(1,MAX_RANK))
 
 
 # choosen_fold = "new_data_3"
 # choosen_model = "new_data_3_1"
-# data_file = "validation"
+# data_file = "validation"x
 # data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
 # choosen_fold = "1rfolds3"
