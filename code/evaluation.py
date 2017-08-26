@@ -356,11 +356,14 @@ def baseline_lda(fold):
 
 
 def move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt, web_class):
-    for web_page in web_txt:
+    for web_page, web_cl in zip(web_txt, web_class):
         web_page = web_page.split()
-        for des_page in descriptions_txt:
+        results = []
+        for des_page, des_cl in zip(descriptions_txt,descriptions_class):
+            des_page = des_page.split()
+            distance = model.wmdistance(web_page, des_page)
+            results.append(distance, des_cl)
 
-        distance = model.wmdistance(sentence_obama, sentence_president)
 
 
 def move_over_distance(fold):
