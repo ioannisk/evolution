@@ -356,13 +356,23 @@ def baseline_lda(fold):
 
 
 def move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt, web_class):
+    rank_index_stats = Counter()
+    true_positive = np.zeros(len(RANKS))
     for web_page, web_cl in zip(web_txt, web_class):
         web_page = web_page.split()
         results = []
         for des_page, des_cl in zip(descriptions_txt,descriptions_class):
             des_page = des_page.split()
             distance = model.wmdistance(web_page, des_page)
-            results.append(distance, des_cl)
+            results.append((distance, des_cl))
+        results = sorted(results)
+        distance, classes = zip(*results)
+        classes = list(classes)
+        rank_index_stats[classes.index(web_cl)]
+        for j, TOP_N in enumerate(RANKS):
+            if web_cl in classes[:TOP_N]:
+                true_positive[j] +=1
+    return true_positive*100/float(len(web_class)), rank_index_stats
 
 
 
@@ -381,7 +391,7 @@ def move_over_distance(fold):
             descriptions_class.append(line[0])
             descriptions_txt.append(line[1])
     accuracy, rank_index_stats = move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt, web_class)
-
+    return accuracy, rank_index_stats
 
 
 
@@ -503,7 +513,7 @@ def each_fold_stats():
     for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
 
-        nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
+        nb_accuracy, nb_rank_index_stats = move_over_distance(fold)
         nb_avrg[ii] = nb_accuracy
         norm = float(sum(nb_rank_index_stats.values()))
         a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
