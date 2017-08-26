@@ -49,8 +49,8 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 # Comparison on folds 2, 4, 0
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
-folds = [0,1]
-# folds = [0,1,2,3,4]
+# folds = [0,1]
+folds = [0,1,2,3,4]
 # folds = [3,4]
 # folds = [0]
 # folds = [14]
@@ -481,19 +481,19 @@ def each_fold_stats():
     for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
 
-        # nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
-        # nb_avrg[ii] = nb_accuracy
-        # norm = float(sum(nb_rank_index_stats.values()))
-        # a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
-        # rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
-        # bar_nb_data += rank_nb_probs
+        nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
+        nb_avrg[ii] = nb_accuracy
+        norm = float(sum(nb_rank_index_stats.values()))
+        a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
+        rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_nb_data += rank_nb_probs
 
-        # tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
-        # tfidf_avrg[ii] = tf_accuracy
-        # norm = float(sum(tf_rank_index_stats.values()))
-        # a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
-        # rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
-        # bar_tf_data += rank_tf_probs
+        tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
+        tfidf_avrg[ii] = tf_accuracy
+        norm = float(sum(tf_rank_index_stats.values()))
+        a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
+        rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_tf_data += rank_tf_probs
 
         # lda_accuracy, lda_rank_index_stats = baseline_lda(fold)
         # lda_avrg[ii] = lda_accuracy
@@ -510,8 +510,8 @@ def each_fold_stats():
         rank_da_probs = np.asarray(list(zip(*a))[1])/norm
         bar_da_data += rank_da_probs
 
-        print_nice_table(att_accuracy, att_accuracy,  att_accuracy)
-        # print_nice_table(nb_accuracy, tf_accuracy,  att_accuracy)
+        # print_nice_table(att_accuracy, att_accuracy,  att_accuracy)
+        print_nice_table(nb_accuracy, tf_accuracy,  att_accuracy)
 
         # print("    Decomposable attention is {}".format( accuracy))
     # for i, TOP_N in enumerate(RANKS):
