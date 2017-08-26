@@ -403,7 +403,7 @@ def avg_feature_vector(sentece):
     sentece = sentece.split()
     feat_vec = np.zeros(300)
     counter = 0
-    for word in words:
+    for word in sentece:
         if word in model_w2v_vocab:
             counter += 1
             feat_vec += model_w2v[word]
