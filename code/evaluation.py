@@ -358,7 +358,10 @@ def baseline_lda(fold):
 def move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt, web_class):
     rank_index_stats = Counter()
     true_positive = np.zeros(len(RANKS))
+    print(len(web_class))
+    counter = 0
     for web_page, web_cl in zip(web_txt, web_class):
+        print(counter)
         web_page = web_page.split()
         results = []
         for des_page, des_cl in zip(descriptions_txt,descriptions_class):
@@ -372,6 +375,7 @@ def move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt, w
         for j, TOP_N in enumerate(RANKS):
             if web_cl in classes[:TOP_N]:
                 true_positive[j] +=1
+        counter +=1
     return true_positive*100/float(len(web_class)), rank_index_stats
 
 
