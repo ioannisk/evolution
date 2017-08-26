@@ -20,7 +20,7 @@ import nltk
 from nltk.corpus import stopwords
 stopwords = nltk.corpus.stopwords.words('english')
 
-MAX_RANK = 21
+MAX_RANK = 50
 RANKS = list(range(1,MAX_RANK))
 
 
@@ -141,11 +141,11 @@ def train_naive_bayes_des_local(fold):
     vec = tf_idf_vectorization(X_train+X_train_des)
 
 
-    # vec = count_vectorization(X_train_des)
-    X_train_vec = vec.transform(X_train_des)
+    vec = count_vectorization(X_train_des)
+    # X_train_vec = vec.transform(X_train_des)
     Y_train = Y_train_des
     X_valid_vec = vec.transform(X_valid)
-    a = 0.05
+    a = 0.0005
     # for a in np.arange(1,200)*0.0001:
     gnb = MultinomialNB(alpha=a,fit_prior=False)
     # clf = gnb.fit(X_train_des_vec, Y_train_des)
@@ -550,17 +550,19 @@ def each_fold_stats():
     nb_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
     tfidf_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
     lda_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
+    cbow_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
     att_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
 
 
     bar_nb_data = np.zeros(len(RANKS))
     bar_tf_data = np.zeros(len(RANKS))
     bar_lda_data = np.zeros(len(RANKS))
+    bar_cbow_data = np.zeros(len(RANKS))
     bar_da_data = np.zeros(len(RANKS))
     for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
 
-        nb_accuracy, nb_rank_index_stats = embedding_similarity(fold)
+        nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
         nb_avrg[ii] = nb_accuracy
         norm = float(sum(nb_rank_index_stats.values()))
         a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
@@ -580,6 +582,13 @@ def each_fold_stats():
         # a = sorted(lda_rank_index_stats.items())[:len(RANKS)]
         # rank_lda_probs = np.asarray(list(zip(*a))[1])/norm
         # bar_lda_data += rank_lda_probs
+
+        cbow_accuracy, cbow_rank_index_stats = embedding_similarity(fold)
+        cbow_avrg[ii] = cbow_accuracy
+        norm = float(sum(cbow_rank_index_stats.values()))
+        a = sorted(cbow_rank_index_stats.items())[:len(RANKS)]
+        rank_cbow_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_cbow_data += rank_cbow_probs
 
 
         att_accuracy, da_rank_index_stats = decomposable_attention_eval(fold)
@@ -610,7 +619,7 @@ def each_fold_stats():
     # plt.axvline(x= np.mean(np.mean(nb_avrg,0)),linestyle='--', color='blue')
 
     plt.plot(np.mean(nb_avrg,0),label='Naive Bayes',linewidth=2)
-    plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(nb_avrg,0) - np.std(nb_avrg,0), np.mean(nb_avrg,0) + np.std(nb_avrg,0) ,alpha=0.3, facecolor='b')
+    # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(nb_avrg,0) - np.std(nb_avrg,0), np.mean(nb_avrg,0) + np.std(nb_avrg,0) ,alpha=0.3, facecolor='b')
 
 
 
@@ -619,7 +628,7 @@ def each_fold_stats():
     # plt.axvline(x= np.mean(np.mean(tfidf_avrg,0)),linestyle='--', color='green')
 
     plt.plot(np.mean(tfidf_avrg,0),label='Tf-idf cosine sim',linewidth=2)
-    plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(tfidf_avrg,0) - np.std(tfidf_avrg,0), np.mean(tfidf_avrg,0) + np.std(tfidf_avrg,0) ,alpha=0.3, facecolor='g')
+    # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(tfidf_avrg,0) - np.std(tfidf_avrg,0), np.mean(tfidf_avrg,0) + np.std(tfidf_avrg,0) ,alpha=0.3, facecolor='g')
 
 
     # plt.plot(att_avrg/len(folds),label='Decomposable Attention',linewidth=2)
@@ -627,7 +636,9 @@ def each_fold_stats():
     # plt.axvline(x= np.mean(np.mean(att_avrg,0)),linestyle='--', color='red')
 
     plt.plot(np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2)
-    plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
+    # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
+
+    plt.plot(np.mean(cbow_avrg,0),label='CBOW cosine',linewidth=2)
 
 
     plt.legend(loc= 4)
