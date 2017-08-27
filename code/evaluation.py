@@ -270,7 +270,7 @@ def baseline_tfidf(fold):
     ## vetorize des and validation websites
     des_tfidf = tfidf_vec.transform(descriptions_txt)
     web_tfidf = tfidf_vec.transform(web_txt)
-    accuracy, rank_index_stats = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
+    accuracy, rank_index_stats = tfidf_inference(des_tfidf, descriptions_class, web_tfidf[:10], web_class[:10])
     return accuracy, rank_index_stats
 
 
@@ -564,12 +564,13 @@ def each_fold_stats():
     for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
 
-        mover_accuracy, mover_rank_index_stats = move_over_distance(fold)
-        mover_avrg[ii] = mover_accuracy
-        norm = float(sum(mover_rank_index_stats.values()))
-        a = sorted(mover_rank_index_stats.items())[:len(RANKS)]
-        rank_mover_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_mover_data += rank_mover_probs
+        tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
+        tfidf_avrg[ii] = tf_accuracy
+        norm = float(sum(tf_rank_index_stats.values()))
+        a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
+        rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_tf_data += rank_tf_probs
+
 
 
         nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
@@ -579,13 +580,13 @@ def each_fold_stats():
         rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
         bar_nb_data += rank_nb_probs
 
-        tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
-        tfidf_avrg[ii] = tf_accuracy
-        norm = float(sum(tf_rank_index_stats.values()))
-        a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
-        rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_tf_data += rank_tf_probs
 
+        mover_accuracy, mover_rank_index_stats = move_over_distance(fold)
+        mover_avrg[ii] = mover_accuracy
+        norm = float(sum(mover_rank_index_stats.values()))
+        a = sorted(mover_rank_index_stats.items())[:len(RANKS)]
+        rank_mover_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_mover_data += rank_mover_probs
 
 
         # lda_accuracy, lda_rank_index_stats = baseline_lda(fold)
