@@ -311,8 +311,8 @@ def lda_inference(des_tfidf, des_class, web_tfidf, web_class):
 # def lda_inference_MI(des_tfidf, descriptions_class, web_tfidf, web_class):
 
 
-def lda_mutual_info(des_tfidf, descriptions_class, web_tfidf, web_class):
-    for
+# def lda_mutual_info(des_tfidf, descriptions_class, web_tfidf, web_class):
+#     for
 
 
 def baseline_lda(fold):
