@@ -116,8 +116,6 @@ def train_naive_bayes_des_local(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            if des_class[i] not in used_classes:
-                continue
             X_valid.append(web_txt[i])
             Y_valid.append(web_class[i])
             # validation_classes.add(web_class[i])
@@ -174,14 +172,14 @@ def train_naive_bayes_des_local(fold):
     return true_positive*100/float(len(Y_valid)), rank_index_stats
 
 def count_vectorization(corpus):
-    vec = CountVectorizer( min_df=1)
+    vec = CountVectorizer( min_df=1, stop_words=stopwords)
     vec.fit(corpus)
     return vec
 
 
 def tf_idf_vectorization(corpus):
     # print("tfidf Vectorization")
-    vec = TfidfVectorizer( min_df=1, sublinear_tf=True)
+    vec = TfidfVectorizer( min_df=1, sublinear_tf=True, stop_words=stopwords)
     vec.fit(corpus)
     return vec
 
@@ -260,8 +258,6 @@ def baseline_tfidf(fold):
             line = line.strip()
             line = line.split('\t')
             ## ensure only used classes are used for inference
-            if line[0] not in used_classes:
-                continue
             descriptions_class.append(line[0])
             training_corpus.append(line[1])
             descriptions_txt.append(line[1])
@@ -437,8 +433,6 @@ def embedding_similarity(fold):
             line = line.strip()
             line = line.split('\t')
             ## ensure only used classes are used for inference
-            if line[0] not in used_classes:
-                continue
             descriptions_class.append(line[0])
             training_corpus.append(line[1])
             descriptions_txt.append(line[1])
