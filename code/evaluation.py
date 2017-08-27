@@ -2,6 +2,8 @@ import json
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics import pairwise_distances
+from sklearn.metrics import mutual_info_score
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
@@ -281,7 +283,7 @@ def lda_inference(des_tfidf, des_class, web_tfidf, web_class):
     # print("des vectors {}".format(des_tfidf.shape))
     # print("web vectors {}".format(web_tfidf.shape))
     # print(len(des_class))
-    pairwise_cos_matrix  = cosine_similarity(web_tfidf, des_tfidf)
+    pairwise_cos_matrix  = pairwise_distances(web_tfidf, des_tfidf, mutual_info_score)
     # print pairwise_cos_matrix.shape
     # print("pairwise evaluation {}".format(pairwise_cos_matrix.shape))
     assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[0])
@@ -307,6 +309,7 @@ def lda_inference(des_tfidf, des_class, web_tfidf, web_class):
                 true_positive[j] +=1
     return true_positive*100/float(len(web_class)), rank_index_stats
 
+# def lda_inference_MI(des_tfidf, descriptions_class, web_tfidf, web_class):
 
 
 
@@ -337,7 +340,7 @@ def baseline_lda(fold):
     tfidf_vec = count_vectorization(descriptions_txt)
     des_tfidf = tfidf_vec.transform(descriptions_txt)
     web_tfidf = tfidf_vec.transform(web_txt)
-    N_TOPICS = 50
+    N_TOPICS = 10
     lda = LatentDirichletAllocation(n_topics=N_TOPICS, max_iter=70,
                                     learning_method='online',
                                     learning_offset=50.,
