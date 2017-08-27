@@ -270,7 +270,7 @@ def baseline_tfidf(fold):
     ## vetorize des and validation websites
     des_tfidf = tfidf_vec.transform(descriptions_txt)
     web_tfidf = tfidf_vec.transform(web_txt)
-    accuracy, rank_index_stats = tfidf_inference(des_tfidf, descriptions_class, web_tfidf[:10], web_class[:10])
+    accuracy, rank_index_stats = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
     return accuracy, rank_index_stats
 
 
@@ -395,7 +395,7 @@ def move_over_distance(fold):
                 continue
             descriptions_class.append(line[0])
             descriptions_txt.append(line[1])
-    accuracy, rank_index_stats = move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt[:10], web_class[:10])
+    accuracy, rank_index_stats = move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt, web_class)
     return accuracy, rank_index_stats
 
 
@@ -581,20 +581,21 @@ def each_fold_stats():
         bar_nb_data += rank_nb_probs
 
 
-        mover_accuracy, mover_rank_index_stats = move_over_distance(fold)
-        mover_avrg[ii] = mover_accuracy
-        norm = float(sum(mover_rank_index_stats.values()))
-        a = sorted(mover_rank_index_stats.items())[:len(RANKS)]
-        rank_mover_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_mover_data += rank_mover_probs
+        ### Try it tonight ## :)
+        # mover_accuracy, mover_rank_index_stats = move_over_distance(fold)
+        # mover_avrg[ii] = mover_accuracy
+        # norm = float(sum(mover_rank_index_stats.values()))
+        # a = sorted(mover_rank_index_stats.items())[:len(RANKS)]
+        # rank_mover_probs = np.asarray(list(zip(*a))[1])/norm
+        # bar_mover_data += rank_mover_probs
 
 
-        # lda_accuracy, lda_rank_index_stats = baseline_lda(fold)
-        # lda_avrg[ii] = lda_accuracy
-        # norm = float(sum(lda_rank_index_stats.values()))
-        # a = sorted(lda_rank_index_stats.items())[:len(RANKS)]
-        # rank_lda_probs = np.asarray(list(zip(*a))[1])/norm
-        # bar_lda_data += rank_lda_probs
+        lda_accuracy, lda_rank_index_stats = baseline_lda(fold)
+        lda_avrg[ii] = lda_accuracy
+        norm = float(sum(lda_rank_index_stats.values()))
+        a = sorted(lda_rank_index_stats.items())[:len(RANKS)]
+        rank_lda_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_lda_data += rank_lda_probs
 
         cbow_accuracy, cbow_rank_index_stats = embedding_similarity(fold)
         cbow_avrg[ii] = cbow_accuracy
@@ -652,7 +653,7 @@ def each_fold_stats():
     # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
 
     plt.plot(np.mean(cbow_avrg,0),label='CBOW cosine',linewidth=2)
-    plt.plot(np.mean(mover_avrg,0),label='Move over distance',linewidth=2)
+    plt.plot(np.mean(lda_avrg,0),label='Move over distance',linewidth=2)
 
 
     plt.legend(loc= 4)
