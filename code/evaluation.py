@@ -51,8 +51,8 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 # Comparison on folds 2, 4, 0
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
-# folds = [0,1]
-folds = [0,1,2,3,4]
+folds = [0,1]
+# folds = [0,1,2,3,4]
 # folds = [3,4]
 # folds = [1]
 # folds = [14]
@@ -395,7 +395,7 @@ def move_over_distance(fold):
                 continue
             descriptions_class.append(line[0])
             descriptions_txt.append(line[1])
-    accuracy, rank_index_stats = move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt, web_class)
+    accuracy, rank_index_stats = move_over_distance_inferece(descriptions_class[:100], descriptions_txt[:100], web_txt[:100], web_class[:100])
     return accuracy, rank_index_stats
 
 
@@ -551,6 +551,7 @@ def each_fold_stats():
     tfidf_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
     lda_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
     cbow_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
+    mover_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
     att_avrg = np.zeros(len(folds)*len(RANKS)).reshape(len(folds), len(RANKS))
 
 
@@ -558,6 +559,7 @@ def each_fold_stats():
     bar_tf_data = np.zeros(len(RANKS))
     bar_lda_data = np.zeros(len(RANKS))
     bar_cbow_data = np.zeros(len(RANKS))
+    bar_mover_data = np.zeros(len(RANKS))
     bar_da_data = np.zeros(len(RANKS))
     for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
@@ -575,6 +577,14 @@ def each_fold_stats():
         a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
         rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
         bar_tf_data += rank_tf_probs
+
+
+        mover_accuracy, mover_rank_index_stats = move_over_distance(fold)
+        mover_avrg[ii] = mover_accuracy
+        norm = float(sum(mover_rank_index_stats.values()))
+        a = sorted(mover_rank_index_stats.items())[:len(RANKS)]
+        rank_mover_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_mover_data += rank_mover_probs
 
         # lda_accuracy, lda_rank_index_stats = baseline_lda(fold)
         # lda_avrg[ii] = lda_accuracy
@@ -639,6 +649,7 @@ def each_fold_stats():
     # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
 
     plt.plot(np.mean(cbow_avrg,0),label='CBOW cosine',linewidth=2)
+    plt.plot(np.mean(mover_avrg,0),label='Move over distance',linewidth=2)
 
 
     plt.legend(loc= 4)
