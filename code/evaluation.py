@@ -5,6 +5,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import pairwise_distances
 from sklearn.metrics import mutual_info_score
 import numpy as np
+import time
 import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
@@ -283,7 +284,8 @@ def lda_inference(des_tfidf, des_class, web_tfidf, web_class):
     # print("des vectors {}".format(des_tfidf.shape))
     # print("web vectors {}".format(web_tfidf.shape))
     # print(len(des_class))
-    pairwise_cos_matrix  = pairwise_distances(web_tfidf, des_tfidf, mutual_info_score)
+    pairwise_cos_matrix  = cosine_similarity(web_tfidf, des_tfidf)
+    # pairwise_cos_matrix  = pairwise_distances(web_tfidf, des_tfidf, mutual_info_score)
     # print pairwise_cos_matrix.shape
     # print("pairwise evaluation {}".format(pairwise_cos_matrix.shape))
     assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[0])
@@ -567,21 +569,26 @@ def each_fold_stats():
     for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
 
+        tic = time.clock()
         tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
         tfidf_avrg[ii] = tf_accuracy
         norm = float(sum(tf_rank_index_stats.values()))
         a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
         rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
         bar_tf_data += rank_tf_probs
+        toc = time.clock()
+        print("Td-idf time: {}".format(toc - tic))
 
 
-
+        tic = time.clock()
         nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
         nb_avrg[ii] = nb_accuracy
         norm = float(sum(nb_rank_index_stats.values()))
         a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
         rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
         bar_nb_data += rank_nb_probs
+        toc = time.clock()
+        print("Naive Bayes time: {}".format(toc - tic))
 
 
         ### Try it tonight ## :)
@@ -592,28 +599,35 @@ def each_fold_stats():
         # rank_mover_probs = np.asarray(list(zip(*a))[1])/norm
         # bar_mover_data += rank_mover_probs
 
-
+        tic = time.clock()
         lda_accuracy, lda_rank_index_stats = baseline_lda(fold)
         lda_avrg[ii] = lda_accuracy
         norm = float(sum(lda_rank_index_stats.values()))
         a = sorted(lda_rank_index_stats.items())[:len(RANKS)]
         rank_lda_probs = np.asarray(list(zip(*a))[1])/norm
         bar_lda_data += rank_lda_probs
+        toc = time.clock()
+        print("LDA time: {}".format(toc - tic))
 
+        tic = time.clock()
         cbow_accuracy, cbow_rank_index_stats = embedding_similarity(fold)
         cbow_avrg[ii] = cbow_accuracy
         norm = float(sum(cbow_rank_index_stats.values()))
         a = sorted(cbow_rank_index_stats.items())[:len(RANKS)]
         rank_cbow_probs = np.asarray(list(zip(*a))[1])/norm
         bar_cbow_data += rank_cbow_probs
+        toc = time.clock()
+        print("CBOW time: {}".format(toc - tic))
 
-
+        tic = time.clock()
         att_accuracy, da_rank_index_stats = decomposable_attention_eval(fold)
         att_avrg[ii] = att_accuracy
         norm = float(sum(da_rank_index_stats.values()))
         a = sorted(da_rank_index_stats.items())[:len(RANKS)]
         rank_da_probs = np.asarray(list(zip(*a))[1])/norm
         bar_da_data += rank_da_probs
+        toc = time.clock()
+        print("Decomposable Attention time: {}".format(toc - tic))
 
         # print_nice_table(att_accuracy, att_accuracy,  att_accuracy)
         print_nice_table(nb_accuracy, tf_accuracy,  att_accuracy)
