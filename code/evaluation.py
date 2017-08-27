@@ -44,10 +44,10 @@ choosen_fold = "recovery_test"
 
 ### prediction done for eda_models, eda_models_1, eda_models_2
 
-# choosen_model ="best_eda"
+choosen_model ="best_eda"
 # choosen_model="reproduced"
 # choosen_model = "recovery_test"
-choosen_model = "eda_models_1"
+# choosen_model = "eda_models_1"
 data_file = "validation"
 data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 
@@ -55,8 +55,8 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 # Comparison on folds 2, 4, 0
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
-folds = [0]
-# folds = [0,1,2,3,4]
+# folds = [0]
+folds = [0,1,2,3,4]
 # folds = [0,1,2,3]
 # folds = [1]
 # folds = [14]
