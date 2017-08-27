@@ -51,8 +51,8 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 # Comparison on folds 2, 4, 0
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
-folds = [0,1]
-# folds = [0,1,2,3,4]
+# folds = [0,1]
+folds = [0,1,2,3,4]
 # folds = [3,4]
 # folds = [1]
 # folds = [14]
@@ -145,7 +145,7 @@ def train_naive_bayes_des_local(fold):
     X_train_vec = vec.transform(X_train_des)
     Y_train = Y_train_des
     X_valid_vec = vec.transform(X_valid)
-    a = 0.0005
+    a = 0.0001
     # for a in np.arange(1,200)*0.0001:
     gnb = MultinomialNB(alpha=a,fit_prior=False)
     # clf = gnb.fit(X_train_des_vec, Y_train_des)
@@ -171,14 +171,14 @@ def train_naive_bayes_des_local(fold):
     return true_positive*100/float(len(Y_valid)), rank_index_stats
 
 def count_vectorization(corpus):
-    vec = CountVectorizer( min_df=1)
+    vec = CountVectorizer( min_df=1, stopwords=stopwords)
     vec.fit(corpus)
     return vec
 
 
 def tf_idf_vectorization(corpus):
     # print("tfidf Vectorization")
-    vec = TfidfVectorizer( min_df=1, sublinear_tf=True)
+    vec = TfidfVectorizer( min_df=1, sublinear_tf=True, stopwords=stopwords)
     vec.fit(corpus)
     return vec
 
@@ -652,8 +652,8 @@ def each_fold_stats():
     plt.plot(np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2)
     # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
 
-    plt.plot(np.mean(cbow_avrg,0),label='CBOW cosine',linewidth=2)
-    plt.plot(np.mean(lda_avrg,0),label='Move over distance',linewidth=2)
+    plt.plot(np.mean(cbow_avrg,0),label='CBOW cosine sim',linewidth=2)
+    plt.plot(np.mean(lda_avrg,0),label='LDA cosine sim',linewidth=2)
 
 
     plt.legend(loc= 4)
