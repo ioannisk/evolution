@@ -339,7 +339,7 @@ def baseline_lda(fold):
 
 
     ## train tf-idf vectorizer
-    tfidf_vec = count_vectorization(descriptions_txt)
+    tfidf_vec = count_vectorization(training_corpus)
     des_tfidf = tfidf_vec.transform(descriptions_txt)
     web_tfidf = tfidf_vec.transform(web_txt)
     N_TOPICS = 100
@@ -599,15 +599,15 @@ def each_fold_stats():
         # rank_mover_probs = np.asarray(list(zip(*a))[1])/norm
         # bar_mover_data += rank_mover_probs
 
-        tic = time.clock()
-        lda_accuracy, lda_rank_index_stats = baseline_lda(fold)
-        lda_avrg[ii] = lda_accuracy
-        norm = float(sum(lda_rank_index_stats.values()))
-        a = sorted(lda_rank_index_stats.items())[:len(RANKS)]
-        rank_lda_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_lda_data += rank_lda_probs
-        toc = time.clock()
-        print("LDA time: {}".format(toc - tic))
+        # tic = time.clock()
+        # lda_accuracy, lda_rank_index_stats = baseline_lda(fold)
+        # lda_avrg[ii] = lda_accuracy
+        # norm = float(sum(lda_rank_index_stats.values()))
+        # a = sorted(lda_rank_index_stats.items())[:len(RANKS)]
+        # rank_lda_probs = np.asarray(list(zip(*a))[1])/norm
+        # bar_lda_data += rank_lda_probs
+        # toc = time.clock()
+        # print("LDA time: {}".format(toc - tic))
 
         tic = time.clock()
         cbow_accuracy, cbow_rank_index_stats = embedding_similarity(fold)
@@ -670,7 +670,7 @@ def each_fold_stats():
     # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
 
     plt.plot(np.mean(cbow_avrg,0),label='CBOW cosine sim',linewidth=2)
-    plt.plot(np.mean(lda_avrg,0),label='LDA cosine sim',linewidth=2)
+    # plt.plot(np.mean(lda_avrg,0),label='LDA cosine sim',linewidth=2)
 
 
     plt.legend(loc= 4)
