@@ -395,7 +395,7 @@ def move_over_distance(fold):
                 continue
             descriptions_class.append(line[0])
             descriptions_txt.append(line[1])
-    accuracy, rank_index_stats = move_over_distance_inferece(descriptions_class[:100], descriptions_txt[:100], web_txt[:100], web_class[:100])
+    accuracy, rank_index_stats = move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt[:100], web_class[:100])
     return accuracy, rank_index_stats
 
 
