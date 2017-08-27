@@ -395,7 +395,7 @@ def move_over_distance(fold):
                 continue
             descriptions_class.append(line[0])
             descriptions_txt.append(line[1])
-    accuracy, rank_index_stats = move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt[:100], web_class[:100])
+    accuracy, rank_index_stats = move_over_distance_inferece(descriptions_class, descriptions_txt, web_txt[:10], web_class[:10])
     return accuracy, rank_index_stats
 
 
@@ -564,6 +564,14 @@ def each_fold_stats():
     for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
 
+        mover_accuracy, mover_rank_index_stats = move_over_distance(fold)
+        mover_avrg[ii] = mover_accuracy
+        norm = float(sum(mover_rank_index_stats.values()))
+        a = sorted(mover_rank_index_stats.items())[:len(RANKS)]
+        rank_mover_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_mover_data += rank_mover_probs
+
+
         nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
         nb_avrg[ii] = nb_accuracy
         norm = float(sum(nb_rank_index_stats.values()))
@@ -579,12 +587,6 @@ def each_fold_stats():
         bar_tf_data += rank_tf_probs
 
 
-        mover_accuracy, mover_rank_index_stats = move_over_distance(fold)
-        mover_avrg[ii] = mover_accuracy
-        norm = float(sum(mover_rank_index_stats.values()))
-        a = sorted(mover_rank_index_stats.items())[:len(RANKS)]
-        rank_mover_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_mover_data += rank_mover_probs
 
         # lda_accuracy, lda_rank_index_stats = baseline_lda(fold)
         # lda_avrg[ii] = lda_accuracy
