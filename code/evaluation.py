@@ -174,14 +174,14 @@ def train_naive_bayes_des_local(fold):
     return true_positive*100/float(len(Y_valid)), rank_index_stats
 
 def count_vectorization(corpus):
-    vec = CountVectorizer( min_df=1, stop_words=stopwords)
+    vec = CountVectorizer( min_df=1)
     vec.fit(corpus)
     return vec
 
 
 def tf_idf_vectorization(corpus):
     # print("tfidf Vectorization")
-    vec = TfidfVectorizer( min_df=1, sublinear_tf=True, stop_words=stopwords)
+    vec = TfidfVectorizer( min_df=1, sublinear_tf=True)
     vec.fit(corpus)
     return vec
 
