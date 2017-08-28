@@ -65,10 +65,10 @@ for cl in classes:
                 print(pred, d)
                 oincifvnovn
                 write_json_line(d, valid_subset)
-    else:
-        for datapoints in classes[cl]:
-            for d, pred in datapoints:
-                write_json_line(d, testing_subset)
+    # else:
+    #     for datapoints in classes[cl]:
+    #         for d, pred in datapoints:
+    #             write_json_line(d, testing_subset)
 
 # for fold1
 #valid
