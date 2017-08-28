@@ -13,7 +13,7 @@ vocab = set()
 ids = []
 des_ids = []
 with open("/home/ioannis/data/recovery_test/fold0/ranking_validation.json", "r") as file_:
-    counter = 0
+    counter = 1
     for line in file_:
         line = json.loads(line.strip())
         web_id = line["web_id"]
@@ -30,7 +30,7 @@ with open("/home/ioannis/data/recovery_test/fold0/ranking_validation.json", "r")
         #     ids = set()
         #     des_ids = set()
         #     counter = 0
-        # counter +=1
+        counter +=1
 
 import IPython; IPython.embed()
 # print(len(ids))
