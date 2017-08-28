@@ -37,29 +37,37 @@ def write_json_line(json_ ,file_):
 #             write_json_line(d, testing_subset)
 
 ## This code makes a 1 shot validation
-data= []
-with open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json", "r") as file_:
+with open("/home/ioannis/models/best_eda/model2/prob_predictions_filter.txt", "r") as file_:
+    predictions = []
+    for line in file_:
+        line = line.strip()
+        predictions.append(float(line))
+
+with open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json.filter", "r") as file_:
     counter = 1
     for line in file_:
         line = json.loads(line.strip())
         data.append(line)
-valid_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_valid", 'w')
-testing_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_test", 'w')
+# valid_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_valid", 'w')
+# testing_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_test", 'w')
 classes = defaultdict(list)
 for i in range(0, len(data), 556):
     datapoint = data[i:i+556]
+    datapoint_pred = predictions[i:i+556]
     web_id = datapoint[0]["web_id"]
     web_class = datapoint[0]["web_class"]
-    classes[web_class].append(datapoint)
+    classes[web_class].append(zip(datapoint, datapoint_pred))
 fold2 = [28120,81223,31030,14390,20150]
 for cl in classes:
     if int(cl) in fold2:
         for datapoints in classes[cl]:
-            for d in datapoints:
+            for d, pred in datapoints:
+                print(pred, d)
+                oincifvnovn
                 write_json_line(d, valid_subset)
     else:
         for datapoints in classes[cl]:
-            for d in datapoints:
+            for d, pred in datapoints:
                 write_json_line(d, testing_subset)
 
 # for fold1
