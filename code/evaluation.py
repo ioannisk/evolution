@@ -404,7 +404,7 @@ def move_over_distance(fold):
 
 def avg_feature_vector(sentece):
     sentece = sentece.split()
-    sentence = [w for w in sentece if w not in stopwords]
+    sentece = [w for w in sentece if w not in stopwords]
     feat_vec = np.zeros(300)
     counter = 0
     for word in sentece:

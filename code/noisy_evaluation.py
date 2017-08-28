@@ -352,8 +352,8 @@ def nb_noisy(fold):
 
 def avg_feature_vector(sentece):
     sentece = sentece.split()
-    sentence = [w for w in sentence if random.uniform(0,1) > NOISE]
-    sentence = [w for w in sentece if w not in stopwords]
+    sentece = [w for w in sentece if random.uniform(0,1) > NOISE]
+    sentece = [w for w in sentece if w not in stopwords]
     feat_vec = np.zeros(300)
     counter = 0
     for word in sentece:
