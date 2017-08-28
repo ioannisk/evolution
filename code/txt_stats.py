@@ -18,15 +18,15 @@ def write_json_line(json_ ,file_):
 ids = []
 des_ids = []
 data= []
-with open("/home/ioannis/data/recovery_test/fold1/ranking_validation.json", "r") as file_:
+with open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json", "r") as file_:
     counter = 1
     for line in file_:
         line = json.loads(line.strip())
         data.append(line)
 counter = 0
 
-valid_subset = open("/home/ioannis/data/recovery_test/fold1/ranking_validation.json_validation_subset", 'w')
-testing_subset = open("/home/ioannis/data/recovery_test/fold1/ranking_validation.json_testing_subset", 'w')
+valid_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_validation_subset", 'w')
+testing_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_testing_subset", 'w')
 for i in range(0, len(data), 556):
     datapoint = data[i:i+556]
     counter +=1
