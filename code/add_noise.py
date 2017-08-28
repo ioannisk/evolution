@@ -113,21 +113,21 @@ def filter_data(files):
 # Read training, and see what classes you use, then sample one more negative
 #
 ####
-def add_negative_data():
-    class_descriptions = read_descriptions()
-    companies_descriptions= read_meta()
-    class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
-    data_path = "/home/ioannis/data/recovery_test/"
-    files =[data_path +"fold{}/".format(i)+"training.json" for i in range(0,5)]
-    for file_str in files:
-        output = open(file_str + ".ratio2", 'w')
-        with open(file_str, 'r') as file_:
-            for line in file_:
-                line = line.strip()
-                line = json.loads(line)
-                if line["class"] == "entailment":
-                    write_json_line(line, output)
-                else:
+# def add_negative_data():
+#     class_descriptions = read_descriptions()
+#     companies_descriptions= read_meta()
+#     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
+#     data_path = "/home/ioannis/data/recovery_test/"
+#     files =[data_path +"fold{}/".format(i)+"training.json" for i in range(0,5)]
+#     for file_str in files:
+#         output = open(file_str + ".ratio2", 'w')
+#         with open(file_str, 'r') as file_:
+#             for line in file_:
+#                 line = line.strip()
+#                 line = json.loads(line)
+#                 if line["class"] == "entailment":
+#                     write_json_line(line, output)
+#                 else:
 
 
 
