@@ -56,9 +56,9 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0,1,2,3,4]
-folds = [0,1,2,3,4]
+# folds = [0,1,2,3,4]
 # folds = [0,1,2,3]
-# folds = [1, 2]
+folds = [1, 2]
 # folds = [14]
 # folds = [0,2,4]
 class_descriptions = read_descriptions()
@@ -456,11 +456,13 @@ def decomposable_attention_eval(fold):
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
 
 
-
-    with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(choosen_model,fold), "r") as file_:
+    ## usual stuff
+    # with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(choosen_model,fold), "r") as file_:
 
 
     ###### LOOK at txt stats file ######
+
+    with open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(choosen_model,fold), "r") as file_:
     # with open("/home/ioannis/models/{}/model{}/quick_test.txt".format(choosen_model,fold), "r") as file_:
     # with open("/home/ioannis/models/{}/model{}/quick_valid.txt".format(choosen_model,fold), "r") as file_:
 
@@ -471,7 +473,12 @@ def decomposable_attention_eval(fold):
             predictions.append(float(line))
         print(len(predictions))
         # print(len(predictions))
-    with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
+
+    # with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
+
+
+
+    with open(data_path+"fold{}/ranking_validation.json_valid".format(fold), "r") as file_:
     # with open(data_path+"fold{}/ranking_validation.json_testing_subset".format(fold), "r") as file_:
     # with open(data_path+"fold{}/ranking_validation.json_validation_subset".format(fold), "r") as file_:
 
