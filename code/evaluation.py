@@ -487,6 +487,7 @@ def decomposable_attention_eval(fold):
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
         list_web = web_class[i:i+step]
+        print(list_web)
         # print(list_web)
         # stop
         list_des = description_class[i:i+step]
