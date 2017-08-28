@@ -10,20 +10,15 @@ vocab = set()
 #         for word in data.split():
 #             vocab.add(word)
 # print(len(vocab))
-val_ids = set()
-tra_ids = set()
+ids = set()
+des_ids = set()
 with open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json", "r") as file_:
     for line in file_:
         line = json.loads(line.strip())
-        line = line["web_id"]
-        val_ids.add(line)
+        web_id = line["web_id"]
+        des_class = line["des_class"]
+        ids.add(web_id)
+        des_ids.add(des_ids)
 
-with open("/home/ioannis/data/recovery_test/fold2/training.json", "r") as file_:
-    for line in file_:
-        line = json.loads(line.strip())
-        line = line["web_id"]
-        val_ids.add(line)
-
-for id_ in val_ids:
-    if id_ in tra_ids:
-        print("fuck")
+print(len(ids))
+print(len(des_ids))
