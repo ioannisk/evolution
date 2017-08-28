@@ -55,7 +55,7 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 # Comparison on folds 2, 4, 0
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
-folds = [0,3,4]
+folds = [0,1,2,3,4]
 # folds = [0,1,2,3,4]
 # folds = [0,1,2,3]
 # folds = [1]
@@ -454,7 +454,7 @@ def embedding_similarity(fold):
 
 def decomposable_attention_eval(fold):
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
-    with open("/home/ioannis/models/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
+    with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(choosen_model,fold), "r") as file_:
 
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/mnli_con_folds/model14/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
         predictions = []
