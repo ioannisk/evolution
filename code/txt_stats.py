@@ -43,8 +43,8 @@ with open("/home/ioannis/data/recovery_test/fold1/ranking_validation.json", "r")
     for line in file_:
         line = json.loads(line.strip())
         data.append(line)
-valid_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_valid", 'w')
-testing_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_test", 'w')
+# valid_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_valid", 'w')
+# testing_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_test", 'w')
 classes = defaultdict(list)
 for i in range(0, len(data), 556):
     datapoint = data[i:i+556]
