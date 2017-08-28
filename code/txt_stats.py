@@ -18,7 +18,7 @@ with open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json", "r")
         web_id = line["web_id"]
         des_class = line["des_class"]
         ids.add(web_id)
-        des_ids.add(des_ids)
+        des_ids.add(des_class)
 
 print(len(ids))
 print(len(des_ids))
