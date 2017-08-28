@@ -14,7 +14,7 @@ from sklearn.decomposition import LatentDirichletAllocation
 # from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 from new_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 import matplotlib.pyplot as plt
-
+import re
 print("Loading Word2Vec")
 from gensim.models import Word2Vec
 model_w2v = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
