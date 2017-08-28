@@ -10,8 +10,14 @@ vocab = set()
 #         for word in data.split():
 #             vocab.add(word)
 # print(len(vocab))
+def write_json_line(json_ ,file_):
+    json.dump(json_ , file_)
+    file_.write('\n')
+
+
 ids = []
 des_ids = []
+data= []
 with open("/home/ioannis/data/recovery_test/fold0/ranking_validation.json", "r") as file_:
     counter = 1
     for line in file_:
@@ -24,14 +30,13 @@ with open("/home/ioannis/data/recovery_test/fold0/ranking_validation.json", "r")
         des_class = line["des_class"]
         ids.append(web_id)
         des_ids.append(des_class)
+        data.append(line)
         # if counter == 556:
         #     # print(ids)
         #     # print(len(des_ids))
         #     ids = set()
         #     des_ids = set()
         #     counter = 0
-        counter +=1
-
 import IPython; IPython.embed()
 # print(len(ids))
 # print(len(des_ids))
