@@ -100,10 +100,10 @@ def filter_data(files):
                 line = json.loads(line)
                 clean_web = clean_up_txt(line['web'])
                 clean_web = [w for w in clean_web.split() if w not in stopwords]
-                line['web'] = clean_web
+                line['web'] = " ".join(clean_web)
                 clean_des = clean_up_txt(line['des'])
                 clean_des = [w for w in clean_des.split() if w not in stopwords]
-                line['des'] = clean_des
+                line['des'] = " ".join(clean_des)
                 write_json_line(line, output)
 
 
