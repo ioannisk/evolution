@@ -13,12 +13,19 @@ vocab = set()
 ids = set()
 des_ids = set()
 with open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json", "r") as file_:
+    counter = 0
     for line in file_:
         line = json.loads(line.strip())
         web_id = line["web_id"]
         des_class = line["des_class"]
         ids.add(web_id)
         des_ids.add(des_class)
+        if counter = 556:
+            print(ids)
+            print(len(des_ids))
+            ids = set()
+            des_ids = set()
+        counter +=1
 
-print(len(ids))
-print(len(des_ids))
+# print(len(ids))
+# print(len(des_ids))
