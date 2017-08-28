@@ -25,6 +25,7 @@ with open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json", "r")
             print(len(des_ids))
             ids = set()
             des_ids = set()
+            counter = 0
         counter +=1
 
 # print(len(ids))
