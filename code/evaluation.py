@@ -459,6 +459,7 @@ def decomposable_attention_eval(fold):
 
     # with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(choosen_model,fold), "r") as file_:
     with open("/home/ioannis/models/{}/model{}/quick_test.txt".format(choosen_model,fold), "r") as file_:
+    # with open("/home/ioannis/models/{}/model{}/quick_valid.txt".format(choosen_model,fold), "r") as file_:
 
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/mnli_con_folds/model14/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
         predictions = []
@@ -468,7 +469,8 @@ def decomposable_attention_eval(fold):
         print(len(predictions))
         # print(len(predictions))
     # with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
-    with open(data_path+"fold{}/ranking_validation.json_test_subset".format(fold), "r") as file_:
+    with open(data_path+"fold{}/ranking_validation.json_testing_subset".format(fold), "r") as file_:
+    # with open(data_path+"fold{}/ranking_validation.json_validation_subset".format(fold), "r") as file_:
 
 
     # with open(data_path+"fold{}/supervised_validation.json".format(fold), "r") as file_:
