@@ -2,27 +2,39 @@ import json
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics import pairwise_distances
+from sklearn.metrics import mutual_info_score
 import numpy as np
+import time
 import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
 from collections import Counter,defaultdict
+from sklearn.decomposition import LatentDirichletAllocation
 # from generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 from new_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 import matplotlib.pyplot as plt
-import re
 
-RANKS = list(range(1,201))
-# choosen_fold = "1rfolds3"
+print("Loading Word2Vec")
+from gensim.models import Word2Vec
+model_w2v = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
+model_w2v_vocab = model_w2v.vocab
+import nltk
+from nltk.corpus import stopwords
+stopwords = nltk.corpus.stopwords.words('english')
+
+MAX_RANK = 15
+RANKS = list(range(1,MAX_RANK))# choosen_fold = "1rfolds3"
 # choosen_model = "1rfolds3_1"
 # data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 ###
 ### TOP UNSEEN CLASS FOLDS
 ###
-choosen_fold = "best_models_1rfold3_sl"
-# choosen_model = "best_models_1rfold3_sl"
-# choosen_fold = "recovery_test"
-choosen_model ="recovery_test"
+choosen_fold = "recovery_test"
+    # choosen_fold = "best_models_1rfold3_sl"
+    # choosen_model = "best_models_1rfold3_sl"
+    # choosen_fold = "recovery_test"
+choosen_model ="best_eda"
 data_file = "validation"
 data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 
@@ -284,6 +296,7 @@ def baseline_tfidf(fold):
 
 def decomposable_attention_eval(fold):
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
+    # with open("/home/ioannis/models/{}/model{}/prob_predictions_vocab_clean.txt".format(choosen_model,fold), "r") as file_:
     with open("/home/ioannis/models/{}/model{}/prob_predictions_vocab_clean.txt".format(choosen_model,fold), "r") as file_:
 
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/mnli_con_folds/model14/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
