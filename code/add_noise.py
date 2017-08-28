@@ -1,6 +1,9 @@
 import json
 import random
 import re
+import nltk
+from nltk.corpus import stopwords
+stopwords = nltk.corpus.stopwords.words('english')
 # 1. add noise to web 20 %
 # 1. add noise to web 50 %
 # 2. remove all keywords of descriptions from websites
@@ -95,8 +98,12 @@ def filter_data(files):
             for line in file_:
                 line = line.strip()
                 line = json.loads(line)
-                line['web'] = clean_up_txt(line['web'])
-                line['des'] = clean_up_txt(line['des'])
+                clean_web = clean_up_txt(line['web'])
+                clean_web = [w for w in clean_web.split() if w not in stopwords]
+                line['web'] = clean_web
+                clean_des = clean_up_txt(line['des'])
+                clean_des = [w for w in clean_des.split() if w not in stopwords]
+                line['des'] = clean_des
                 write_json_line(line, output)
 
 
@@ -131,11 +138,10 @@ def add_negative_data():
 
 if __name__=="__main__":
     # data_path = "/home/ioannis/data/recovery_test/"
-    # files =[data_path +"fold{}/".format(i)+"ranking_validation.json" for i in range(0,5)]
+    files =[data_path +"fold{}/".format(i)+"ranking_validation.json" for i in range(0,5)]
     # print(files)
-    # filter_data(files)
+    filter_data(files)
     # web_noise(files)
     # vocab_overlap(files)
-
-    add_negative_data()
+    # add_negative_data()
 
