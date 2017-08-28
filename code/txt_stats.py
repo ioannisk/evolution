@@ -18,25 +18,24 @@ def write_json_line(json_ ,file_):
 ids = []
 des_ids = []
 data= []
-with open("/home/ioannis/data/recovery_test/fold0/ranking_validation.json", "r") as file_:
+with open("/home/ioannis/data/recovery_test/fold1/ranking_validation.json", "r") as file_:
     counter = 1
     for line in file_:
         line = json.loads(line.strip())
-        web_id = line["web_id"]
-        # print("-------")
-        # print(counter)
-        # print(web_id)
-
-        des_class = line["des_class"]
-        ids.append(web_id)
-        des_ids.append(des_class)
         data.append(line)
-        # if counter == 556:
-        #     # print(ids)
-        #     # print(len(des_ids))
-        #     ids = set()
-        #     des_ids = set()
-        #     counter = 0
-import IPython; IPython.embed()
+counter = 0
+
+valid_subset = open("/home/ioannis/data/recovery_test/fold1/ranking_validation.json_validation_subset", 'w')
+testing_subset = open("/home/ioannis/data/recovery_test/fold1/ranking_validation.json_testing_subset", 'w')
+for i in range(0, len(data), 556):
+    datapoint = data[i:i+556]
+    counter +=1
+    if counter < 1000:
+        for d in datapoint:
+            write_json_line(d, valid_subset)
+    else:
+        for d in datapoint:
+            write_json_line(d, testing_subset)
+
 # print(len(ids))
 # print(len(des_ids))
