@@ -48,7 +48,7 @@ choosen_model ="best_eda"
 # choosen_model="reproduced"
 # choosen_model = "recovery_test"
 # choosen_model = "eda_models_1"
-data_file = "validation"
+data_file = "supervised_validation"
 data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 
 #
@@ -131,8 +131,8 @@ def train_naive_bayes_des_local(fold):
             ## ensure only used classes are used for inference
             if line[0] not in used_classes:
                 continue
-            Y_train_des.append(line[0])
-            X_train_des.append(line[1])
+            Y_train.append(line[0])
+            X_train.append(line[1])
 
     # X_train = X_train + X_train_des
     # Y_train = Y_train + Y_train_des
@@ -144,10 +144,10 @@ def train_naive_bayes_des_local(fold):
 
 
     vec = count_vectorization(X_train)
-    X_train_vec = vec.transform(X_train_des)
-    Y_train = Y_train_des
+    X_train_vec = vec.transform(X_train)
+    Y_train = Y_train
     X_valid_vec = vec.transform(X_valid)
-    a = 0.002
+    a = 0.2
     # for a in np.arange(1,200)*0.0001:
     gnb = MultinomialNB(alpha=a,fit_prior=False)
     # clf = gnb.fit(X_train_des_vec, Y_train_des)
@@ -454,7 +454,7 @@ def embedding_similarity(fold):
 
 def decomposable_attention_eval(fold):
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
-    with open("/home/ioannis/models/{}/model{}/prob_predictions.txt".format(choosen_model,fold), "r") as file_:
+    with open("/home/ioannis/models/{}/model{}/prob_predictions_super.txt".format(choosen_model,fold), "r") as file_:
 
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/mnli_con_folds/model14/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
         predictions = []
@@ -463,8 +463,8 @@ def decomposable_attention_eval(fold):
             predictions.append(float(line))
         print(len(predictions))
         # print(len(predictions))
-    with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
-    # with open(data_path+"fold{}/supervised_validation.json".format(fold), "r") as file_:
+    # with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
+    with open(data_path+"fold{}/supervised_validation.json".format(fold), "r") as file_:
 
         companies = set()
         description_class = []
