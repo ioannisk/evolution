@@ -381,7 +381,6 @@ def decomposable_attention_eval(fold):
             description_class.append(line['des_class'])
             companies.add(line['web_id'])
     true_positive = np.zeros(len(RANKS))
-    rank_index_stats = Counter()
     step = len(used_classes)
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
@@ -462,23 +461,23 @@ def each_fold_stats():
         tic = time.clock()
         tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
         tfidf_avrg[ii] = tf_accuracy
-        norm = float(sum(tf_rank_index_stats.values()))
-        a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
-        rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_tf_data += rank_tf_probs
-        toc = time.clock()
-        print("Td-idf time: {}".format(toc - tic))
+        # norm = float(sum(tf_rank_index_stats.values()))
+        # a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
+        # rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
+        # bar_tf_data += rank_tf_probs
+        # toc = time.clock()
+        # print("Td-idf time: {}".format(toc - tic))
 
 
         tic = time.clock()
         nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
         nb_avrg[ii] = nb_accuracy
-        norm = float(sum(nb_rank_index_stats.values()))
-        a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
-        rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_nb_data += rank_nb_probs
-        toc = time.clock()
-        print("Naive Bayes time: {}".format(toc - tic))
+        # norm = float(sum(nb_rank_index_stats.values()))
+        # a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
+        # rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
+        # bar_nb_data += rank_nb_probs
+        # toc = time.clock()
+        # print("Naive Bayes time: {}".format(toc - tic))
 
 
         ### Try it tonight ## :)
@@ -502,22 +501,22 @@ def each_fold_stats():
         tic = time.clock()
         cbow_accuracy, cbow_rank_index_stats = embedding_similarity(fold)
         cbow_avrg[ii] = cbow_accuracy
-        norm = float(sum(cbow_rank_index_stats.values()))
-        a = sorted(cbow_rank_index_stats.items())[:len(RANKS)]
-        rank_cbow_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_cbow_data += rank_cbow_probs
-        toc = time.clock()
-        print("CBOW time: {}".format(toc - tic))
+        # norm = float(sum(cbow_rank_index_stats.values()))
+        # a = sorted(cbow_rank_index_stats.items())[:len(RANKS)]
+        # rank_cbow_probs = np.asarray(list(zip(*a))[1])/norm
+        # bar_cbow_data += rank_cbow_probs
+        # toc = time.clock()
+        # print("CBOW time: {}".format(toc - tic))
 
         tic = time.clock()
         att_accuracy, da_rank_index_stats = decomposable_attention_eval(fold)
         att_avrg[ii] = att_accuracy
-        norm = float(sum(da_rank_index_stats.values()))
-        a = sorted(da_rank_index_stats.items())[:len(RANKS)]
-        rank_da_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_da_data += rank_da_probs
-        toc = time.clock()
-        print("Decomposable Attention time: {}".format(toc - tic))
+        # norm = float(sum(da_rank_index_stats.values()))
+        # a = sorted(da_rank_index_stats.items())[:len(RANKS)]
+        # rank_da_probs = np.asarray(list(zip(*a))[1])/norm
+        # bar_da_data += rank_da_probs
+        # toc = time.clock()
+        # print("Decomposable Attention time: {}".format(toc - tic))
 
         # print_nice_table(att_accuracy, att_accuracy,  att_accuracy)
         print_nice_table(nb_accuracy, tf_accuracy,  att_accuracy)
