@@ -381,6 +381,7 @@ def decomposable_attention_eval(fold):
             description_class.append(line['des_class'])
             companies.add(line['web_id'])
     true_positive = np.zeros(len(RANKS))
+    rank_index_stats = Counter()
     step = len(used_classes)
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
