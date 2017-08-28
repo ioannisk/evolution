@@ -42,7 +42,7 @@ with open("/home/ioannis/models/best_eda/model2/prob_predictions_filter.txt", "r
     for line in file_:
         line = line.strip()
         predictions.append(float(line))
-
+data = []
 with open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json.filter", "r") as file_:
     counter = 1
     for line in file_:
