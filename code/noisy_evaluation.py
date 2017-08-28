@@ -28,7 +28,8 @@ print(NOISE)
 choosen_fold = "recovery_test"
     # data_file = "validation"
     # data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
-choosen_model ="recovery_test"
+# choosen_model ="recovery_test"
+choosen_model ="best_eda"
 data_file = "validation"
 data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 
