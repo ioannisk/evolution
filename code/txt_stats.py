@@ -38,7 +38,7 @@ def write_json_line(json_ ,file_):
 
 ## This code makes a 1 shot validation
 data= []
-with open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json", "r") as file_:
+with open("/home/ioannis/data/recovery_test/fold1/ranking_validation.json", "r") as file_:
     counter = 1
     for line in file_:
         line = json.loads(line.strip())
@@ -55,6 +55,12 @@ for cc in classes:
     print(cc, len(classes[cc]))
 print(len(classes))
 
+# for fold2
+# 28120 156
+# 81223 379
+# 31030 108
+# 14390 22
+# 20150 54
 
 
     # datapoint[0][]
