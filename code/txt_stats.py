@@ -17,6 +17,7 @@ with open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json", "r")
     for line in file_:
         line = json.loads(line.strip())
         web_id = line["web_id"]
+        print("-------")
         print(counter)
         print(web_id)
 
