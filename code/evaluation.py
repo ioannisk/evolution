@@ -143,7 +143,7 @@ def train_naive_bayes_des_local(fold):
     # vec = tf_idf_vectorization(X_train+X_train_des)
 
 
-    vec = count_vectorization(X_train)
+    vec = count_vectorization(X_train_des)
     X_train_vec = vec.transform(X_train_des)
     Y_train = Y_train_des
     X_valid_vec = vec.transform(X_valid)
@@ -152,8 +152,8 @@ def train_naive_bayes_des_local(fold):
     gnb = MultinomialNB(alpha=a,fit_prior=False)
     # clf = gnb.fit(X_train_des_vec, Y_train_des)
     clf = gnb.fit(X_train_vec, Y_train)
-    y_pred_test = clf.predict(X_valid_vec)
-    y_pred_train = clf.predict(X_train_vec)
+    # y_pred_test = clf.predict(X_valid_vec)
+    # y_pred_train = clf.predict(X_train_vec)
     # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
     # import IPython; IPython.embed()
     # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
