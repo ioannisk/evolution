@@ -20,7 +20,7 @@ with open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json", "r")
         des_class = line["des_class"]
         ids.add(web_id)
         des_ids.add(des_class)
-        if counter == 556:
+        if counter == 555:
             print(ids)
             print(len(des_ids))
             ids = set()
