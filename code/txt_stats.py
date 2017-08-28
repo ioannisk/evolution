@@ -43,26 +43,25 @@ with open("/home/ioannis/data/recovery_test/fold1/ranking_validation.json", "r")
     for line in file_:
         line = json.loads(line.strip())
         data.append(line)
-# valid_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_valid", 'w')
-# testing_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_test", 'w')
+valid_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_valid", 'w')
+testing_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_test", 'w')
 classes = defaultdict(list)
 for i in range(0, len(data), 556):
     datapoint = data[i:i+556]
     web_id = datapoint[0]["web_id"]
     web_class = datapoint[0]["web_class"]
     classes[web_class].append(datapoint)
-for cc in classes:
-    print(cc, len(classes[cc]))
-print(len(classes))
-
-# for fold2
-# 28120 156
-# 81223 379
-# 31030 108
-# 14390 22
-# 20150 54
+fold2 = [28120,81223,31030,14390,20150]
+for cl in classes:
+    if int(cl) in fold2:
+        for datapoints in classes[cl]:
+            print(datapoints)
+            vinitvntv
 
 
+# for fold1
+#valid
+# fold1 = [46341,13950,74203,20412,52102,82190]
     # datapoint[0][]
 
 
