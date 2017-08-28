@@ -15,12 +15,12 @@ from sklearn.decomposition import LatentDirichletAllocation
 from new_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 import matplotlib.pyplot as plt
 
-print("Loading Word2Vec")
-from gensim.models import Word2Vec
-model_w2v = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
-model_w2v_vocab = model_w2v.vocab
-import nltk
-from nltk.corpus import stopwords
+# print("Loading Word2Vec")
+# from gensim.models import Word2Vec
+# model_w2v = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
+# model_w2v_vocab = model_w2v.vocab
+# import nltk
+# from nltk.corpus import stopwords
 stopwords = nltk.corpus.stopwords.words('english')
 
 MAX_RANK = 15
@@ -565,28 +565,28 @@ def each_fold_stats():
     for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
 
-        tic = time.clock()
-        tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
-        tfidf_avrg[ii] = tf_accuracy
-        norm = float(sum(tf_rank_index_stats.values()))
-        a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
-        rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_tf_data += rank_tf_probs
-        toc = time.clock()
-        print("Td-idf time: {}".format(toc - tic))
+        # tic = time.clock()
+        # tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
+        # tfidf_avrg[ii] = tf_accuracy
+        # norm = float(sum(tf_rank_index_stats.values()))
+        # a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
+        # rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
+        # bar_tf_data += rank_tf_probs
+        # toc = time.clock()
+        # print("Td-idf time: {}".format(toc - tic))
 
 
-        tic = time.clock()
-        nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
-        nb_avrg[ii] = nb_accuracy
-        norm = float(sum(nb_rank_index_stats.values()))
-        a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
-        rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_nb_data += rank_nb_probs
-        toc = time.clock()
-        print("Naive Bayes time: {}".format(toc - tic))
+        # tic = time.clock()
+        # nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
+        # nb_avrg[ii] = nb_accuracy
+        # norm = float(sum(nb_rank_index_stats.values()))
+        # a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
+        # rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
+        # bar_nb_data += rank_nb_probs
+        # toc = time.clock()
+        # print("Naive Bayes time: {}".format(toc - tic))
 
-
+################################################
         ### Try it tonight ## :)
         # mover_accuracy, mover_rank_index_stats = move_over_distance(fold)
         # mover_avrg[ii] = mover_accuracy
@@ -604,16 +604,17 @@ def each_fold_stats():
         # bar_lda_data += rank_lda_probs
         # toc = time.clock()
         # print("LDA time: {}".format(toc - tic))
+################################################
 
-        tic = time.clock()
-        cbow_accuracy, cbow_rank_index_stats = embedding_similarity(fold)
-        cbow_avrg[ii] = cbow_accuracy
-        norm = float(sum(cbow_rank_index_stats.values()))
-        a = sorted(cbow_rank_index_stats.items())[:len(RANKS)]
-        rank_cbow_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_cbow_data += rank_cbow_probs
-        toc = time.clock()
-        print("CBOW time: {}".format(toc - tic))
+        # tic = time.clock()
+        # cbow_accuracy, cbow_rank_index_stats = embedding_similarity(fold)
+        # cbow_avrg[ii] = cbow_accuracy
+        # norm = float(sum(cbow_rank_index_stats.values()))
+        # a = sorted(cbow_rank_index_stats.items())[:len(RANKS)]
+        # rank_cbow_probs = np.asarray(list(zip(*a))[1])/norm
+        # bar_cbow_data += rank_cbow_probs
+        # toc = time.clock()
+        # print("CBOW time: {}".format(toc - tic))
 
         tic = time.clock()
         att_accuracy, da_rank_index_stats = decomposable_attention_eval(fold)
