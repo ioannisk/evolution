@@ -73,7 +73,7 @@ for cl in classes:
         for datapoints in classes[cl]:
             for d, pred in datapoints:
                 write_json_line(d, testing_subset)
-                valid_subset_pred.write("{}\n".format(pred))
+                testing_subset_pred.write("{}\n".format(pred))
 
 # for fold1
 #valid
