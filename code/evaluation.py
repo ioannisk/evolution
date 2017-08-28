@@ -461,8 +461,11 @@ def decomposable_attention_eval(fold):
         for line in file_:
             line = line.strip()
             predictions.append(float(line))
+        print(len(predictions))
         # print(len(predictions))
-    with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
+    # with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
+    with open(data_path+"fold{}/supervised_validation.json".format(fold), "r") as file_:
+
         companies = set()
         description_class = []
         web_class = []
