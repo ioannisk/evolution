@@ -171,6 +171,7 @@ def train_naive_bayes_des_local(fold):
     # import IPython; IPython.embed()
     # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
     y_pred_test_proba = clf.predict_proba(X_valid_vec)
+    rank_index_stats = Counter()
     true_positive = np.zeros(len(RANKS))
     for i, proba in enumerate(y_pred_test_proba):
         ranked = zip(proba, clf.classes_)
@@ -178,10 +179,11 @@ def train_naive_bayes_des_local(fold):
         proba, classes = zip(*ranked)
         classes = list(classes)
         # classes = remove_rare_classes(classes)
+        rank_index_stats[classes.index(Y_valid[i])] +=1
         for j, TOP_N in enumerate(RANKS):
             if Y_valid[i] in classes[:TOP_N]:
                 true_positive[j] +=1
-    return true_positive*100/float(len(Y_valid))
+    return true_positive*100/float(len(Y_valid)), rank_index_stats
 
 def count_vectorization(corpus):
     vec = CountVectorizer( min_df=1)
@@ -236,6 +238,7 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
     # print pairwise_cos_matrix.shape
     # print("pairwise evaluation {}".format(pairwise_cos_matrix.shape))
     assert pairwise_cos_matrix.shape == (web_tfidf.shape[0], des_tfidf.shape[0])
+    rank_index_stats = Counter()
     true_positive = np.zeros(len(RANKS))
     for i, row in enumerate(pairwise_cos_matrix):
         sim_labels = list(zip(row, des_class))
@@ -243,10 +246,11 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
         similarities, classes = zip(*ranked)
         classes = list(classes)
         # classes = remove_rare_classes(classes)
+        rank_index_stats[classes.index(web_class[i])] +=1
         for j, TOP_N in enumerate(RANKS):
             if web_class[i] in classes[:TOP_N]:
                 true_positive[j] +=1
-    return true_positive*100/float(len(web_class))
+    return true_positive*100/float(len(web_class)), rank_index_stats
 
 def baseline_tfidf(fold):
     # print("Loading data sets")
@@ -291,8 +295,8 @@ def baseline_tfidf(fold):
     ## vetorize des and validation websites
     des_tfidf = tfidf_vec.transform(descriptions_txt)
     web_tfidf = tfidf_vec.transform(web_txt)
-    accuracy = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
-    return accuracy
+    accuracy, rank_index_stats = tfidf_inference(des_tfidf, descriptions_class, web_tfidf, web_class)
+    return accuracy, rank_index_stats
 
 
 
@@ -377,6 +381,7 @@ def decomposable_attention_eval(fold):
             description_class.append(line['des_class'])
             companies.add(line['web_id'])
     true_positive = np.zeros(len(RANKS))
+    rank_index_stats = Counter()
     step = len(used_classes)
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
@@ -393,10 +398,11 @@ def decomposable_attention_eval(fold):
         # used_list_des.remove('87200')
         # used_list_des.remove('82990')
         # used_list_des = remove_rare_classes(used_list_des)
+        rank_index_stats[used_list_des.index(list_web[0])] +=1
         for j, TOP_N in enumerate(RANKS):
             if list_web[0] in used_list_des[:TOP_N]:
                 true_positive[j] +=1
-    return true_positive*100/float(len(companies))
+    return true_positive*100/float(len(companies)), rank_index_stats
 
 
 
