@@ -1,5 +1,6 @@
 import json
 import sys
+from collections import defaultdict
 vocab = set()
 # with open("/home/ioannis/data/snli_1.0/snli_1.0_train.jsonl", "r") as file_:
 #     for line in file_:
@@ -44,11 +45,17 @@ with open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json", "r")
         data.append(line)
 # valid_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_valid", 'w')
 # testing_subset = open("/home/ioannis/data/recovery_test/fold2/ranking_validation.json_test", 'w')
+classes = defaultdict(list)
 for i in range(0, len(data), 556):
     datapoint = data[i:i+556]
-    print("##########################################")
-    for d in datapoint:
-        print(d["web_id"])
+    web_id = datapoint[0]["web_id"]
+    web_class = datapoint[0]["web_class"]
+    classes[web_class].append(datapoint)
+for cc in classes:
+    print(cc, len(classes[cc]))
+print(len(classes))
+
+
 
     # datapoint[0][]
 
