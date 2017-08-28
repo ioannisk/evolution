@@ -21,14 +21,12 @@
 
 
 
-python -u my_evaluate.py /home/ioannis/models/best_eda/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json.filter ~/data/glove/glove-840B_l2.npy --vocabulary ~/data/glove/glove-840B-vocabulary_l2.txt -save prob_predictions_filter.txt
-python -u my_evaluate.py /home/ioannis/models/best_eda/model3 /home/ioannis/data/recovery_test/fold3/ranking_validation.json.filter ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_filter.txt
-python -u my_evaluate.py /home/ioannis/models/best_eda/model4 /home/ioannis/data/recovery_test/fold4/ranking_validation.json.filter ~/data/glove/glove-840B_l2.npy --vocabulary ~/data/glove/glove-840B-vocabulary_l2.txt -save prob_predictions_filter.txt
+# python -u my_evaluate.py /home/ioannis/models/best_eda/model2 /home/ioannis/data/recovery_test/fold2/ranking_validation.json.filter ~/data/glove/glove-840B_l2.npy --vocabulary ~/data/glove/glove-840B-vocabulary_l2.txt -save prob_predictions_filter.txt
+# python -u my_evaluate.py /home/ioannis/models/best_eda/model3 /home/ioannis/data/recovery_test/fold3/ranking_validation.json.filter ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_filter.txt
+# python -u my_evaluate.py /home/ioannis/models/best_eda/model4 /home/ioannis/data/recovery_test/fold4/ranking_validation.json.filter ~/data/glove/glove-840B_l2.npy --vocabulary ~/data/glove/glove-840B-vocabulary_l2.txt -save prob_predictions_filter.txt
 
 # ranking_validation.json.filter
 
-#### Evaluation has to be done for this :) please do it
-# python -u my_evaluate.py /home/ioannis/models/best_eda/model0 /home/ioannis/data/recovery_test/fold0/supervised_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_super.txt
-# python -u my_evaluate.py /home/ioannis/models/best_eda/model3 /home/ioannis/data/recovery_test/fold3/supervised_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_super.txt
-# python -u my_evaluate.py /home/ioannis/models/best_eda/model4 /home/ioannis/data/recovery_test/fold4/supervised_validation.json ~/data/glove/glove-840B.npy --vocabulary ~/data/glove/glove-840B-vocabulary.txt -save prob_predictions_super.txt
 
+python -u my_train.py ~/data/glove/glove-840B_l2.npy /home/ioannis/data/recovery_test/fold3/training.json.filter /home/ioannis/data/recovery_test/fold3/validation.json /home/ioannis/models/filtered_models/model0 mlp --lower -e 4 -u 200 -d 0.8  -b 32 -r 0.05 --report 130000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt
+python -u my_train.py ~/data/glove/glove-840B_l2.npy /home/ioannis/data/recovery_test/fold4/training.json.filter /home/ioannis/data/recovery_test/fold4/validation.json /home/ioannis/models/filtered_models/model0 mlp --lower -e 4 -u 200 -d 0.8  -b 32 -r 0.05 --report 130000 --vocab ~/data/glove/glove-840B-vocabulary_l2.txt
