@@ -44,8 +44,9 @@ choosen_fold = "recovery_test"
 
 ### prediction done for eda_models, eda_models_1, eda_models_2
 
-# choosen_model ="filtered_models_2"
-choosen_model=  "best_eda"
+choosen_model ="filtered_models_2"
+# choosen_model=  "best_eda"
+
 # choosen_model ="filtered_models_1"
 # choosen_model="reproduced"
 # choosen_model = "recovery_test"
@@ -464,8 +465,8 @@ def decomposable_attention_eval(fold):
 
     ###### LOOK at txt stats file ######
 
-    # with open("/home/ioannis/models/{}/model{}/prob_predictions_test.txt".format(choosen_model,fold), "r") as file_:
-    with open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(choosen_model,fold), "r") as file_:
+    with open("/home/ioannis/models/{}/model{}/prob_predictions_test.txt".format(choosen_model,fold), "r") as file_:
+    # with open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(choosen_model,fold), "r") as file_:
 
 
 
@@ -486,8 +487,8 @@ def decomposable_attention_eval(fold):
 
 
 
-    # with open(data_path+"fold{}/ranking_validation.json_test".format(fold), "r") as file_:
-    with open(data_path+"fold{}/ranking_validation.json_valid".format(fold), "r") as file_:
+    with open(data_path+"fold{}/ranking_validation.json_test".format(fold), "r") as file_:
+    # with open(data_path+"fold{}/ranking_validation.json_valid".format(fold), "r") as file_:
 
 
 
