@@ -37,8 +37,8 @@ def write_json_line(json_ ,file_):
 #             write_json_line(d, testing_subset)
 
 ## This code makes a 1 shot validation
-# CHOOSE_MODEL = "best_eda"
-CHOOSE_MODEL = "filtered_models_2"
+CHOOSE_MODEL = "best_eda"
+# CHOOSE_MODEL = "filtered_models_2"
 CHOOSEN_FOLD = 1
 
 with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(CHOOSE_MODEL,CHOOSEN_FOLD), "r") as file_:
