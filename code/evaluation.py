@@ -486,8 +486,8 @@ def decomposable_attention_eval(fold):
 
 
 
-    with open(data_path+"fold{}/ranking_validation.json_test".format(fold), "r") as file_:
-    # with open(data_path+"fold{}/ranking_validation.json_valid".format(fold), "r") as file_:
+    # with open(data_path+"fold{}/ranking_validation.json_test".format(fold), "r") as file_:
+    with open(data_path+"fold{}/ranking_validation.json_valid".format(fold), "r") as file_:
 
 
 
