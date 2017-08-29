@@ -37,7 +37,8 @@ def write_json_line(json_ ,file_):
 #             write_json_line(d, testing_subset)
 
 ## This code makes a 1 shot validation
-CHOOSE_MODEL = "best_eda"
+# CHOOSE_MODEL = "best_eda"
+CHOOSE_MODEL = "filtered_models_2"
 CHOOSEN_FOLD = 2
 
 with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(CHOOSE_MODEL,CHOOSEN_FOLD), "r") as file_:
@@ -51,10 +52,10 @@ with open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json.filte
     for line in file_:
         line = json.loads(line.strip())
         data.append(line)
-valid_subset = open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json_valid".format(CHOOSEN_FOLD), 'w')
+# valid_subset = open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json_valid".format(CHOOSEN_FOLD), 'w')
 valid_subset_pred = open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(CHOOSE_MODEL,CHOOSEN_FOLD), 'w')
 
-testing_subset = open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json_test".format(CHOOSEN_FOLD), 'w')
+# testing_subset = open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json_test".format(CHOOSEN_FOLD), 'w')
 testing_subset_pred = open("/home/ioannis/models/{}/model{}/prob_predictions_test.txt".format(CHOOSE_MODEL,CHOOSEN_FOLD), 'w')
 classes = defaultdict(list)
 for i in range(0, len(data), 556):
@@ -64,17 +65,17 @@ for i in range(0, len(data), 556):
     web_class = datapoint[0]["web_class"]
     classes[web_class].append(zip(datapoint, datapoint_pred))
 fold2 = [28120,81223,31030,14390,20150]
-fold1 = [46341,13950,74203,20412,52102,82190]
+# fold1 = [46341,13950,74203,20412,52102,82190]
 for cl in classes:
     if int(cl) in fold2:
         for datapoints in classes[cl]:
             for d, pred in datapoints:
-                write_json_line(d, valid_subset)
+                # write_json_line(d, valid_subset)
                 valid_subset_pred.write("{}\n".format(pred))
     else:
         for datapoints in classes[cl]:
             for d, pred in datapoints:
-                write_json_line(d, testing_subset)
+                # write_json_line(d, testing_subset)
                 testing_subset_pred.write("{}\n".format(pred))
 
 # for fold1
