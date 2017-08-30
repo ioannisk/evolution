@@ -82,13 +82,13 @@ for cl in classes:
     if int(cl) in fold[CHOOSEN_FOLD]:
         for datapoints in classes[cl]:
             for d, pred in datapoints:
-                write_json_line(d, valid_subset)
-                # valid_subset_pred.write("{}\n".format(pred))
+                # write_json_line(d, valid_subset)
+                valid_subset_pred.write("{}\n".format(pred))
     else:
         for datapoints in classes[cl]:
             for d, pred in datapoints:
-                write_json_line(d, testing_subset)
-                # testing_subset_pred.write("{}\n".format(pred))
+                # write_json_line(d, testing_subset)
+                testing_subset_pred.write("{}\n".format(pred))
 
 
 # fold0 =
