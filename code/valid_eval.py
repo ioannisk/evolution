@@ -131,9 +131,9 @@ def train_naive_bayes_des_local(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            # if int(web_class[i]) in fold_valid_classes[fold]:
-            X_valid.append(web_txt[i])
-            Y_valid.append(web_class[i])
+            if int(web_class[i]) in fold_valid_classes[fold]:
+                X_valid.append(web_txt[i])
+                Y_valid.append(web_class[i])
 
 
             # validation_classes.add(web_class[i])
@@ -286,14 +286,14 @@ def baseline_tfidf(fold):
             descriptions_txt.append(line[1])
     with open(data_path+"fold{}/{}.json".format(fold,data_file),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
-    #     for i, b in enumerate(binary_class):
-    #         if b!="entailment":
-    #             continue
-    #         if int(web_class[i]) in fold_valid_classes[fold]:
-    #             X_valid.append(web_txt[i])
-    #             Y_valid.append(web_class[i])
-    # web_txt_ = X_valid
-    # web_class_ = Y_valid
+        for i, b in enumerate(binary_class):
+            if b!="entailment":
+                continue
+            if int(web_class[i]) in fold_valid_classes[fold]:
+                X_valid.append(web_txt[i])
+                Y_valid.append(web_class[i])
+    web_txt = X_valid
+    web_class = Y_valid
     # import IPython; IPython.embed()
 
 
@@ -476,14 +476,14 @@ def embedding_similarity(fold):
             descriptions_txt.append(line[1])
     with open(data_path+"fold{}/{}.json".format(fold,data_file),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
-    #     for i, b in enumerate(binary_class):
-    #         if b!="entailment":
-    #             continue
-    #         if int(web_class[i]) in fold_valid_classes[fold]:
-    #             X_valid.append(web_txt[i])
-    #             Y_valid.append(web_class[i])
-    # web_txt = X_valid
-    # web_class = Y_valid
+        for i, b in enumerate(binary_class):
+            if b!="entailment":
+                continue
+            if int(web_class[i]) in fold_valid_classes[fold]:
+                X_valid.append(web_txt[i])
+                Y_valid.append(web_class[i])
+    web_txt = X_valid
+    web_class = Y_valid
 
 
     des_tfidf = embedding_doc_vectorizer(descriptions_txt)
@@ -502,13 +502,13 @@ def decomposable_attention_eval(fold):
 
 
     ## usual stuff
-    with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(choosen_model,fold), "r") as file_:
+    # with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(choosen_model,fold), "r") as file_:
 
 
     ###### LOOK at txt stats file ######
 
     # with open("/home/ioannis/models/{}/model{}/prob_predictions_test.txt".format(choosen_model,fold), "r") as file_:
-    # with open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(choosen_model,fold), "r") as file_:
+    with open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(choosen_model,fold), "r") as file_:
 
 
 
@@ -525,12 +525,12 @@ def decomposable_attention_eval(fold):
         print(len(predictions))
         # print(len(predictions))
 
-    with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
+    # with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
 
 
 
     # with open(data_path+"fold{}/ranking_validation.json_test".format(fold), "r") as file_:
-    # with open(data_path+"fold{}/ranking_validation.json_valid".format(fold), "r") as file_:
+    with open(data_path+"fold{}/ranking_validation.json_valid".format(fold), "r") as file_:
 
 
 
