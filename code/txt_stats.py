@@ -50,13 +50,14 @@ CHOOSE_MODEL = "filtered_models_3"
 for i_fold in [0,1,2,3,4]:
     CHOOSEN_FOLD = i_fold
     print(CHOOSEN_FOLD)
-    with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(CHOOSE_MODEL,CHOOSEN_FOLD), "r") as file_:
-        predictions = []
-        for line in file_:
-            line = line.strip()
-            predictions.append(float(line))
+    # with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(CHOOSE_MODEL,CHOOSEN_FOLD), "r") as file_:
+    #     predictions = []
+    #     for line in file_:
+    #         line = line.strip()
+    #         predictions.append(float(line))
     data = []
-    with open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json.filter".format(CHOOSEN_FOLD), "r") as file_:
+    # with open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json.filter".format(CHOOSEN_FOLD), "r") as file_:
+    with open("/home/ioannis/data/recovery_test/fold{}/validation.json".format(CHOOSEN_FOLD), "r") as file_:
         counter = 1
         for line in file_:
             line = json.loads(line.strip())
@@ -69,7 +70,7 @@ for i_fold in [0,1,2,3,4]:
     classes = defaultdict(list)
     for i in range(0, len(data), 556):
         datapoint = data[i:i+556]
-        datapoint_pred = predictions[i:i+556]
+        # datapoint_pred = predictions[i:i+556]
         web_id = datapoint[0]["web_id"]
         web_class = datapoint[0]["web_class"]
         classes[web_class].append(zip(datapoint, datapoint_pred))
