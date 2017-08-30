@@ -265,6 +265,8 @@ def baseline_tfidf(fold):
     # print("Loading data sets")
     descriptions_txt = []
     descriptions_class = []
+    X_valid = []
+    Y_valid = []
     with open(data_path+"fold{}/training.json".format(fold),"r") as file_:
         training_corpus = make_training_corpus(file_)
         # print(len(training_corpus))
@@ -449,6 +451,8 @@ def embedding_similarity(fold):
     # print("Loading data sets")
     descriptions_txt = []
     descriptions_class = []
+    X_valid = []
+    Y_valid = []
     with open(data_path+"fold{}/training.json".format(fold),"r") as file_:
         training_corpus = make_training_corpus(file_)
         # print(len(training_corpus))
