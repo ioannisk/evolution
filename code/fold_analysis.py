@@ -46,9 +46,9 @@ import json
 # print(used_classes_1==used_classes)
 
 
-rank_valid = open("/home/ioannis/data/recovery_test/fold0/ranking_validation.json.filter", 'r')
-valid = open("/home/ioannis/data/recovery_test/fold0/validation.json", 'r')
-train = open("/home/ioannis/data/recovery_test/fold0/training.json.filter", 'r')
+rank_valid = open("/home/ioannis/data/recovery_test/fold1/ranking_validation.json.filter", 'r')
+valid = open("/home/ioannis/data/recovery_test/fold1/validation.json", 'r')
+train = open("/home/ioannis/data/recovery_test/fold1/training.json.filter", 'r')
 
 training_cl = set()
 for line in train:
