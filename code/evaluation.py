@@ -493,7 +493,7 @@ def decomposable_attention_eval(fold):
         print(len(predictions))
         # print(len(predictions))
 
-    with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
+    # with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
 
 
 
