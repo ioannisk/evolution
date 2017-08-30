@@ -49,13 +49,13 @@ import json
 valid = open("/home/ioannis/data/recovery_test/fold0/ranking_validation.json.filter", 'r')
 train = open("/home/ioannis/data/recovery_test/fold0/training.json.filter", 'r')
 
-training_cl = {}
+training_cl = set()
 for line in train:
     line = json.loads(line.strip())
     if line["class"]=="entailment":
         training_cl.add(line["web_class"])
 
-valid_cl = {}
+valid_cl = set()
 for line in valid:
     line = json.loads(line.strip())
     if line["class"]=="entailment":
