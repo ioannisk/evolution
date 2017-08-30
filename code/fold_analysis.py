@@ -44,31 +44,31 @@ import json
 #         # if len(des.split())==0 or len(web.split())==0:
 #         #     print(line[web_id])
 # print(used_classes_1==used_classes)
+for k in  [1,2,3,4]:
+    rank_valid = open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json.filter".format(k), 'r')
+    valid = open("/home/ioannis/data/recovery_test/fold{}/validation.json".format(k), 'r')
+    train = open("/home/ioannis/data/recovery_test/fold{}/training.json.filter".format(k), 'r')
+    training_cl = set()
+    for line in train:
+        line = json.loads(line.strip())
+        if line["class"]=="entailment":
+            training_cl.add(line["web_class"])
+    valid_cl = set()
+    for line in valid:
+        line = json.loads(line.strip())
+        if line["class"]=="entailment":
+            valid_cl.add(line["web_class"])
+    rank_valid_cl = set()
+    for line in rank_valid:
+        line = json.loads(line.strip())
+        if line["class"]=="entailment":
+            rank_valid_cl.add(line["web_class"])
 
+    for ii in rank_valid_cl:
+        if ii in training_cl:
+            print(ii)
 
-rank_valid = open("/home/ioannis/data/recovery_test/fold1/ranking_validation.json.filter", 'r')
-valid = open("/home/ioannis/data/recovery_test/fold1/validation.json", 'r')
-train = open("/home/ioannis/data/recovery_test/fold1/training.json.filter", 'r')
-
-training_cl = set()
-for line in train:
-    line = json.loads(line.strip())
-    if line["class"]=="entailment":
-        training_cl.add(line["web_class"])
-
-valid_cl = set()
-for line in valid:
-    line = json.loads(line.strip())
-    if line["class"]=="entailment":
-        valid_cl.add(line["web_class"])
-
-rank_valid_cl = set()
-for line in rank_valid:
-    line = json.loads(line.strip())
-    if line["class"]=="entailment":
-        rank_valid_cl.add(line["web_class"])
-
-import IPython; IPython.embed()
+# import IPython; IPython.embed()
 
 
 
