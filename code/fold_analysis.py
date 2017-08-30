@@ -59,7 +59,7 @@ valid_cl = set()
 for line in valid:
     line = json.loads(line.strip())
     if line["class"]=="entailment":
-        training_cl.add(line["web_class"])
+        valid_cl.add(line["web_class"])
 import IPython; IPython.embed()
 
 
