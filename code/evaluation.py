@@ -44,10 +44,11 @@ choosen_fold = "recovery_test"
 
 ### prediction done for eda_models, eda_models_1, eda_models_2
 
-choosen_model ="filtered_models_3"
+### This does suprisingly well go on no max pool, go on
+# choosen_model ="filtered_models_3"
 # choosen_model=  "best_eda"
 
-# choosen_model ="filtered_models_1"
+choosen_model ="filtered_models_2"
 # choosen_model="reproduced"
 # choosen_model = "recovery_test"
 # choosen_model = "eda_models_1"
@@ -460,13 +461,13 @@ def decomposable_attention_eval(fold):
 
 
     ## usual stuff
-    with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(choosen_model,fold), "r") as file_:
+    # with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(choosen_model,fold), "r") as file_:
 
 
     ###### LOOK at txt stats file ######
 
     # with open("/home/ioannis/models/{}/model{}/prob_predictions_test.txt".format(choosen_model,fold), "r") as file_:
-    # with open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(choosen_model,fold), "r") as file_:
+    with open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(choosen_model,fold), "r") as file_:
 
 
 
@@ -483,12 +484,12 @@ def decomposable_attention_eval(fold):
         print(len(predictions))
         # print(len(predictions))
 
-    with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
+    # with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
 
 
 
     # with open(data_path+"fold{}/ranking_validation.json_test".format(fold), "r") as file_:
-    # with open(data_path+"fold{}/ranking_validation.json_valid".format(fold), "r") as file_:
+    with open(data_path+"fold{}/ranking_validation.json_valid".format(fold), "r") as file_:
 
 
 
