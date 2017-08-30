@@ -27,6 +27,13 @@ MAX_RANK = 15
 RANKS = list(range(1,MAX_RANK))
 
 
+fold_valid_classes = {0:[61200,22110,14132,21200,52101,58210],
+        1:[46341,13950,74203,20412,52102,82190],
+        2:[28120,81223,31030,14390,20150],
+        3:[28410,18130,10840,28120,46360,26514],
+        4:[23320,65300,46210,13910,10831,63910]
+}
+
 # choosen_fold = "new_data_3"
 # choosen_model = "new_data_3_1"
 # data_file = "validation"x
@@ -46,9 +53,9 @@ choosen_fold = "recovery_test"
 
 ### This does suprisingly well go on no max pool, go on
 # choosen_model ="filtered_models_3"
-# choosen_model=  "best_eda"
+choosen_model=  "best_eda"
 
-choosen_model ="filtered_models_2"
+# choosen_model ="filtered_models_2"
 # choosen_model="reproduced"
 # choosen_model = "recovery_test"
 # choosen_model = "eda_models_1"
