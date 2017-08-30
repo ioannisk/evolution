@@ -55,6 +55,10 @@ choosen_fold = "recovery_test"
 ### prediction done for eda_models, eda_models_1, eda_models_2
 
 ### This does suprisingly well go on no max pool, go on
+
+##### have to evaluate everyhtong after 3, 4 and after for sure
+
+
 # choosen_model ="filtered_models_3"
 choosen_model ="filtered_models_6"
 # choosen_model ="filtered_models_4"
