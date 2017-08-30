@@ -263,6 +263,9 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
 
 def baseline_tfidf(fold):
     # print("Loading data sets")
+    print(fold)
+    print(type(fold))
+    print(fold_valid_classes[fold])
     descriptions_txt = []
     descriptions_class = []
     X_valid = []
