@@ -554,7 +554,7 @@ def decomposable_attention_eval(fold):
 
 
     output_de = open("fold_1_rank1_de.txt", 'w')
-
+    print(set(web_class))
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
         list_web = web_class[i:i+step]
