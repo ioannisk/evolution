@@ -257,6 +257,7 @@ def make_evaluation_pairs(class_descriptions):
 
 
 if __name__=="__main__":
+    arvjrojvnrovrinvorv
     class_descriptions = read_descriptions()
     companies_descriptions= read_meta()
     class_descriptions, companies_descriptions = web_des_intersection(class_descriptions, companies_descriptions)
