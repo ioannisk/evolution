@@ -42,8 +42,8 @@ def write_json_line(json_ ,file_):
 
 
 ## This code makes a 1 shot validation
-# CHOOSE_MODEL = "best_eda"
-CHOOSE_MODEL = "filtered_models_2"
+CHOOSE_MODEL = "best_eda"
+# CHOOSE_MODEL = "filtered_models_2"
 CHOOSEN_FOLD = 4
 fold = {0:[61200,22110,14132,21200,52101,58210],
         1:[46341,13950,74203,20412,52102,82190],
@@ -62,10 +62,10 @@ with open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json.filte
     for line in file_:
         line = json.loads(line.strip())
         data.append(line)
-valid_subset = open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json_valid".format(CHOOSEN_FOLD), 'w')
+# valid_subset = open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json_valid".format(CHOOSEN_FOLD), 'w')
 valid_subset_pred = open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(CHOOSE_MODEL,CHOOSEN_FOLD), 'w')
 
-testing_subset = open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json_test".format(CHOOSEN_FOLD), 'w')
+# testing_subset = open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json_test".format(CHOOSEN_FOLD), 'w')
 testing_subset_pred = open("/home/ioannis/models/{}/model{}/prob_predictions_test.txt".format(CHOOSE_MODEL,CHOOSEN_FOLD), 'w')
 classes = defaultdict(list)
 for i in range(0, len(data), 556):
@@ -83,12 +83,12 @@ for cl in classes:
         for datapoints in classes[cl]:
             for d, pred in datapoints:
                 write_json_line(d, valid_subset)
-                valid_subset_pred.write("{}\n".format(pred))
+                # valid_subset_pred.write("{}\n".format(pred))
     else:
         for datapoints in classes[cl]:
             for d, pred in datapoints:
                 write_json_line(d, testing_subset)
-                testing_subset_pred.write("{}\n".format(pred))
+                # testing_subset_pred.write("{}\n".format(pred))
 
 
 # fold0 =
