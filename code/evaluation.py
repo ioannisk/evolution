@@ -488,7 +488,7 @@ def decomposable_attention_eval(fold):
 
 
     ## usual stuff
-    with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(choosen_model,fold), "r") as file_:
+    # with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(choosen_model,fold), "r") as file_:
 
 
     ###### LOOK at txt stats file ######
