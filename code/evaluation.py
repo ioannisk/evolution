@@ -289,8 +289,8 @@ def baseline_tfidf(fold):
             if int(web_class[i]) in fold_valid_classes[fold]:
                 X_valid.append(web_txt[i])
                 Y_valid.append(web_class[i])
-    web_txt = X_valid
-    web_class = Y_valid
+    web_txt_ = X_valid
+    web_class_ = Y_valid
     import IPython; IPython.embed()
     ## train tf-idf vectorizer
     tfidf_vec = tf_idf_vectorization(training_corpus)
