@@ -130,9 +130,9 @@ def train_naive_bayes_des_local(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            if int(web_class[i]) in fold_valid_classes[fold]:
-                X_valid.append(web_txt[i])
-                Y_valid.append(web_class[i])
+            # if int(web_class[i]) in fold_valid_classes[fold]:
+            X_valid.append(web_txt[i])
+            Y_valid.append(web_class[i])
 
 
             # validation_classes.add(web_class[i])
