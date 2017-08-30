@@ -44,7 +44,7 @@ def write_json_line(json_ ,file_):
 ## This code makes a 1 shot validation
 CHOOSE_MODEL = "best_eda"
 # CHOOSE_MODEL = "filtered_models_2"
-CHOOSEN_FOLD = 4
+CHOOSEN_FOLD = 3
 fold = {0:[61200,22110,14132,21200,52101,58210],
         1:[46341,13950,74203,20412,52102,82190],
         2:[28120,81223,31030,14390,20150],
