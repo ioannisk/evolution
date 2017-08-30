@@ -470,12 +470,12 @@ def decomposable_attention_eval(fold):
 
 
     ## usual stuff
-    # with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(choosen_model,fold), "r") as file_:
+    with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(choosen_model,fold), "r") as file_:
 
 
     ###### LOOK at txt stats file ######
 
-    with open("/home/ioannis/models/{}/model{}/prob_predictions_test.txt".format(choosen_model,fold), "r") as file_:
+    # with open("/home/ioannis/models/{}/model{}/prob_predictions_test.txt".format(choosen_model,fold), "r") as file_:
     # with open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(choosen_model,fold), "r") as file_:
 
 
@@ -493,11 +493,11 @@ def decomposable_attention_eval(fold):
         print(len(predictions))
         # print(len(predictions))
 
-    # with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
+    with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
 
 
 
-    with open(data_path+"fold{}/ranking_validation.json_test".format(fold), "r") as file_:
+    # with open(data_path+"fold{}/ranking_validation.json_test".format(fold), "r") as file_:
     # with open(data_path+"fold{}/ranking_validation.json_valid".format(fold), "r") as file_:
 
 
