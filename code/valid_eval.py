@@ -35,7 +35,7 @@ fold_valid_classes = {0:[61200,22110,14132,21200,52101,58210],
 }
 
 FLAG = "valid_set"
-FLAG = "test_set"
+# FLAG = "test_set"
 
 # choosen_fold = "new_data_3"
 # choosen_model = "new_data_3_1"
@@ -131,9 +131,16 @@ def train_naive_bayes_des_local(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            if int(web_class[i]) in fold_valid_classes[fold]:
-                X_valid.append(web_txt[i])
-                Y_valid.append(web_class[i])
+            if FLAG == "valid_set":
+                if int(web_class[i]) in fold_valid_classes[fold]:
+                    X_valid.append(web_txt[i])
+                    Y_valid.append(web_class[i])
+            elif FLAG == "test_set":
+                if int(web_class[i]) not in fold_valid_classes[fold]:
+                    X_valid.append(web_txt[i])
+                    Y_valid.append(web_class[i])
+
+
 
 
             # validation_classes.add(web_class[i])
@@ -289,9 +296,14 @@ def baseline_tfidf(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            if int(web_class[i]) in fold_valid_classes[fold]:
-                X_valid.append(web_txt[i])
-                Y_valid.append(web_class[i])
+            if FLAG == "valid_set":
+                if int(web_class[i]) in fold_valid_classes[fold]:
+                    X_valid.append(web_txt[i])
+                    Y_valid.append(web_class[i])
+            elif FLAG == "test_set":
+                if int(web_class[i]) not in fold_valid_classes[fold]:
+                    X_valid.append(web_txt[i])
+                    Y_valid.append(web_class[i])
     web_txt = X_valid
     web_class = Y_valid
     # import IPython; IPython.embed()
@@ -479,9 +491,14 @@ def embedding_similarity(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            if int(web_class[i]) in fold_valid_classes[fold]:
-                X_valid.append(web_txt[i])
-                Y_valid.append(web_class[i])
+            if FLAG == "valid_set":
+                if int(web_class[i]) in fold_valid_classes[fold]:
+                    X_valid.append(web_txt[i])
+                    Y_valid.append(web_class[i])
+            elif FLAG == "test_set":
+                if int(web_class[i]) not in fold_valid_classes[fold]:
+                    X_valid.append(web_txt[i])
+                    Y_valid.append(web_class[i])
     web_txt = X_valid
     web_class = Y_valid
 
@@ -506,9 +523,22 @@ def decomposable_attention_eval(fold):
 
 
     ###### LOOK at txt stats file ######
+    if FLAG == "valid_set":
+        with open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(choosen_model,fold), "r") as file_:
+            predictions = []
+            for line in file_:
+                line = line.strip()
+                predictions.append(float(line))
+            print(len(predictions))
+    elif FLAG == "test_set":
+        with open("/home/ioannis/models/{}/model{}/prob_predictions_test.txt".format(choosen_model,fold), "r") as file_:
+            predictions = []
+            for line in file_:
+                line = line.strip()
+                predictions.append(float(line))
+            print(len(predictions))
+        # print(len(predictions))
 
-    # with open("/home/ioannis/models/{}/model{}/prob_predictions_test.txt".format(choosen_model,fold), "r") as file_:
-    with open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(choosen_model,fold), "r") as file_:
 
 
 
@@ -518,21 +548,15 @@ def decomposable_attention_eval(fold):
     # with open("/home/ioannis/models/{}/model{}/quick_valid.txt".format(choosen_model,fold), "r") as file_:
 
     # with open("/home/ioannis/evolution/entailement/multiffn-nli/src/mnli_con_folds/model14/prob_predictions.txt".format(choosen_fold,fold), "r") as file_:
-        predictions = []
-        for line in file_:
-            line = line.strip()
-            predictions.append(float(line))
-        print(len(predictions))
-        # print(len(predictions))
 
     # with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
 
 
-
-    # with open(data_path+"fold{}/ranking_validation.json_test".format(fold), "r") as file_:
-    with open(data_path+"fold{}/ranking_validation.json_valid".format(fold), "r") as file_:
-
-
+    if FLAG == "valid_set":
+        file_str_data = data_path+"fold{}/ranking_validation.json_valid".format(fold)
+    elif FLAG == "test_set":
+        file_str_data =data_path+"fold{}/ranking_validation.json_test".format(fold)
+    with open(file_str_data, "r") as file_:
 
     # with open(data_path+"fold{}/ranking_validation.json_testing_subset".format(fold), "r") as file_:
     # with open(data_path+"fold{}/ranking_validation.json_validation_subset".format(fold), "r") as file_:
