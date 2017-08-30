@@ -71,6 +71,7 @@ for i_fold in [0,1,2,3,4]:
     for i in range(0, len(data), 556):
         datapoint = data[i:i+556]
         # datapoint_pred = predictions[i:i+556]
+        datapoint_pred = range(0,556)
         web_id = datapoint[0]["web_id"]
         web_class = datapoint[0]["web_class"]
         classes[web_class].append(zip(datapoint, datapoint_pred))
