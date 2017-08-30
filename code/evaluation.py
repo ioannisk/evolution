@@ -26,7 +26,7 @@ stopwords = nltk.corpus.stopwords.words('english')
 MAX_RANK = 15
 RANKS = list(range(1,MAX_RANK))
 
-
+##line 133, 284 and the loop, 466
 fold_valid_classes = {0:[61200,22110,14132,21200,52101,58210],
         1:[46341,13950,74203,20412,52102,82190],
         2:[28120,81223,31030,14390,20150],
@@ -55,8 +55,8 @@ choosen_fold = "recovery_test"
 ### prediction done for eda_models, eda_models_1, eda_models_2
 
 ### This does suprisingly well go on no max pool, go on
-choosen_model ="filtered_models_2"
-# choosen_model=  "best_eda"
+# choosen_model ="filtered_models_2"
+choosen_model=  "best_eda"
 # choosen_model ="filtered_models_3"
 # choosen_model="reproduced"
 # choosen_model = "recovery_test"
@@ -130,8 +130,9 @@ def train_naive_bayes_des_local(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            X_valid.append(web_txt[i])
-            Y_valid.append(web_class[i])
+            if web_class[i] in fold_valid_classes[fold]:
+                X_valid.append(web_txt[i])
+                Y_valid.append(web_class[i])
             # validation_classes.add(web_class[i])
     # all_classes = training_classes.union(validation_classes)
     # print(len(all_classes))
@@ -277,6 +278,14 @@ def baseline_tfidf(fold):
             descriptions_txt.append(line[1])
     with open(data_path+"fold{}/{}.json".format(fold,data_file),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
+        for i, b in enumerate(binary_class):
+            if b!="entailment":
+                continue
+            if web_class[i] in fold_valid_classes[fold]:
+                X_valid.append(web_txt[i])
+                Y_valid.append(web_class[i])
+    web_txt = X_valid
+    web_class = Y_valid
     ## train tf-idf vectorizer
     tfidf_vec = tf_idf_vectorization(training_corpus)
     # tfidf_vec = tf_idf_vectorization(training_corpus)
@@ -453,6 +462,15 @@ def embedding_similarity(fold):
             descriptions_txt.append(line[1])
     with open(data_path+"fold{}/{}.json".format(fold,data_file),"r") as file_:
         des_txt, web_txt, binary_class, des_class, web_class, web_id = load_json_validation_file(file_)
+        for i, b in enumerate(binary_class):
+            if b!="entailment":
+                continue
+            if web_class[i] in fold_valid_classes[fold]:
+                X_valid.append(web_txt[i])
+                Y_valid.append(web_class[i])
+    web_txt = X_valid
+    web_class = Y_valid
+
 
     des_tfidf = embedding_doc_vectorizer(descriptions_txt)
     web_tfidf = embedding_doc_vectorizer(web_txt)
@@ -476,7 +494,7 @@ def decomposable_attention_eval(fold):
     ###### LOOK at txt stats file ######
 
     # with open("/home/ioannis/models/{}/model{}/prob_predictions_test.txt".format(choosen_model,fold), "r") as file_:
-    # with open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(choosen_model,fold), "r") as file_:
+    with open("/home/ioannis/models/{}/model{}/prob_predictions_valid.txt".format(choosen_model,fold), "r") as file_:
 
 
 
@@ -493,22 +511,17 @@ def decomposable_attention_eval(fold):
         print(len(predictions))
         # print(len(predictions))
 
-    with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
+    # with open(data_path+"fold{}/ranking_validation.json".format(fold), "r") as file_:
 
 
 
     # with open(data_path+"fold{}/ranking_validation.json_test".format(fold), "r") as file_:
-    # with open(data_path+"fold{}/ranking_validation.json_valid".format(fold), "r") as file_:
-
-
-
+    with open(data_path+"fold{}/ranking_validation.json_valid".format(fold), "r") as file_:
 
 
 
     # with open(data_path+"fold{}/ranking_validation.json_testing_subset".format(fold), "r") as file_:
     # with open(data_path+"fold{}/ranking_validation.json_validation_subset".format(fold), "r") as file_:
-
-
     # with open(data_path+"fold{}/supervised_validation.json".format(fold), "r") as file_:
 
         companies = set()
@@ -613,26 +626,26 @@ def each_fold_stats():
     for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
 
-        # tic = time.clock()
-        # tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
-        # tfidf_avrg[ii] = tf_accuracy
-        # norm = float(sum(tf_rank_index_stats.values()))
-        # a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
-        # rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
-        # bar_tf_data += rank_tf_probs
-        # toc = time.clock()
-        # print("Td-idf time: {}".format(toc - tic))
+        tic = time.clock()
+        tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
+        tfidf_avrg[ii] = tf_accuracy
+        norm = float(sum(tf_rank_index_stats.values()))
+        a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
+        rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_tf_data += rank_tf_probs
+        toc = time.clock()
+        print("Td-idf time: {}".format(toc - tic))
 
 
-        # tic = time.clock()
-        # nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
-        # nb_avrg[ii] = nb_accuracy
-        # norm = float(sum(nb_rank_index_stats.values()))
-        # a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
-        # rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
-        # bar_nb_data += rank_nb_probs
-        # toc = time.clock()
-        # print("Naive Bayes time: {}".format(toc - tic))
+        tic = time.clock()
+        nb_accuracy, nb_rank_index_stats = train_naive_bayes_des_local(fold)
+        nb_avrg[ii] = nb_accuracy
+        norm = float(sum(nb_rank_index_stats.values()))
+        a = sorted(nb_rank_index_stats.items())[:len(RANKS)]
+        rank_nb_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_nb_data += rank_nb_probs
+        toc = time.clock()
+        print("Naive Bayes time: {}".format(toc - tic))
 
 ################################################
         ### Try it tonight ## :)
@@ -654,15 +667,15 @@ def each_fold_stats():
         # print("LDA time: {}".format(toc - tic))
 ################################################
 
-        # tic = time.clock()
-        # cbow_accuracy, cbow_rank_index_stats = embedding_similarity(fold)
-        # cbow_avrg[ii] = cbow_accuracy
-        # norm = float(sum(cbow_rank_index_stats.values()))
-        # a = sorted(cbow_rank_index_stats.items())[:len(RANKS)]
-        # rank_cbow_probs = np.asarray(list(zip(*a))[1])/norm
-        # bar_cbow_data += rank_cbow_probs
-        # toc = time.clock()
-        # print("CBOW time: {}".format(toc - tic))
+        tic = time.clock()
+        cbow_accuracy, cbow_rank_index_stats = embedding_similarity(fold)
+        cbow_avrg[ii] = cbow_accuracy
+        norm = float(sum(cbow_rank_index_stats.values()))
+        a = sorted(cbow_rank_index_stats.items())[:len(RANKS)]
+        rank_cbow_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_cbow_data += rank_cbow_probs
+        toc = time.clock()
+        print("CBOW time: {}".format(toc - tic))
 
         tic = time.clock()
         att_accuracy, da_rank_index_stats = decomposable_attention_eval(fold)
@@ -674,8 +687,8 @@ def each_fold_stats():
         toc = time.clock()
         print("Decomposable Attention time: {}".format(toc - tic))
 
-        print_nice_table(att_accuracy, att_accuracy,  att_accuracy)
-        # print_nice_table(nb_accuracy, tf_accuracy,  att_accuracy)
+        # print_nice_table(att_accuracy, att_accuracy,  att_accuracy)
+        print_nice_table(nb_accuracy, tf_accuracy,  att_accuracy)
 
         # print("    Decomposable attention is {}".format( accuracy))
     # for i, TOP_N in enumerate(RANKS):
