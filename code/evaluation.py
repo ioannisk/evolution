@@ -34,6 +34,9 @@ fold_valid_classes = {0:[61200,22110,14132,21200,52101,58210],
         4:[23320,65300,46210,13910,10831,63910]
 }
 
+FLAG = "valid_set"
+FLAG = "test_set"
+
 # choosen_fold = "new_data_3"
 # choosen_model = "new_data_3_1"
 # data_file = "validation"x
@@ -53,11 +56,8 @@ choosen_fold = "recovery_test"
 
 ### This does suprisingly well go on no max pool, go on
 # choosen_model ="filtered_models_3"
-# choosen_model=  "best_eda"
-
-choosen_model ="filtered_models_3"
-FLAG = "valid_set"
-FLAG = "test_set"
+choosen_model=  "best_eda"
+# choosen_model ="filtered_models_3"
 # choosen_model="reproduced"
 # choosen_model = "recovery_test"
 # choosen_model = "eda_models_1"
@@ -532,8 +532,8 @@ def decomposable_attention_eval(fold):
     for i in range(0,len(predictions), step):
         list_pred = predictions[i:i+step]
         list_web = web_class[i:i+step]
-        print(list_web)
-        # stop
+        # print(list_web)
+        # # stop
         list_des = description_class[i:i+step]
         ranked_list = sorted(list(zip(list_pred, list_web, list_des)),reverse=True)
         list_pred,list_web,list_des = zip(*ranked_list)
