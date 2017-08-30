@@ -662,15 +662,15 @@ def each_fold_stats():
         # toc = time.clock()
         # print("CBOW time: {}".format(toc - tic))
 
-        # tic = time.clock()
-        # att_accuracy, da_rank_index_stats = decomposable_attention_eval(fold)
-        # att_avrg[ii] = att_accuracy
-        # norm = float(sum(da_rank_index_stats.values()))
-        # a = sorted(da_rank_index_stats.items())[:len(RANKS)]
-        # rank_da_probs = np.asarray(list(zip(*a))[1])/norm
-        # bar_da_data += rank_da_probs
-        # toc = time.clock()
-        # print("Decomposable Attention time: {}".format(toc - tic))
+        tic = time.clock()
+        att_accuracy, da_rank_index_stats = decomposable_attention_eval(fold)
+        att_avrg[ii] = att_accuracy
+        norm = float(sum(da_rank_index_stats.values()))
+        a = sorted(da_rank_index_stats.items())[:len(RANKS)]
+        rank_da_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_da_data += rank_da_probs
+        toc = time.clock()
+        print("Decomposable Attention time: {}".format(toc - tic))
 
         print_nice_table(att_accuracy, att_accuracy,  att_accuracy)
         # print_nice_table(nb_accuracy, tf_accuracy,  att_accuracy)
