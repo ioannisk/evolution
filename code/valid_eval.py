@@ -34,8 +34,8 @@ fold_valid_classes = {0:[61200,22110,14132,21200,52101,58210],
         4:[23320,65300,46210,13910,10831,63910]
 }
 
-FLAG = "valid_set"
-# FLAG = "test_set"
+# FLAG = "valid_set"
+FLAG = "test_set"
 
 # choosen_fold = "new_data_3"
 # choosen_model = "new_data_3_1"
