@@ -44,7 +44,7 @@ def write_json_line(json_ ,file_):
 ## This code makes a 1 shot validation
 # CHOOSE_MODEL = "best_eda"
 CHOOSE_MODEL = "filtered_models_2"
-CHOOSEN_FOLD = 3
+CHOOSEN_FOLD = 4
 
 with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(CHOOSE_MODEL,CHOOSEN_FOLD), "r") as file_:
     predictions = []
@@ -91,10 +91,11 @@ for cl in classes:
 #                 testing_subset_pred.write("{}\n".format(pred))
 
 
-# fold0 = [61200,22110,14132,21200,52101,58210]
 
+# fold0 = [61200,22110,14132,21200,52101,58210]
 # fold1 = [46341,13950,74203,20412,52102,82190]
 # fold2 = [28120,81223,31030,14390,20150]
+# fold3 = [28410,18130,10840,28120,46360,26514]
 
 
 
