@@ -56,8 +56,8 @@ choosen_fold = "recovery_test"
 
 ### This does suprisingly well go on no max pool, go on
 # choosen_model ="filtered_models_2"
-choosen_model=  "best_eda"
-# choosen_model ="filtered_models_3"
+# choosen_model=  "best_eda"
+choosen_model ="filtered_models_4"
 # choosen_model="reproduced"
 # choosen_model = "recovery_test"
 # choosen_model = "eda_models_1"
