@@ -2,14 +2,14 @@
 # nohup time python -u train.py  ~/data/glove/glove-840B.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl snli_attention mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad --report 1500 --vocab ~/data/glove/glove-840B-vocabulary.txt > snli_log.txt &
 
 # python train.py ~/data/glove/glove.840B.300d.txt ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl test_models mlp --lower -e 30 -u 200 -d 0.8 --l2 0 -b 32 -r 0.05 --optim adagrad
-# python train.py ~/data/glove/glove-840B.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl test_models mlp --lower -e 30 -u 300 -d 0.8 --l2 0 -b 32 -r 0.05 --vocab ~/data/glove/glove-840B-vocabulary.txt
+# python train.py ~/data/glove/glove-840B.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl test_models mlp --lower -e 1 -u 300 -d 0.8 --l2 0 -b 32 -r 0.05 --vocab ~/data/glove/glove-840B-vocabulary.txt
 
 #python -u my_train.py ~/data/glove/glove-840B.npy /home/ioannis/evolution/data/folds/fold4/training.json /home/ioannis/evolution/data/folds/fold4/validation.json folds/model4 mlp --lower -e 30 -u 200 -d 0.8  -b 32 -r 0.05 --report 300 --vocab ~/data/glove/glove-840B-vocabulary.txt
 
 
 ###### Binary training on SNLI ######
 # python train.py ~/data/glove/glove-840B.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl binary_snli mlp --lower -e 30 -u 300 -d 0.8 --report 300 -b 32 -r 0.05 --vocab ~/data/glove/glove-840B-vocabulary.txt
-# python train.py ~/data/glove/glove-840B.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl binary_snli_1 mlp --lower -e 30 -u 200 -d 0.8 --report 300 -b 32 -r 0.05 --vocab ~/data/glove/glove-840B-vocabulary.txt
+# python train.py ~/data/glove/glove-840B.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl binary_snli_1 mlp --lower -e 1 -u 200 -d 0.8 --report 300 -b 32 -r 0.05 --vocab ~/data/glove/glove-840B-vocabulary.txt
 # python train.py ~/data/glove/glove-840B.npy ~/data/snli_1.0/snli_1.0_train.jsonl ~/data/snli_1.0/snli_1.0_dev.jsonl binary_snli_2 mlp --lower -e 30 -u 200 -d 0.85 --report 300 -b 32 -r 0.05 --vocab ~/data/glove/glove-840B-vocabulary.txt
 
 

@@ -70,7 +70,9 @@ for i in range(0, len(data), 556):
     web_class = datapoint[0]["web_class"]
     classes[web_class].append(zip(datapoint, datapoint_pred))
 
-print(len(classes))
+
+for cl in classes:
+    print(cl, len(classes[cl]))
 
 
 
