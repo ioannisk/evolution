@@ -16,9 +16,9 @@ from new_generation_matching_dataset import read_descriptions, read_meta, web_de
 import matplotlib.pyplot as plt
 
 print("Loading Word2Vec")
-# from gensim.models import Word2Vec
-# model_w2v = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
-# model_w2v_vocab = model_w2v.vocab
+from gensim.models import Word2Vec
+model_w2v = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
+model_w2v_vocab = model_w2v.vocab
 import nltk
 from nltk.corpus import stopwords
 stopwords = nltk.corpus.stopwords.words('english')
