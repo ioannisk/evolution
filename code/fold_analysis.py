@@ -2,8 +2,8 @@ import numpy as np
 from attention_evaluation import load_json_validation_file
 import json
 
-choosen_fold = "1rfolds3"
-data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
+# choosen_fold = "1rfolds3"
+# data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 # for li
 # for i in range(3):
 # i = 0
@@ -44,6 +44,23 @@ data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 #         # if len(des.split())==0 or len(web.split())==0:
 #         #     print(line[web_id])
 # print(used_classes_1==used_classes)
+
+
+valid = open("/home/ioannis/data/recovery_test/fold0/ranking_validation.json.filter", 'r')
+train = open("/home/ioannis/data/recovery_test/fold0/training.json.filter", 'r')
+
+training_cl = {}
+for line in train:
+    line = json.loads(line.strip())
+    if line["class"]=="entailment":
+        training_cl.add(line["web_class"])
+
+valid_cl = {}
+for line in valid:
+    line = json.loads(line.strip())
+    if line["class"]=="entailment":
+        training_cl.add(line["web_class"])
+import IPython; IPython.embed()
 
 
 
