@@ -26,7 +26,7 @@ stopwords = nltk.corpus.stopwords.words('english')
 MAX_RANK = 15
 RANKS = list(range(1,MAX_RANK))
 
-##line 133, 284 and the loop, 466
+##line 133, 284 and the loop, 472
 fold_valid_classes = {0:[61200,22110,14132,21200,52101,58210],
         1:[46341,13950,74203,20412,52102,82190],
         2:[28120,81223,31030,14390,20150],
@@ -130,7 +130,7 @@ def train_naive_bayes_des_local(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            if web_class[i] in fold_valid_classes[fold]:
+            if int(web_class[i]) in fold_valid_classes[fold]:
                 X_valid.append(web_txt[i])
                 Y_valid.append(web_class[i])
             # validation_classes.add(web_class[i])
@@ -263,9 +263,9 @@ def tfidf_inference(des_tfidf, des_class, web_tfidf, web_class):
 
 def baseline_tfidf(fold):
     # print("Loading data sets")
-    print(fold)
-    print(type(fold))
-    print(fold_valid_classes[fold])
+    # print(fold)
+    # print(type(fold))
+    # print(fold_valid_classes[fold])
     descriptions_txt = []
     descriptions_class = []
     X_valid = []
@@ -286,7 +286,7 @@ def baseline_tfidf(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            if web_class[i] in fold_valid_classes[fold]:
+            if int(web_class[i]) in fold_valid_classes[fold]:
                 X_valid.append(web_txt[i])
                 Y_valid.append(web_class[i])
     web_txt = X_valid
@@ -472,7 +472,7 @@ def embedding_similarity(fold):
         for i, b in enumerate(binary_class):
             if b!="entailment":
                 continue
-            if web_class[i] in fold_valid_classes[fold]:
+            if int(web_class[i]) in fold_valid_classes[fold]:
                 X_valid.append(web_txt[i])
                 Y_valid.append(web_class[i])
     web_txt = X_valid
