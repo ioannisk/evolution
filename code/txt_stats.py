@@ -47,9 +47,9 @@ fold = {0:[61200,22110,14132,21200,52101,58210],
 ## This code makes a 1 shot validation
 # CHOOSE_MODEL = "best_eda"
 CHOOSE_MODEL = "filtered_models_3"
-for i in [0,1,2,3,4]
-    CHOOSEN_FOLD = i
-    print(i)
+for i_fold in [0,1,2,3,4]:
+    CHOOSEN_FOLD = i_fold
+    print(i_fold)
     with open("/home/ioannis/models/{}/model{}/prob_predictions_filter.txt".format(CHOOSE_MODEL,CHOOSEN_FOLD), "r") as file_:
         predictions = []
         for line in file_:
