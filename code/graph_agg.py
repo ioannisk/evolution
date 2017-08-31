@@ -75,6 +75,9 @@ plt.bar(xx, bar_nb_data, width=0.2, facecolor='b', edgecolor='b', linewidth=3, a
 plt.bar(xx+0.2, bar_cbow_data, width=0.2, facecolor='orange', edgecolor='orange', linewidth=3, alpha=.5, label='CBOW Cosine Sim')
 plt.bar(xx+0.4, bar_tf_data, width=0.2, facecolor='g', edgecolor='g', linewidth=3, alpha=.5, label='Tf-idf Cosine Sim')
 plt.bar(xx+0.6, np.mean(bar_avrg,0), width=0.2, facecolor='r', edgecolor='r', linewidth=3, alpha=.5, label='Decomposable Attention',yerr=np.std(bar_avrg,0),ecolor='black')
+
+plt.set_xticks(xx + 0.6 / 2)
+plt.set_xticklabels(('1', '2', '3', '4', '5', '6', '7', '8', '9', '10'))
 # plt.bar(xx, bar_nb_data, width=0.2, facecolor='b', edgecolor='b', linewidth=3,  label='Naive Bayes')
 # plt.bar(xx+0.2, bar_cbow_data, width=0.2, facecolor='orange', edgecolor='orange', linewidth=1,  label='CBOW Cosine Sim')
 # plt.bar(xx+0.4, bar_tf_data, width=0.2, facecolor='g', edgecolor='g', linewidth=1,  label='Tf-idf Cosine Sim')
