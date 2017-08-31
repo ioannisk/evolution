@@ -65,9 +65,10 @@ plt.fill_between(list(range(1,MAX_RANK)), np.mean(att_avrg,0) - np.std(att_avrg,
 
 plt.plot(list(range(1,MAX_RANK)),cbow_results,label='CBOW cosine sim',linewidth=2, color='orange')
 # plt.plot(np.mean(lda_avrg,0),label='LDA cosine sim',linewidth=2)
-plt.ylim([0,0.7])
+
 
 plt.legend(loc= 4)
+plt.ylim([0,0.7])
 plt.show()
 # print([bar_nb_data/len(folds),bar_tf_data/len(folds),bar_da_data/len(folds)])
 plt.title('Accuracy in each Rank')
