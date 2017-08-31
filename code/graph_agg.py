@@ -42,7 +42,7 @@ bar_cbow_data = make_bar_data(cbow_results)
 # plt.plot(nb_avrg/len(folds),label='Naive Bayes',linewidth=2)
 # plt.axvline(x= np.mean(np.mean(nb_avrg,0)),linestyle='--', color='blue')
 
-plt.ylim(0,0.7)
+plt.ylim(0,70)
 plt.plot(list(range(1,MAX_RANK)),nb_results,label='Naive Bayes',linewidth=2, color='b')
 # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(nb_avrg,0) - np.std(nb_avrg,0), np.mean(nb_avrg,0) + np.std(nb_avrg,0) ,alpha=0.3, facecolor='b')
 
