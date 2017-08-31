@@ -164,10 +164,10 @@ def train_naive_bayes_des_local(fold):
     # X_valid_vec = vec.transform(X_valid)
     # vec = tf_idf_vectorization(X_train+X_train_des)
 
-    vec = tf_idf_vectorization(X_train_des+X_train)
-    # vec = count_vectorization(X_train_des+X_train)
-    X_train_vec = vec.transform(X_train_des+Y_train)
-    Y_train = Y_train_des + Y_train
+    # vec = tf_idf_vectorization(X_train_des+X_train)
+    vec = count_vectorization(X_train_des)
+    X_train_vec = vec.transform(X_train_des)
+    Y_train = Y_train_des
     X_valid_vec = vec.transform(X_valid)
     a = 0.002
     # for a in np.arange(1,200)*0.0001:
