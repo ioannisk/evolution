@@ -23,7 +23,7 @@ import nltk
 from nltk.corpus import stopwords
 stopwords = nltk.corpus.stopwords.words('english')
 
-MAX_RANK = 10
+MAX_RANK = 11
 RANKS = list(range(1,MAX_RANK))
 
 ##line 133, 284 and the loop, 472
@@ -761,7 +761,7 @@ def each_fold_stats():
     plt.bar(xx+0.2, bar_cbow_data/len(folds), width=0.2, facecolor='orange', edgecolor='orange', linewidth=3, alpha=.5, label='CBOW Cosine Sim')
     plt.bar(xx+0.4, bar_tf_data/len(folds), width=0.2, facecolor='g', edgecolor='g', linewidth=3, alpha=.5, label='Tf-idf Cosine Sim')
     plt.bar(xx+0.6, bar_da_data/len(folds), width=0.2, facecolor='r', edgecolor='r', linewidth=3, alpha=.5, label='Decomposable Attention')
-    plt.xticks(xx+0.35, range(0,MAX_RANK-1))
+    plt.xticks(xx+0.35, range(1,MAX_RANK))
     plt.legend()
     plt.show()
 
