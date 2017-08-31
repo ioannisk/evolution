@@ -60,7 +60,7 @@ choosen_fold = "recovery_test"
 
 
 # choosen_model ="filtered_models_3"
-choosen_model ="filtered_models_6"
+choosen_model ="filtered_models_7"
 # choosen_model ="filtered_models_4"
 # choosen_model=  "best_eda"
 # choosen_model ="filtered_models_2"
