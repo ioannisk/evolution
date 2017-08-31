@@ -12,7 +12,7 @@ top_15_results = {3: [21.909   ,32.733   ,36.744   ,40.720   ,43.707   ,46.693  
 10 :[23.454   ,33.937   ,38.560   ,42.161   ,45.273   ,48.020   ,50.294   ,52.394   ,54.212   ,55.974   ,57.194   ,58.503   ,59.887   ,61.202]
 }
 
-att_avrg = np.zeros(len(top_15_results)*15).reshape(len(top_15_results),15)
+att_avrg = np.zeros(len(top_15_results)*14).reshape(len(top_15_results),14)
 for i, key in enumerate(top_15_results):
     att_avrg[i] = top_15_results[key]
 
