@@ -23,7 +23,7 @@ import nltk
 from nltk.corpus import stopwords
 stopwords = nltk.corpus.stopwords.words('english')
 
-MAX_RANK = 15
+MAX_RANK = 10
 RANKS = list(range(1,MAX_RANK))
 
 ##line 133, 284 and the loop, 472
@@ -725,7 +725,7 @@ def each_fold_stats():
     # plt.errorbar(x=RANKS, y=np.mean(nb_avrg,0), yerr=np.std(nb_avrg,0), label='Naive Bayes',linewidth=2, color='blue')
     # plt.plot(nb_avrg/len(folds),label='Naive Bayes',linewidth=2)
     # plt.axvline(x= np.mean(np.mean(nb_avrg,0)),linestyle='--', color='blue')
-    plt.ylim(0,65)
+    plt.ylim(0,60)
     plt.plot(list(range(1,MAX_RANK)),np.mean(nb_avrg,0),label='Naive Bayes',linewidth=2, color='b')
     # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(nb_avrg,0) - np.std(nb_avrg,0), np.mean(nb_avrg,0) + np.std(nb_avrg,0) ,alpha=0.3, facecolor='b')
 
