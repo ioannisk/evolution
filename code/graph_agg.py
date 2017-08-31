@@ -22,19 +22,19 @@ top_15_results = {3: [21.909   ,32.733   ,36.744   ,40.720   ,43.707   ,46.693  
 9: [23.013   ,33.964   ,38.750   ,42.566   ,45.765   ,48.243   ,50.718   ,53.059   ,55.310   ,57.523   ,59.487   ,60.866   ,62.195   ,63.482],
 10 :[23.454   ,33.937   ,38.560   ,42.161   ,45.273   ,48.020   ,50.294   ,52.394   ,54.212   ,55.974   ,57.194   ,58.503   ,59.887   ,61.202]
 }
-MAX_RANK = 15
-att_avrg = np.zeros(len(top_15_results)*14).reshape(len(top_15_results),14)
+MAX_RANK = 10
+att_avrg = np.zeros(len(top_15_results)*9).reshape(len(top_15_results),9)
 for i, key in enumerate(top_15_results):
-    att_avrg[i] = top_15_results[key]
-bar_avrg = np.zeros(len(top_15_results)*14).reshape(len(top_15_results),14)
+    att_avrg[i] = top_15_results[key][:10]
+bar_avrg = np.zeros(len(top_15_results)*9).reshape(len(top_15_results),9)
 for i, key in enumerate(top_15_results):
-    bar_avrg[i] = make_bar_data(top_15_results[key])
+    bar_avrg[i] = make_bar_data(top_15_results[key][:10])
 
-nb_results = [15.149,20.423,23.347,25.922,27.759,29.057,30.335,31.187,31.995,32.843,33.516,34.179,34.693,35.138]
+nb_results = [15.149,20.423,23.347,25.922,27.759,29.057,30.335,31.187,31.995,32.843,33.516,34.179,34.693,35.138][:10]
 bar_nb_data = make_bar_data(nb_results)
-tfidf_results = [19.218   ,25.237   ,29.284   ,32.097   ,34.284   ,36.114   ,37.669   ,39.023   ,40.079   ,40.961   ,41.824   ,42.602   ,43.255   ,43.893 ]
+tfidf_results = [19.218   ,25.237   ,29.284   ,32.097   ,34.284   ,36.114   ,37.669   ,39.023   ,40.079   ,40.961   ,41.824   ,42.602   ,43.255   ,43.893 ][:10]
 bar_tf_data = make_bar_data(tfidf_results)
-cbow_results = [16.333 ,25.362 ,29.850 ,33.038 ,35.402 ,37.362 ,39.067 ,40.939 ,42.406 ,43.659 ,44.800 ,46.126 ,47.168 ,48.190]
+cbow_results = [16.333 ,25.362 ,29.850 ,33.038 ,35.402 ,37.362 ,39.067 ,40.939 ,42.406 ,43.659 ,44.800 ,46.126 ,47.168 ,48.190][:10]
 bar_cbow_data = make_bar_data(cbow_results)
 
 
