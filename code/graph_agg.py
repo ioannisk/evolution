@@ -62,7 +62,7 @@ plt.plot(list(range(1,MAX_RANK)),tfidf_results,label='Tf-idf cosine sim',linewid
 plt.plot(list(range(1,MAX_RANK)),np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2, color='r')
 plt.fill_between(list(range(1,MAX_RANK)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
 
-plt.plot(cbow_results,label='CBOW cosine sim',linewidth=2, color='orange')
+plt.plot(list(range(1,MAX_RANK)),cbow_results,label='CBOW cosine sim',linewidth=2, color='orange')
 # plt.plot(np.mean(lda_avrg,0),label='LDA cosine sim',linewidth=2)
 
 
