@@ -42,7 +42,7 @@ bar_cbow_data = make_bar_data(cbow_results)
 # plt.plot(nb_avrg/len(folds),label='Naive Bayes',linewidth=2)
 # plt.axvline(x= np.mean(np.mean(nb_avrg,0)),linestyle='--', color='blue')
 
-plt.plot(nb_results,label='Naive Bayes',linewidth=2, color='b')
+plt.plot(list(range(1,MAX_RANK)),nb_results,label='Naive Bayes',linewidth=2, color='b')
 # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(nb_avrg,0) - np.std(nb_avrg,0), np.mean(nb_avrg,0) + np.std(nb_avrg,0) ,alpha=0.3, facecolor='b')
 
 
@@ -51,7 +51,7 @@ plt.plot(nb_results,label='Naive Bayes',linewidth=2, color='b')
 # plt.errorbar(x=RANKS,y=np.mean(tfidf_avrg,0), yerr=np.std(tfidf_avrg,0), label='Tf-idf cosine sim',linewidth=2, color='green')
 # plt.axvline(x= np.mean(np.mean(tfidf_avrg,0)),linestyle='--', color='green')
 
-plt.plot(tfidf_results,label='Tf-idf cosine sim',linewidth=2, color='g')
+plt.plot(list(range(1,MAX_RANK)),tfidf_results,label='Tf-idf cosine sim',linewidth=2, color='g')
 # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(tfidf_avrg,0) - np.std(tfidf_avrg,0), np.mean(tfidf_avrg,0) + np.std(tfidf_avrg,0) ,alpha=0.3, facecolor='g')
 
 
@@ -59,8 +59,8 @@ plt.plot(tfidf_results,label='Tf-idf cosine sim',linewidth=2, color='g')
 # plt.errorbar(x=RANKS,y=np.mean(att_avrg,0), yerr=np.std(att_avrg,0), label='Decomposable Attention',linewidth=2, color='red')
 # plt.axvline(x= np.mean(np.mean(att_avrg,0)),linestyle='--', color='red')
 
-plt.plot(np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2, color='r')
-plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
+plt.plot(list(range(1,MAX_RANK)),np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2, color='r')
+plt.fill_between(list(range(1,MAX_RANK)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
 
 plt.plot(cbow_results,label='CBOW cosine sim',linewidth=2, color='orange')
 # plt.plot(np.mean(lda_avrg,0),label='LDA cosine sim',linewidth=2)
@@ -70,7 +70,7 @@ plt.legend(loc= 4)
 plt.show()
 # print([bar_nb_data/len(folds),bar_tf_data/len(folds),bar_da_data/len(folds)])
 plt.title('Accuracy in each Rank')
-xx = np.asarray(range(MAX_RANK -1))
+xx = np.asarray(range(1,MAX_RANK))
 plt.bar(xx, bar_nb_data, width=0.2, facecolor='b', edgecolor='b', linewidth=3, alpha=.5, label='Naive Bayes')
 plt.bar(xx+0.2, bar_cbow_data, width=0.2, facecolor='orange', edgecolor='orange', linewidth=3, alpha=.5, label='CBOW Cosine Sim')
 plt.bar(xx+0.4, bar_tf_data, width=0.2, facecolor='g', edgecolor='g', linewidth=3, alpha=.5, label='Tf-idf Cosine Sim')
