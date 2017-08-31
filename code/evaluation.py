@@ -762,7 +762,7 @@ def each_fold_stats():
     plt.legend()
     plt.show()
 
-    print_nice_table(np.mean(nb_avrg,0), np.mean(tfidf_avrg,0), np.mean(att_avrg,0))
+    print_nice_table(np.mean(cbow_avrg,0), np.mean(tfidf_avrg,0), np.mean(att_avrg,0))
 
 if __name__=="__main__":
     # all_fold_stats()
