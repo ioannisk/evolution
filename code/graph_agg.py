@@ -12,6 +12,10 @@ top_15_results = {3: [21.909   ,32.733   ,36.744   ,40.720   ,43.707   ,46.693  
 10 :[23.454   ,33.937   ,38.560   ,42.161   ,45.273   ,48.020   ,50.294   ,52.394   ,54.212   ,55.974   ,57.194   ,58.503   ,59.887   ,61.202]
 }
 
+att_avrg = np.zeros(len(top_15_results)*15).reshape(len(top_15_results),15)
+for i, key in enumerate(top_15_results):
+    att_avrg[i] = top_15_results[key]
+
 nb_results = [15.149,20.423,23.347,25.922,27.759,29.057,30.335,31.187,31.995,32.843,33.516,34.179,34.693,35.138]
 tfidf_results = [19.218   ,25.237   ,29.284   ,32.097   ,34.284   ,36.114   ,37.669   ,39.023   ,40.079   ,40.961   ,41.824   ,42.602   ,43.255   ,43.893 ]
 cbow_results = [16.333 ,25.362 ,29.850 ,33.038 ,35.402 ,37.362 ,39.067 ,40.939 ,42.406 ,43.659 ,44.800 ,46.126 ,47.168 ,48.190]
@@ -39,7 +43,7 @@ plt.plot(tfidf_results,label='Tf-idf cosine sim',linewidth=2, color='g')
 # plt.axvline(x= np.mean(np.mean(att_avrg,0)),linestyle='--', color='red')
 
 plt.plot(np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2, color='r')
-# plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
+plt.fill_between(list(range(0,15 -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
 
 plt.plot(cbow_results,label='CBOW cosine sim',linewidth=2, color='orange')
 # plt.plot(np.mean(lda_avrg,0),label='LDA cosine sim',linewidth=2)
