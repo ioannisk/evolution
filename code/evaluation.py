@@ -170,7 +170,7 @@ def train_naive_bayes_des_local(fold):
     Y_train = Y_train_des + Y_train
     X_valid_vec = vec.transform(X_valid)
     # a = 0.002
-    a =0.1
+    a =0.000001
     # for a in np.arange(1,200)*0.0001:
     gnb = MultinomialNB(alpha=a,fit_prior=False)
     # clf = gnb.fit(X_train_des_vec, Y_train_des)
