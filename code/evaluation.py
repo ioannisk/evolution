@@ -8,6 +8,7 @@ import numpy as np
 import time
 import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from collections import Counter,defaultdict
 from sklearn.decomposition import LatentDirichletAllocation
@@ -175,7 +176,8 @@ def train_naive_bayes_des_local(fold):
     # a =0.000001
     # a = 1
     for a in np.arange(1,10)*0.1:
-        gnb = MultinomialNB(alpha=a,fit_prior=False)
+        # gnb = MultinomialNB(alpha=a,fit_prior=False)
+        gnb = LogisticRegression(C=a)
         # clf = gnb.fit(X_train_des_vec, Y_train_des)
         clf = gnb.fit(X_train_vec, Y_train)
         y_pred_test = clf.predict(X_valid_vec)
