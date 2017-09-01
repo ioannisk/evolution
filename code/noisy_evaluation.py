@@ -14,7 +14,7 @@ from new_generation_matching_dataset import read_descriptions, read_meta, web_de
 import matplotlib.pyplot as plt
 import random
 
-MAX_RANK = 21
+MAX_RANK = 11
 RANKS = list(range(1,MAX_RANK))
 NOISE = 0.8
 print(NOISE)
@@ -40,7 +40,7 @@ choosen_fold = "recovery_test"
     # data_file = "validation"
     # data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
 # choosen_model ="recovery_test"
-choosen_model ="best_eda"
+choosen_model ="filtered_models_9"
 data_file = "validation"
 data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 
@@ -50,7 +50,7 @@ data_path = "/home/ioannis/data/{}/".format(choosen_fold)
 #
 # folds = [0,1,2,3,4,5,6,14,15,16]
 # folds = [0,1,2]
-folds = [0,1,2,3,4]
+folds = [1,2,3,4]
 # folds = [2]
 # folds = [14]
 # folds = [0,2,4]
@@ -582,11 +582,8 @@ def each_fold_stats():
     plt.ylabel('Accuracy')
     plt.xlabel('Top N')
 
-    # plt.errorbar(x=RANKS, y=np.mean(nb_avrg,0), yerr=np.std(nb_avrg,0), label='Naive Bayes',linewidth=2, color='blue')
-    # plt.plot(nb_avrg/len(folds),label='Naive Bayes',linewidth=2)
-    # plt.axvline(x= np.mean(np.mean(nb_avrg,0)),linestyle='--', color='blue')
-
-    plt.plot(np.mean(nb_avrg,0),label='Naive Bayes',linewidth=2, color='b')
+    plt.ylim(0,60)
+    plt.plot(list(range(1,MAX_RANK)),np.mean(nb_avrg,0),label='Naive Bayes',linewidth=2, color='b')
     # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(nb_avrg,0) - np.std(nb_avrg,0), np.mean(nb_avrg,0) + np.std(nb_avrg,0) ,alpha=0.3, facecolor='b')
 
 
@@ -595,7 +592,7 @@ def each_fold_stats():
     # plt.errorbar(x=RANKS,y=np.mean(tfidf_avrg,0), yerr=np.std(tfidf_avrg,0), label='Tf-idf cosine sim',linewidth=2, color='green')
     # plt.axvline(x= np.mean(np.mean(tfidf_avrg,0)),linestyle='--', color='green')
 
-    plt.plot(np.mean(tfidf_avrg,0),label='Tf-idf cosine sim',linewidth=2, color='g')
+    plt.plot(list(range(1,MAX_RANK)),np.mean(tfidf_avrg,0),label='Tf-idf cosine sim',linewidth=2, color='g')
     # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(tfidf_avrg,0) - np.std(tfidf_avrg,0), np.mean(tfidf_avrg,0) + np.std(tfidf_avrg,0) ,alpha=0.3, facecolor='g')
 
 
@@ -603,21 +600,25 @@ def each_fold_stats():
     # plt.errorbar(x=RANKS,y=np.mean(att_avrg,0), yerr=np.std(att_avrg,0), label='Decomposable Attention',linewidth=2, color='red')
     # plt.axvline(x= np.mean(np.mean(att_avrg,0)),linestyle='--', color='red')
 
-    plt.plot(np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2, color='r')
+    plt.plot(list(range(1,MAX_RANK)),np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2, color='r')
     # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
 
-    plt.plot(np.mean(cbow_avrg,0),label='CBOW cosine sim',linewidth=2, color='orange')
+    plt.plot(list(range(1,MAX_RANK)),np.mean(cbow_avrg,0),label='CBOW cosine sim',linewidth=2, color='orange')
     # plt.plot(np.mean(lda_avrg,0),label='LDA cosine sim',linewidth=2)
+
 
     plt.legend(loc= 4)
     plt.show()
     # print([bar_nb_data/len(folds),bar_tf_data/len(folds),bar_da_data/len(folds)])
     plt.title('Accuracy in each Rank with Noise {}'.format(NOISE))
-    xx = np.asarray(range(MAX_RANK -1))
+    plt.ylabel('Accuracy')
+    plt.xlabel('Rank')
+    xx = np.asarray(range(0,MAX_RANK -1))
     plt.bar(xx, bar_nb_data/len(folds), width=0.2, facecolor='b', edgecolor='b', linewidth=3, alpha=.5, label='Naive Bayes')
     plt.bar(xx+0.2, bar_cbow_data/len(folds), width=0.2, facecolor='orange', edgecolor='orange', linewidth=3, alpha=.5, label='CBOW Cosine Sim')
     plt.bar(xx+0.4, bar_tf_data/len(folds), width=0.2, facecolor='g', edgecolor='g', linewidth=3, alpha=.5, label='Tf-idf Cosine Sim')
     plt.bar(xx+0.6, bar_da_data/len(folds), width=0.2, facecolor='r', edgecolor='r', linewidth=3, alpha=.5, label='Decomposable Attention')
+    plt.xticks(xx+0.35, range(1,MAX_RANK))
     plt.legend()
     plt.show()
 
