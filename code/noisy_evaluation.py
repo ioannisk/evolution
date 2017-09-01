@@ -613,6 +613,7 @@ def each_fold_stats():
     plt.title('Accuracy in each Rank with Noise {}'.format(NOISE))
     plt.ylabel('Accuracy')
     plt.xlabel('Rank')
+    plt.ylim(0,60)
     xx = np.asarray(range(0,MAX_RANK -1))
     plt.bar(xx, bar_nb_data/len(folds), width=0.2, facecolor='b', edgecolor='b', linewidth=3, alpha=.5, label='Naive Bayes')
     plt.bar(xx+0.2, bar_cbow_data/len(folds), width=0.2, facecolor='orange', edgecolor='orange', linewidth=3, alpha=.5, label='CBOW Cosine Sim')
