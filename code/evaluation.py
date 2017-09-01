@@ -166,8 +166,8 @@ def train_naive_bayes_des_local(fold):
     # vec = tf_idf_vectorization(X_train+X_train_des)
 
     # vec = tf_idf_vectorization(X_train_des+X_train)
-    vec = count_vectorization(X_train_des)
-    X_train_vec = vec.transform(X_train_des + X_train[:int(len(X_train)/2)])
+    vec = count_vectorization(X_train_des+ X_train)
+    X_train_vec = vec.transform(X_train_des + X_train)
     print(X_train_vec.shape)
     Y_train = Y_train_des + X_train
     print(len(Y_train))
@@ -176,11 +176,22 @@ def train_naive_bayes_des_local(fold):
     # a =0.000001
     # a = 1
     for a in np.arange(1,10)*0.1:
-        # gnb = MultinomialNB(alpha=a,fit_prior=False)
-        gnb = LogisticRegression(C=a)
+        gnb = MultinomialNB(alpha=a,fit_prior=False)
         # clf = gnb.fit(X_train_des_vec, Y_train_des)
-        clf = gnb.fit(X_train_vec, Y_train)
-        y_pred_test = clf.predict(X_valid_vec)
+
+
+
+        step = 1000
+        for i in range(0,len(X_train_des+ X_train), step):
+            X_train_vec_b = X_train_vec[i:i+step]
+            Y_train_b = Y_train[i:i+step]
+            clf = gnb.partial_fit[X_train_vec_b, Y_train_b]
+        #### old good code ####
+        # clf = gnb.fit(X_train_vec, Y_train)
+        # y_pred_test = clf.predict(X_valid_vec)
+        #### old good code ####
+
+
         # y_pred_train = clf.predict(X_train_vec)
         # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
         # import IPython; IPython.embed()
