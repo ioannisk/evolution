@@ -15,10 +15,10 @@ from sklearn.decomposition import LatentDirichletAllocation
 from new_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 import matplotlib.pyplot as plt
 
-# print("Loading Word2Vec")
-# from gensim.models import Word2Vec
-# model_w2v = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
-# model_w2v_vocab = model_w2v.vocab
+print("Loading Word2Vec")
+from gensim.models import Word2Vec
+model_w2v = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
+model_w2v_vocab = model_w2v.vocab
 import nltk
 from nltk.corpus import stopwords
 stopwords = nltk.corpus.stopwords.words('english')
@@ -647,15 +647,15 @@ def each_fold_stats():
     for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
 
-        # tic = time.clock()
-        # tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
-        # tfidf_avrg[ii] = tf_accuracy
-        # norm = float(sum(tf_rank_index_stats.values()))
-        # a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
-        # rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
-        # bar_tf_data += rank_tf_probs
-        # toc = time.clock()
-        # print("Td-idf time: {}".format(toc - tic))
+        tic = time.clock()
+        tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
+        tfidf_avrg[ii] = tf_accuracy
+        norm = float(sum(tf_rank_index_stats.values()))
+        a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
+        rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
+        bar_tf_data += rank_tf_probs
+        toc = time.clock()
+        print("Td-idf time: {}".format(toc - tic))
 
 
         tic = time.clock()
