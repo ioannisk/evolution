@@ -23,7 +23,7 @@ import nltk
 from nltk.corpus import stopwords
 stopwords = nltk.corpus.stopwords.words('english')
 
-MAX_RANK = 15
+MAX_RANK = 11
 RANKS = list(range(1,MAX_RANK))# choosen_fold = "1rfolds3"
 # choosen_model = "1rfolds3_1"
 # data_path = "/home/ioannis/evolution/data/{}/".format(choosen_fold)
@@ -569,7 +569,7 @@ def each_fold_stats():
     plt.legend(loc= 4)
     plt.show()
     # print([bar_nb_data/len(folds),bar_tf_data/len(folds),bar_da_data/len(folds)])
-    plt.title('Accuracy in each Rank (No Vocabulary overlap)'.format(NOISE))
+    plt.title('Accuracy in each Rank (No Vocabulary overlap)')
     plt.ylabel('Accuracy')
     plt.xlabel('Rank')
     plt.ylim(0,0.25)
