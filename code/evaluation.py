@@ -166,8 +166,7 @@ def train_naive_bayes_des_local(fold):
 
     # vec = tf_idf_vectorization(X_train_des+X_train)
     vec = count_vectorization(X_train_des)
-    print(len(X_train)/2)
-    X_train_vec = vec.transform(X_train_des + X_train[:len(X_train)/2])
+    X_train_vec = vec.transform(X_train_des + X_train[:int(len(X_train)/2)])
     print(X_train_vec.shape)
     Y_train = Y_train_des + X_train
     print(len(Y_train))
