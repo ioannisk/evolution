@@ -188,7 +188,7 @@ def train_naive_bayes_des_local(fold):
             clf = gnb.partial_fit(X_train_vec_b, Y_train_b, poss_cl)
         #### old good code ####
         # clf = gnb.fit(X_train_vec, Y_train)
-        # y_pred_test = clf.predict(X_valid_vec)
+        y_pred_test = clf.predict(X_valid_vec)
         #### old good code ####
 
 
