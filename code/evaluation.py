@@ -15,10 +15,10 @@ from sklearn.decomposition import LatentDirichletAllocation
 from new_generation_matching_dataset import read_descriptions, read_meta, web_des_intersection
 import matplotlib.pyplot as plt
 
-print("Loading Word2Vec")
-from gensim.models import Word2Vec
-model_w2v = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
-model_w2v_vocab = model_w2v.vocab
+# print("Loading Word2Vec")
+# from gensim.models import Word2Vec
+# model_w2v = Word2Vec.load_word2vec_format('/home/ioannis/scp/GoogleNews-vectors-negative300.bin',binary=True)
+# model_w2v_vocab = model_w2v.vocab
 import nltk
 from nltk.corpus import stopwords
 stopwords = nltk.corpus.stopwords.words('english')
@@ -172,15 +172,16 @@ def train_naive_bayes_des_local(fold):
     a = 0.0002
     # a =0.000001
     # a = 1
-    # for a in np.arange(1,200)*0.0001:
-    gnb = MultinomialNB(alpha=a,fit_prior=False)
-    # clf = gnb.fit(X_train_des_vec, Y_train_des)
-    clf = gnb.fit(X_train_vec, Y_train)
-    # y_pred_test = clf.predict(X_valid_vec)
-    # y_pred_train = clf.predict(X_train_vec)
-    # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
-    # import IPython; IPython.embed()
-    # print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
+    for a in np.arange(1,10)*0.1:
+        gnb = MultinomialNB(alpha=a,fit_prior=False)
+        # clf = gnb.fit(X_train_des_vec, Y_train_des)
+        clf = gnb.fit(X_train_vec, Y_train)
+        y_pred_test = clf.predict(X_valid_vec)
+        # y_pred_train = clf.predict(X_train_vec)
+        # print("Training acc is {0}".format(accuracy_score(Y_train ,y_pred_train )*100))
+        # import IPython; IPython.embed()
+        print("NB Testing accuracy des - web: {0} with alpha {1}".format(accuracy_score( Y_valid,y_pred_test, normalize=True)*100,a))
+    sinrivrinv
     y_pred_test_proba = clf.predict_proba(X_valid_vec)
     rank_index_stats = Counter()
     true_positive = np.zeros(len(RANKS))
@@ -647,15 +648,15 @@ def each_fold_stats():
     for ii, fold in enumerate(folds):
         print("###### FOLD {} ######".format(fold))
 
-        tic = time.clock()
-        tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
-        tfidf_avrg[ii] = tf_accuracy
-        norm = float(sum(tf_rank_index_stats.values()))
-        a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
-        rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
-        bar_tf_data += rank_tf_probs
-        toc = time.clock()
-        print("Td-idf time: {}".format(toc - tic))
+        # tic = time.clock()
+        # tf_accuracy, tf_rank_index_stats = baseline_tfidf(fold)
+        # tfidf_avrg[ii] = tf_accuracy
+        # norm = float(sum(tf_rank_index_stats.values()))
+        # a = sorted(tf_rank_index_stats.items())[:len(RANKS)]
+        # rank_tf_probs = np.asarray(list(zip(*a))[1])/norm
+        # bar_tf_data += rank_tf_probs
+        # toc = time.clock()
+        # print("Td-idf time: {}".format(toc - tic))
 
 
         tic = time.clock()
