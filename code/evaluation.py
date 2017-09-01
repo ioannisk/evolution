@@ -169,7 +169,7 @@ def train_naive_bayes_des_local(fold):
     X_train_vec = vec.transform(X_train_des )
     Y_train = Y_train_des
     X_valid_vec = vec.transform(X_valid)
-    a = 0.003
+    a = 0.0002
     # a =0.000001
     # a = 1
     # for a in np.arange(1,200)*0.0001:
