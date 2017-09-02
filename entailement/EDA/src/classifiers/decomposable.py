@@ -592,16 +592,16 @@ class DecomposableNLIModel(object):
 
             ## SNLI good shit
             if i > 20:
-                learning_rate = 0.05/2
+                learning_rate = 0.05/1.5
                 dropout_keep = 0.80
             if i > 40:
-                learning_rate = 0.05/5
+                learning_rate = 0.05/2
                 dropout_keep = 0.8
             if i > 60:
-                learning_rate = 0.05/10
+                learning_rate = 0.05/5
                 dropout_keep = 0.8
             if i > 90:
-                learning_rate = 0.05/20
+                learning_rate = 0.05/10
                 dropout_keep = 0.8
 
 

@@ -45,7 +45,7 @@ import json
 #         #     print(line[web_id])
 # print(used_classes_1==used_classes)
 for k in  [1,2,3,4]:
-    rank_valid = open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json.filter".format(k), 'r')
+    # rank_valid = open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json.filter".format(k), 'r')
     valid = open("/home/ioannis/data/recovery_test/fold{}/validation.json".format(k), 'r')
     train = open("/home/ioannis/data/recovery_test/fold{}/training.json.filter".format(k), 'r')
     training_cl = set()
@@ -58,15 +58,16 @@ for k in  [1,2,3,4]:
         line = json.loads(line.strip())
         if line["class"]=="entailment":
             valid_cl.add(line["web_class"])
-    rank_valid_cl = set()
-    for line in rank_valid:
-        line = json.loads(line.strip())
-        if line["class"]=="entailment":
-            rank_valid_cl.add(line["web_class"])
+    # rank_valid_cl = set()
+    # for line in rank_valid:
+    #     line = json.loads(line.strip())
+    #     if line["class"]=="entailment":
+    #         rank_valid_cl.add(line["web_class"])
+    print(k, len(training_cl), len(valid_cl))
 
-    for ii in rank_valid_cl:
-        if ii in training_cl:
-            print(ii)
+    # for ii in rank_valid_cl:
+    #     if ii in training_cl:
+    #         print(ii)
 
 # import IPython; IPython.embed()
 
