@@ -16,7 +16,7 @@ import random
 
 MAX_RANK = 11
 RANKS = list(range(1,MAX_RANK))
-NOISE = 0.4
+NOISE = 0.6
 print(NOISE)
 
 print("Loading Word2Vec")
