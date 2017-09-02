@@ -44,7 +44,7 @@ import json
 #         # if len(des.split())==0 or len(web.split())==0:
 #         #     print(line[web_id])
 # print(used_classes_1==used_classes)
-for k in  [1,2,3,4]:
+for k in  [0,1,2,3,4]:
     # rank_valid = open("/home/ioannis/data/recovery_test/fold{}/ranking_validation.json.filter".format(k), 'r')
     valid = open("/home/ioannis/data/recovery_test/fold{}/validation.json".format(k), 'r')
     train = open("/home/ioannis/data/recovery_test/fold{}/training.json.filter".format(k), 'r')
