@@ -249,8 +249,8 @@ class DecomposableNLIModel(object):
         Return the number of units used by the network when computing
         the aggregated representation of the two sentences.
         """
-        # return 2 * self.num_units + self.num_units + self.num_units
-        return 2 * self.num_units
+        return 2 * self.num_units + self.num_units + self.num_units
+        # return 2 * self.num_units
 
     def _apply_feedforward(self, inputs, num_input_units, scope,
                            reuse_weights=False, initializer=None,
@@ -338,13 +338,13 @@ class DecomposableNLIModel(object):
         v2 = mask_3d(v2, self.sentence2_size, 0, 1)
 
 
-        # max_pool_v1 = tf.reduce_max(v1, 1)
-        # max_pool_v2 = tf.reduce_max(v2, 1)
+        max_pool_v1 = tf.reduce_max(v1, 1)
+        max_pool_v2 = tf.reduce_max(v2, 1)
 
         v1_sum = tf.reduce_mean(v1, [1])
         v2_sum = tf.reduce_mean(v2, [1])
-        # return tf.concat(axis=1, values=[v1_sum, v2_sum, max_pool_v1, max_pool_v2])
-        return tf.concat(axis=1, values=[v1_sum, v2_sum])
+        return tf.concat(axis=1, values=[v1_sum, v2_sum, max_pool_v1, max_pool_v2])
+        # return tf.concat(axis=1, values=[v1_sum, v2_sum])
 
     def attend(self, sent1, sent2):
         """
@@ -590,19 +590,18 @@ class DecomposableNLIModel(object):
             #     learning_rate = 0.005
             #     dropout_keep = 0.9
 
-            ## SNLI good shit
-            if i > 20:
-                learning_rate = 0.05/1.5
-                dropout_keep = 0.80
-            if i > 40:
-                learning_rate = 0.05/2
-                dropout_keep = 0.8
-            if i > 60:
-                learning_rate = 0.05/5
-                dropout_keep = 0.8
-            if i > 90:
-                learning_rate = 0.05/10
-                dropout_keep = 0.8
+            # if i > 20:
+            #     learning_rate = 0.05/1.5
+            #     dropout_keep = 0.80
+            # if i > 40:
+            #     learning_rate = 0.05/2
+            #     dropout_keep = 0.8
+            # if i > 60:
+            #     learning_rate = 0.05/5
+            #     dropout_keep = 0.8
+            # if i > 90:
+            #     learning_rate = 0.05/10
+            #     dropout_keep = 0.8
 
 
             # for jj in range(20):
