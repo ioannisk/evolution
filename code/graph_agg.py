@@ -60,6 +60,8 @@ plt.show()
 # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(tfidf_avrg,0) - np.std(tfidf_avrg,0), np.mean(tfidf_avrg,0) + np.std(tfidf_avrg,0) ,alpha=0.3, facecolor='g')
 
 
+
+
 # plt.plot(att_avrg/len(folds),label='Decomposable Attention',linewidth=2)
 # plt.errorbar(x=RANKS,y=np.mean(att_avrg,0), yerr=np.std(att_avrg,0), label='Decomposable Attention',linewidth=2, color='red')
 # plt.axvline(x= np.mean(np.mean(att_avrg,0)),linestyle='--', color='red')
@@ -81,6 +83,13 @@ plt.bar(xx+0.6, np.mean(bar_avrg,0), width=0.2, facecolor='r', edgecolor='r', li
 plt.xticks(xx+0.35, range(1,MAX_RANK))
 plt.legend()
 plt.show()
+
+print("Naive: {}".format(bar_nb_data))
+print("Tfidf: {}".format(bar_tf_data))
+print("CBOW: {}".format(bar_cbow_data))
+print("EDA: {}".format(np.mean(bar_avrg,0)))
+
+
 # plt.set_xticks(xx + 0.6 / 2)
 # plt.set_xticklabels(('1', '2', '3', '4', '5', '6', '7', '8', '9', '10'))
 # plt.bar(xx, bar_nb_data, width=0.2, facecolor='b', edgecolor='b', linewidth=3,  label='Naive Bayes')
