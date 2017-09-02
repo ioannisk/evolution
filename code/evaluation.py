@@ -745,7 +745,7 @@ def each_fold_stats():
     # plt.errorbar(x=RANKS,y=np.mean(att_avrg,0), yerr=np.std(att_avrg,0), label='Decomposable Attention',linewidth=2, color='red')
     # plt.axvline(x= np.mean(np.mean(att_avrg,0)),linestyle='--', color='red')
 
-    plt.plot(list(range(1,MAX_RANK)),np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2, color='r')
+    plt.plot(list(range(1,MAX_RANK)),np.mean(att_avrg,0),label='EDA',linewidth=2, color='r')
     # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
 
     plt.plot(list(range(1,MAX_RANK)),np.mean(cbow_avrg,0),label='CBOW cosine sim',linewidth=2, color='orange')
