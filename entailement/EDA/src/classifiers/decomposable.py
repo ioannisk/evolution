@@ -249,8 +249,8 @@ class DecomposableNLIModel(object):
         Return the number of units used by the network when computing
         the aggregated representation of the two sentences.
         """
-        return 2 * self.num_units + self.num_units + self.num_units
-        # return 2 * self.num_units
+        # return 2 * self.num_units + self.num_units + self.num_units
+        return 2 * self.num_units
 
     def _apply_feedforward(self, inputs, num_input_units, scope,
                            reuse_weights=False, initializer=None,
@@ -334,8 +334,8 @@ class DecomposableNLIModel(object):
         :return: a tensor with shape (batch, num_aggregate_inputs)
         """
         # sum over time steps; resulting shape is (batch, num_units)
-        v1 = mask_3d(v1, self.sentence1_size, 0, 1)
-        v2 = mask_3d(v2, self.sentence2_size, 0, 1)
+        # v1 = mask_3d(v1, self.sentence1_size, 0, 1)
+        # v2 = mask_3d(v2, self.sentence2_size, 0, 1)
 
 
         max_pool_v1 = tf.reduce_max(v1, 1)
@@ -343,8 +343,8 @@ class DecomposableNLIModel(object):
 
         v1_sum = tf.reduce_mean(v1, [1])
         v2_sum = tf.reduce_mean(v2, [1])
-        return tf.concat(axis=1, values=[v1_sum, v2_sum, max_pool_v1, max_pool_v2])
-        # return tf.concat(axis=1, values=[v1_sum, v2_sum])
+        # return tf.concat(axis=1, values=[v1_sum, v2_sum, max_pool_v1, max_pool_v2])
+        return tf.concat(axis=1, values=[v1_sum, v2_sum])
 
     def attend(self, sent1, sent2):
         """

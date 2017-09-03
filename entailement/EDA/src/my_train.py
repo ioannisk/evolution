@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
+# python interactive-eval.py /home/ioannis/models/filtered_models_9/model1 ~/data/glove/glove-840B.npy --vocab ~/data/glove/glove-840B-vocabulary.txt -i -a
+
 # python interactive-eval.py ~/models/snli_trained/ ~/data/glove/glove-840B.npy --vocab ~/data/glove/glove-840B-vocabulary.txt -i -a
 
 ### WOW THIS IS SICK VISUALIZATION
