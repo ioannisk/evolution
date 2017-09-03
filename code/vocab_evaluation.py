@@ -559,7 +559,7 @@ def each_fold_stats():
     # plt.errorbar(x=RANKS,y=np.mean(att_avrg,0), yerr=np.std(att_avrg,0), label='Decomposable Attention',linewidth=2, color='red')
     # plt.axvline(x= np.mean(np.mean(att_avrg,0)),linestyle='--', color='red')
 
-    plt.plot(list(range(1,MAX_RANK)),np.mean(att_avrg,0),label='Decomposable Attention',linewidth=2, color='r')
+    plt.plot(list(range(1,MAX_RANK)),np.mean(att_avrg,0),label='EDA',linewidth=2, color='r')
     # plt.fill_between(list(range(0,MAX_RANK -1)), np.mean(att_avrg,0) - np.std(att_avrg,0), np.mean(att_avrg,0) + np.std(att_avrg,0) ,alpha=0.3, facecolor='r')
 
     plt.plot(list(range(1,MAX_RANK)),np.mean(cbow_avrg,0),label='CBOW cosine sim',linewidth=2, color='orange')
@@ -575,9 +575,9 @@ def each_fold_stats():
     plt.ylim(0,25)
     xx = np.asarray(range(0,MAX_RANK -1))
     plt.bar(xx, bar_nb_data*100/len(folds), width=0.2, facecolor='b', edgecolor='b', linewidth=3, alpha=.5, label='Naive Bayes')
-    plt.bar(xx+0.2, bar_cbow_data*100/len(folds), width=0.2, facecolor='orange', edgecolor='orange', linewidth=3, alpha=.5, label='CBOW Cosine Sim')
-    plt.bar(xx+0.4, bar_tf_data*100/len(folds), width=0.2, facecolor='g', edgecolor='g', linewidth=3, alpha=.5, label='Tf-idf Cosine Sim')
-    plt.bar(xx+0.6, bar_da_data*100/len(folds), width=0.2, facecolor='r', edgecolor='r', linewidth=3, alpha=.5, label='Decomposable Attention')
+    plt.bar(xx+0.2, bar_cbow_data*100/len(folds), width=0.2, facecolor='orange', edgecolor='orange', linewidth=3, alpha=.5, label='CBOW cosine')
+    plt.bar(xx+0.4, bar_tf_data*100/len(folds), width=0.2, facecolor='g', edgecolor='g', linewidth=3, alpha=.5, label='Tf-idf cosine')
+    plt.bar(xx+0.6, bar_da_data*100/len(folds), width=0.2, facecolor='r', edgecolor='r', linewidth=3, alpha=.5, label='EDA')
     plt.xticks(xx+0.35, range(1,MAX_RANK))
     plt.legend()
     plt.show()
