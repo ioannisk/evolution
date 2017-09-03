@@ -204,7 +204,8 @@ def count_vectorization(corpus):
 
 def tf_idf_vectorization(corpus):
     # print("tfidf Vectorization")
-    vec = TfidfVectorizer( min_df=1, sublinear_tf=True, stop_words=stopwords)
+    vec = TfidfVectorizer( min_df=1, stop_words=stopwords)
+     # sublinear_tf=True,
     vec.fit(corpus)
     return vec
 
