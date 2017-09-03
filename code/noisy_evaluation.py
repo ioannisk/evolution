@@ -568,7 +568,7 @@ def each_fold_stats():
         toc = time.clock()
         print("Decomposable Attention time: {}".format(toc - tic))
 
-        print_nice_table(nb_accuracy, tf_accuracy, att_accuracy)
+        print_nice_table(nb_accuracy, tf_accuracy, att_accuracy, cbow_accuracy)
         # print("    Decomposable attention is {}".format( accuracy))
     # for i, TOP_N in enumerate(RANKS):
     #     print("RANK {} accuracy".format(TOP_N))
