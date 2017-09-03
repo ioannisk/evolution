@@ -87,6 +87,8 @@ def plot_attention(tokens1, tokens2, attention):
     Print a colormap showing attention values from tokens 1 to
     tokens 2.
     """
+    # tokens1.pop(0)
+    # tokens2.pop(0)
     len1 = len(tokens1)
     len2 = len(tokens2)
     extent = [0, len2, 0, len1]
