@@ -90,6 +90,7 @@ print("CBOW: {}".format(bar_cbow_data))
 print("EDA: {}".format(np.mean(bar_avrg,0)))
 
 print(np.std(bar_avrg,0))
+print(np.mean(att_avrg,0))
 
 # plt.set_xticks(xx + 0.6 / 2)
 # plt.set_xticklabels(('1', '2', '3', '4', '5', '6', '7', '8', '9', '10'))
