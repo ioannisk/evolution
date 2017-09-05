@@ -1,7 +1,0 @@
-Class 27.90: Manufacture of other electrical equipment  27900
-Class 33.12: Repair of machinery    33120
-Sub-class 86.10/1: Hospital activities  86101
-Class 26.20: Manufacture of computers and peripheral equipment  26200
-Class 32.50: Manufacture of medical and dental instruments and supplies 32500
-Class 72.11: Research and experimental development on biotechnology 72110
-
